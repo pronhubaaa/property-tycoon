@@ -1,0 +1,22 @@
+group 'Software-Engineering'
+version '1.0-SNAPSHOT'
+
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName = 'CheckTests'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+dependencies {
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
