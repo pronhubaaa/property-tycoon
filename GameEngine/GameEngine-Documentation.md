@@ -81,6 +81,8 @@ This starts the timer for the abridged version of the game.
 
 This stops the timer for the abridged version of the game.
 
+#### getCurrentPlayer
+
 ### Private Methods
 
 #### constructGameBoard
@@ -103,5 +105,7 @@ This method is intended to be accessed from incrementCurrentTurn. It will determ
 *Returns*: Void
 
 This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
+
+#### 
 
 
