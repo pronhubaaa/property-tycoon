@@ -81,7 +81,6 @@ This starts the timer for the abridged version of the game.
 
 This stops the timer for the abridged version of the game.
 
-#### getCurrentPlayer
 
 ### Private Methods
 
