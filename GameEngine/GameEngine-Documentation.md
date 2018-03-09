@@ -824,7 +824,504 @@ Add a house to the property.
 
 Remove houses from the property.
 
+--- 
 
+# FILL IN DATA
+
+---
+
+## Game Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### ui: UI
+
+- #### minPlayers: Int
+
+- #### maxPlayers: Int
+
+### Public Methods 
+- #### Game()
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods 
+- #### constructUI(GameEngine): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## PostGame Class
+### Private Attributes 
+- #### returnButton: Button
+
+- #### players: [PostGameRow]
+
+
+### Public Methods 
+- #### PostGame(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### returnToMainMenu(): Void
+*Parameters*: None
+*Returns*: Void
+
+
+---
+
+## PostGameRow Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### postionLabel: Label
+
+- #### pieceImage: ImageView
+
+- #### nameLabel: Label
+
+### Public Methods 
+- #### PostGameRow(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+---
+## UI Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+### Public Methods 
+- #### UI(GameEngine)
+
+### Private Methods
+- #### factoryMainMenu(GameEngine): MainMenu
+*Parameters*: None
+*Returns*: Void
+
+- #### createGame(GameEngine): Game
+*Parameters*: None
+*Returns*: Void
+
+- #### createPostGame(GameEngine): PostGame
+*Parameters*: None
+*Returns*: Void
+
+- #### showScene(Scene): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+## MainMenu Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+### Public Methods 
+- #### MainMenu(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+- #### factoryLoadingMenu(): Scene
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### showScene(Scene): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+## LoadGame Class
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### labels: [Label]
+
+- #### returnButton: Button
+
+- #### gameComboBox: [PreviousGame]
+
+### Public Methods 
+- #### LoadGame(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### readSavedGames(): [JsonObject]
+*Parameters*: None
+*Returns*: Void
+
+- #### returnToGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+
+## PreviousGame Class
+
+### Private Attributes 
+
+- #### playerLabel: Label
+
+- #### lastPlayedLabel: Label
+
+- #### gameCreatedLabel: Label
+
+- #### turnLabel: Label
+
+- #### playerLabelData: Label
+
+- #### lastPlayedLabelData: Label
+
+- #### gameCreatedLabelData: Label
+
+- #### turnLabelData: Label
+
+- #### loadButton: Button
+
+### Public Methods 
+- #### PreviousGame(JsonObject)
+*Parameters*: None
+*Returns*: Void
+
+---
+## SetUpGame Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### playersScene: Scene
+
+- #### boardScene: Scene
+
+- #### gameType: Scene
+
+- #### labels: [Label]
+
+- #### buttons: [Button]
+### Public Methods 
+- #### SetUpGame(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### startGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+- #### returnToGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## SetUpPlayers Class
+
+### Private Attributes 
+- #### players: [SetUpPlayer]
+
+- #### addPlayer: Button
+
+- #### playerCount: Int
+
+### Public Methods 
++ SetUpPlayers()
+*Parameters*: None
+*Returns*: Void
+
+---
+## SetUpPlayer Class
+
+### Private Attributes 
+- #### name: TextField
+
+- #### playerType: ToggleSwitch
+
+- #### pieces: [Button]
+
+- #### labels: [Label]
+
+### Public Methods 
+- #### SetUpPlayer()
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### constructName(): Void
+*Parameters*: None
+*Returns*: Void
+
+- #### constructPlayerTypeToggle(): Void
+*Parameters*: None
+*Returns*: Void
+
+- #### constructPieces(): Void
+*Parameters*: None
+*Returns*: Void
+
+- #### constructLabels(): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## PlayerType Enumeration 
+
+## Types
+
+- #### Person
+
+- #### AI 
+
+–––
+## PlayerPiece Enumeration 
+
+## Types
+
+- #### Boot
+
+- #### Smartphone
+
+- #### Goblet
+
+- #### Hatstand
+
+- #### Cat
+
+- #### Spoon
+–––
+
+## SetUpBoard Class
+
+### Private Attributes 
+- #### boardDropDown: ComboBox
+
+- #### boards: [JsonObject]
+
+- #### importButton: Button
+
+- #### label: Label
+
+### Public Methods 
+- #### SetUpBoard()
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### getBoards(): [JsonObject]
+*Parameters*: None
+*Returns*: Void
+
+- #### constructLabel(): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## SetUpGameType Class
+
+### Private Attributes 
+- #### gameTypeButtons: [Button]
+
+- #### gameTypeTitle: Label
+
+### Public Methods 
+- #### SetUpGameType()
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## FullGameButton Class
+
+### Private Attributes 
+- #### titleLabel: Label
+- #### descriptionLabel: Label
+
+### Public Methods 
+- #### FullGameButton()
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## AbridgedGameButton Class
+
+### Private Attributes 
+- #### titleLabel: Label
+
+- #### descriptionLabel: Label
+
+- #### timeLimitLabel: Label
+
+- #### timeUnitLabel: Label
+
+- #### timeTextField: TextField
+
+### Public Methods 
+- #### AbridgedGameButton()
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## Settings Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### returnButton: Button
+
+### Public Methods 
+- #### Settings(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### returnToGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## LoadBoard Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+### Public Methods 
+- #### LoadBoard(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### saveBoard(JsonObject): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## GameUI Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+### Public Methods 
+- #### Game(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## MainView Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### inGameSettings: Scene
+
+- #### sidebar: Scene
+
+- #### gameBoard: Scene
+
+### Public Methods 
+- #### MainView(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## InGameSettings Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### menuLabel: Label
+
+- #### returnButton: Button
+
+- #### saveButton: Button
+
+- #### exitButton: Button
+
+### Public Methods 
+- #### InGameSettings(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+### Private Methods
+- #### returnToGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+- #### saveGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+- exitGame(): Void
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## Sidebar Class
+
+### Private Attributes 
+- #### gameEngine: GameEngine
+
+- #### settingsButton: Button
+
+- #### players: [SidebarRow]
+
+- #### primaryPlayer: SidebarPrimaryPlayer
+
+### Public Methods 
+- #### Sidebar(GameEngine)
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## SidebarRow Class
+
+### Private Attributes 
+- #### pieceImage: ImageView
+
+- #### amountLabel: Label
+
+### Public Methods 
+- ####SidebarRow(Image)
+*Parameters*: None
+*Returns*: Void
+
+- #### SidebarRow(Image, Int)
+*Parameters*: None
+*Returns*: Void
+
+---
+
+## SidebarPrimaryPlayer Class
+
+### Private Attributes 
+- #### pieceImage: ImageView
+
+- #### amountLabel: Label
+
+- #### nameLabel: Label
+
+### Public Methods 
+
+- ####SidebarPrimaryPlayer(Player)
+*Parameters*: None
+*Returns*: Void
+
+---
 
 
 
