@@ -4,4 +4,6 @@
 
 ## Game Documentation
 
+This is the doicumentation showing how each class will work 
+
 ### [GameEngine](./GameEngine/GameEngine-Documentation.md) 
