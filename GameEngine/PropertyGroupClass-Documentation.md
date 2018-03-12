@@ -2,27 +2,13 @@
 ---
 
 ## PropertyGroup Class
+
 ### Private Attributes 
-- #### properties: [Property]
-
-The property tiles in the colour group.
-
 - #### colour: String
  
 The colour code for the colour of this particular group.
 
 #### Public Methods 
-- #### getProperties(): [Property]
-*Parameters*: None
-*Returns*: An array of all properties in this group
-
-This method returns all properties in this group.
-
-- #### setProperties([Property]): Void
-*Parameters*:An array of properties 
-*Returns*: Void 
-
-Add properties to a group for the start of a game. 
 
 - #### checkOwnedStreet(Player): Boolean
 *Parameters*: The player we are checking against 
