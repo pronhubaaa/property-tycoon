@@ -36,7 +36,7 @@
 [Documentation](./GameEngine/DiceClass-Documentation.md) 
 
 ### Group
-Documentation
+[Documentation](./GameEngine/GroupClass-Documentation.md) 
 - [PropertyGroup](./GameEngine/PropertyGroupClass-Documentation.md) 
 - [StationGroup](./GameEngine/StationGroupClass-Documentation.md) 
 - [UtilityGroup](./GameEngine/UtilityGroupClass-Documentation.md) 
@@ -56,8 +56,7 @@ Documentation
 
 ### Card
 [Documentation](./GameEngine/CardClass-Documentation.md) 
-- [CardType](./GameEngine/CardTypeEnumeration-Documentation.md) 
-- [ActionType](./GameEngine/ActionTypeEnumeration-Documentation.md) 
+- [CardType](./GameEngine/CardTypeEnumeration-Documentation.md)
 - [CardAction](./GameEngine/CardActionInterface-Documentation.md) 
 
 
