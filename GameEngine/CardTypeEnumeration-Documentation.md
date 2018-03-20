@@ -2,6 +2,9 @@
 --- 
 
 ## CardType Enumeration 
+
+This enumeration is for selecting the type of card being used, this allows different card types to be added.
+
 ### Types
 - #### PotLuck
 

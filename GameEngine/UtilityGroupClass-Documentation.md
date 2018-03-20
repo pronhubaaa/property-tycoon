@@ -3,6 +3,8 @@
 
 ## UtilityGroup Class
 
+The utility group class is responsible for checking how many utilities a player owns. 
+
 ### Public Methods 
 
 - #### checkOwnedUtility(Player): Int

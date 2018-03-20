@@ -2,6 +2,9 @@
 ---
 
 ## Group Class
+
+The group class contains all methods and functions required by the different groups on the board, this being properties, utilities and stations. 
+
 ### Private Attributes 
 
 - #### groups: [Group]

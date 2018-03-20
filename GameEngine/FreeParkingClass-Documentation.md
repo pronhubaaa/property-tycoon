@@ -3,6 +3,8 @@
 
 ## FreeParking Class
 
+The free parking class will contain all of the money stored on this tile, it will also be responsible for updating this amount. 
+
 ### Private Attributes
 - freeMoney: Int
 

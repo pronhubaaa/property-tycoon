@@ -3,6 +3,8 @@
 
 ## Property Class
 
+The property class stores all information related to a property on the board, this being the rent, amount of houses present, etc. It also contains methods to change these figures. 
+
 ### Private Attributes 
 - #### rent: [Int]
 

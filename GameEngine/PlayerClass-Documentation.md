@@ -1,6 +1,9 @@
 # Game Engine documentation
 ---
 ## Player Class
+
+The player class is responsible for storing a players assets and storing methods for how players can perform actions. 
+
 ### Private Attributes
 
 - #### inJail: Boolean

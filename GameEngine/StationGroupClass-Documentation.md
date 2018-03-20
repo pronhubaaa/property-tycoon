@@ -3,6 +3,7 @@
 
 ## StationGroup Class
 
+The station group class is used to check how many stations a player owns. 
 
 ### Public Methods 
 

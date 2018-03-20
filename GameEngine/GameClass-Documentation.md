@@ -3,6 +3,8 @@
 
 ## Game Class
 
+The game class will build the UI based on the gameEngine
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game being played.
