@@ -3,6 +3,8 @@
 
 ## SidebarRow Class
 
+This class is used to get all player details to be used in the sidebar of the standard game screen. 
+
 ### Private Attributes 
 - #### pieceImage: ImageView
 The players piece.

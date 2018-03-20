@@ -3,6 +3,8 @@
 
 ## GameBoardPropertyTile Class
 
+This class is responsible for how the property tiles appear on the board. 
+
 ### Private Attributes 
 - #### amountLabel: Label
 The cost to buy a property.

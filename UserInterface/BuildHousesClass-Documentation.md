@@ -2,6 +2,8 @@
 ---
 ## BuildHouses Class
 
+The build houses class controls adding houses to the GUI game board on specific locations. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

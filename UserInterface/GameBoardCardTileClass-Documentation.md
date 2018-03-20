@@ -3,6 +3,8 @@
 
 ## GameBoardCardTile Class
 
+The game board card tile class is responsible for how oppertunity knocks and pot luck cards appear on the game board. 
+
 ### Private Attributes 
 - #### tileImage: ImageView
 The image for this space.

@@ -2,6 +2,8 @@
 ---
 ## PropertyDetails Class
 
+This class is used to get the details of a property being used for auction. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

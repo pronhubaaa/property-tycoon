@@ -3,6 +3,8 @@
 
 ## LoadBoard Class
 
+The load board class is a part of the menu screen, allowing a different board to be added to the game. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine, all data for the current game.

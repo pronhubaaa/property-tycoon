@@ -2,6 +2,8 @@
 ---
 ## SetUpPlayer Class
 
+The setup player class is used to allow a new player to be added to a new game from the menu screen, adding their name, player type and piece. 
+
 ### Private Attributes 
 - #### name: TextField
 The name of the player being added.

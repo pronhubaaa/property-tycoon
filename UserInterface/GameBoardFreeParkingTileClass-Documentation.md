@@ -2,6 +2,8 @@
 ---
 ## GameBoardFreeParkingTile Class
 
+This class is responsible for how the free parking tile looks on the board.
+
 ### Private Attributes 
 - #### freeParkingLabel: Label
 Free parking text: "Free Parking!". 

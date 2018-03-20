@@ -3,6 +3,8 @@
 
 ## GameBoardCentre Class
 
+The game board centre class is responsible for how the centre of the board looks, and updating the amount of money on the free parking tile label. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

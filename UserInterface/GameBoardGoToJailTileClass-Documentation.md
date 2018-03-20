@@ -3,6 +3,8 @@
 
 ## GameBoardGoToJailTile Class
 
+This class is responsible for how the Go To Jail tile appears on the board. 
+
 ### Private Attributes 
 - #### goToJailLabel: Label
 Go to jail label: "Go to jail!".

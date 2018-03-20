@@ -3,6 +3,8 @@
 
 ## Sidebar Class
 
+The sidebar class is used to setup the sidebar of the standard in game screen. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

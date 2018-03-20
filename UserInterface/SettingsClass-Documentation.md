@@ -3,6 +3,8 @@
 
 ## Settings Class
 
+This is the main settings screen located in the main menu, this will allow the user to change any game settings avaliable for change. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine, all data for the current game.
