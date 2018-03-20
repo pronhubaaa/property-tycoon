@@ -3,6 +3,8 @@
 
 ## SidebarPrimaryPlayer Class
 
+This class is used to find the current player, and move their details to the correct location and add their name. 
+
 ### Private Attributes 
 - #### pieceImage: ImageView
 The players piece.

@@ -3,6 +3,8 @@
 
 ## FullGameButton Class
 
+The full game button will appear on the menu screen, showing the relevent information for this game mode. 
+
 ### Private Attributes 
 - #### titleLabel: Label
 The title of this game type: "Full Game".

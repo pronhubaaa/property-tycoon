@@ -2,6 +2,8 @@
 ---
 ## GameBoardGoTile Class
 
+This class is responsible for how the Go tile appears on the board. 
+
 ### Private Attributes 
 - #### goLabel: Label
 The go tile label: "Go!".

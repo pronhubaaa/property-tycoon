@@ -1,6 +1,9 @@
 # Game Engine documentation
 ---
 ## GameEngine class
+
+The game engine will be responsible for any action that happens on the board and controlling all of the palyers actions. 
+
 ### Private Attributes
 
 - #### gameBoard: Board
@@ -14,6 +17,9 @@ This represents the current turn number. This will increment at the end of each 
 
 - #### currentTurn: Player
 This is a pointer to the player object whose turn it currently is.
+
+- #### timer: Timer
+This is the timer counting down for the abridged version of the game. 
 
 ### Public Methods
 

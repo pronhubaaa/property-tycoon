@@ -3,6 +3,8 @@
 
 ## Auction Class
 
+The auction class controls the scene apearing in the centre of the board during an auction. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

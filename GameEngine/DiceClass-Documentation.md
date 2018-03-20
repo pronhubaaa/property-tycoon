@@ -1,6 +1,9 @@
 # Game Engine documentation
 ---
 ## Dice Class
+
+The dice class is for when dice are rolled and counting doubles
+
 ### Private Attributes
 
 - #### doubleCount: Int

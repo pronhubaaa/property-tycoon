@@ -2,6 +2,9 @@
 ---
 
 ## CardAction Interface 
+
+This interface dictates any transaction that can happen from an "Oppertunity knocks" or "Pot luck" card.
+
 ### Public Methods 
 
 - #### payParking(Int): Void

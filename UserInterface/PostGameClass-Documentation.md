@@ -2,6 +2,9 @@
 ---
 
 ## PostGame Class
+
+The post game class will allow statistics about the game to be shown to the players. 
+
 ### Private Attributes 
 - #### returnButton: Button
 The return button allows a player to go back to the main screen.

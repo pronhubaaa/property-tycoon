@@ -2,6 +2,8 @@
 ---
 ## DiceRoll Class
 
+The dice roll class will control the roll button on the screen, and the animation that happens as the dice roll. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

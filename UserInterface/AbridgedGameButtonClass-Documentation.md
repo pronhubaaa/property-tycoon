@@ -2,6 +2,8 @@
 ---
 ## AbridgedGameButton Class
 
+The abridged game button contains the information required for the button in the menu, also containing the textbox allowing for the time length to be entered. 
+
 ### Private Attributes 
 - #### titleLabel: Label
 This is the title of the button: "Abridged Game".
@@ -13,6 +15,7 @@ This is a label saying "Time Limit: ".
 This follows a text field after the time limit label saying "Mins".
 - #### timeTextField: TextField
 This goed between the time limit and units, allowing the user to set the time limit. 
+
 ### Public Methods 
 - #### AbridgedGameButton()
 *Parameters*: None

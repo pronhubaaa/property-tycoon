@@ -3,6 +3,8 @@
 
 ## MainView Class
 
+The main view class is responsible for selecting the primary view of the game, which is the gameBoard with sidebar. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine for this game.

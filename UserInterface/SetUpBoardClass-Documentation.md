@@ -3,6 +3,8 @@
 
 ## SetUpBoard Class
 
+This class will be used in the menu to pick which board is being used for a new game. 
+
 ### Private Attributes 
 - #### boardDropDown: ComboBox
 This is the dropdown box showing each board that can be used. 

@@ -3,6 +3,8 @@
 
 ## Facility Interface 
 
+The facility interface is uesd to calculate rent for a facility. Station will use this to calculate its rent amount, and Utility will do the same. 
+
 ### Public Methods
 
 - #### calculateRent(): Void 

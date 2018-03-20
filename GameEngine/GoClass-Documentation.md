@@ -2,6 +2,9 @@
 ---
 
 ## Go Class
+
+The go class is for the Go tile on the board, it stores the value given for passing go, and can give hte player that value upon passing. 
+
 ### Private Attributes 
 - #### value: Int
 

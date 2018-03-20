@@ -3,6 +3,8 @@
 
 ## PropertyGroup Class
 
+The property group class is responsible for containing all groups of properties. This excludes the station and utility groups. This class will be able to check ownership and colour of a group. 
+
 ### Private Attributes 
 - #### colour: String
  

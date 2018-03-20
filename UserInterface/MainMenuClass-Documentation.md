@@ -2,6 +2,8 @@
 ---
 ## MainMenu Class
 
+The main menu class is the GUI for the initial menu, allowing the player to choose what they would like to do. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine, all data for the current game.

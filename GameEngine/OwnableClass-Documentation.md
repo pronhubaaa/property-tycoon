@@ -2,6 +2,9 @@
 ---
 
 ## Ownable Class
+
+The ownable class contains all tiles that a player could possess. 
+
 ### Private Attributes 
 - #### owner: Player
 

@@ -1,6 +1,9 @@
 # Game Engine documentation
 ---
 ## Card Class
+
+The card class is for storing action cards (Pot luck and oppertunity knocks)
+
 ### Private Attributes 
 - #### label: String
 

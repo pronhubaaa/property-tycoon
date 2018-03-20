@@ -2,6 +2,8 @@
 ---
 ## SetUpGame Class
 
+The setup game class will be used to setup a new game, including the GUI buttons and labels. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine, all data for the current game.

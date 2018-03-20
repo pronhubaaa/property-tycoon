@@ -3,6 +3,8 @@
 
 ## GameBoard Class
 
+The game board class is responsible for updating the gameboard. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine data.
