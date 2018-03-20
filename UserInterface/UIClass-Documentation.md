@@ -2,6 +2,8 @@
 ---
 ## UI Class
 
+The UI class is the controller used to go between the game engine and UI. It will create all standard scenes to be used in the game. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine, all data for the current game.

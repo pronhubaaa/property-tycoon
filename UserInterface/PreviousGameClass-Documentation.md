@@ -3,6 +3,8 @@
 
 ## PreviousGame Class
 
+This class is responsible for building a profile about a previos game, to be used in the menu screen in order to select a previous game save. 
+
 ### Private Attributes 
 
 - #### playerLabel: Label

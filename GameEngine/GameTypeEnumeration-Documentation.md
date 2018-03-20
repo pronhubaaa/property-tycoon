@@ -1,6 +1,9 @@
 # Game Engine documentation
 ---
 ## GameType Enumeration 
+
+This enumeration will show different game type options, this could be added to. 
+
 ### Types
 - #### FullGame
 

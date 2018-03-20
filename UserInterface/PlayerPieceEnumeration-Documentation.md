@@ -2,6 +2,8 @@
 –––
 ## PlayerPiece Enumeration 
 
+The palyer piece enumeration will enumerate all pieces a player could be, this coukd be added to. 
+
 ## Types
 
 - #### Boot

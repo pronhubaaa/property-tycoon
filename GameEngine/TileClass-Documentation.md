@@ -3,6 +3,8 @@
 
 ## Tile Class
 
+The tile class is responsible for storing all tiles on the game board. It contains common functions that all tiles will need such as storing the position. 
+
 ### Private Attributes 
 - #### name: String
 

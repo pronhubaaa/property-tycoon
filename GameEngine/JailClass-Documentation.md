@@ -2,6 +2,9 @@
 ---
 
 ## Jail Class
+
+The jail class is responsible for players in jail, it contains the price to get out and can free a player from jail.  
+
 ### Private Attributes 
 
 - fee: Int

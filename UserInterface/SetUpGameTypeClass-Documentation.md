@@ -2,6 +2,8 @@
 ---
 ## SetUpGameType Class
 
+This class will be used to setup the buttons asking which type of game the user would like to play, this being abridged or full.
+
 ### Private Attributes 
 - #### gameTypeButtons: [Button]
 

@@ -3,6 +3,8 @@
 
 ## InGameSettings Class
 
+The in game settings are the buttons for the different settings the player is able to change mid-game. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The current game engine.

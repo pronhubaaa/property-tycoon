@@ -2,6 +2,8 @@
 ---
 ## GameBoardJailTile Class
 
+This class is responsible for how the Jail/Just Visiting tile appears on the board. 
+
 ### Private Attributes 
 - #### jailLabel: Label
 Jail text: "Jail!".

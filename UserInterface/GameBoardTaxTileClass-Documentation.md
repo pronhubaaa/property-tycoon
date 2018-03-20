@@ -2,6 +2,8 @@
 ---
 ## GameBoardTaxTile Class
 
+This class is responsible for how the Income tax tiles appear on the board. 
+
 ### Private Attributes 
 - #### amountLabel: Label
 The cost for landing on this tile.

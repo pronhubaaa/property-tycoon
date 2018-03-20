@@ -2,6 +2,9 @@
 --- 
 
 ## Board Class 
+
+The board class controls all tiles on the board, initialising them, keeping track of player locations property sales, etc. 
+
 ### Private Attributes 
 - #### tiles: [Tile]
 
@@ -51,7 +54,7 @@ This allows the game to add the card to the end of a stack.
 
 This allows the game board to be initialised, tiles can be added in this way.
 
-- ####randomiseCards(): Void
+- ####randomiseCards(CardType): Void
 *Parameters*: None 
 *Returns*: Void
 

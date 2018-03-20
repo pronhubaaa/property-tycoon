@@ -3,6 +3,8 @@
 
 ## Dialog Class
 
+The dialog class controls any pop-up messages that happen throughout the game. 
+
 ### Private Attributes 
 - #### titleLabel: Label
 The label of this direction.

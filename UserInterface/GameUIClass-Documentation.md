@@ -3,6 +3,8 @@
 
 ## GameUI Class
 
+The gameUI class is responsible for changing the screen. 
+
 ### Private Attributes 
 - #### gameEngine: GameEngine
 
