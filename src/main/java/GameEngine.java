@@ -67,7 +67,7 @@ public class GameEngine {
      * @param jsonObject JsonObject of imported board data
      * @param players Array of Players
      * @param type GameType enum
-     * @param numberOfMinutes Int number of minutes (optional)
+     * @param numberOfMinutes Int number of minutes
      *
      * This is the constructor method. It will be used to start a new game and initialise the board.
      */
@@ -76,8 +76,20 @@ public class GameEngine {
         this.gameTimeLimit = numberOfMinutes;
         this.gameType = type;
 
+    }
 
 
+    /**
+     * GameEngine
+     * @param jsonObject JsonObject of imported board data
+     * @param players Array of Players
+     * @param type GameType enum
+     *
+     * This is the constructor method. It will be used to start a new game and initialise the board.
+     */
+    public GameEngine(JSONObject jsonObject, Player[] players, GameType type){
+        this.players = players;
+        this.gameType = type;
 
     }
 

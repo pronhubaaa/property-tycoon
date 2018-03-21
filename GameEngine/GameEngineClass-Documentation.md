@@ -41,6 +41,12 @@ This is the constructor method. The JSON data will include board data, player da
 
 This is the constructor method. It will be used to start a new game and initialise the board.
 
+- #### GameEngine
+*Parameters*: JsonObject of imported board data, Array of Players, GameType enum
+*Returns*: Void
+
+This is the constructor method. It will be used to start a new game and initialise the board.
+
 - #### startGame
 *Parameters*: None
 *Returns*: Void

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f11f03c-e708-464c-b260-318b1a91615a" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/test/java/GameEngineTest.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/GameEngine/GameEngineClass-Documentation.md" afterPath="$PROJECT_DIR$/GameEngine/GameEngineClass-Documentation.md" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GameEngine.java" afterPath="$PROJECT_DIR$/src/main/java/GameEngine.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GameType.java" afterPath="$PROJECT_DIR$/src/main/java/GameType.java" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/GameEngineTest.java" afterPath="$PROJECT_DIR$/src/test/java/GameEngineTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -26,16 +27,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Game.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,35 +52,61 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GameEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
+            <state relative-caret-position="591">
+              <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2505#2506#0" expanded="true" />
-                <element signature="e#2532#2533#0" expanded="true" />
-                <element signature="e#2940#2941#0" expanded="true" />
-                <element signature="e#2967#2968#0" expanded="true" />
-                <element signature="e#3174#3175#0" expanded="true" />
-                <element signature="e#3198#3199#0" expanded="true" />
-                <element signature="e#3788#3789#0" expanded="true" />
-                <element signature="e#3815#3816#0" expanded="true" />
-                <element signature="e#4167#4168#0" expanded="true" />
-                <element signature="e#4194#4195#0" expanded="true" />
-                <element signature="e#4532#4533#0" expanded="true" />
-                <element signature="e#4559#4560#0" expanded="true" />
+                <element signature="e#2914#2915#0" expanded="true" />
+                <element signature="e#2941#2942#0" expanded="true" />
+                <element signature="e#3349#3350#0" expanded="true" />
+                <element signature="e#3376#3377#0" expanded="true" />
+                <element signature="e#3583#3584#0" expanded="true" />
+                <element signature="e#3607#3608#0" expanded="true" />
+                <element signature="e#4197#4198#0" expanded="true" />
+                <element signature="e#4224#4225#0" expanded="true" />
+                <element signature="e#4576#4577#0" expanded="true" />
+                <element signature="e#4603#4604#0" expanded="true" />
+                <element signature="e#4941#4942#0" expanded="true" />
+                <element signature="e#4968#4969#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameEngineTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameTypeEnumeration-Documentation.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GameEngine/GameTypeEnumeration-Documentation.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JSONObject.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.46/6ac639f9535d68d6c55ff98265a9c6fdbcddeaad/fastjson-1.2.46-sources.jar!/com/alibaba/fastjson/JSONObject.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="51" column="13" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+              <folding>
+                <element signature="e#2332#2333#0" expanded="true" />
+                <element signature="e#2385#2386#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameEngineTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/GameEngineTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+            <state relative-caret-position="525">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,9 +117,11 @@
       <file leaf-file-name="GameTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="60">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,55 +143,11 @@
         <entry file="file://$PROJECT_DIR$/GameEngine/GameEngineClass-Documentation.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1485">
-                <caret line="105" column="3" lean-forward="false" selection-start-line="105" selection-start-column="3" selection-end-line="105" selection-end-column="3" />
-                <folding>
-                  <marker date="1521662802585" expanded="true" signature="758:2611" ph="h3: ###### Public Methods" />
-                  <marker date="1521662802585" expanded="true" signature="758:3375" ph="h3: ###### Public Methods" />
-                  <marker date="1521662802585" expanded="true" signature="2613:3375" ph="h3: ###### Private Methods" />
-                </folding>
+              <first_editor relative-caret-position="513">
+                <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+                <folding />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NativeJSON.class" pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_162.jdk/Contents/Home/jre/lib/ext/nashorn.jar!/jdk/nashorn/internal/objects/NativeJSON.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-              <folding>
-                <marker date="1513734819000" expanded="false" signature="0:104" ph="/.../" />
-                <marker date="1513734819000" expanded="false" signature="152:1045" ph="..." />
-                <marker date="1513734819000" expanded="true" signature="1376:1651" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="1465:1643" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="1506:1633" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="1707:2003" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="1807:1995" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="1848:1985" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="2059:2383" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="2159:2375" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="2200:2365" ph="{...}" />
-                <marker date="1513734819000" expanded="false" signature="2409:2420" ph=" { " />
-                <marker date="1513734819000" expanded="false" signature="2462:2468" ph=" }" />
-                <marker date="1513734819000" expanded="false" signature="2542:2553" ph=" { " />
-                <marker date="1513734819000" expanded="false" signature="2595:2601" ph=" }" />
-                <marker date="1513734819000" expanded="true" signature="2696:4843" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="4935:7578" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="7656:10468" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="10546:12963" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="13016:13458" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="13508:13802" ph="{...}" />
-                <marker date="1513734819000" expanded="false" signature="13858:13869" ph=" { " />
-                <marker date="1513734819000" expanded="false" signature="13929:13935" ph=" }" />
-                <marker date="1513734819000" expanded="true" signature="14002:14408" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="14421:14448" ph="{...}" />
-                <marker date="1513734819000" expanded="false" signature="14483:14494" ph=" { " />
-                <marker date="1513734819000" expanded="false" signature="14551:14557" ph=" }" />
-                <marker date="1513734819000" expanded="true" signature="14599:15013" ph="{...}" />
-                <marker date="1513734819000" expanded="true" signature="14794:15007" ph="{...}" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -180,8 +155,8 @@
       <file leaf-file-name="GameType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GameType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+            <state relative-caret-position="30">
+              <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -611,11 +586,12 @@
         <option value="$PROJECT_DIR$/src/main/java/UI.java" />
         <option value="$PROJECT_DIR$/src/main/java/Board.java" />
         <option value="$PROJECT_DIR$/src/main/java/Player.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GameType.java" />
         <option value="$PROJECT_DIR$/src/main/java/Game.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/src/test/java/GameEngineTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GameType.java" />
         <option value="$PROJECT_DIR$/src/main/java/GameEngine.java" />
+        <option value="$PROJECT_DIR$/GameEngine/GameEngineClass-Documentation.md" />
+        <option value="$PROJECT_DIR$/src/test/java/GameEngineTest.java" />
       </list>
     </option>
   </component>
@@ -912,12 +888,12 @@
       <workItem from="1520455982551" duration="253000" />
       <workItem from="1520456358047" duration="1961000" />
       <workItem from="1521450495343" duration="4740000" />
-      <workItem from="1521662769941" duration="680000" />
+      <workItem from="1521662769941" duration="1883000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10870000" />
+    <option name="totallyTimeSpent" value="12073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -962,26 +938,18 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.46/6ac639f9535d68d6c55ff98265a9c6fdbcddeaad/fastjson-1.2.46-sources.jar!/com/alibaba/fastjson/JSONObject.java</url>
+          <properties />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gradlew.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1001,7 +969,7 @@
         <state relative-caret-position="90">
           <caret line="10" column="1" lean-forward="false" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1285,21 +1253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GameEngine/GameEngineClass-Documentation.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1485">
-            <caret line="105" column="3" lean-forward="false" selection-start-line="105" selection-start-column="3" selection-end-line="105" selection-end-column="3" />
-            <folding>
-              <marker date="1521662802585" expanded="true" signature="758:2611" ph="h3: ###### Public Methods" />
-              <marker date="1521662802585" expanded="true" signature="758:3375" ph="h3: ###### Public Methods" />
-              <marker date="1521662802585" expanded="true" signature="2613:3375" ph="h3: ###### Private Methods" />
-            </folding>
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameEngine/GameEngine-Documentation.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1324,52 +1277,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GameType.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.46/6ac639f9535d68d6c55ff98265a9c6fdbcddeaad/fastjson-1.2.46-sources.jar!/com/alibaba/fastjson/JSONObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="120">
+          <caret line="51" column="13" lean-forward="false" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+          <folding>
+            <element signature="e#2332#2333#0" expanded="true" />
+            <element signature="e#2385#2386#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/GameTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="33" />
+        <state relative-caret-position="60">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GameType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameEngine/GameTypeEnumeration-Documentation.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GameEngine/GameEngineClass-Documentation.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="513">
+            <caret line="43" column="17" lean-forward="true" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GameEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="91" column="29" lean-forward="true" selection-start-line="91" selection-start-column="29" selection-end-line="91" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2914#2915#0" expanded="true" />
+            <element signature="e#2941#2942#0" expanded="true" />
+            <element signature="e#3349#3350#0" expanded="true" />
+            <element signature="e#3376#3377#0" expanded="true" />
+            <element signature="e#3583#3584#0" expanded="true" />
+            <element signature="e#3607#3608#0" expanded="true" />
+            <element signature="e#4197#4198#0" expanded="true" />
+            <element signature="e#4224#4225#0" expanded="true" />
+            <element signature="e#4576#4577#0" expanded="true" />
+            <element signature="e#4603#4604#0" expanded="true" />
+            <element signature="e#4941#4942#0" expanded="true" />
+            <element signature="e#4968#4969#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/GameEngineTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+        <state relative-caret-position="525">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GameEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="532">
-          <caret line="53" column="0" lean-forward="true" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2505#2506#0" expanded="true" />
-            <element signature="e#2532#2533#0" expanded="true" />
-            <element signature="e#2940#2941#0" expanded="true" />
-            <element signature="e#2967#2968#0" expanded="true" />
-            <element signature="e#3174#3175#0" expanded="true" />
-            <element signature="e#3198#3199#0" expanded="true" />
-            <element signature="e#3788#3789#0" expanded="true" />
-            <element signature="e#3815#3816#0" expanded="true" />
-            <element signature="e#4167#4168#0" expanded="true" />
-            <element signature="e#4194#4195#0" expanded="true" />
-            <element signature="e#4532#4533#0" expanded="true" />
-            <element signature="e#4559#4560#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,13 +1,19 @@
+import com.alibaba.fastjson.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class GameEngineTest {
 
     @Before
     public void setUp() throws Exception {
+
+        JSONObject json = new JSONObject();
+        Player[] players = new Player[3];
+        GameType type = GameType.FULL;
+        int numberOfMinutes = 0;
+
+        GameEngine gameEngine = new GameEngine(json, players, type);
     }
 
     @After
@@ -20,9 +26,9 @@ public class GameEngineTest {
 
     @Test
     public void getCurrentPlayer() {
-        GameEngine gameEngine = new GameEngine();
 
-        assertTrue(gameEngine.getCurrentPlayer() instanceof Player);
+
+
     }
 
     @Test
