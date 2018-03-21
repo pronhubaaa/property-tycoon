@@ -17,7 +17,7 @@ public class GameEngine {
      * players: Array of Players
      * This array represents all the players playing the game. The order of the array will represent the order of play.
      */
-    private Player[] Players;
+    private Player[] players;
 
     /**
      * numberOfTurns: Int
@@ -30,7 +30,26 @@ public class GameEngine {
      * This is a pointer to the player object whose turn it currently is.
      */
     private Player currentPlayer;
+
+
+    /**
+     * timer: Timer
+     * This is the timer counting down for the abridged version of the game.
+     */
     private Timer timer;
+
+    /**
+     * gameTimeLimit: int
+     * This is the time limit of the game.
+     */
+    private int gameTimeLimit;
+
+
+    /**
+     * gameType: GameType
+     * This is the type of game e.g. Abridged or Full.
+     */
+    private GameType gameType;
 
 
     /**
@@ -53,6 +72,11 @@ public class GameEngine {
      * This is the constructor method. It will be used to start a new game and initialise the board.
      */
     public GameEngine(JSONObject jsonObject, Player[] players, GameType type, int numberOfMinutes){
+        this.players = players;
+        this.gameTimeLimit = numberOfMinutes;
+        this.gameType = type;
+
+
 
 
     }
@@ -130,31 +154,38 @@ public class GameEngine {
         return null;
     }
 
+
+    /**
+     * constructGameBoard
+     * @param jsonObject
+     * @return Board
+     *
+     * Sets up a board using the imported board data.
+     * If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
+     */
+    private Board constructGameBoard(JSONObject jsonObject){
+        return null;
+    }
+
+
+    /**
+     * endGame
+     * @return Boolean
+     *
+     * This method is intended to be accessed from incrementCurrentTurn. It will determine whether the game is over, by using methods such as getTime (if it is the abridged version) and also by checking the number of players still in the game.
+     */
+    private Boolean endGame(){
+        return null;
+    }
+
+
+    /**
+     * addPlayer
+     *
+     * This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
+     */
+    private void addPlayer(Player player){
+
+    }
 }
 
-
-/**
-
- ### Private Methods
-
- - #### constructGameBoard
- *Parameters*: JsonObject of imported board data.
- *Returns*: Board
-
- Sets up a board using the imported board data. If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
-
- - #### endGame
- *Parameters*: None
- *Returns*: Boolean
-
- This method is intended to be accessed from incrementCurrentTurn. It will determine whether the game is over, by using methods such as getTime (if it is the abridged version) and also by checking the number of players still in the game.
-
- - #### addPlayer
- *Parameters*: Player
- *Returns*: Void
-
- This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
-
- ---
-
- */
