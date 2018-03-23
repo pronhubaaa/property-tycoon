@@ -17,6 +17,7 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
 dependencies {
-
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.testfx', name: 'testfx-core', version: '4.0.12-alpha'
+    testCompile group: 'org.testfx', name: 'testfx-junit', version: '4.0.12-alpha'
 }
