@@ -7,17 +7,23 @@ The UI class is the controller used to go between the game engine and UI. It wil
 ### Private Attributes 
 - #### gameEngine: GameEngine
 The game engine, all data for the current game.
+
+- #### primaryStage: Stage
+The primary stage for the UI.
+
 ### Public Methods 
-- #### UI(GameEngine)
-*Parameters*: The current game engine
+- #### UI(Stage, GameEngine)
+*Parameters*: 
+ - The primary stage for the UI.
+ - The current game engine
 *Returns*: Void
 
 Initialise the user interface for the current dataset.
 
 ### Private Methods
 - #### factoryMainMenu(GameEngine): MainMenu
-*Parameters*: None
-*Returns*: Void
+*Parameters*: The current game engine
+*Returns*: An object of class MainMenu.
 
 This will show the main menu screen in the UI.
 
