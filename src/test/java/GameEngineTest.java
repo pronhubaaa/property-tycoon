@@ -10,10 +10,18 @@ public class GameEngineTest {
 
         JSONObject json = new JSONObject();
         Player[] players = new Player[3];
-        GameType type = GameType.FULL;
-        int numberOfMinutes = 0;
 
-        GameEngine gameEngine = new GameEngine(json, players, type);
+        Player player1 = new Player();
+        Player player2 = new Player();
+        Player player3 = new Player();
+
+        players[0] = player1;
+        players[1] = player2;
+        players[2] = player3;
+
+        GameType type = GameType.FULL;
+
+        GameEngine gameEngineFull = new GameEngine(json, players, type);
     }
 
     @After
