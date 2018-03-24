@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6f11f03c-e708-464c-b260-318b1a91615a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/GameEngineTest.java" afterPath="$PROJECT_DIR$/src/test/java/GameEngineTest.java" />
-    </list>
+    <list default="true" id="6f11f03c-e708-464c-b260-318b1a91615a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -890,7 +888,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15027000" />
+    <option name="totallyTimeSpent" value="15147000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />

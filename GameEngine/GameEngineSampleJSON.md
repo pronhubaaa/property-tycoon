@@ -1,5 +1,14 @@
 # Init
 
+## Optional Values
+- property_group
+- action
+- cost
+- rent
+- houses
+
+
+```JSON
 {
 	"tile":
 	[
@@ -20,11 +29,19 @@
 	]
 
 }
-
+```
 
 # Saved game
 
+## Optional Values
+- property_group
+- action
+- cost
+- rent
+- houses
+- remaining_time
 
+```JSON
 {
 	"tile":
 	[
@@ -32,7 +49,7 @@
 			"position": "1",
 			"name": "Go",
 			"ownable": "true",
-			"property_group": "green",
+			"property_group": "green", 
 			"action": {
 				"action": "receive",
 				"value": "200"
@@ -46,7 +63,6 @@
 				"120", 
 				"200"
 			]
-
 		}
 	],
 	"player": [
@@ -61,7 +77,6 @@
 				"17"
 			], 
 			"piece": "2"
-
 		}
 	],
 	"game_type": "full",
@@ -70,3 +85,4 @@
 	"number_of_turns": "52"
 
 }
+```
