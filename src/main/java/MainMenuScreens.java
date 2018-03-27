@@ -16,9 +16,12 @@ public class MainMenuScreens {
 
         Button newGameButton = new Button();
         newGameButton.setText("New game");
+        newGameButton.setId("new-game-button");
+
         newGameButton.setOnAction((ActionEvent e) -> {
             VBox testLayout = new VBox();
             Text testText = new Text("Test");
+            testLayout.setId("test-layout");
             testLayout.getChildren().add(testText);
             ui.showScene(new Scene(testLayout));
         });
