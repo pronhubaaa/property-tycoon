@@ -21,18 +21,18 @@ The primary stage for the UI.
 Initialise the user interface for the current dataset.
 
 ### Private Methods
-- #### factoryMainMenu(GameEngine): MainMenu
+- #### createMainMenu(GameEngine): MainMenuScreens
 *Parameters*: The current game engine
-*Returns*: An object of class MainMenu.
+*Returns*: An object of class MainMenuScreens.
 
 This will show the main menu screen in the UI.
 
-- #### createGame(GameEngine): Game
+- #### createGame(GameEngine): GameScreens
 *Parameters*: The current game engine 
 *Returns*: A game object 
 
 This will create the UI screen for the current game.
-- #### createPostGame(GameEngine): PostGame
+- #### createPostGame(GameEngine): PostGameScreens
 *Parameters*: The current game engine 
 *Returns*: a post game object showing the leaderboard 
 

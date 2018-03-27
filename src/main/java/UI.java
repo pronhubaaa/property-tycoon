@@ -22,18 +22,20 @@ public class UI {
 
         this._primaryStage = primaryStage;
 
-        this._factoryMainMenu(gameEngine);
+        this._createMainMenu(gameEngine);
     }
 
     /**
      * This will show the main menu screen in the UI.
      * @param gameEngine    The current game engine.
-     * @return An object of class MainMenu.
+     * @return An object of class MainMenuScreens.
      */
-    private MainMenu _factoryMainMenu(GameEngine gameEngine) {
-        Scene scene = new Scene();
+    private MainMenuScreens _createMainMenu(GameEngine gameEngine) {
+        Scene scene = new Scene(null, 400,400);
         this._primaryStage.setScene(scene);
         this._primaryStage.show();
+
+        return null;
     }
 
     /**
@@ -41,14 +43,18 @@ public class UI {
      * @param gameEngine    The current game engine.
      * @return A game object.
      */
-    private Game _createGame(GameEngine gameEngine) {}
+    private GameScreens _createGame(GameEngine gameEngine) {
+        return null;
+    }
 
     /**
      * This will create a results screen for after the game.
      * @param gameEngine    The current game engine.
      * @return A post game object showing the leaderboard.
      */
-    private PostGame _createPostGame(GameEngine gameEngine) {}
+    private PostGameScreens _createPostGame(GameEngine gameEngine) {
+        return null;
+    }
 
     /**
      * This method allows us to view a specific scene, game, menu etc.
