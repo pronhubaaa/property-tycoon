@@ -22,43 +22,16 @@ public class UI {
 
         this._primaryStage = primaryStage;
 
-        this._createMainMenu(gameEngine);
-    }
-
-    /**
-     * This will show the main menu screen in the UI.
-     * @param gameEngine    The current game engine.
-     * @return An object of class MainMenuScreens.
-     */
-    private MainMenuScreens _createMainMenu(GameEngine gameEngine) {
-        Scene scene = new Scene(null, 400,400);
-        this._primaryStage.setScene(scene);
+        Scene mainMenuScene = MainMenuScreens.getMainMenu(this);
+        this.showScene(mainMenuScene);
         this._primaryStage.show();
-
-        return null;
-    }
-
-    /**
-     * This will create the UI screen for the current game.
-     * @param gameEngine    The current game engine.
-     * @return A game object.
-     */
-    private GameScreens _createGame(GameEngine gameEngine) {
-        return null;
-    }
-
-    /**
-     * This will create a results screen for after the game.
-     * @param gameEngine    The current game engine.
-     * @return A post game object showing the leaderboard.
-     */
-    private PostGameScreens _createPostGame(GameEngine gameEngine) {
-        return null;
     }
 
     /**
      * This method allows us to view a specific scene, game, menu etc.
      * @param scene     The screen being displayed.
      */
-    private void _showScene(Scene scene) {}
+    public void showScene(Scene scene) {
+        this._primaryStage.setScene(scene);
+    }
 }
