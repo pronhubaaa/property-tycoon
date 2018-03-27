@@ -5,6 +5,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class MainMenuScreens {
+    /**
+     * Returns a scene containing the main menu.
+     * @param ui    The UI object.
+     * @return A scene containing the main menu.
+     */
     public static Scene getMainMenu(UI ui) {
         VBox mainMenuLayout = new VBox();
         mainMenuLayout.setSpacing(8);
