@@ -1,6 +1,7 @@
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -9,6 +10,14 @@ import static org.junit.Assert.*;
 public class MainMenuScreensTest extends ApplicationTest {
     private Scene _mainMenuScene;
     private Stage _primaryStage;
+
+    @BeforeClass
+    public static void beforeClass() {
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "true");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
+    }
 
     @Override
     public void start(Stage stage) {
