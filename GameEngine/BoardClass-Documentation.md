@@ -54,10 +54,10 @@ This allows the game to add the card to the end of a stack.
 
 This allows the game board to be initialised, tiles can be added in this way.
 
-- ####randomiseCards(CardType): Void
-*Parameters*: None 
+- #### randomiseCards(CardType): Void
+*Parameters*: The card type e.g. 'opportunity knocks' or 'pot luck'
 *Returns*: Void
 
-This method randomises the oppertunity knocks and pot luck cards at the start of a game. 
+This method randomises the opportunity knocks and pot luck cards at the start of a game.
 
 ---

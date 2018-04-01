@@ -1,5 +1,6 @@
 .DS_Store
 
 out/
-
-.idea/workspace.xml
+.gradle/
+.idea/**/libraries
+.idea/**/workspace.xml

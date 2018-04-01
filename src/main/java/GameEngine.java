@@ -76,7 +76,11 @@ public class GameEngine {
         this.gameTimeLimit = numberOfMinutes;
         this.gameType = type;
 
+        this.gameBoard = constructGameBoard(jsonObject);
+
+
     }
+
 
 
     /**
@@ -90,6 +94,8 @@ public class GameEngine {
     public GameEngine(JSONObject jsonObject, Player[] players, GameType type){
         this.players = players;
         this.gameType = type;
+
+        this.gameBoard = constructGameBoard(jsonObject);
 
     }
 
@@ -176,7 +182,7 @@ public class GameEngine {
      * If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
      */
     private Board constructGameBoard(JSONObject jsonObject){
-        return null;
+        return new Board(jsonObject);
     }
 
 
