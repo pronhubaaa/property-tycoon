@@ -1,4 +1,4 @@
-# Init
+# Init game
 
 ## Optional Values
 - property_group
