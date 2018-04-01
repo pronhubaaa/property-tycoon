@@ -4,7 +4,9 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Timer;
 
-
+/**
+ * The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
+ */
 public class GameEngine {
 
 
@@ -60,6 +62,21 @@ public class GameEngine {
      * This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
      */
     public GameEngine(JSONObject jsonObject){
+        if(jsonObject.containsKey("game_type")){
+            this.gameType = (GameType) jsonObject.get("game_type");
+        }
+
+        if(jsonObject.containsKey("remaining_time")){
+            //jsonObject.get("remaining_time");
+        }
+
+        if(jsonObject.containsKey("current_player")){
+            this.currentPlayer = this.players.get((int) jsonObject.get("current_player"));
+        }
+
+        if(jsonObject.containsKey("number_of_turns")){
+            this.numberOfTurns = (int) jsonObject.get("number_of_turns");
+        }
 
     }
 
@@ -74,9 +91,11 @@ public class GameEngine {
      */
     public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes){
         this.players = players;
+        this.currentPlayer = this.players.get(0);
         this.gameTimeLimit = numberOfMinutes;
         this.gameType = type;
         this.gameBoard = constructGameBoard(jsonObject);
+        this.numberOfTurns = 0;
 
 
     }
@@ -93,9 +112,10 @@ public class GameEngine {
      */
     public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type){
         this.players = players;
+        this.currentPlayer = this.players.get(0);
         this.gameType = type;
-
         this.gameBoard = constructGameBoard(jsonObject);
+        this.numberOfTurns = 0;
 
     }
 
@@ -125,8 +145,10 @@ public class GameEngine {
      * It will be responsible for checking whether the game is over (using endGame method), changing the current player reference and incrementing the numberOfTurns attribute.
      */
     public Player nextTurn(){
+        this.currentPlayer = this.players.get((this.players.indexOf(this.currentPlayer)+1)%this.players.size());
+        this.incrementNumberOfTurns();
+        return this.currentPlayer;
 
-        return null;
     }
 
     /**

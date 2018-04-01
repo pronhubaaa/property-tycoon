@@ -13,8 +13,9 @@
 	"tile":
 	[
 		{
+		    "type": "Go",
 			"position": "1",
-			"name": "Go",
+			"name": "go",
 			"ownable": "true",
 			"property_group": "green",
 			"action": {
@@ -46,6 +47,7 @@
 	"tile":
 	[
 		{
+		    "type": "Go",
 			"position": "1",
 			"name": "Go",
 			"ownable": "true",

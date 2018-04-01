@@ -1,6 +1,8 @@
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 
 /**
@@ -44,6 +46,101 @@ public class Board {
      * The JSON data will come from the GameEngine, this includes all tiles, property groups, station groups, utility groups and cards. This constructor initialises the board.
      */
     public Board(JSONObject jsonObject){
+        if(jsonObject.containsKey("tile")){
+
+            JSONArray tiles = jsonObject.getJSONArray("tile");
+
+            for(Object object: tiles){
+                JSONObject tile = (JSONObject) object;
+
+                if(tile.containsKey("type")){
+                    TileType type = TileType.valueOf(tile.getString("type"));
+                    String tileName = tile.getString("name");
+                    int tilePosition = tile.getIntValue("position");
+                    int tileValue = tile.getIntValue("value");
+
+
+
+                    switch(type) {
+                        case Go:
+                            Go go = new Go(tileName, tilePosition, tileValue);
+                            this.tiles.add(go);
+                            break;
+                        case FreeParking:
+                            FreeParking freeParking = new FreeParking(tileName, tilePosition);
+                            this.tiles.add(freeParking);
+                            break;
+                        case Utility:
+
+                            break;
+                        case Station:
+                            break;
+                        case Property:
+                            Property property = new Property(tileName, tilePosition);
+                            this.tiles.add(property);
+                            break;
+                        case Jail:
+                            Jail jail = new Jail(tileName, tilePosition);
+                            this.tiles.add(jail);
+                            break;
+                        case GoToJail:
+                            GoToJail goToJail = new GoToJail(tileName, tilePosition);
+                            this.tiles.add(goToJail);
+                            break;
+
+                        default:
+                            break;
+
+                    }
+
+                }
+
+
+
+
+/*
+
+                if(tile.containsKey("ownable")){
+                    boolean ownable = tile.getBooleanValue("ownable");
+                    System.out.println(ownable);
+
+                }
+
+                if(tile.containsKey("property_group")){
+                    String group = tile.getString("property_group");
+                    System.out.println(group);
+
+                }
+
+                if(tile.containsKey("action")){
+                    JSONObject actionObject = tile.getJSONObject("action");
+
+                    String action = actionObject.getString("action");
+                    int value =  actionObject.getIntValue("value");
+                }
+
+                if(tile.containsKey("cost")){
+                    int cost = tile.getIntValue("cost");
+                    System.out.println(cost);
+
+                }
+
+                if(tile.containsKey("rent")){
+                    int rent = tile.getIntValue("rent");
+                    System.out.println(rent);
+
+                }
+
+                if(tile.containsKey("houses")){
+                    for(Object price: tile.getJSONArray("houses")){
+                        System.out.println(price);
+                    }
+
+                }*/
+            }
+
+
+        }
 
 
     }

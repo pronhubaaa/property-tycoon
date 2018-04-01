@@ -48,6 +48,10 @@ public class Player {
      * This is the initialiser for the object, it initialises the name and balance.
      */
     public Player(int balance, String name){
+        setBalance(balance);
+        setName(name);
+        setInJail(false);
+
 
     }
 

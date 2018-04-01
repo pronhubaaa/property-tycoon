@@ -2,7 +2,7 @@
 ---
 ## GameEngine class
 
-The game engine will be responsible for any action that happens on the board and controlling all of the palyers actions. 
+The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
 
 ### Private Attributes
 
