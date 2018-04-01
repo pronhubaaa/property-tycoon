@@ -1,5 +1,6 @@
 import com.alibaba.fastjson.JSONObject;
 
+import java.util.ArrayList;
 
 
 /**
@@ -11,31 +12,31 @@ public class Board {
      * tiles: [Tile]
      * All tiles that appear on the board.
      */
-    private Tile[] tiles;
+    private ArrayList<Tile> tiles;
 
     /**
      * propertyGroups: [PropertyGroup]
      * The groups of properties as shown by their colour groups on the board.
      */
-    private PropertyGroup[] propertyGroups;
+    private ArrayList<PropertyGroup> propertyGroups;
 
     /**
      * stationGroups: [StationGroup]
      * The train station tiles shown on the board.
      */
-    private StationGroup[] stationGroups;
+    private ArrayList<StationGroup> stationGroups;
 
     /**
      * UtilityGroups: [UtilityGroup]
      * The utility tiles shown on the board.
      */
-    private UtilityGroup[] utilityGroups;
+    private ArrayList<UtilityGroup> utilityGroups;
 
     /**
      * cards: [Card]
      * The "Opportunity Knocks" and "Pot Luck" cards on the board.
      */
-    private Card[] cards;
+    private ArrayList<Card> cards;
 
     /**
      * Board
@@ -52,7 +53,7 @@ public class Board {
      * @return An array of tiles
      * This method will get all tiles on the board.
      */
-    public Tile[] getTiles(){
+    public ArrayList<Tile> getTiles(){
         return this.tiles;
     }
 

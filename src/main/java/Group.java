@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The group class contains all methods and functions required by the different groups on the board, this being properties, utilities and stations.
  */
@@ -7,14 +9,14 @@ public class Group {
      * groups: [Group]
      * This array of groups are all properties on the board that are assigned a group.
      */
-    private Group[] groups;
+    private ArrayList<Group> groups;
 
     /**
      * getGroups
      * @return An array of property groups
      * This method gets all groups of properties on the game board.
      */
-    public Group[] getGroups() {
+    public ArrayList<Group> getGroups() {
         return this.groups;
     }
 
@@ -23,7 +25,7 @@ public class Group {
      * @param groups An array of property groups
      * This method sets all groups of properties on the game board for initialisation.
      */
-    public void setGroups(Group[] groups) {
+    public void setGroups(ArrayList<Group> groups) {
         this.groups = groups;
     }
 

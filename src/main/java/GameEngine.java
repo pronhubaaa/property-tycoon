@@ -1,6 +1,7 @@
 import com.alibaba.fastjson.JSONObject;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Timer;
 
 
@@ -17,7 +18,7 @@ public class GameEngine {
      * players: Array of Players
      * This array represents all the players playing the game. The order of the array will represent the order of play.
      */
-    private Player[] players;
+    private ArrayList<Player> players;
 
     /**
      * numberOfTurns: Int
@@ -71,7 +72,7 @@ public class GameEngine {
      *
      * This is the constructor method. It will be used to start a new game and initialise the board.
      */
-    public GameEngine(JSONObject jsonObject, Player[] players, GameType type, int numberOfMinutes){
+    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes){
         this.players = players;
         this.gameTimeLimit = numberOfMinutes;
         this.gameType = type;
@@ -90,7 +91,7 @@ public class GameEngine {
      *
      * This is the constructor method. It will be used to start a new game and initialise the board.
      */
-    public GameEngine(JSONObject jsonObject, Player[] players, GameType type){
+    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type){
         this.players = players;
         this.gameType = type;
 

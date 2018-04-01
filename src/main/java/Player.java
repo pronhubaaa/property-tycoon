@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The player class is responsible for storing a players assets and storing methods for how players can perform actions
  */
@@ -31,7 +33,7 @@ public class Player {
      * ownedTiles: [Ownable]
      * This is an array of all the 'ownable' tiles that the player owns. 'Ownable' is an array of all tiles that is is possible for a player to posses.
      */
-    private Ownable[] ownedTiles;
+    private ArrayList<Ownable> ownedTiles;
 
     /**
      * piece: PlayerPiece
@@ -156,7 +158,7 @@ public class Player {
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
-    public Ownable[] getOwnedTiles() {
+    public ArrayList<Ownable> getOwnedTiles() {
         return this.ownedTiles;
     }
 
@@ -165,7 +167,7 @@ public class Player {
      * @param ownedTiles A tile that a player can possess
      * Allows a player to own a property, through purchasing auction or otherwise.
      */
-    public void setOwnedTiles(Ownable[] ownedTiles) {
+    public void setOwnedTiles(ArrayList<Ownable> ownedTiles) {
         this.ownedTiles = ownedTiles;
     }
 

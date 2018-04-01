@@ -3,23 +3,24 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class GameEngineTest {
 
     @Before
     public void setUp() throws Exception {
 
         JSONObject json = new JSONObject();
-        Player[] players = new Player[3];
+        ArrayList<Player> players = new ArrayList<Player>(5);
 
-        Player player1 = new Player();
-        Player player2 = new Player();
-        Player player3 = new Player();
+        players.add(new Player(10, "Peter"));
+        players.add(new Player(10, "Elliot"));
+        players.add(new Player(10, "Sam"));
+        players.add(new Player(10, "Liam"));
+        players.add(new Player(10, "Guy"));
 
-        players[0] = player1;
-        players[1] = player2;
-        players[2] = player3;
 
-        GameType type = GameType.FULL;
+        GameType type = GameType.FullGame;
 
         GameEngine gameEngineFull = new GameEngine(json, players, type);
     }
