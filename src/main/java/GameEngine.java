@@ -71,7 +71,7 @@ public class GameEngine {
         }
 
         if(jsonObject.containsKey("current_player")){
-            this.currentPlayer = this.players.get((int) jsonObject.get("current_player"));
+            this.currentPlayer = this.players.get(jsonObject.getIntValue("current_player"));
         }
 
         if(jsonObject.containsKey("number_of_turns")){
