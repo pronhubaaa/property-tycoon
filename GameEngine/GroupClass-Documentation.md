@@ -26,5 +26,7 @@ This method gets all groups of properties on the game board.
 This method sets all groups of properties on the game board for initialisation.
 
 - #### add(Group): Void
+*Parameters*: A group
+*Returns*: Void
 
 This method adds a group of properties on the game board for initialisation.

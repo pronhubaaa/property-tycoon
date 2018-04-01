@@ -11,6 +11,6 @@ The station group class is used to check how many stations a player owns.
 *Parameters*: A Player
 *Returns*: Amount of stations that player owns
 
-This method returns all of the stations that a player owns.
+This method returns number of the stations that a player owns.
 
 ---
