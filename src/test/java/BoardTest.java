@@ -372,12 +372,12 @@ public class BoardTest {
         this.board = null;
 
     }
-
+/*
     @Test
     public void getTiles() {
-       
 
-    }
+
+    }*/
 /*
     @Test
     public void reorderCards() {
