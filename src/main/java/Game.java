@@ -1,15 +1,34 @@
+import com.alibaba.fastjson.JSONObject;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 /**
  * Game
  * @date 2018-03-19
  *
  */
-public class Game {
+public class Game extends Application {
 
     /**
      * gameEngine: GameEngine
      * The current game being played.
      */
     private GameEngine gameEngine;
+
+    private Stage _primaryStage;
+
+    @Override
+    public void start(Stage primaryStage) {
+        this._primaryStage = primaryStage;
+        GameEngine gameEngine = new GameEngine(new JSONObject());
+        UI ui = new UI(primaryStage, gameEngine);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("hi");
+
+        launch(args);
+    }
 
     /**
      *  ui: UI
@@ -36,7 +55,7 @@ public class Game {
      */
     public Game(){
         //this.gameEngine = new GameEngine();
-        this.constructUI(this.gameEngine);
+        this.constructUI(null);
     }
 
     /**
@@ -45,12 +64,9 @@ public class Game {
      * This will build a user interface given a setup game engine, this being the data used to initialise the board.
      */
     private void constructUI(GameEngine gameEngine){
-        this.ui = new UI();
+
     }
 
 
-    public static void main(String[] args) {
-        new Game();
-    }
 
 }

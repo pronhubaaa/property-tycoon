@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="Desktop-Software-Engineering_test" target="1.8" />
       <module name="Software-Engineering_main" target="1.8" />
       <module name="Software-Engineering_test" target="1.8" />
     </bytecodeTargetLevel>
