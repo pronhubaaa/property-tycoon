@@ -1,6 +1,5 @@
 import com.alibaba.fastjson.JSONObject;
 
-import javax.smartcardio.Card;
 
 
 /**
@@ -34,7 +33,7 @@ public class Board {
 
     /**
      * cards: [Card]
-     * The "Oppertunity Knocks" and "Pot Luck" cards on the board.
+     * The "Opportunity Knocks" and "Pot Luck" cards on the board.
      */
     private Card[] cards;
 
@@ -54,7 +53,7 @@ public class Board {
      * This method will get all tiles on the board.
      */
     public Tile[] getTiles(){
-        return null;
+        return this.tiles;
     }
 
 

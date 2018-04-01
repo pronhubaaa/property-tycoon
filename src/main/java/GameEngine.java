@@ -75,7 +75,6 @@ public class GameEngine {
         this.players = players;
         this.gameTimeLimit = numberOfMinutes;
         this.gameType = type;
-
         this.gameBoard = constructGameBoard(jsonObject);
 
 
@@ -114,7 +113,7 @@ public class GameEngine {
      * This method return a pointer to the player whose turn it currently is.
      */
     public Player getCurrentPlayer(){
-        return null;
+        return this.currentPlayer;
     }
 
     /**
@@ -125,6 +124,7 @@ public class GameEngine {
      * It will be responsible for checking whether the game is over (using endGame method), changing the current player reference and incrementing the numberOfTurns attribute.
      */
     public Player nextTurn(){
+
         return null;
     }
 
@@ -135,7 +135,7 @@ public class GameEngine {
      * This method returns the accumulated number of turns in the game.
      */
     public int getNumberOfTurns(){
-        return 0;
+        return this.numberOfTurns;
     }
 
     /**
@@ -143,6 +143,7 @@ public class GameEngine {
      * This methods increments the numberOfTurns attribute by one.
      */
     public void incrementNumberOfTurns(){
+        this.numberOfTurns++;
 
     }
 
@@ -203,6 +204,7 @@ public class GameEngine {
      * This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
      */
     private void addPlayer(Player player){
+
 
     }
 }

@@ -24,7 +24,7 @@ The utility tiles shown on the board.
 
 - #### cards: [Card]
 
-The "Oppertunity Knocks" and "Pot Luck" cards on the board. 
+The "Opportunity Knocks" and "Pot Luck" cards on the board.
 
 ### Public Methods 
 

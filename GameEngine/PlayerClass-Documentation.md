@@ -66,17 +66,17 @@ This method sets the players name.
 *Parameters*:  None
 *Returns*: Boolean- true if player is in jail
 
-This method chekcs if the player is in jail.
+This method checks if the player is in jail.
 
 - #### setInJail(Boolean): Void
 *Parameters*:  Boolean true if moving to jail, false if moving to just visiting
 *Returns*: Void
 
-This method moves a plyer in and out of jail.
+This method moves a player in and out of jail.
 
 - #### getBalance(): Int
 *Parameters*:  None
-*Returns*: Players avaliable balance
+*Returns*: Players available balance
 
 This method returns the amount of money the player currently has.
 
