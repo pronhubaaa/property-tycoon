@@ -39,5 +39,12 @@ public class DiceTest {
         Dice dice2 = new Dice();
         assertEquals(0, dice2.getDoubleCount());
 
+        int[] diceRoll2;
+        do {
+          diceRoll2 = dice2.roll();
+        } while(diceRoll2[0] != diceRoll2[1]);
+
+        assertEquals(1, dice2.getDoubleCount());
+
     }
 }

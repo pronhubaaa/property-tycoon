@@ -347,5 +347,22 @@
 			"rent": "50",
 			"houses": ["200", "600", "1400", "1700", "2000"]
 		}
-	]
+	],
+	"player": [
+		{
+			"in_jail": "false",
+			"balance": "2200",
+			"name": "Peter",
+			"position": "7",
+			"owned_tiles": [
+				"8", 
+				"12", 
+				"17"
+			], 
+			"piece": "2"
+		}
+	],
+	"game_type": "full",
+	"current_player": "4",
+	"number_of_turns": "52"
 }

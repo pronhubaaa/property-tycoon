@@ -21,8 +21,8 @@ This is a pointer to the player object whose turn it currently is.
 - #### timer: Timer
 This is the timer counting down for the abridged version of the game. 
 
-- #### gameTimeLimit: int
-This is the time limit of the game.
+- #### timeLeft: int
+This is the time left of the game.
 
 - #### gameType: GameType
 This is the type of game e.g. Abridged or Full.
