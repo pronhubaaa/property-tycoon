@@ -43,7 +43,7 @@
 
 ### Tile
 [Documentation](./GameEngine/TileClass-Documentation.md) 
-- [Go](./GameEngine/PropertyGoClass-Documentation.md) 
+- [Go](./GameEngine/GoClass-Documentation.md) 
 - [FreeParking](./GameEngine/FreeParkingClass-Documentation.md) 
 - [Jail](./GameEngine/JailClass-Documentation.md) 
 - [GoToJail](./GameEngine/GoToJailClass-Documentation.md) 
