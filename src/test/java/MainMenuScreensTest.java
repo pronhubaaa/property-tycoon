@@ -53,16 +53,11 @@ public class MainMenuScreensTest extends ApplicationTest {
 
     @Test
     public void displaysNewGameScreen() {
-        System.out.println(this._primaryStage.getScene());
-
         // Click on the new game button which should change the scene
         clickOn("#new-game-button");
 
-        System.out.println(this._primaryStage.getScene());
-
         // The scene should now display new game screens
-        assertEquals(this._primaryStage.getScene(), this._newGameScene);
-
+        assertTrue(this._primaryStage.getScene() instanceof NewGameScreen);
     }
 
     @Test
@@ -71,7 +66,7 @@ public class MainMenuScreensTest extends ApplicationTest {
         clickOn("#load-game-button");
 
         // The scene should now display load game screens
-        assertEquals(this._primaryStage.getScene(), this._loadGameScene);
+        assertTrue(this._primaryStage.getScene() instanceof LoadGameScreen);
     }
 
     @Test
@@ -80,7 +75,7 @@ public class MainMenuScreensTest extends ApplicationTest {
         clickOn("#import-board-button");
 
         // The scene should now display import board screens
-        assertEquals(this._primaryStage.getScene(), this._importBoardScene);
+        assertTrue(this._primaryStage.getScene() instanceof ImportBoardScreen);
     }
 
     @Test
@@ -89,7 +84,7 @@ public class MainMenuScreensTest extends ApplicationTest {
         clickOn("#settings-button");
 
         // The scene should now display settings screens
-        assertEquals(this._primaryStage.getScene(), this._settingsScene);
+        assertTrue(this._primaryStage.getScene() instanceof SettingsScreen);
     }
 
     @Test
