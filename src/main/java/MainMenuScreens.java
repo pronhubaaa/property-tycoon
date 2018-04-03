@@ -46,4 +46,32 @@ public class MainMenuScreens {
 
         return new Scene(mainMenuLayout);
     }
+
+    /**
+     * Returns a scene containing new game setup screen.
+     * @param ui    The UI object.
+     * @return A scene containing the new game setup screen.
+     */
+    public static Scene getNewGame(UI ui) { return new Scene(new VBox()); }
+
+    /**
+     * Returns a scene containing load game screen.
+     * @param ui    The UI object.
+     * @return A scene containing the load game screen.
+     */
+    public static Scene getLoadGame(UI ui) { return new Scene(new VBox()); }
+
+    /**
+     * Returns a scene containing import board screen.
+     * @param ui    The UI object.
+     * @return A scene containing the import board screen.
+     */
+    public static Scene getImportBoard(UI ui) { return new Scene(new VBox()); }
+
+    /**
+     * Returns a scene containing settings screen.
+     * @param ui    The UI object.
+     * @return A scene containing the settings screen.
+     */
+    public static Scene getSettings(UI ui) { return new Scene(new VBox()); }
 }
