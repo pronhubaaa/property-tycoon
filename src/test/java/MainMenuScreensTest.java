@@ -22,7 +22,7 @@ public class MainMenuScreensTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) {
-        GameEngine gameEngine = new GameEngine(new JSONObject());
+        GameEngine gameEngine = null;
         UI ui = new UI(stage, gameEngine);
         stage.setTitle("Property Tycoon");
 

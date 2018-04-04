@@ -25,6 +25,11 @@ public class PlayerTest {
 
     @Test
     public void isBankrupt() {
+        this.player.setBalance(100);
+        assertFalse(this.player.isBankrupt());
+        this.player.setBalance(0);
+        assertTrue(this.player.isBankrupt());
+
     }
 
     @Test
@@ -64,7 +69,7 @@ public class PlayerTest {
 
     @Test
     public void getPosition() {
-        //assertTrue(this.player.getPosition() instanceof Tile);
+        assertTrue(this.player.getPosition() instanceof Tile);
     }
 
     @Test
@@ -73,11 +78,12 @@ public class PlayerTest {
 
     @Test
     public void getOwnedTiles() {
-        //assertEquals(0, this.player.getOwnedTiles().size());
+        assertEquals(0, this.player.getOwnedTiles().size());
     }
 
     @Test
     public void setOwnedTiles() {
+
     }
 
     @Test

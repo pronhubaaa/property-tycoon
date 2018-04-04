@@ -45,14 +45,13 @@ public class Player {
      * Player
      *
      * @param balance Int for the player balance
-     * @param name    String for the players name
-     *                This is the initialiser for the object, it initialises the name and balance.
+     * @param name String for the players name
+     * This is the initialiser for the object, it initialises the name and balance.
      */
     public Player(int balance, String name) {
         setBalance(balance);
         setName(name);
         setInJail(false);
-
 
     }
 
@@ -73,8 +72,13 @@ public class Player {
      * @return Boolean- true if player has no funds avaliable, cash or property
      * This method returns if a player has no funds and is thus out of the game.
      */
-    public Boolean isBankrupt() {
-        return null;
+
+    public Boolean isBankrupt(){
+        if(this.balance <= 0){
+            return true;
+        }
+        return false;
+
     }
 
     /**

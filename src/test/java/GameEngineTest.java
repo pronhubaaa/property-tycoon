@@ -6,7 +6,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 public class GameEngineTest {
@@ -374,15 +376,23 @@ public class GameEngineTest {
                 "\t\t\t\"houses\": [\"200\", \"600\", \"1400\", \"1700\", \"2000\"]\n" +
                 "\t\t}\n" +
                 "\t],\n" +
-                "\t\"game_type\": \"Full\",\n" +
-                "\t\"remaining_time\": \"30\",\n" +
+                "\t\"game_type\": \"FullGame\",\n" +
+                "\t\"trading\": \"false\",\n" +
                 "\n" +
                 "\n" +
                 "}");
-        GameEngine gameEngineSaved = new GameEngine(json);
-        assertEquals(30, gameEngineSaved.getTime());
 
+
+        try {
+            GameEngine gameEngineSaved = new GameEngine(json);
+            assertEquals(0, gameEngineSaved.getTime());
+            assertFalse(gameEngineSaved.getTrading());
+        } catch(Exception e){
+            System.out.println(e);
+            assertTrue(false);
+        }
     }
+
 
 
     @Test

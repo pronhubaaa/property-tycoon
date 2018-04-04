@@ -53,6 +53,12 @@ public class GameEngine {
      */
     private GameType gameType;
 
+    /**
+     * trading: Boolean
+     * This is a variable to store if trading is on or off.
+     */
+    private boolean trading;
+
     private GameType checkGameType(String str){
         for (GameType me : gameType.values()) {
             if (me.name().equals(str))
@@ -61,33 +67,38 @@ public class GameEngine {
         return null;
     }
 
+
     /**
      * GameEngine
      * @param jsonObject JsonObject of save file data
      * This is the constructor method. The JSON data will include board data, player data, the game type and any remaining time.
      * This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
      */
-    public GameEngine(JSONObject jsonObject) throws GameEngineException {
+    public GameEngine(JSONObject jsonObject) throws GameEngineTypeException, GameEngineTimeException, GameEngineTradingException {
         if(jsonObject.containsKey("game_type")){
 
             GameType type = checkGameType(jsonObject.getString("game_type"));
             if(type != null){
                 this.gameType = type;
-                System.out.println(this.gameType);
+
+                if(this.gameType.equals(GameType.AbridgedGame)){
+                    if(jsonObject.containsKey("remaining_time")){
+                        int time = jsonObject.getIntValue("remaining_time");
+                        if(time < 0){
+                            this.timeLeft = 0;
+                        } else {
+                            this.timeLeft = time;
+                        }
+
+                    } else {
+                        throw new GameEngineTimeException("Please include a time parameter for an abridged game");
+                    }
+                }
+
+
             } else {
-                throw new GameEngineException("Game Type is invalid. Please use either FullGame or AbridgedGame");
+                throw new GameEngineTypeException("Game Type is invalid. Please use either FullGame or AbridgedGame");
             }
-
-        }
-
-        if(jsonObject.containsKey("remaining_time")){
-            int time = jsonObject.getIntValue("remaining_time");
-            if(time < 0){
-                this.timeLeft = 0;
-            } else {
-                this.timeLeft = time;
-            }
-
         }
 
         if(jsonObject.containsKey("current_player")){
@@ -96,9 +107,17 @@ public class GameEngine {
 
         if(jsonObject.containsKey("number_of_turns")){
             this.numberOfTurns = jsonObject.getIntValue("number_of_turns");
+        } else {
+            this.numberOfTurns = 0;
         }
 
-       // this.gameBoard = constructGameBoard(jsonObject);
+        if(jsonObject.containsKey("trading")){
+            this.trading = jsonObject.getBooleanValue("trading");
+        } else {
+            throw new GameEngineTradingException("Please include trading boolean");
+        }
+
+        //this.gameBoard = constructGameBoard(jsonObject);
 
     }
 
@@ -270,6 +289,24 @@ public class GameEngine {
     private void addPlayer(Player player){
         this.players.add(player);
 
+    }
 
+    /**
+     * getTrading
+     * @return trading boolean
+     *
+     * This gets the trading boolean.
+     */
+    public boolean getTrading() {
+        return this.trading;
+    }
+
+    /**
+     * setTrading
+     *
+     * This sets the trading boolean.
+     */
+    public void setTrading(boolean trading) {
+        this.trading = trading;
     }
 }
