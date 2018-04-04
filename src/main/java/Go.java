@@ -1,7 +1,7 @@
 public class Go extends Tile {
 
     /**
-     * freeMoney: Int
+     * value: Int
      * The value of money given to a player for passing go.
      */
     private int value;
