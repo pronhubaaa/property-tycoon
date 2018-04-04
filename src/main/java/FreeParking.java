@@ -1,4 +1,4 @@
-public class FreeParking extends Tile{
+public class FreeParking extends Tile {
 
     /**
      * freeMoney: Int
@@ -6,13 +6,14 @@ public class FreeParking extends Tile{
      */
     private int freeMoney;
 
-    public FreeParking(String name, int position){
+    public FreeParking(String name, int position) {
         super(name, position);
         this.freeMoney = 0;
     }
 
     /**
      * getFreeMoney(): Int
+     *
      * @return Amount of money on the free parking tile
      */
     public int getFreeMoney() {
@@ -22,6 +23,7 @@ public class FreeParking extends Tile{
     /**
      * addFreeMoney(Int): Void
      * Adds a given amount to the free parking tile.
+     *
      * @param freeMoney Amount to add to free pakring tile
      */
     public void addFreeMoney(int freeMoney) {

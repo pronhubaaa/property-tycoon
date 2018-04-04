@@ -18,13 +18,14 @@ public class Ownable extends Tile {
      */
     private int mortgagePrice;
 
-    public Ownable(String name, int position){
+    public Ownable(String name, int position) {
         super(name, position);
     }
 
     /**
      * getOwner(): Player
      * This method returns the player who owns the tile.
+     *
      * @return The player who owns the tile
      */
     public Player getOwner() {
@@ -34,6 +35,7 @@ public class Ownable extends Tile {
     /**
      * setOwner(Player): Void
      * This method allows a player to own the tile.
+     *
      * @param owner Assign a player to own this tile
      */
     public void setOwner(Player owner) {
@@ -43,6 +45,7 @@ public class Ownable extends Tile {
     /**
      * getPrice(): Int
      * This method returns the price of this property.
+     *
      * @return The price for this tile
      */
     public int getPrice() {
@@ -52,6 +55,7 @@ public class Ownable extends Tile {
     /**
      * setPrice(Int): Void
      * This method sets the price for the property for initialisation.
+     *
      * @param price The given price for this tile
      */
     public void setPrice(int price) {
@@ -61,6 +65,7 @@ public class Ownable extends Tile {
     /**
      * getMortgagePrice(): Int
      * This method gets the value given to the player for morgaging the property.
+     *
      * @return The mortgage value of the property
      */
     public int getMortgagePrice() {
@@ -70,6 +75,7 @@ public class Ownable extends Tile {
     /**
      * setMortgagePrice(Int): Void
      * This method will set the morgage price for the property.
+     *
      * @param mortgagePrice The given morgage price for this tile
      */
     public void setMortgagePrice(int mortgagePrice) {
@@ -79,13 +85,12 @@ public class Ownable extends Tile {
     /**
      * isOwned(): Boolean
      * This method returns if the property is owned or not.
+     *
      * @return Boolean, true if the tile has an owner
      */
     public boolean isOwned() {
         return owner != null;
     }
-
-
 
 
 }

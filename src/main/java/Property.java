@@ -1,4 +1,3 @@
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 public class Property extends Ownable {
@@ -34,20 +33,23 @@ public class Property extends Ownable {
      */
     private int amountOfHouses;
 
-    public Property(String name, int position){
+    public Property(String name, int position) {
         super(name, position);
     }
 
     /**
      * getRent(): [Int]
+     *
      * @return Array of prices the rent may be
      */
     public ArrayList<Integer> getRent() {
         return rent;
     }
 
-    /** setRent([Int]): Void
+    /**
+     * setRent([Int]): Void
      * This sets an array of prices, the slot chosen depends on the current ownership status as seen for the private attribute 'rent'.
+     *
      * @param rent Array of prices for the rent
      */
     public void setRent(ArrayList<Integer> rent) {
@@ -56,6 +58,7 @@ public class Property extends Ownable {
 
     /**
      * getCostOfHouse(): Int
+     *
      * @return The price to put a house on the property
      */
     public int getCostOfHouse() {
@@ -65,6 +68,7 @@ public class Property extends Ownable {
     /**
      * setCostOfHouse(Int): Void
      * This method allows the price to buy a house on this property to be set.
+     *
      * @param costOfHouse Price for a house on this property
      */
     public void setCostOfHouse(int costOfHouse) {
@@ -73,6 +77,7 @@ public class Property extends Ownable {
 
     /**
      * getSellPrice(): Int
+     *
      * @return Gives the integer value that this property is worth given all houses/ hotels on the property.
      */
     public int getSellPrice() {
@@ -81,6 +86,7 @@ public class Property extends Ownable {
 
     /**
      * setSellPrice(Int): Void
+     *
      * @param sellPrice Set a new value for selling this property.
      */
     public void setSellPrice(int sellPrice) {
@@ -98,6 +104,7 @@ public class Property extends Ownable {
     /**
      * removeHouses(Int): Void
      * Remove houses from the property.
+     *
      * @param amountOfHouses Amount of houses to remove
      */
     public void removeHouses(int amountOfHouses) {
