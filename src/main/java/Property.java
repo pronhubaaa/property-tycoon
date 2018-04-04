@@ -94,11 +94,22 @@ public class Property extends Ownable {
     }
 
     /**
-     * addHouses(): Void
-     * Add a house to the property.
+     * addHouses(Int): Void
+     * Add houses to the property.
+     *
+     * @param amountOfHouses Amount of houses to add
      */
+    public void addHouses(int amountOfHouses) {
+        this.amountOfHouses += amountOfHouses;
+    }
+
+    /**
+     * addHouses(): Void
+     * Add a house to the property. Included for backwards-compatibility to previous spec.
+     */
+    @Deprecated
     public void addHouses() {
-        this.amountOfHouses++;
+        addHouses(1);
     }
 
     /**
