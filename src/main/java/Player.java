@@ -43,11 +43,12 @@ public class Player {
 
     /**
      * Player
+     *
      * @param balance Int for the player balance
-     * @param name String for the players name
-     * This is the initialiser for the object, it initialises the name and balance.
+     * @param name    String for the players name
+     *                This is the initialiser for the object, it initialises the name and balance.
      */
-    public Player(int balance, String name){
+    public Player(int balance, String name) {
         setBalance(balance);
         setName(name);
         setInJail(false);
@@ -57,53 +58,59 @@ public class Player {
 
     /**
      * buyTile
+     *
      * @param tile The tile the player wishes to buy
      * @return Boolean- true if purchase successful
      * This allows a player to purchase a tile on the board.
      */
-    public Boolean buyTile(Tile tile){
+    public Boolean buyTile(Tile tile) {
         return null;
     }
 
     /**
      * isBankrupt
+     *
      * @return Boolean- true if player has no funds avaliable, cash or property
      * This method returns if a player has no funds and is thus out of the game.
      */
-    public Boolean isBankrupt(){
+    public Boolean isBankrupt() {
         return null;
     }
 
     /**
      * morgageTile
+     *
      * @param tile The tile the player wishes to mortgage
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
-    public Boolean morgageTile(Tile tile){
+    public Boolean morgageTile(Tile tile) {
         return null;
     }
 
     /**
      * getName
+     *
      * @return The players name
      * This method will give the name of the player.
      */
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
     /**
      * setName
+     *
      * @param name Player name
-     * This method sets the players name.
+     *             This method sets the players name.
      */
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     /**
      * getInJail
+     *
      * @return Boolean- true if player is in jail
      * This method checks if the player is in jail.
      */
@@ -113,8 +120,9 @@ public class Player {
 
     /**
      * setInJail
+     *
      * @param inJail Boolean true if moving to jail, false if moving to just visiting
-     * This method moves a player in and out of jail.
+     *               This method moves a player in and out of jail.
      */
     public void setInJail(Boolean inJail) {
         this.inJail = inJail;
@@ -122,6 +130,7 @@ public class Player {
 
     /**
      * getBalance
+     *
      * @return Players available balance
      * This method returns the amount of money the player currently has.
      */
@@ -131,16 +140,26 @@ public class Player {
 
     /**
      * setBalance
+     *
      * @param balance Amount of money the player now has
-     * This method sets the amount of money the player has.
+     *                This method sets the amount of money the player has.
      */
-    private void setBalance(int balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 
+    /**
+     * addBalance
+     *
+     * @param amount Amount of money to adjust the player's balance by
+     */
+    public void addBalance(int amount) {
+        this.balance += amount;
+    }
 
     /**
      * getPosition
+     *
      * @return The tile the player is currently on
      * This shows the current location of a player.
      */
@@ -150,8 +169,9 @@ public class Player {
 
     /**
      * setPosition
+     *
      * @param position The tile the player is moving to
-     * This method moves the player to another space on the board.
+     *                 This method moves the player to another space on the board.
      */
     public void setPosition(Tile position) {
         this.position = position;
@@ -159,6 +179,7 @@ public class Player {
 
     /**
      * getOwnedTiles
+     *
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
@@ -168,8 +189,9 @@ public class Player {
 
     /**
      * addOwnable
+     *
      * @param ownedTiles A tile that a player can possess
-     * Allows a player to own a property, through purchasing auction or otherwise.
+     *                   Allows a player to own a property, through purchasing auction or otherwise.
      */
     public void setOwnedTiles(ArrayList<Ownable> ownedTiles) {
         this.ownedTiles = ownedTiles;
@@ -177,6 +199,7 @@ public class Player {
 
     /**
      * getPiece
+     *
      * @return The piece the player is playing as
      * Return the piece that the player is playing as this could be a hatstand, cat, etc
      */
@@ -186,8 +209,9 @@ public class Player {
 
     /**
      * setPiece
+     *
      * @param piece A PlayerPiece object from the enumerator
-     * This assigns a player a specific player piece, this could be a hatstand, cat, etc.
+     *              This assigns a player a specific player piece, this could be a hatstand, cat, etc.
      */
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
