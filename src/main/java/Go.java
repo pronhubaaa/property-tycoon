@@ -33,7 +33,7 @@ public class Go extends Tile {
      * collect(): Void
      * This method gives a player their money for passing this tile.
      */
-    public void collect() {
-        // TODO
+    public void collect(Player player) {
+        player.addBalance(value);
     }
 }
