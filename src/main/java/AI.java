@@ -26,7 +26,7 @@ public class AI extends Player {
             return true;
         }
 
-        
+
 
         return true;
     }
