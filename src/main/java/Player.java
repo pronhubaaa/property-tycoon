@@ -42,13 +42,20 @@ public class Player {
     private PlayerPiece piece;
 
     /**
+     * board: Board
+     * This is the board object.
+     */
+    private Board board;
+
+    /**
      * Player
      *
      * @param balance Int for the player balance
      * @param name String for the players name
      * This is the initialiser for the object, it initialises the name and balance.
      */
-    public Player(int balance, String name) {
+    public Player(int balance, String name, Board board) {
+        this.board = board;
         setBalance(balance);
         setName(name);
         setInJail(false);
