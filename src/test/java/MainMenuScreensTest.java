@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSONObject;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,7 +22,7 @@ public class MainMenuScreensTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) {
-        GameEngine gameEngine = new GameEngine();
+        GameEngine gameEngine = null;
         UI ui = new UI(stage, gameEngine);
         stage.setTitle("Property Tycoon");
 

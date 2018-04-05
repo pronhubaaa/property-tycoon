@@ -2,7 +2,7 @@
 ---
 ## GameEngine class
 
-The game engine will be responsible for any action that happens on the board and controlling all of the palyers actions. 
+The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
 
 ### Private Attributes
 
@@ -21,6 +21,15 @@ This is a pointer to the player object whose turn it currently is.
 - #### timer: Timer
 This is the timer counting down for the abridged version of the game. 
 
+- #### timeLeft: int
+This is the time left of the game.
+
+- #### gameType: GameType
+This is the type of game e.g. Abridged or Full.
+
+- #### trading: Boolean
+This is a variable to store if trading is on or off.
+
 ### Public Methods
 
 - #### GameEngine
@@ -31,6 +40,12 @@ This is the constructor method. The JSON data will include board data, player da
 
 - #### GameEngine
 *Parameters*: JsonObject of imported board data, Array of Players, GameType enum, Int number of minutes (optional).
+*Returns*: Void
+
+This is the constructor method. It will be used to start a new game and initialise the board.
+
+- #### GameEngine
+*Parameters*: JsonObject of imported board data, Array of Players, GameType enum
 *Returns*: Void
 
 This is the constructor method. It will be used to start a new game and initialise the board.
@@ -82,6 +97,18 @@ This stops the timer for the abridged version of the game.
 *Returns*: Void
 
 This gets the amount of time left in the abridged version.
+
+- #### getTrading
+*Parameters*: None
+*Returns*: Boolean
+
+This gets the trading boolean.
+
+- #### setTrading
+*Parameters*: Boolean
+*Returns*: Void
+
+This sets the trading boolean.
 
 ### Private Methods
 

@@ -10,6 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Software-Engineering_main" />
+    <orderEntry type="library" name="Gradle: com.alibaba:fastjson:1.2.46" level="project" />
     <orderEntry type="library" name="Gradle: org.testfx:testfx-junit:4.0.12-alpha" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Gradle: org.testfx:testfx-core:4.0.12-alpha" level="project" />
