@@ -23,6 +23,10 @@ public class Player {
      */
     private String name;
 
+
+
+    private Board board;
+
     /**
      * position: Tile
      * The players current position on the board, represented by a tile object which is the location on the board.
@@ -47,13 +51,20 @@ public class Player {
      * @param name String for the players name
      * This is the initialiser for the object, it initialises the name and balance.
      */
-    public Player(int balance, String name){
+    public Player(int balance, String name, Board board){
         setBalance(balance);
         setName(name);
         setInJail(false);
+        setBoard(board);
 
 
     }
+
+
+    public void setBoard(Board board){
+        this.board = Board;
+    }
+
 
     /**
      * buyTile
