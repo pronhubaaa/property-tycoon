@@ -10,7 +10,7 @@ public class PlayerTest {
 
     @Before
     public void setUp() throws Exception {
-        this.player = new Player(10, "Peter");
+        this.player = new Player(10, "Peter", null);
 
     }
 
