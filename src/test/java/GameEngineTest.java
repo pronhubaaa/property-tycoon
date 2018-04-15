@@ -581,7 +581,7 @@ public class GameEngineTest {
             Thread.currentThread().interrupt();
         }
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
 
     }
 
@@ -618,7 +618,7 @@ public class GameEngineTest {
         }
 
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
 
         try
         {
@@ -630,7 +630,7 @@ public class GameEngineTest {
             Thread.currentThread().interrupt();
         }
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
     }
 
     @Test
