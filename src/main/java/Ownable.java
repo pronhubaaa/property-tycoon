@@ -18,6 +18,14 @@ public class Ownable extends Tile {
      */
     private int mortgagePrice;
 
+
+    /**
+     * sellPrice: Int
+     * The price this property is worth, given all houses/hotels.
+     */
+    private int sellPrice;
+
+
     public Ownable(String name, int position) {
         super(name, position);
     }
@@ -90,6 +98,24 @@ public class Ownable extends Tile {
      */
     public boolean isOwned() {
         return owner != null;
+    }
+
+    /**
+     * getSellPrice(): Int
+     *
+     * @return Gives the integer value that this property is worth given all houses/ hotels on the property.
+     */
+    public int getSellPrice() {
+        return sellPrice;
+    }
+
+    /**
+     * setSellPrice(Int): Void
+     *
+     * @param sellPrice Set a new value for selling this property.
+     */
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
     }
 
 

@@ -22,12 +22,6 @@ public class Property extends Ownable {
     private int costOfHouse;
 
     /**
-     * sellPrice: Int
-     * The price this property is worth, given all houses/hotels.
-     */
-    private int sellPrice;
-
-    /**
      * amountOfHouses: Int
      * The amount of houses on the property.
      */
@@ -75,23 +69,6 @@ public class Property extends Ownable {
         this.costOfHouse = costOfHouse;
     }
 
-    /**
-     * getSellPrice(): Int
-     *
-     * @return Gives the integer value that this property is worth given all houses/ hotels on the property.
-     */
-    public int getSellPrice() {
-        return sellPrice;
-    }
-
-    /**
-     * setSellPrice(Int): Void
-     *
-     * @param sellPrice Set a new value for selling this property.
-     */
-    public void setSellPrice(int sellPrice) {
-        this.sellPrice = sellPrice;
-    }
 
     /**
      * addHouses(Int): Void

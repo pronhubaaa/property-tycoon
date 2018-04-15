@@ -71,7 +71,18 @@ public class Player {
      * This allows a player to purchase a tile on the board.
      */
     public Boolean buyTile(Tile tile) {
-        return null;
+        if(tile instanceof Ownable){
+            Ownable ownable = (Ownable) tile;
+            if(!ownable.isOwned()){
+                if(this.balance >= ownable.getPrice()){
+                    ownable.setOwner(this);
+                    setBalance(getBalance() - ownable.getPrice());
+                    return true;
+                }
+            }
+        }
+        return false;
+
     }
 
     /**
@@ -82,7 +93,14 @@ public class Player {
      * This allows a player to sell a tile on the board.
      */
     public Boolean sellTile(Tile tile) {
-        return null;
+        if(tile instanceof Ownable){
+            Ownable ownable = (Ownable) tile;
+            if(ownable.isOwned() && ownable.getOwner().equals(this)){
+                ownable.setOwner(null);
+                this.addBalance(ownable.getSellPrice());
+            }
+        }
+        return false;
     }
 
     /**
