@@ -41,6 +41,7 @@ public class Player {
      */
     private PlayerPiece piece;
 
+
     /**
      * board: Board
      * This is the board object.
@@ -70,6 +71,17 @@ public class Player {
      * This allows a player to purchase a tile on the board.
      */
     public Boolean buyTile(Tile tile) {
+        return null;
+    }
+
+    /**
+     * sellTile
+     *
+     * @param tile The tile the player wishes to sell
+     * @return Boolean- true if sale was successful
+     * This allows a player to sell a tile on the board.
+     */
+    public Boolean sellTile(Tile tile) {
         return null;
     }
 
@@ -127,6 +139,16 @@ public class Player {
      */
     public Boolean getInJail() {
         return this.inJail;
+    }
+
+
+    /**
+     * setBoard
+     * @param board
+     * This method sets the board within a player object.
+     */
+    public void setBoard(Board board) {
+        this.board = board;
     }
 
     /**
@@ -227,4 +249,6 @@ public class Player {
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
     }
+
+
 }
