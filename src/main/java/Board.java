@@ -199,4 +199,28 @@ public class Board {
     private void randomiseCards(CardType cardType){
 
     }
+
+    public ArrayList<PropertyGroup> getPropertyGroups() {
+        return this.propertyGroups;
+    }
+
+    public void setPropertyGroups(ArrayList<PropertyGroup> propertyGroups) {
+        this.propertyGroups = propertyGroups;
+    }
+
+    public ArrayList<StationGroup> getStationGroups() {
+        return this.stationGroups;
+    }
+
+    public void setStationGroups(ArrayList<StationGroup> stationGroups) {
+        this.stationGroups = stationGroups;
+    }
+
+    public ArrayList<UtilityGroup> getUtilityGroups() {
+        return this.utilityGroups;
+    }
+
+    public void setUtilityGroups(ArrayList<UtilityGroup> utilityGroups) {
+        this.utilityGroups = utilityGroups;
+    }
 }
