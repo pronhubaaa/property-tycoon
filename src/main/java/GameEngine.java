@@ -228,7 +228,6 @@ public class GameEngine {
                 }
             };
             Date date = new Date();
-            date.setTime(date.getTime() + 1000);
             this.timer.schedule(task, date, 1000);
         }
     }

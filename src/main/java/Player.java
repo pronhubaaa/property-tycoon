@@ -9,7 +9,7 @@ public class Player {
      * inJail: Boolean
      * This represents if the player is in jail or not.
      */
-    private Boolean inJail;
+    private boolean inJail;
 
     /**
      * balance: Int
@@ -41,6 +41,13 @@ public class Player {
      */
     private PlayerPiece piece;
 
+
+    /**
+     * board: Board
+     * This is the board object.
+     */
+    private Board board;
+
     /**
      * Player
      *
@@ -48,7 +55,8 @@ public class Player {
      * @param name String for the players name
      * This is the initialiser for the object, it initialises the name and balance.
      */
-    public Player(int balance, String name) {
+    public Player(int balance, String name, Board board) {
+        this.board = board;
         setBalance(balance);
         setName(name);
         setInJail(false);
@@ -62,8 +70,37 @@ public class Player {
      * @return Boolean- true if purchase successful
      * This allows a player to purchase a tile on the board.
      */
-    public Boolean buyTile(Tile tile) {
-        return null;
+    public boolean buyTile(Tile tile) {
+        if(tile instanceof Ownable){
+            Ownable ownable = (Ownable) tile;
+            if(!ownable.isOwned()){
+                if(this.balance >= ownable.getPrice()){
+                    ownable.setOwner(this);
+                    setBalance(getBalance() - ownable.getPrice());
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    /**
+     * sellTile
+     *
+     * @param tile The tile the player wishes to sell
+     * @return Boolean- true if sale was successful
+     * This allows a player to sell a tile on the board.
+     */
+    public boolean sellTile(Tile tile) {
+        if(tile instanceof Ownable){
+            Ownable ownable = (Ownable) tile;
+            if(ownable.isOwned() && ownable.getOwner().equals(this)){
+                ownable.setOwner(null);
+                this.addBalance(ownable.getSellPrice());
+            }
+        }
+        return false;
     }
 
     /**
@@ -73,11 +110,8 @@ public class Player {
      * This method returns if a player has no funds and is thus out of the game.
      */
 
-    public Boolean isBankrupt(){
-        if(this.balance <= 0){
-            return true;
-        }
-        return false;
+    public boolean isBankrupt(){
+        return this.balance <= 0;
 
     }
 
@@ -88,8 +122,10 @@ public class Player {
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
-    public Boolean morgageTile(Tile tile) {
-        return null;
+    public boolean morgageTile(Tile tile) {
+
+
+        return false;
     }
 
     /**
@@ -118,8 +154,27 @@ public class Player {
      * @return Boolean- true if player is in jail
      * This method checks if the player is in jail.
      */
-    public Boolean getInJail() {
+    public boolean getInJail() {
         return this.inJail;
+    }
+
+
+    /**
+     * setBoard
+     * @param board
+     * This method sets the board within a player object.
+     */
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    /**
+     * getBoard
+     * @return board
+     * This method gets the board within a player object.
+     */
+    public Board getBoard() {
+        return this.board;
     }
 
     /**
@@ -128,7 +183,7 @@ public class Player {
      * @param inJail Boolean true if moving to jail, false if moving to just visiting
      *               This method moves a player in and out of jail.
      */
-    public void setInJail(Boolean inJail) {
+    public void setInJail(boolean inJail) {
         this.inJail = inJail;
     }
 
@@ -220,4 +275,6 @@ public class Player {
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
     }
+
+
 }

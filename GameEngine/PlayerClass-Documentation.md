@@ -22,12 +22,15 @@ The players current position on the board, represented by a tile object which is
 This is an array of all the 'ownable' tiles that the player owns. 'Ownable' is an array of all tiles that is is possible for a player to posses. 
 
 - #### piece: PlayerPiece
-This is the object that the player is displayed as in the GUI. 
+This is the object that the player is displayed as in the GUI.
+
+- #### board: Board
+This is the board object.
 
 ### Public Methods 
 
-- #### Player(Int, String)
-*Parameters*: Int for the player balance, String for the players name
+- #### Player(Int, String, Board)
+*Parameters*: Int for the player balance, String for the players name, Board for the board
 *Returns*: Void
 
 This is the initialiser for the object, it initialises the name and balance.

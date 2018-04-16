@@ -401,11 +401,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
 
         GameType type = GameType.FullGame;
@@ -446,7 +446,7 @@ public class GameEngineTest {
             Thread.currentThread().interrupt();
         }
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
     }
 
     @Test
@@ -455,11 +455,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
 
         GameType type = GameType.FullGame;
@@ -475,11 +475,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
         GameType type = GameType.FullGame;
 
@@ -508,11 +508,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
         GameType type = GameType.FullGame;
 
@@ -536,11 +536,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
 
         GameType type = GameType.FullGame;
@@ -581,7 +581,7 @@ public class GameEngineTest {
             Thread.currentThread().interrupt();
         }
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
 
     }
 
@@ -590,11 +590,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
 
        GameType type = GameType.AbridgedGame;
@@ -618,7 +618,7 @@ public class GameEngineTest {
         }
 
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
 
         try
         {
@@ -630,7 +630,7 @@ public class GameEngineTest {
             Thread.currentThread().interrupt();
         }
 
-        assertEquals(103, gameEngineAbridgedGame.getTime());
+        assertEquals(102, gameEngineAbridgedGame.getTime());
     }
 
     @Test
@@ -638,11 +638,11 @@ public class GameEngineTest {
         JSONObject json = new JSONObject();
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter"));
-        players.add(new Player(10, "Elliot"));
-        players.add(new Player(10, "Sam"));
-        players.add(new Player(10, "Liam"));
-        players.add(new Player(10, "Guy"));
+        players.add(new Player(10, "Peter", null));
+        players.add(new Player(10, "Elliot", null));
+        players.add(new Player(10, "Sam", null));
+        players.add(new Player(10, "Liam", null));
+        players.add(new Player(10, "Guy", null));
 
 
         GameType type = GameType.FullGame;

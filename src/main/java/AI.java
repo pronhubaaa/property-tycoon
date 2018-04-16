@@ -3,7 +3,7 @@
  */
 public class AI extends Player {
 
-    public AI(int balance, String name){
-        super(balance, name);
+    public AI(int balance, String name, Board board){
+        super(balance, name, board);
     }
 }
