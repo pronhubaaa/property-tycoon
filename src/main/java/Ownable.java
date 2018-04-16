@@ -25,6 +25,12 @@ public class Ownable extends Tile {
      */
     private int sellPrice;
 
+    /**
+     * mortgaged: Boolean
+     * A boolean to say if the ownable is mortgaged or not.
+     */
+    private boolean mortgaged;
+
 
     public Ownable(String name, int position) {
         super(name, position);
@@ -116,6 +122,22 @@ public class Ownable extends Tile {
      */
     public void setSellPrice(int sellPrice) {
         this.sellPrice = sellPrice;
+    }
+
+    /**
+     * setMortgaged(Boolean): Void
+     *
+     * @param mortgaged Set property as mortgaged.
+     */
+    public void setMortgaged(boolean mortgaged) {
+        this.mortgaged = mortgaged;
+    }
+
+    /**
+     * isMortgaged(): Boolean
+     */
+    public boolean isMortgaged() {
+        return this.mortgaged;
     }
 
 

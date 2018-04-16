@@ -71,7 +71,9 @@ public class PlayerTest {
     }
 
     @Test
-    public void morgageTile() {
+    public void mortgageTile() {
+
+
     }
 
     @Test

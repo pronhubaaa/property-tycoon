@@ -9,7 +9,7 @@ public class Player {
      * inJail: Boolean
      * This represents if the player is in jail or not.
      */
-    private Boolean inJail;
+    private boolean inJail;
 
     /**
      * balance: Int
@@ -70,7 +70,7 @@ public class Player {
      * @return Boolean- true if purchase successful
      * This allows a player to purchase a tile on the board.
      */
-    public Boolean buyTile(Tile tile) {
+    public boolean buyTile(Tile tile) {
         if(tile instanceof Ownable){
             Ownable ownable = (Ownable) tile;
             if(!ownable.isOwned()){
@@ -92,7 +92,7 @@ public class Player {
      * @return Boolean- true if sale was successful
      * This allows a player to sell a tile on the board.
      */
-    public Boolean sellTile(Tile tile) {
+    public boolean sellTile(Tile tile) {
         if(tile instanceof Ownable){
             Ownable ownable = (Ownable) tile;
             if(ownable.isOwned() && ownable.getOwner().equals(this)){
@@ -110,11 +110,8 @@ public class Player {
      * This method returns if a player has no funds and is thus out of the game.
      */
 
-    public Boolean isBankrupt(){
-        if(this.balance <= 0){
-            return true;
-        }
-        return false;
+    public boolean isBankrupt(){
+        return this.balance <= 0;
 
     }
 
@@ -125,8 +122,10 @@ public class Player {
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
-    public Boolean morgageTile(Tile tile) {
-        return null;
+    public boolean morgageTile(Tile tile) {
+
+
+        return false;
     }
 
     /**
@@ -155,7 +154,7 @@ public class Player {
      * @return Boolean- true if player is in jail
      * This method checks if the player is in jail.
      */
-    public Boolean getInJail() {
+    public boolean getInJail() {
         return this.inJail;
     }
 
@@ -170,12 +169,21 @@ public class Player {
     }
 
     /**
+     * getBoard
+     * @return board
+     * This method gets the board within a player object.
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+
+    /**
      * setInJail
      *
      * @param inJail Boolean true if moving to jail, false if moving to just visiting
      *               This method moves a player in and out of jail.
      */
-    public void setInJail(Boolean inJail) {
+    public void setInJail(boolean inJail) {
         this.inJail = inJail;
     }
 
