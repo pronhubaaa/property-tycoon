@@ -2,7 +2,7 @@
  * This class is used to create an artificial player.
  */
 
-
+import java.util.ArrayList;
 
 
 
@@ -17,26 +17,62 @@ public class AI extends Player {
     public boolean buyTile(Ownable tile, int cost){
 
 
-
-        if (this.board.getPlayerOwned(tile) > 1 && this.balance > cost) {
-            return true;
-        } else if (this.board.getPlayerOwned(tile) > 0 && && this.balance > cost && this.board.groupSize(tile)  == 2){
-            return true;
-        } else if (this.board.getPlayerOwned(tile) < 1 && this.balance > cost) {
+        //If a player owns more than 1 in the set
+        if (this.getBoard().getPlayerOwned(tile) > 1 && this.getBalance() > cost) {
             return true;
         }
+        //If a player owns 1 of two tiles
+        else if (this.getBoard().getPlayerOwned(tile) > 0 && && this.getBalance() > cost && this.getBoard().groupSize(tile)  == 2){
+            return true;
+        }
+        //If another player owns a tile in the same group
+        else if (this.getBoard().getPlayerOwned(tile) > 0 && this.getBalance() > cost) {
+            int random = Math.random();
+            if (random > 0.25) {
+                return true;
+            } else return false;
 
+        }
+        //If this player owns a tile in the same group
+        else if (findOwned() == true && this.getBalance() > cost){
+            return true;
+        }
+        //If no other tiles in the group are owned
+        else {
+            int random = Math.random();
+            if (random > 0.5) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-
-        return true;
     }
 
-    public boolean buyHouses(){
+    public void buyHouses(void){
 
-        return true;
+        //Get array list of all streets that are owned
+        ArrayList<Property> ownedStreets = new ArrayList<Property>();
+        ownedStreets = streetOwned();
+
+        //When a street is owned
+        if (!ownedStreets.isEmpty()){
+            // for each in the street
+            for (Property current: ownedStreets) {
+                // if house price is less than half the players balance
+                if(current.getCostOfHouse() < (this.getBalance())/2){
+                    // Buy at a random rate of 0.5
+                    int random = Math.random();
+                    if (random > 0.5) {
+                        current.addHouses();
+                        this.setBalance(this.balance() - current.getCostOfHouse());
+                    }
+                }
+            }
+        }
     }
 
-    public boolean trader(){
+    public boolean trader(int, [Ownable]){
 
 
         return true;
@@ -51,10 +87,27 @@ public class AI extends Player {
 
     public int payBill(int){
         int bill = 0;
-
-
-
         return bill;
+    }
+
+    private int findOwned(Ownable tile){
+        return 1;
+    }
+
+    private ArrayList streetOwned(Void) {
+
+        ArrayList<Property> Streets = new ArrayList<Property>();
+
+        for (Tile current: Ownable) {
+            if(this.getBoard().isStreetOwned(Tile) == true){
+                if(current instanceof Property){
+                    Property property = (Property) current;
+                    Streets.add(property);
+                }
+
+            }
+        }
+
     }
 
 }
@@ -73,16 +126,16 @@ public class AI extends Player {
 
 
 
- BuyTile override:
- If not, do i have any tiles in the same group
- Do i have enough money
- Does anyone else have a tile in this group if none yes, if 2 yes
+ DONE BuyTile override:
+ DONE If not, do i have any tiles in the same group
+ DONE Do i have enough money
+ DONE Does anyone else have a tile in this group if none yes, if 2 yes
 
 
- buyHouses
- Check if a group is owned by AI
- If not don't buy
- If do, and AI money is over certain amount buy houses accordingly.
+ DONE buyHouses
+ DONE Check if a group is owned by AI
+ DONE If not don't buy
+ DONE If do, and AI money is over certain amount buy houses accordingly.
 
  Trade:
  Accept a trade if in AI benefit

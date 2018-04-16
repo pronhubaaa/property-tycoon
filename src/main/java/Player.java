@@ -61,11 +61,6 @@ public class Player {
     }
 
 
-    public void setBoard(Board board){
-        this.board = Board;
-    }
-
-
     /**
      * buyTile
      * @param tile The tile the player wishes to buy
@@ -103,6 +98,25 @@ public class Player {
     public String getName(){
         return this.name;
     }
+
+    /**
+     * setBoard
+     * @param board
+     * This method sets the board within a player object.
+     */
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    /**
+     * getBoard
+     * @return board
+     * This method gets the board within a player object.
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+
 
     /**
      * setName
@@ -145,7 +159,7 @@ public class Player {
      * @param balance Amount of money the player now has
      * This method sets the amount of money the player has.
      */
-    private void setBalance(int balance) {
+    protected void setBalance(int balance) {
         this.balance = balance;
     }
 

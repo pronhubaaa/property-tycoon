@@ -173,6 +173,14 @@ public class Board {
 
     }
 
+    public int groupSize(Tile){
+        return 1;
+    }
+
+    public boolean isStreetOwned(Tile){
+        return true;
+    }
+
 
     /**
      * addTile
