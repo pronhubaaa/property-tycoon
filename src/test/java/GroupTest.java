@@ -24,15 +24,16 @@ public class GroupTest {
     @Test
     public void getAndAddGroups() {
 
-        assertEquals(0, this.group.getGroups().size());
-        this.group.add(new Group());
-        assertEquals(1, this.group.getGroups().size());
+        assertEquals(0, this.group.getGroup().size());
+        this.group.add(new Property("", 0));
+        assertEquals(1, this.group.getGroup().size());
 
-        ArrayList<Group> groups = new ArrayList<>();
-        groups.add(new Group());
-        groups.add(new Group());
+        ArrayList<Ownable> groups = new ArrayList<>();
+        groups.add(new Property("", 0));
+        groups.add(new Property("", 1));
         this.group.setGroups(groups);
-        assertEquals(2, this.group.getGroups().size());
+        assertEquals(2, this.group.getGroup().size());
+
     }
 
 

@@ -10,8 +10,15 @@ public class StationGroup extends Group {
      * This method returns the number of the stations that a player owns.
      */
     public int checkOwnedStations(Player player){
-        return 0;
-
+        int count = 0;
+        for(Ownable ownable: this.getGroup()){
+            if(ownable != null && ownable instanceof Station){
+                if(ownable.getOwner() != null && ownable.getOwner().equals(player)){
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
 }
