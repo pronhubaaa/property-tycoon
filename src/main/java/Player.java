@@ -9,7 +9,7 @@ public class Player {
      * inJail: Boolean
      * This represents if the player is in jail or not.
      */
-    private Boolean inJail;
+    private boolean inJail;
 
     /**
      * balance: Int
@@ -67,8 +67,8 @@ public class Player {
      * @return Boolean- true if purchase successful
      * This allows a player to purchase a tile on the board.
      */
-    public Boolean buyTile(Tile tile){
-        return null;
+    public boolean buyTile(Tile tile){
+        return false;
     }
 
     /**
@@ -76,8 +76,8 @@ public class Player {
      * @return Boolean- true if player has no funds avaliable, cash or property
      * This method returns if a player has no funds and is thus out of the game.
      */
-    public Boolean isBankrupt(){
-        return null;
+    public boolean isBankrupt(){
+        return false;
     }
 
     /**
@@ -86,8 +86,8 @@ public class Player {
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
-    public Boolean morgageTile(Tile tile){
-        return null;
+    public boolean morgageTile(Tile tile){
+        return false;
     }
 
     /**
@@ -132,7 +132,7 @@ public class Player {
      * @return Boolean- true if player is in jail
      * This method checks if the player is in jail.
      */
-    public Boolean getInJail() {
+    public boolean getInJail() {
         return this.inJail;
     }
 

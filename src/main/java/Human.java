@@ -4,6 +4,6 @@
 public class Human extends Player {
 
     public Human(int balance, String name){
-        super(balance, name);
+        super(balance, name,  new Board(null));
     }
 }

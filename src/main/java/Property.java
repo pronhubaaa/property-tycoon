@@ -4,28 +4,17 @@ public class Property extends Ownable {
         super(name, position);
     }
 
-    public int getRent(){
-        return 1;
-    }
 
-    public int setRent(arrayList rent){
-        return 1;
-    }
 
     public int getCostOfHouse(){
-
+        return 1;
     }
 
-    public void setCostOfHouse(Int){
 
-    }
 
     public void addHouses(){
 
     }
 
-    public void removeHouses(Int){
-
-    }
 
 }

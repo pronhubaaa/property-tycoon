@@ -164,7 +164,7 @@ public class Board {
 
     }
 
-    public int getPlayerOwned(Tile){
+    public int getPlayerOwned(Ownable tile){
         int mostTilesOwned = 0;
 
         // This method is to see what other tiles in a set are owned. It is given a tile, then it must return the amount of tiles owned by the player that owns the most
@@ -173,11 +173,11 @@ public class Board {
 
     }
 
-    public int groupSize(Tile){
+    public int groupSize(Ownable tile){
         return 1;
     }
 
-    public boolean isStreetOwned(Tile){
+    public boolean isStreetOwned(Ownable tile){
         return true;
     }
 
