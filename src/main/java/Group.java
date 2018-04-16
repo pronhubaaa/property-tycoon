@@ -11,6 +11,10 @@ public class Group {
      */
     private ArrayList<Group> groups;
 
+    public Group(){
+        this.groups = new ArrayList<>();
+    }
+
     /**
      * getGroups
      * @return An array of property groups
@@ -35,6 +39,7 @@ public class Group {
      * This method adds a group of properties on the game board for initialisation.
      */
     public void add(Group group){
+        this.groups.add(group);
 
     }
 }
