@@ -3,7 +3,8 @@
  */
 public class Human extends Player {
 
-    public Human(int balance, String name){
-        super(balance, name,  new Board(null));
+
+    public Human(int balance, String name, Board board){
+        super(balance, name, board);
     }
 }

@@ -16,7 +16,7 @@ public class AITest {
 
     @After
     public void tearDown() throws Exception {
-        this.ai = null
+        this.ai = null;
     }
 
 

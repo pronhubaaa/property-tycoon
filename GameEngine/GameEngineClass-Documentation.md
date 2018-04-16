@@ -21,11 +21,14 @@ This is a pointer to the player object whose turn it currently is.
 - #### timer: Timer
 This is the timer counting down for the abridged version of the game. 
 
-- #### gameTimeLimit: int
-This is the time limit of the game.
+- #### timeLeft: int
+This is the time left of the game.
 
 - #### gameType: GameType
 This is the type of game e.g. Abridged or Full.
+
+- #### trading: Boolean
+This is a variable to store if trading is on or off.
 
 ### Public Methods
 
@@ -94,6 +97,18 @@ This stops the timer for the abridged version of the game.
 *Returns*: Void
 
 This gets the amount of time left in the abridged version.
+
+- #### getTrading
+*Parameters*: None
+*Returns*: Boolean
+
+This gets the trading boolean.
+
+- #### setTrading
+*Parameters*: Boolean
+*Returns*: Void
+
+This sets the trading boolean.
 
 ### Private Methods
 

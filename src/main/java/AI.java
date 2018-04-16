@@ -16,7 +16,6 @@ public class AI extends Player {
     /**
      * buyTile
      * @param tile Ownable for the players owned properties
-     * @param cost int for the price of the tile to buy
      * @return boolean for if transaction is successful
      * This allows the AI to choose to buy a property
      */
@@ -42,7 +41,7 @@ public class AI extends Player {
 
             }
             //If this player owns a tile in the same group
-            else if (otherOwned(current) == true && this.getBalance() > current.getPrice()) {
+            else if (otherOwned(current) && this.getBalance() > current.getPrice()) {
                 return true;
             }
             //If no other tiles in the group are owned
@@ -110,7 +109,7 @@ public class AI extends Player {
         for (Ownable current: getOwnedTiles()) {
             if(current instanceof Property){
                 Property property = (Property) current;
-                if(this.getBoard().isStreetOwned(property) == true){
+                if(getBoard().isStreetOwned(property)){
                     streets.add(property);
                 }
 

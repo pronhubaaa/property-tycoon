@@ -25,7 +25,7 @@
 			"type": "PlotLuck",
 			"position" : "3",
 			"name": "Plot Luck",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -64,7 +64,7 @@
 			"type": "OpportunityKnocks",
 			"position" : "8",
 			"name": "Opportunity Knocks",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -152,7 +152,7 @@
 			"type": "PlotLuck",
 			"position" : "18",
 			"name": "Plot Luck",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -194,7 +194,7 @@
 			"type": "OpportunityKnocks",
 			"position" : "23",
 			"name": "Opportunity Knocks",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -265,7 +265,7 @@
 			"type": "GoToJail",
 			"position": "31",
 			"name": "Go to Jail",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -291,7 +291,7 @@
 			"type": "PlotLuck",
 			"position" : "34",
 			"name": "Plot Luck",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -315,7 +315,7 @@
 			"type": "OpportunityKnocks",
 			"position" : "37",
 			"name": "Opportunity Knocks",
-			"ownable": "false"
+			"ownable": "false",
 		},
 		{
 			"type": "Property",
@@ -347,5 +347,22 @@
 			"rent": "50",
 			"houses": ["200", "600", "1400", "1700", "2000"]
 		}
-	]
+	],
+	"player": [
+		{
+			"in_jail": "false",
+			"balance": "2200",
+			"name": "Peter",
+			"position": "7",
+			"owned_tiles": [
+				"8", 
+				"12", 
+				"17"
+			], 
+			"piece": "2"
+		}
+	],
+	"game_type": "full",
+	"current_player": "4",
+	"number_of_turns": "52"
 }

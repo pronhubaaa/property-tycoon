@@ -20,7 +20,7 @@ public class Game extends Application {
     @Override
     public void start(Stage primaryStage) {
         this._primaryStage = primaryStage;
-        GameEngine gameEngine = new GameEngine(new JSONObject());
+        GameEngine gameEngine = null;
         UI ui = new UI(primaryStage, gameEngine);
     }
 
