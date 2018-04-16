@@ -90,6 +90,14 @@ public class Property extends Ownable {
     }
 
     /**
+     * getAmountOfHouses(): Int
+     * @return amountOfHouses amount of houses on a property
+     */
+    public int getAmountOfHouses() {
+        return this.amountOfHouses;
+    }
+
+    /**
      * removeHouses(Int): Void
      * Remove houses from the property.
      *

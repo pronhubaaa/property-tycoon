@@ -72,8 +72,20 @@ public class PlayerTest {
 
     @Test
     public void mortgageTile() {
+        Tile tile = new Property("", 0);
+        ((Property) tile).setPrice(100);
+        ((Ownable) tile).setSellPrice(25);
+        ((Property) tile).setMortgagePrice(50);
+        this.player.setBalance(100);
+        assertEquals(100, this.player.getBalance());
+        assertTrue(this.player.buyTile(tile));
+        assertEquals(0, this.player.getBalance());
+        assertFalse(((Property) tile).isMortgaged());
 
 
+        assertTrue(this.player.morgageTile(tile));
+        assertTrue(((Property) tile).isMortgaged());
+        assertEquals(50, this.player.getBalance());
     }
 
     @Test
