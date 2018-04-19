@@ -2,7 +2,9 @@ import com.alibaba.fastjson.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sun.print.PSPrinterJob;
 
+import java.rmi.server.ExportException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -410,43 +412,63 @@ public class GameEngineTest {
 
         GameType type = GameType.FullGame;
 
-        GameEngine gameEngineFull = new GameEngine(json, players, type);
-        assertEquals(-1, gameEngineFull.getTime());
-        gameEngineFull.startGame();
+        try {
+            GameEngine gameEngineFull = new GameEngine(json, players, type);
+            assertEquals(-1, gameEngineFull.getTime());
+            gameEngineFull.startGame();
 
-        try
-        {
-            Thread.sleep(3*1000);
+
+            try
+            {
+                Thread.sleep(3*1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+
+            assertEquals(-1, gameEngineFull.getTime());
+
+
+
+
+        } catch(Exception e){
+            assertTrue(false);
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
-
-        assertEquals(-1, gameEngineFull.getTime());
-
 
 
         type = GameType.AbridgedGame;
+        try {
+            GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
+            assertEquals(105, gameEngineAbridgedGame.getTime());
 
-        GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
-        assertEquals(105, gameEngineAbridgedGame.getTime());
-
-        gameEngineAbridgedGame.startGame();
+            gameEngineAbridgedGame.startGame();
 
 
-        assertEquals(105, gameEngineAbridgedGame.getTime());
+            assertEquals(105, gameEngineAbridgedGame.getTime());
 
-        try
-        {
-            Thread.sleep(3*1000);
+            try
+            {
+                Thread.sleep(3*1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+
+            assertEquals(102, gameEngineAbridgedGame.getTime());
+
+
+
+        } catch(Exception e){
+            assertTrue(false);
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
 
-        assertEquals(102, gameEngineAbridgedGame.getTime());
+
+
+
+
+
     }
 
     @Test
@@ -463,10 +485,14 @@ public class GameEngineTest {
 
 
         GameType type = GameType.FullGame;
+        try {
+            GameEngine gameEngineFull = new GameEngine(json, players, type);
 
-        GameEngine gameEngineFull = new GameEngine(json, players, type);
+            assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
+        } catch(Exception e){
+            assertTrue(false);
+        }
 
-        assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
 
     }
 
@@ -483,23 +509,28 @@ public class GameEngineTest {
 
         GameType type = GameType.FullGame;
 
-        GameEngine gameEngineFull = new GameEngine(json, players, type);
+        try {
+            GameEngine gameEngineFull = new GameEngine(json, players, type);
 
-        assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(1), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(2), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(3), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(4), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(1), gameEngineFull.getCurrentPlayer());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(players.get(2), gameEngineFull.getCurrentPlayer());
+            assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(1), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(2), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(3), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(4), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(1), gameEngineFull.getCurrentPlayer());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(players.get(2), gameEngineFull.getCurrentPlayer());
+        } catch(Exception e) {
+            assertTrue(false);
+        }
+
 
     }
 
@@ -516,18 +547,23 @@ public class GameEngineTest {
 
         GameType type = GameType.FullGame;
 
-        GameEngine gameEngineFull = new GameEngine(json, players, type);
+        try {
+            GameEngine gameEngineFull = new GameEngine(json, players, type);
 
-        assertEquals(0, gameEngineFull.getNumberOfTurns());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(1, gameEngineFull.getNumberOfTurns());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(2, gameEngineFull.getNumberOfTurns());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(3, gameEngineFull.getNumberOfTurns());
-        assertNotNull(gameEngineFull.nextTurn());
-        assertEquals(4, gameEngineFull.getNumberOfTurns());
-        assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(0, gameEngineFull.getNumberOfTurns());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(1, gameEngineFull.getNumberOfTurns());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(2, gameEngineFull.getNumberOfTurns());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(3, gameEngineFull.getNumberOfTurns());
+            assertNotNull(gameEngineFull.nextTurn());
+            assertEquals(4, gameEngineFull.getNumberOfTurns());
+            assertNotNull(gameEngineFull.nextTurn());
+        } catch(Exception e){
+            assertTrue(false);
+        }
+
     }
 
 
@@ -545,43 +581,53 @@ public class GameEngineTest {
 
         GameType type = GameType.FullGame;
 
-        GameEngine gameEngineFull = new GameEngine(json, players, type);
-        assertEquals(-1, gameEngineFull.getTime());
-        gameEngineFull.startTimer();
+        try {
+            GameEngine gameEngineFull = new GameEngine(json, players, type);
+            assertEquals(-1, gameEngineFull.getTime());
+            gameEngineFull.startTimer();
 
-        try
-        {
-            Thread.sleep(3*1000);
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
+            try
+            {
+                Thread.sleep(3*1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
 
-        assertEquals(-1, gameEngineFull.getTime());
+            assertEquals(-1, gameEngineFull.getTime());
+
+        } catch(Exception e){
+            assertTrue(false);
+        }
 
 
 
         type = GameType.AbridgedGame;
 
-        GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
-        assertEquals(105, gameEngineAbridgedGame.getTime());
+        try {
+            GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
+            assertEquals(105, gameEngineAbridgedGame.getTime());
 
-        gameEngineAbridgedGame.startTimer();
+            gameEngineAbridgedGame.startTimer();
 
 
-        assertEquals(105, gameEngineAbridgedGame.getTime());
+            assertEquals(105, gameEngineAbridgedGame.getTime());
 
-        try
-        {
-            Thread.sleep(3*1000);
+            try
+            {
+                Thread.sleep(3*1000);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+
+            assertEquals(102, gameEngineAbridgedGame.getTime());
+        } catch(Exception e){
+            assertTrue(false);
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
 
-        assertEquals(102, gameEngineAbridgedGame.getTime());
 
     }
 
@@ -599,38 +645,44 @@ public class GameEngineTest {
 
        GameType type = GameType.AbridgedGame;
 
-        GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
-        assertEquals(105, gameEngineAbridgedGame.getTime());
+       try {
+           GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
+           assertEquals(105, gameEngineAbridgedGame.getTime());
 
-        gameEngineAbridgedGame.startTimer();
-
-
-        assertEquals(105, gameEngineAbridgedGame.getTime());
-
-        try
-        {
-            Thread.sleep(3*1000);
-            gameEngineAbridgedGame.stopTimer();
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
+           gameEngineAbridgedGame.startTimer();
 
 
-        assertEquals(102, gameEngineAbridgedGame.getTime());
+           assertEquals(105, gameEngineAbridgedGame.getTime());
 
-        try
-        {
-            Thread.sleep(1*1000);
-            gameEngineAbridgedGame.stopTimer();
-        }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
-        }
+           try
+           {
+               Thread.sleep(3*1000);
+               gameEngineAbridgedGame.stopTimer();
+           }
+           catch(InterruptedException ex)
+           {
+               Thread.currentThread().interrupt();
+           }
 
-        assertEquals(102, gameEngineAbridgedGame.getTime());
+
+           assertEquals(102, gameEngineAbridgedGame.getTime());
+
+           try
+           {
+               Thread.sleep(1*1000);
+               gameEngineAbridgedGame.stopTimer();
+           }
+           catch(InterruptedException ex)
+           {
+               Thread.currentThread().interrupt();
+           }
+
+           assertEquals(102, gameEngineAbridgedGame.getTime());
+
+       } catch(Exception e){
+           assertTrue(false);
+       }
+
     }
 
     @Test
@@ -647,12 +699,21 @@ public class GameEngineTest {
 
         GameType type = GameType.FullGame;
 
-        GameEngine gameEngineFull = new GameEngine(json, players, type);
-        assertEquals(-1, gameEngineFull.getTime());
+        try {
+            GameEngine gameEngineFull = new GameEngine(json, players, type);
+            assertEquals(-1, gameEngineFull.getTime());
+        } catch (Exception e){
+            assertTrue(false);
+        }
+
 
         type = GameType.AbridgedGame;
+        try {
+            GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
+            assertEquals(105, gameEngineAbridgedGame.getTime());
+        } catch (Exception e){
+            assertTrue(false);
+        }
 
-        GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
-        assertEquals(105, gameEngineAbridgedGame.getTime());
     }
 }

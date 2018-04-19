@@ -5,8 +5,9 @@ public class Jail extends Tile {
      */
     private int fee;
 
-    public Jail(String name, int position) {
+    public Jail(String name, int position, int value) {
         super(name, position);
+        this.fee = value;
     }
 
     /**

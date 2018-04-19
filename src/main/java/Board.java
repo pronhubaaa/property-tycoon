@@ -1,8 +1,10 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.HashMap;
 
 
 /**
@@ -20,19 +22,19 @@ public class Board {
      * propertyGroups: [PropertyGroup]
      * The groups of properties as shown by their colour groups on the board.
      */
-    private ArrayList<PropertyGroup> propertyGroups;
+    private HashMap<String, PropertyGroup> propertyGroups;
 
     /**
      * stationGroups: [StationGroup]
      * The train station tiles shown on the board.
      */
-    private ArrayList<StationGroup> stationGroups;
+    private HashMap<String, StationGroup> stationGroups;
 
     /**
      * UtilityGroups: [UtilityGroup]
      * The utility tiles shown on the board.
      */
-    private ArrayList<UtilityGroup> utilityGroups;
+    private HashMap<String, UtilityGroup> utilityGroups;
 
     /**
      * cards: [Card]
@@ -41,24 +43,59 @@ public class Board {
     private ArrayList<Card> cards;
 
     /**
+     * jsonFields
+     */
+    private enum jsonFields{
+        Tile("tile"),
+        Type("type"),
+        Name("name"),
+        Position("position"),
+        Value("value"),
+        Group("group"),
+        CardType("cardType");
+
+        private String value;
+
+        jsonFields(final String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return this.getValue();
+        }
+    }
+
+
+    /**
      * Board
      * @param jsonObject
      * The JSON data will come from the GameEngine, this includes all tiles, property groups, station groups, utility groups and cards. This constructor initialises the board.
      */
-    public Board(JSONObject jsonObject){
-        if(jsonObject.containsKey("tile")){
+    public Board(JSONObject jsonObject) throws BoardTileException {
+        this.propertyGroups = new HashMap<>();
+        this.stationGroups = new HashMap<>();
+        this.utilityGroups = new HashMap<>();
+        this.tiles = new ArrayList<>();
 
-            JSONArray tiles = jsonObject.getJSONArray("tile");
+
+        if(jsonObject.containsKey(jsonFields.Tile.toString())){
+
+            JSONArray tiles = jsonObject.getJSONArray(jsonFields.Tile.toString());
 
             for(Object object: tiles){
                 JSONObject tile = (JSONObject) object;
 
-                if(tile.containsKey("type")){
-                    TileType type = TileType.valueOf(tile.getString("type"));
-                    String tileName = tile.getString("name");
-                    int tilePosition = tile.getIntValue("position");
-                    int tileValue = tile.getIntValue("value");
-
+                if(tile.containsKey(jsonFields.Type.toString())){
+                    TileType type = TileType.valueOf(tile.getString(jsonFields.Type.toString()));
+                    String tileName = tile.getString(jsonFields.Name.toString());
+                    int tilePosition = tile.getIntValue(jsonFields.Position.toString());
+                    int tileValue = tile.getIntValue(jsonFields.Value.toString());
+                    String groupType = tile.getString(jsonFields.Group.toString());
 
 
                     switch(type) {
@@ -71,25 +108,64 @@ public class Board {
                             this.tiles.add(freeParking);
                             break;
                         case Utility:
+                            Utility utility = new Utility(tileName, tilePosition);
+                            this.tiles.add(utility);
+                            if(groupType != "") {
+                                if (this.utilityGroups.containsKey(groupType)) {
+                                    this.utilityGroups.get(groupType).add(utility);
+                                } else {
+                                    UtilityGroup utilityGroup = new UtilityGroup();
+                                    utilityGroup.add(utility);
+                                    this.utilityGroups.put(groupType, utilityGroup);
+                                }
+                            }
 
                             break;
                         case Station:
+                            Station station = new Station(tileName, tilePosition);
+                            this.tiles.add(station);
+                            if(groupType != "") {
+                                if (this.stationGroups.containsKey(groupType)) {
+                                    this.stationGroups.get(groupType).add(station);
+                                } else {
+                                    StationGroup stationGroup = new StationGroup();
+                                    stationGroup.add(station);
+                                    this.stationGroups.put(groupType, stationGroup);
+                                }
+                            }
                             break;
                         case Property:
                             Property property = new Property(tileName, tilePosition);
                             this.tiles.add(property);
+                            if(groupType != ""){
+                                if(this.propertyGroups.containsKey(groupType)){
+                                    this.propertyGroups.get(groupType).add(property);
+                                } else {
+                                    PropertyGroup propertyGroup = new PropertyGroup();
+                                    propertyGroup.add(property);
+                                    this.propertyGroups.put(groupType, propertyGroup);
+                                }
+                            }
                             break;
                         case Jail:
-                            Jail jail = new Jail(tileName, tilePosition);
+                            Jail jail = new Jail(tileName, tilePosition, tileValue);
                             this.tiles.add(jail);
                             break;
                         case GoToJail:
                             GoToJail goToJail = new GoToJail(tileName, tilePosition);
                             this.tiles.add(goToJail);
                             break;
-
-                        default:
+                        case Tax:
+                            Tax tax = new Tax(tileName, tilePosition, tileValue);
+                            this.tiles.add(tax);
                             break;
+                        case Card:
+                            CardType cardType = CardType.valueOf(tile.getString(jsonFields.CardType.toString()));
+                            Card card = new Card(tileName, tilePosition, cardType);
+                            this.tiles.add(card);
+                            break;
+                        default:
+                            throw new BoardTileException("Tile type is invalid");
 
                     }
 
@@ -156,30 +232,62 @@ public class Board {
 
 
     /**
-     * reorderCards
-     * @param cardType The card being shuffled into the pack
-     * This allows the game to add the card to the end of a stack.
-     */
-    public void reorderCards(CardType cardType){
-
-    }
-
-
-    /**
      * addTile
      * @param tile The tile being added to the board
      * This allows the game board to be initialised, tiles can be added in this way.
      */
-    private void addTile(Tile tile){
+    public void addTile(Tile tile){
+        this.tiles.add(tile);
 
+    }
+
+
+    /**
+     * getPropertyGroups
+     * @return propertyGroups
+     */
+    public HashMap<String, PropertyGroup> getPropertyGroups() {
+        return this.propertyGroups;
     }
 
     /**
-     * randomiseCards
-     * @param cardType The card type e.g. 'opportunity knocks' or 'pot luck'
-     * This method randomises the opportunity knocks and pot luck cards at the start of a game.
+     * setPropertyGroups
+     * @param propertyGroups
      */
-    private void randomiseCards(CardType cardType){
-
+    public void setPropertyGroups(HashMap<String, PropertyGroup> propertyGroups) {
+        this.propertyGroups = propertyGroups;
     }
+
+    /**
+     * getStationGroups
+     * @return stationGroups
+     */
+    public HashMap<String, StationGroup> getStationGroups() {
+        return this.stationGroups;
+    }
+
+    /**
+     * setStationGroups
+     * @param stationGroups
+     */
+    public void setStationGroups(HashMap<String, StationGroup> stationGroups) {
+        this.stationGroups = stationGroups;
+    }
+
+    /**
+     * getUtilityGroups
+     * @return utilityGroups
+     */
+    public HashMap<String, UtilityGroup> getUtilityGroups() {
+        return this.utilityGroups;
+    }
+
+    /**
+     * setUtilityGroups
+     * @param utilityGroups
+     */
+    public void setUtilityGroups(HashMap<String, UtilityGroup> utilityGroups) {
+        this.utilityGroups = utilityGroups;
+    }
+
 }
