@@ -1,4 +1,6 @@
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
 /**
@@ -23,6 +25,10 @@ public class UI {
         this._primaryStage = primaryStage;
 
         Scene mainMenuScene = MainMenuScreens.getMainMenu(this);
+
+        this._primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+        this._primaryStage.setFullScreen(true);
+        this._primaryStage.getIcons().add(new Image("resources/icon.png"));
         this.showScene(mainMenuScene);
         this._primaryStage.show();
     }
@@ -33,6 +39,8 @@ public class UI {
      */
     public void showScene(Scene scene) {
         this._primaryStage.setScene(scene);
+        this._primaryStage.setFullScreen(true);
+        this._primaryStage.show();
     }
 
     /**
@@ -40,5 +48,9 @@ public class UI {
      */
     public void close() {
         this._primaryStage.close();
+    }
+
+    public Stage getStage() {
+        return _primaryStage;
     }
 }
