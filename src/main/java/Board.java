@@ -56,7 +56,7 @@ public class Board {
         CardType("cardType"),
         Rent("rent"),
         Cost("cost"),
-        Houses("houses");
+        HouseCost("house");
 
 
         private String value;
@@ -156,11 +156,15 @@ public class Board {
                                     rent.add(rents.getIntValue(i));
                                 }
                                 property.setRent(rent);
+                                int houseCost = tile.getIntValue(jsonFields.HouseCost.toString());
+                                property.setCostOfHouse(houseCost);
 
-//                                property.setCostOfHouse();
+                                int propertyCost = tile.getIntValue(jsonFields.Cost.toString());
+                                property.setPrice(propertyCost);
+
 //                                property.setSellPrice();
 //                                property.setMortgagePrice();
-//                                property.setPrice();
+
                                 this.tiles.add(property);
                             } else {
                                 PropertyGroup propertyGroup = new PropertyGroup();
