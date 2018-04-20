@@ -42,8 +42,8 @@ public class GroupTest {
 
 
 
-        Player player1 = new Player(50, "", null);
-        Player player2 = new Player(50, "", null);
+        Player player1 = new Player(50, "Liam", null);
+        Player player2 = new Player(50, "Pete", null);
 
         ArrayList<Player> players = new ArrayList<>();
         players.add(player1);
@@ -65,11 +65,7 @@ public class GroupTest {
         group.add(ownable3);
 
 
-        assertEquals(players, this.group.getGroupOwners());
-        assertEquals(players, this.group.getGroupOwners());
-        assertEquals(players, this.group.getGroupOwners());
-
-        assertEquals(new ArrayList<Player>(), this.group.getGroupOwners());
+        assertEquals(players, group.getGroupOwners());
 
 
 
