@@ -81,121 +81,73 @@ public class AI extends Player {
     }
 
     public boolean trader(ArrayList<Ownable> opponentTiles, ArrayList<Ownable> myTiles, Player player){
-
+        int score = 0;
 
         for (Ownable tiles: opponentTiles) {
-            ArrayList<Ownable> localTiles = this.getOwnedTiles();
-            localTiles.add(tiles);
 
             if (streetOwned(this.getOwnedTiles()).size() < streetOwned(localTiles).size()) {
-                int score = 0;
-                    for (Ownable tile: myTiles) {
-                        ArrayList<Player> players = this.getBoard().getOwners(tile);
-                        if (Collections.frequency(players, player) > 2{
-                            score = score +2;
-                        }else if (Collections.frequency(players, player) > 1){
-                            score ++;
-                        }
-
-                    }
-                if(score < 2){
-                    double random = Math.random();
-                    if (random > 0.2) {
-                        return true;
-                    }
-                } else if(score < 4){
-                    double random = Math.random();
-                    if (random > 0.45) {
-                        return true;
-                    }
-                } else if(score < 6){
-                    double random = Math.random();
-                    if (random > 0.7) {
-                        return true;
-                    }
-                }  else {
-                    double random = Math.random();
-                    if (random > 0.95) {
-                        return true;
-                    }
-                }
-
+                /**
+                 * Street gained
+                 */
+                score = score +10;
             } else if(otherOwned(tiles) > 0){
-                int score = 0;
-                for (Ownable tile: myTiles) {
-                    ArrayList<Player> players = this.getBoard().getOwners(tile);
-                    if (Collections.frequency(players, player) > 2{
-                        score = score +2;
-                    }else if (Collections.frequency(players, player) > 1){
-                        score ++;
-                    }
-
-                }
-                if(score < 2){
-                    double random = Math.random();
-                    if (random > 0.25) {
-                        return true;
-                    }
-                } else if(score < 3){
-                    double random = Math.random();
-                    if (random > 0.7) {
-                        return true;
-                    }
-                }else if(score < 4){
-                    double random = Math.random();
-                    if (random > 0.9) {
-                        return true;
-                    }
-                } else {
-                    double random = Math.random();
-                    if (random > 0.95) {
-                        return true;
-                    }
-                }
-
-
+                score = score +5;
+                /**
+                 * Extra part of set gained
+                 */
             } else {
-
-            int score = 0;
-            for (Ownable tile: myTiles) {
-                ArrayList<Player> players = this.getBoard().getOwners(tile);
-                if (Collections.frequency(players, player) > 2{
-                    score = score +2;
-                }else if (Collections.frequency(players, player) > 1){
-                    score ++;
-                }
-
-            }
-            if(score < 2){
-                double random = Math.random();
-                if (random > 0.25) {
-                    return true;
-                }
-            } else if(score < 3){
-                double random = Math.random();
-                if (random > 0.7) {
-                    return true;
-                }else if(score < 4){
-                    double random = Math.random();
-                    if (random > 0.9) {
-                        return true;
-                    }
-                } else {
-                    double random = Math.random();
-                    if (random > 0.95) {
-                        return true;
-                    }
-                }
+                /**
+                 * Nothing gained
+                 */
             }
         }
 
+        for (Ownable tile: myTiles) {
+            ArrayList<Player> players = this.getBoard().getOwners(tile);
 
+            if (Collections.frequency(players, player) > 2{
+                score = score -10;
+            }else if (Collections.frequency(players, player) > 1){
+                score = score - 5;
+            }
+
+        }
+
+            if(score < -4){
+                double random = Math.random();
+                if (random > 0.98) {
+                    return true;
+                }
+            } else if(score < -2){
+                double random = Math.random();
+                if (random > 0.85) {
+                    return true;
+                }
+            } else if(score < 0){
+                double random = Math.random();
+                if (random > 0.4) {
+                    return true;
+                }
+            }  else if(score < 2){
+                double random = Math.random();
+                if (random > 0.2) {
+                    return true;
+            }  else if(score < 4){
+                double random = Math.random();
+                if (random > 0.1) {
+                    return true;
+                }
+            } else {
+                if (random > 0.99) {
+                    return true;
+                }
+            }
 
 
         return false;
     }
 
-    public int bid(Tile tile){
+    public int bid(Tile buyable){
     int bidAmount = 100;
 
     return bidAmount;

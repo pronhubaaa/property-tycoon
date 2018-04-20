@@ -32,6 +32,7 @@ public class Ownable extends Tile {
     private boolean mortgaged;
 
 
+
     public Ownable(String name, int position) {
         super(name, position);
     }
