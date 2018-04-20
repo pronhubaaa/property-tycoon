@@ -13,7 +13,6 @@ public class OwnableTest {
     private final static String TEST_INITIAL_OWNER_NAME = "A";
     private final static String TEST_SECOND_OWNER_NAME = "B";
 
-    private Board board;
     private Player initialOwner;
     private Player secondOwner;
     private Group initialGroup;
@@ -23,7 +22,7 @@ public class OwnableTest {
 
     @Before
     public void setUp() throws Exception {
-        board = new Board(new JSONObject());
+        Board board = new Board(new JSONObject());
         initialOwner = new Player(0, TEST_INITIAL_OWNER_NAME, board);
         secondOwner = new Player(0, TEST_SECOND_OWNER_NAME, board);
         initialGroup = new Group();
