@@ -33,8 +33,9 @@ public class IncomeTileTest {
 
     @Test
     public void addValue() {
+        int preTestValue = incomeTile.getValue();
         incomeTile.addValue(TEST_SECOND_INCOME_VALUE);
-        assertEquals(TEST_SECOND_INCOME_VALUE * 2, incomeTile.getValue());
+        assertEquals(preTestValue + TEST_SECOND_INCOME_VALUE, incomeTile.getValue());
     }
 
     @Test
