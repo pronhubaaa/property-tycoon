@@ -125,14 +125,14 @@ public class Player {
     }
 
     /**
-     * morgageTile
+     * mortgageTile
      *
      * @param tile The tile the player wishes to mortgage
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
 
-    public boolean morgageTile(Tile tile) {
+    public boolean mortgageTile(Tile tile) {
         if(tile instanceof Ownable){
             Ownable ownable = (Ownable) tile;
             if(ownable instanceof Property){
