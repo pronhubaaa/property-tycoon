@@ -2,6 +2,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class PlayerTest {
@@ -119,30 +121,51 @@ public class PlayerTest {
         assertEquals(10, this.player.getBalance());
     }
 
-    @Test
-    public void getPosition() {
-     //   assertTrue(this.player.getPosition() instanceof Tile);
-    }
 
     @Test
     public void setPosition() {
+
+        Tile tile = new Tile("", 0);
+        Tile tile2 = new Tile("", 1);
+
+
+        this.player.setPosition(tile);
+        assertEquals(tile, this.player.getPosition());
+        assertTrue(this.player.getPosition() instanceof Tile);
+
+        this.player.setPosition(tile2);
+        assertEquals(tile2, this.player.getPosition());
+
     }
 
     @Test
     public void getOwnedTiles() {
-      //  assertEquals(0, this.player.getOwnedTiles().size());
+        assertEquals(0, this.player.getOwnedTiles().size());
+
     }
 
     @Test
     public void setOwnedTiles() {
+        assertEquals(0, this.player.getOwnedTiles().size());
+        Ownable ownable = new Ownable("", 0, null);
+
+        this.player.addOwnable(ownable);
+
+        assertEquals(1, this.player.getOwnedTiles().size());
+
+        ArrayList<Ownable> ownables = new ArrayList<>();
+        ownables.add(ownable);
+        assertEquals(ownables, this.player.getOwnedTiles());
+
 
     }
 
-    @Test
-    public void getPiece() {
-    }
 
     @Test
     public void setPiece() {
+        PlayerPiece piece = PlayerPiece.Car;
+        this.player.setPiece(piece);
+        assertEquals(piece, this.player.getPiece());
+        assertTrue(this.player.getPiece() instanceof PlayerPiece);
     }
 }
