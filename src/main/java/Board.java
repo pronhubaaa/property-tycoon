@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import javax.rmi.CORBA.Util;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
@@ -148,13 +149,18 @@ public class Board {
 
                             if (this.propertyGroups.containsKey(groupType)) {
                                 Property property = new Property(tileName, tilePosition, this.propertyGroups.get(groupType));
-//                                int rent = tile.getIntValue(jsonFields.Rent.toString());
-////                                property.setRent(rent);
-////
-////                                property.setCostOfHouse();
-////                                property.setSellPrice();
-////                                property.setMortgagePrice();
-////                                property.setPrice();
+                                JSONArray rents = tile.getJSONArray(jsonFields.Rent.toString());
+
+                                ArrayList<Integer> rent = new ArrayList<>();
+                                for(int i = 0; i < rents.size(); i++){
+                                    rent.add(rents.getIntValue(i));
+                                }
+                                property.setRent(rent);
+
+//                                property.setCostOfHouse();
+//                                property.setSellPrice();
+//                                property.setMortgagePrice();
+//                                property.setPrice();
                                 this.tiles.add(property);
                             } else {
                                 PropertyGroup propertyGroup = new PropertyGroup();
