@@ -59,18 +59,17 @@ public class GroupTest {
         ownable2.setOwner(player2);
 
         Ownable ownable3 = new Ownable("", 2, group);
-        Ownable ownable4 = new Ownable("", 3, null);
 
         group.add(ownable1);
         group.add(ownable2);
         group.add(ownable3);
 
 
-        assertEquals(players, this.group.getGroupOwners(ownable1));
-        assertEquals(players, this.group.getGroupOwners(ownable2));
-        assertEquals(players, this.group.getGroupOwners(ownable3));
+        assertEquals(players, this.group.getGroupOwners());
+        assertEquals(players, this.group.getGroupOwners());
+        assertEquals(players, this.group.getGroupOwners());
 
-        assertEquals(new ArrayList<Player>(), this.group.getGroupOwners(ownable4));
+        assertEquals(new ArrayList<Player>(), this.group.getGroupOwners());
 
 
 

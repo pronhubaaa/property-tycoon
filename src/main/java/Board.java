@@ -258,6 +258,8 @@ public class Board {
 
     }
 
+
+
     public int groupSize(Ownable tile){
         return 1;
     }

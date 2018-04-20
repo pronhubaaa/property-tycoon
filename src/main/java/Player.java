@@ -26,9 +26,6 @@ public class Player {
     private String name;
 
 
-
-    private Board board;
-
     /**
      * position: Tile
      * The players current position on the board, represented by a tile object which is the location on the board.
@@ -68,6 +65,7 @@ public class Player {
         setName(name);
         setInJail(false);
         setBoard(board);
+        ownedTiles = new ArrayList<Ownable>();
 
     }
 
@@ -85,6 +83,7 @@ public class Player {
             if(!ownable.isOwned()){
                 if(this.balance >= ownable.getPrice()){
                     ownable.setOwner(this);
+                    ownedTiles.add(ownable);
                     setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
@@ -263,9 +262,7 @@ public class Player {
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
-    public ArrayList<Ownable> getOwnedTiles() {
-        return this.ownedTiles;
-    }
+    public ArrayList<Ownable> getOwnedTiles() {return this.ownedTiles; }
 
     /**
      * addOwnable
