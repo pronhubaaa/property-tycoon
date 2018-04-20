@@ -52,7 +52,11 @@ public class Board {
         Position("position"),
         Value("value"),
         Group("group"),
-        CardType("cardType");
+        CardType("cardType"),
+        Rent("rent"),
+        Cost("cost"),
+        Houses("houses");
+
 
         private String value;
 
@@ -144,6 +148,13 @@ public class Board {
 
                             if (this.propertyGroups.containsKey(groupType)) {
                                 Property property = new Property(tileName, tilePosition, this.propertyGroups.get(groupType));
+//                                int rent = tile.getIntValue(jsonFields.Rent.toString());
+////                                property.setRent(rent);
+////
+////                                property.setCostOfHouse();
+////                                property.setSellPrice();
+////                                property.setMortgagePrice();
+////                                property.setPrice();
                                 this.tiles.add(property);
                             } else {
                                 PropertyGroup propertyGroup = new PropertyGroup();
@@ -183,18 +194,6 @@ public class Board {
 
 
 /*
-
-                if(tile.containsKey("ownable")){
-                    boolean ownable = tile.getBooleanValue("ownable");
-                    System.out.println(ownable);
-
-                }
-
-                if(tile.containsKey("property_group")){
-                    String group = tile.getString("property_group");
-                    System.out.println(group);
-
-                }
 
                 if(tile.containsKey("action")){
                     JSONObject actionObject = tile.getJSONObject("action");

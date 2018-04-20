@@ -409,7 +409,6 @@ public class BoardTest {
 
     @Test
     public void constructor() {
-        System.out.println(this.board.getTiles());
         assertEquals(40, this.board.getTiles().size());
     }
 
