@@ -34,7 +34,7 @@ public class FreeParking extends Tile {
      * collect(): Void
      * Allows a player to collect the money on the tile for landing on it.
      */
-    public void collect() {
-        // TODO
+    public void collect(Player player) {
+        player.add
     }
 }
