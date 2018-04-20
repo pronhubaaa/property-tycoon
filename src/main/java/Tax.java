@@ -16,4 +16,5 @@ public class Tax extends Tile{
         super(tileName, tilePosition);
         this.fee = tileValue;
     }
+    
 }
