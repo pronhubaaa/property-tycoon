@@ -8,7 +8,9 @@ public enum TileType {
     Station,
     Property,
     Jail,
-    GoToJail;
+    GoToJail,
+    Tax,
+    Card;
 
 
 }

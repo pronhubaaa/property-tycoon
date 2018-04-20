@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 
 /**
@@ -131,7 +133,18 @@ public class Player {
      */
 
     public boolean morgageTile(Tile tile) {
+        if(tile instanceof Ownable){
+            Ownable ownable = (Ownable) tile;
+            if(ownable instanceof Property){
+                if(((Property) ownable).getAmountOfHouses() > 0){
+                    return false;
+                }
+            }
+            ownable.setMortgaged(true);
+            this.addBalance(ownable.getMortgagePrice());
+            return true;
 
+        }
         return false;
     }
 
