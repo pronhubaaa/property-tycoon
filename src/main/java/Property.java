@@ -27,8 +27,9 @@ public class Property extends Ownable {
      */
     private int amountOfHouses;
 
-    public Property(String name, int position) {
-        super(name, position);
+    public Property(String name, int position, Group group) {
+        super(name, position, group);
+
     }
 
     /**

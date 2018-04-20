@@ -31,9 +31,22 @@ public class Ownable extends Tile {
      */
     private boolean mortgaged;
 
+    /**
+     * group: Group
+     * A group variable holding the ownable group
+     */
+    private Group group;
 
-    public Ownable(String name, int position) {
+
+    /**
+     * Ownable constructor
+     * @param name
+     * @param position
+     * @param group
+     */
+    public Ownable(String name, int position, Group group) {
         super(name, position);
+        this.group = group;
     }
 
     /**
@@ -141,4 +154,19 @@ public class Ownable extends Tile {
     }
 
 
+    /**
+     * getGroup
+     * @return group
+     */
+    public Group getGroup() {
+        return group;
+    }
+
+    /**
+     * setGroup
+     * @param group
+     */
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 }

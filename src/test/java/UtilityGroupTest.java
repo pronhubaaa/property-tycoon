@@ -20,9 +20,9 @@ public class UtilityGroupTest {
         // Adds 2 utility owned by player
         UtilityGroup group = new UtilityGroup();
         Player player = new Player(0, "", null);
-        Utility utility = new Utility("", 0);
+        Utility utility = new Utility("", 0, null);
         utility.setOwner(player);
-        Utility utility2 = new Utility("", 0);
+        Utility utility2 = new Utility("", 0, null);
         utility2.setOwner(player);
 
         group.add(utility);
@@ -31,8 +31,8 @@ public class UtilityGroupTest {
         assertEquals(2, group.checkOwnedUtility(player));
 
         // Adds an ownable and station without player being the owner
-        group.add(new Ownable("", 2));
-        group.add(new Utility("", 3));
+        group.add(new Ownable("", 2, null));
+        group.add(new Utility("", 3, null));
         assertEquals(2, group.checkOwnedUtility(player));
     }
 }

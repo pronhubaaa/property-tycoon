@@ -43,4 +43,19 @@ public class Group {
 
     }
 
+    public ArrayList<Player> getGroupOwners(Ownable ownable){
+        ArrayList<Player> players = new ArrayList<>();
+
+        if(ownable.getGroup() != null){
+            for(Ownable owned: ownable.getGroup().getGroup()) {
+
+
+                players.add(owned == null ? null : owned.getOwner());
+            }
+
+        }
+
+        return players;
+    }
+
 }

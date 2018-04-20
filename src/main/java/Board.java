@@ -88,6 +88,9 @@ public class Board {
             JSONArray tiles = jsonObject.getJSONArray(jsonFields.Tile.toString());
 
             for(Object object: tiles){
+                if(this.tiles.size() > 40){
+                    throw new BoardTileException("More than 40 tiles");
+                }
                 JSONObject tile = (JSONObject) object;
 
                 if(tile.containsKey(jsonFields.Type.toString())){
@@ -108,44 +111,49 @@ public class Board {
                             this.tiles.add(freeParking);
                             break;
                         case Utility:
-                            Utility utility = new Utility(tileName, tilePosition);
-                            this.tiles.add(utility);
-                            if(groupType != "") {
-                                if (this.utilityGroups.containsKey(groupType)) {
-                                    this.utilityGroups.get(groupType).add(utility);
-                                } else {
-                                    UtilityGroup utilityGroup = new UtilityGroup();
-                                    utilityGroup.add(utility);
-                                    this.utilityGroups.put(groupType, utilityGroup);
-                                }
+                            if (this.utilityGroups.containsKey(groupType)) {
+                                Utility utility = new Utility(tileName, tilePosition, this.utilityGroups.get(groupType));
+                                this.tiles.add(utility);
+                             } else {
+                                UtilityGroup utilityGroup = new UtilityGroup();
+                                Utility utility = new Utility(tileName, tilePosition, utilityGroup);
+                                utilityGroup.add(utility);
+                                this.utilityGroups.put(groupType, utilityGroup);
+                                this.tiles.add(utility);
                             }
+
+
+
 
                             break;
                         case Station:
-                            Station station = new Station(tileName, tilePosition);
-                            this.tiles.add(station);
-                            if(groupType != "") {
-                                if (this.stationGroups.containsKey(groupType)) {
-                                    this.stationGroups.get(groupType).add(station);
-                                } else {
-                                    StationGroup stationGroup = new StationGroup();
-                                    stationGroup.add(station);
-                                    this.stationGroups.put(groupType, stationGroup);
-                                }
+
+                            if (this.stationGroups.containsKey(groupType)) {
+                                Station station = new Station(tileName, tilePosition, this.stationGroups.get(groupType));
+                                this.tiles.add(station);
+                            } else {
+                                StationGroup stationGroup = new StationGroup();
+                                Station station = new Station(tileName, tilePosition, stationGroup);
+                                stationGroup.add(station);
+                                this.stationGroups.put(groupType, stationGroup);
+                                this.tiles.add(station);
                             }
+
                             break;
                         case Property:
-                            Property property = new Property(tileName, tilePosition);
-                            this.tiles.add(property);
-                            if(groupType != ""){
-                                if(this.propertyGroups.containsKey(groupType)){
-                                    this.propertyGroups.get(groupType).add(property);
-                                } else {
-                                    PropertyGroup propertyGroup = new PropertyGroup();
-                                    propertyGroup.add(property);
-                                    this.propertyGroups.put(groupType, propertyGroup);
-                                }
+
+                            if (this.propertyGroups.containsKey(groupType)) {
+                                Property property = new Property(tileName, tilePosition, this.propertyGroups.get(groupType));
+                                this.tiles.add(property);
+                            } else {
+                                PropertyGroup propertyGroup = new PropertyGroup();
+                                Property property = new Property(tileName, tilePosition, propertyGroup);
+                                propertyGroup.add(property);
+                                this.propertyGroups.put(groupType, propertyGroup);
+                                this.tiles.add(property);
                             }
+
+
                             break;
                         case Jail:
                             Jail jail = new Jail(tileName, tilePosition, tileValue);
