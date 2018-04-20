@@ -59,6 +59,7 @@ public class Player {
      */
     public Player(int balance, String name, Board board) {
         this.board = board;
+        this.ownedTiles = new ArrayList<>();
         setBalance(balance);
         setName(name);
         setInJail(false);
@@ -261,11 +262,11 @@ public class Player {
     /**
      * addOwnable
      *
-     * @param ownedTiles A tile that a player can possess
+     * @param ownedTile A tile that a player can possess
      *                   Allows a player to own a property, through purchasing auction or otherwise.
      */
-    public void setOwnedTiles(ArrayList<Ownable> ownedTiles) {
-        this.ownedTiles = ownedTiles;
+    public void addOwnable(Ownable ownedTile) {
+        this.ownedTiles.add(ownedTile);
     }
 
     /**
