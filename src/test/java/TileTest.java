@@ -1,7 +1,9 @@
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class TileTest {
 
@@ -16,9 +18,15 @@ public class TileTest {
         tile = new Tile(TEST_TILE_NAME, 5);
     }
 
+    @After
+    public void tearDown() {
+
+    }
+
     @Test
     public void getName() {
         assertEquals(TEST_TILE_NAME, tile.getName());
+        assertEquals(TEST_TILE_NAME, tile.toString());
     }
 
     @Test
@@ -45,5 +53,6 @@ public class TileTest {
         equalityTestTile.setName(TEST_TILE_NAME);
         assertEquals(equalityTestTile, tile);
     }
+
 
 }
