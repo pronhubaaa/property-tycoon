@@ -83,7 +83,7 @@ public class PlayerTest {
         assertFalse(((Property) tile).isMortgaged());
 
 
-        assertTrue(this.player.morgageTile(tile));
+        assertTrue(this.player.mortgageTile(tile));
         assertTrue(((Property) tile).isMortgaged());
         assertEquals(50, this.player.getBalance());
     }
