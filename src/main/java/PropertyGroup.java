@@ -1,17 +1,21 @@
-import javafx.scene.paint.Color;
-
 /**
- * The property group class is responsible for containing all groups of properties.
+ * * The property group class is responsible for containing all groups of properties.
  * This excludes the station and utility groups.
  * This class will be able to check ownership and colour of a group.
  */
 public class PropertyGroup extends Group {
 
     /**
-     * colour: String
+     * colour: Colour
      * The colour code for the colour of this particular group.
      */
-    private Color colour;
+    private Colour colour;
+
+    public PropertyGroup(){
+        super();
+        this.colour = Colour.White;
+
+    }
 
     /**
      * checkOwnedStreet
@@ -20,7 +24,14 @@ public class PropertyGroup extends Group {
      * Check if a player owns the street.
      */
     public Boolean checkOwnedStreet(Player player){
-        return null;
+        for(Ownable ownable: this.getGroup()){
+            if(ownable != null && ownable instanceof Property){
+                if(!ownable.getOwner().equals(player)){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
@@ -28,7 +39,7 @@ public class PropertyGroup extends Group {
      * @return String containing the colour code
      * Gets the colour for this street.
      */
-    public Color getColour() {
+    public Colour getColour() {
         return this.colour;
     }
 
@@ -37,7 +48,9 @@ public class PropertyGroup extends Group {
      * @param colour The colour for this street
      * Sets the colour of this group
      */
-    public void setColour(Color colour) {
+    public void setColour(Colour colour) {
         this.colour = colour;
     }
 }
+
+

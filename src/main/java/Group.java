@@ -51,23 +51,11 @@ public class Group {
 
         if (ownable.getGroup() != null) {
             for (Ownable owned : ownable.getGroup().getGroup()) {
-
-
                 players.add(owned == null ? null : owned.getOwner());
             }
-
         }
-
         return players;
     }
 
-    //TODO
-    public boolean isAllOwned(Player player) {
-        return false;
-    }
-
-    public int getAmountOwned(Player player) {
-        return 0;
-    }
 
 }

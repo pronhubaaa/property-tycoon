@@ -68,16 +68,16 @@ public class Property extends Ownable {
      * @param player the player to apply the rent payment to
      */
     public boolean applyPayment(Player player) {
-        int rent = getRent().get(amountOfHouses);
-        if (isOwned()) {
-            if (getGroup().isAllOwned(getOwner())) {
-                rent *= 2;
-            }
-            // TODO @Issue #17
-        } else {
-            // TODO @Issue #17
-        }
-        // TODO @Issue #17
+//        int rent = getRent().get(amountOfHouses);
+//        if (isOwned()) {
+//            if (getGroup().isAllOwned(getOwner())) {
+//                rent *= 2;
+//            }
+//            // TODO @Issue #17
+//        } else {
+//            // TODO @Issue #17
+//        }
+//        // TODO @Issue #17
         return true;
     }
 }
