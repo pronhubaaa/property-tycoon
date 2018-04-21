@@ -10,13 +10,12 @@ public class JailTest {
     private static final int TEST_SECOND_FEE = 200;
 
     private Jail jail;
-    private Board board;
     private Player player;
 
     @Before
     public void setUp() throws Exception {
         jail = new Jail("", 0, TEST_INITIAL_FEE);
-        board = new Board(new JSONObject());
+        Board board = new Board(new JSONObject());
         player = new Player(0, "", board);
     }
 
