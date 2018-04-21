@@ -28,5 +28,6 @@ public class TaxTile extends Tile {
 
     public void payTax(Player player) {
         player.setBalance(player.getBalance() - amount);
+        // TODO @Issue #17
     }
 }
