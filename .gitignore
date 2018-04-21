@@ -2,7 +2,4 @@
 
 out/
 .gradle/
-.idea/**/libraries
-.idea/**/workspace.xml
-
-\.idea/uiDesigner\.xml
+.idea/
