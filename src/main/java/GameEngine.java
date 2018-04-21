@@ -130,7 +130,7 @@ public class GameEngine {
      *
      * This is the constructor method. It will be used to start a new game and initialise the board.
      */
-    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes){
+    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes) throws BoardTileException{
         this.players = players;
         this.currentPlayer = this.players.get(0);
         this.gameType = type;
@@ -148,7 +148,7 @@ public class GameEngine {
      *
      * This is the constructor method. It will be used to start a new game and initialise the board.
      */
-    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type){
+    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type) throws BoardTileException {
         this(jsonObject, players, type, -1);
     }
 
@@ -261,8 +261,9 @@ public class GameEngine {
      * Sets up a board using the imported board data.
      * If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
      */
-    private Board constructGameBoard(JSONObject jsonObject){
+    private Board constructGameBoard(JSONObject jsonObject) throws BoardTileException {
         return new Board(jsonObject);
+
     }
 
 

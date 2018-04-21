@@ -25,7 +25,7 @@ public class PlayerTest {
         assertFalse(this.player.buyTile(tile));
         assertEquals(this.player.getBalance(), 10);
 
-        tile = new Property("", 0);
+        tile = new Property("", 0, null);
         ((Property) tile).setPrice(100);
         assertFalse(this.player.buyTile(tile));
         assertEquals(this.player.getBalance(), 10);
@@ -45,7 +45,7 @@ public class PlayerTest {
     @Test
     public void sellTile() {
 
-        Tile tile = new Property("", 0);
+        Tile tile = new Property("", 0, null);
         ((Property) tile).setPrice(100);
         ((Ownable) tile).setSellPrice(25);
         this.player.setBalance(100);
@@ -72,8 +72,20 @@ public class PlayerTest {
 
     @Test
     public void mortgageTile() {
+        Tile tile = new Property("", 0, null);
+        ((Property) tile).setPrice(100);
+        ((Ownable) tile).setSellPrice(25);
+        ((Property) tile).setMortgagePrice(50);
+        this.player.setBalance(100);
+        assertEquals(100, this.player.getBalance());
+        assertTrue(this.player.buyTile(tile));
+        assertEquals(0, this.player.getBalance());
+        assertFalse(((Property) tile).isMortgaged());
 
 
+        assertTrue(this.player.mortgageTile(tile));
+        assertTrue(((Property) tile).isMortgaged());
+        assertEquals(50, this.player.getBalance());
     }
 
     @Test

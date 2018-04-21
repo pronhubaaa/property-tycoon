@@ -1,3 +1,5 @@
+
+
 import java.util.ArrayList;
 
 /**
@@ -22,6 +24,7 @@ public class Player {
      * This is the name of the player.
      */
     private String name;
+
 
     /**
      * position: Tile
@@ -55,13 +58,17 @@ public class Player {
      * @param name String for the players name
      * This is the initialiser for the object, it initialises the name and balance.
      */
+
     public Player(int balance, String name, Board board) {
         this.board = board;
         setBalance(balance);
         setName(name);
         setInJail(false);
+        setBoard(board);
+        ownedTiles = new ArrayList<Ownable>();
 
     }
+
 
     /**
      * buyTile
@@ -76,6 +83,7 @@ public class Player {
             if(!ownable.isOwned()){
                 if(this.balance >= ownable.getPrice()){
                     ownable.setOwner(this);
+                    ownedTiles.add(ownable);
                     setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
@@ -106,7 +114,7 @@ public class Player {
     /**
      * isBankrupt
      *
-     * @return Boolean- true if player has no funds avaliable, cash or property
+     * @return Boolean- true if player has no funds available, cash or property
      * This method returns if a player has no funds and is thus out of the game.
      */
 
@@ -116,15 +124,26 @@ public class Player {
     }
 
     /**
-     * morgageTile
+     * mortgageTile
      *
      * @param tile The tile the player wishes to mortgage
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
-    public boolean morgageTile(Tile tile) {
 
+    public boolean mortgageTile(Tile tile) {
+        if(tile instanceof Ownable){
+            Ownable ownable = (Ownable) tile;
+            if(ownable instanceof Property){
+                if(((Property) ownable).getAmountOfHouses() > 0){
+                    return false;
+                }
+            }
+            ownable.setMortgaged(true);
+            this.addBalance(ownable.getMortgagePrice());
+            return true;
 
+        }
         return false;
     }
 
@@ -137,6 +156,25 @@ public class Player {
     public String getName() {
         return this.name;
     }
+
+    /**
+     * setBoard
+     * @param board
+     * This method sets the board within a player object.
+     */
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    /**
+     * getBoard
+     * @return board
+     * This method gets the board within a player object.
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+
 
     /**
      * setName
@@ -158,24 +196,6 @@ public class Player {
         return this.inJail;
     }
 
-
-    /**
-     * setBoard
-     * @param board
-     * This method sets the board within a player object.
-     */
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-    /**
-     * getBoard
-     * @return board
-     * This method gets the board within a player object.
-     */
-    public Board getBoard() {
-        return this.board;
-    }
 
     /**
      * setInJail
@@ -242,9 +262,7 @@ public class Player {
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
-    public ArrayList<Ownable> getOwnedTiles() {
-        return this.ownedTiles;
-    }
+    public ArrayList<Ownable> getOwnedTiles() {return this.ownedTiles; }
 
     /**
      * addOwnable

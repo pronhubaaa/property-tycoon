@@ -10,7 +10,15 @@ public class UtilityGroup extends Group {
      * This method returns the amount of utilities owned by a player
      */
     public int checkOwnedUtility(Player player){
-        return 0;
+        int count = 0;
+        for(Ownable ownable: this.getGroup()){
+            if(ownable != null && ownable instanceof Utility){
+                if(ownable.getOwner() != null && ownable.getOwner().equals(player)){
+                    count++;
+                }
+            }
+        }
+        return count;
 
     }
 }

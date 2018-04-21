@@ -27,9 +27,12 @@ public class Property extends Ownable {
      */
     private int amountOfHouses;
 
-    public Property(String name, int position) {
-        super(name, position);
+    public Property(String name, int position, Group group) {
+        super(name, position, group);
+
     }
+
+
 
     /**
      * getRent(): [Int]
@@ -84,9 +87,17 @@ public class Property extends Ownable {
      * addHouses(): Void
      * Add a house to the property. Included for backwards-compatibility to previous spec.
      */
-    @Deprecated
+
     public void addHouses() {
         addHouses(1);
+    }
+
+    /**
+     * getAmountOfHouses(): Int
+     * @return amountOfHouses amount of houses on a property
+     */
+    public int getAmountOfHouses() {
+        return this.amountOfHouses;
     }
 
     /**
