@@ -115,10 +115,14 @@ public class Board {
                         case Utility:
                             if (this.utilityGroups.containsKey(groupType)) {
                                 Utility utility = new Utility(tileName, tilePosition, this.utilityGroups.get(groupType));
+                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                utility.setPrice(cost);
                                 this.tiles.add(utility);
                              } else {
                                 UtilityGroup utilityGroup = new UtilityGroup();
                                 Utility utility = new Utility(tileName, tilePosition, utilityGroup);
+                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                utility.setPrice(cost);
                                 utilityGroup.add(utility);
                                 this.utilityGroups.put(groupType, utilityGroup);
                                 this.tiles.add(utility);
@@ -132,10 +136,14 @@ public class Board {
 
                             if (this.stationGroups.containsKey(groupType)) {
                                 Station station = new Station(tileName, tilePosition, this.stationGroups.get(groupType));
+                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                station.setPrice(cost);
                                 this.tiles.add(station);
                             } else {
                                 StationGroup stationGroup = new StationGroup();
                                 Station station = new Station(tileName, tilePosition, stationGroup);
+                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                station.setPrice(cost);
                                 stationGroup.add(station);
                                 this.stationGroups.put(groupType, stationGroup);
                                 this.tiles.add(station);
@@ -159,13 +167,23 @@ public class Board {
                                 int propertyCost = tile.getIntValue(jsonFields.Cost.toString());
                                 property.setPrice(propertyCost);
 
-//                                property.setSellPrice();
-//                                property.setMortgagePrice();
-
                                 this.tiles.add(property);
                             } else {
                                 PropertyGroup propertyGroup = new PropertyGroup();
                                 Property property = new Property(tileName, tilePosition, propertyGroup);
+                                JSONArray rents = tile.getJSONArray(jsonFields.Rent.toString());
+
+                                ArrayList<Integer> rent = new ArrayList<>();
+                                for(int i = 0; i < rents.size(); i++){
+                                    rent.add(rents.getIntValue(i));
+                                }
+                                property.setRent(rent);
+                                int houseCost = tile.getIntValue(jsonFields.HouseCost.toString());
+                                property.setCostOfHouse(houseCost);
+
+                                int propertyCost = tile.getIntValue(jsonFields.Cost.toString());
+                                property.setPrice(propertyCost);
+
                                 propertyGroup.add(property);
                                 this.propertyGroups.put(groupType, propertyGroup);
                                 this.tiles.add(property);
