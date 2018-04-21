@@ -1,10 +1,7 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import javax.rmi.CORBA.Util;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 
@@ -185,8 +182,8 @@ public class Board {
                             this.tiles.add(goToJail);
                             break;
                         case Tax:
-                            Tax tax = new Tax(tileName, tilePosition, tileValue);
-                            this.tiles.add(tax);
+                            TaxTile taxTile = new TaxTile(tileName, tilePosition, tileValue);
+                            this.tiles.add(taxTile);
                             break;
                         case Card:
                             CardType cardType = CardType.valueOf(tile.getString(jsonFields.CardType.toString()));
