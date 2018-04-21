@@ -46,6 +46,7 @@ public class Group {
 
     }
 
+
     public ArrayList<Player> getGroupOwners(Ownable ownable) {
         ArrayList<Player> players = new ArrayList<>();
 
@@ -56,6 +57,5 @@ public class Group {
         }
         return players;
     }
-
 
 }

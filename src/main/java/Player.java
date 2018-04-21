@@ -25,6 +25,7 @@ public class Player {
      */
     private String name;
 
+
     /**
      * position: Tile
      * The players current position on the board, represented by a tile object which is the location on the board.
@@ -57,14 +58,18 @@ public class Player {
      * @param name String for the players name
      * This is the initialiser for the object, it initialises the name and balance.
      */
+
     public Player(int balance, String name, Board board) {
         this.board = board;
         this.ownedTiles = new ArrayList<>();
         setBalance(balance);
         setName(name);
         setInJail(false);
+        setBoard(board);
+        ownedTiles = new ArrayList<Ownable>();
 
     }
+
 
     /**
      * buyTile
@@ -79,6 +84,7 @@ public class Player {
             if(!ownable.isOwned()){
                 if(this.balance >= ownable.getPrice()){
                     ownable.setOwner(this);
+                    ownedTiles.add(ownable);
                     setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
@@ -109,7 +115,7 @@ public class Player {
     /**
      * isBankrupt
      *
-     * @return Boolean- true if player has no funds avaliable, cash or property
+     * @return Boolean- true if player has no funds available, cash or property
      * This method returns if a player has no funds and is thus out of the game.
      */
 
@@ -152,6 +158,25 @@ public class Player {
     }
 
     /**
+     * setBoard
+     * @param board
+     * This method sets the board within a player object.
+     */
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    /**
+     * getBoard
+     * @return board
+     * This method gets the board within a player object.
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+
+
+    /**
      * setName
      *
      * @param name Player name
@@ -171,24 +196,6 @@ public class Player {
         return this.inJail;
     }
 
-
-    /**
-     * setBoard
-     * @param board
-     * This method sets the board within a player object.
-     */
-    public void setBoard(Board board) {
-        this.board = board;
-    }
-
-    /**
-     * getBoard
-     * @return board
-     * This method gets the board within a player object.
-     */
-    public Board getBoard() {
-        return this.board;
-    }
 
     /**
      * setInJail
@@ -255,9 +262,7 @@ public class Player {
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
-    public ArrayList<Ownable> getOwnedTiles() {
-        return this.ownedTiles;
-    }
+    public ArrayList<Ownable> getOwnedTiles() {return this.ownedTiles; }
 
     /**
      * addOwnable

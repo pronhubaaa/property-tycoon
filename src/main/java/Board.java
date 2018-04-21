@@ -243,6 +243,25 @@ public class Board {
 
     }
 
+    public int getPlayerOwned(Ownable tile){
+        int mostTilesOwned = 0;
+
+        // This method is to see what other tiles in a set are owned. It is given a tile, then it must return the amount of tiles owned by the player that owns the most
+        // This could be 1 if two players own one, 2 if a player owns 2 etc.
+        return mostTilesOwned;
+
+    }
+
+
+
+    public int groupSize(Ownable tile){
+        return 1;
+    }
+
+    public boolean isStreetOwned(Ownable tile){
+        return true;
+    }
+
 
     /**
      * getPropertyGroups
@@ -267,6 +286,7 @@ public class Board {
     public HashMap<String, StationGroup> getStationGroups() {
         return this.stationGroups;
     }
+
 
     /**
      * setStationGroups

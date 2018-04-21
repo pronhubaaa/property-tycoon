@@ -34,6 +34,14 @@ public class Property extends Ownable {
         super(name, position, group);
     }
 
+
+
+    /**
+     * getRent(): [Int]
+     *
+     * @return Array of prices the rent may be
+     */
+
     public ArrayList<Integer> getRent() {
         return rent;
     }
@@ -55,9 +63,20 @@ public class Property extends Ownable {
         amountOfHouses += amount;
     }
 
+
     public void removeHouses(int amount) {
 
         amountOfHouses -= amount;
+    }
+
+    /**
+     * addHouses(): Void
+     * Add a house to the property. Included for backwards-compatibility to previous spec.
+     */
+
+    public void addHouses() {
+        addHouses(1);
+
     }
 
     public int getAmountOfHouses() {

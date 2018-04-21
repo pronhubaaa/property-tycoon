@@ -38,6 +38,7 @@ public class Ownable extends Tile {
     private Group group;
 
 
+
     /**
      * Ownable constructor
      *
