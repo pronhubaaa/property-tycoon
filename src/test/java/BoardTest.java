@@ -23,10 +23,7 @@ public class BoardTest {
                 "\t\t\t\"type\": \"Go\",\n" +
                 "\t\t\t\"position\": \"1\",\n" +
                 "\t\t\t\"name\": \"Go\",\n" +
-                "\t\t\t\"action\": {\n" +
-                "\t\t\t\t\"action\": \"collect\",\n" +
-                "\t\t\t\t\"value\": \"200\"\n" +
-                "\t\t\t}\n" +
+                "\t\t\t\"value\": \"200\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Property\",\n" +
@@ -41,7 +38,7 @@ public class BoardTest {
                 "\t\t\t\"type\": \"Card\",\n" +
                 "\t\t\t\"position\" : \"3\",\n" +
                 "\t\t\t\"name\": \"Plot Luck\",\n" +
-                "\t\t\t\"cardType\": \"PlotLuck\",\n" +
+                "\t\t\t\"cardType\": \"PlotLuck\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Property\",\n" +
@@ -56,7 +53,8 @@ public class BoardTest {
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Tax\",\n" +
                 "\t\t\t\"position\": \"5\",\n" +
-                "\t\t\t\"name\": \"Income Tax\"\n" +
+                "\t\t\t\"name\": \"Income Tax\",\n" +
+                "\t\t\t\"value\": \"200\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Station\",\n" +
@@ -319,10 +317,7 @@ public class BoardTest {
                 "\t\t\t\"type\": \"Tax\",\n" +
                 "\t\t\t\"position\" : \"39\",\n" +
                 "\t\t\t\"name\": \"Super Tax\",\n" +
-                "\t\t\t\"action\": {\n" +
-                "\t\t\t\t\"action\": \"pay\",\n" +
-                "\t\t\t\t\"value\": \"100\"\n" +
-                "\t\t\t}\n" +
+                "\t\t\t\"value\": \"100\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Property\",\n" +

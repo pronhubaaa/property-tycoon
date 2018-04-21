@@ -5,10 +5,7 @@
 			"type": "Go",
 			"position": "1",
 			"name": "Go",
-			"action": {
-				"action": "collect",
-				"value": "200"
-			}
+			"value": "200"
 		},
 		{
 			"type": "Property",
@@ -23,7 +20,7 @@
 			"type": "Card",
 			"position" : "3",
 			"name": "Plot Luck",
-			"cardType": "PlotLuck",
+			"cardType": "PlotLuck"
 		},
 		{
 			"type": "Property",
@@ -38,7 +35,8 @@
 		{
 			"type": "Tax",
 			"position": "5",
-			"name": "Income Tax"
+			"name": "Income Tax",
+			"value": "200"
 		},
 		{
 			"type": "Station",
@@ -301,10 +299,7 @@
 			"type": "Tax",
 			"position" : "39",
 			"name": "Super Tax",
-			"action": {
-				"action": "pay",
-				"value": "100"
-			}
+			"value": "100"
 		},
 		{
 			"type": "Property",

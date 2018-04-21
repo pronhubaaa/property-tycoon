@@ -106,6 +106,8 @@ public class Board {
                     switch(type) {
                         case Go:
                             Go go = new Go(tileName, tilePosition, tileValue);
+                            int value = tile.getIntValue(jsonFields.Value.toString());
+                            go.setValue(value);
                             this.tiles.add(go);
                             break;
                         case FreeParking:
@@ -127,9 +129,6 @@ public class Board {
                                 this.utilityGroups.put(groupType, utilityGroup);
                                 this.tiles.add(utility);
                             }
-
-
-
 
                             break;
                         case Station:
@@ -201,6 +200,8 @@ public class Board {
                             break;
                         case Tax:
                             TaxTile taxTile = new TaxTile(tileName, tilePosition, tileValue);
+                            int amount = tile.getIntValue(jsonFields.Value.toString());
+                            taxTile.setAmount(amount);
                             this.tiles.add(taxTile);
                             break;
                         case Card:
@@ -214,37 +215,6 @@ public class Board {
                     }
 
                 }
-
-
-
-
-/*
-
-                if(tile.containsKey("action")){
-                    JSONObject actionObject = tile.getJSONObject("action");
-
-                    String action = actionObject.getString("action");
-                    int value =  actionObject.getIntValue("value");
-                }
-
-                if(tile.containsKey("cost")){
-                    int cost = tile.getIntValue("cost");
-                    System.out.println(cost);
-
-                }
-
-                if(tile.containsKey("rent")){
-                    int rent = tile.getIntValue("rent");
-                    System.out.println(rent);
-
-                }
-
-                if(tile.containsKey("houses")){
-                    for(Object price: tile.getJSONArray("houses")){
-                        System.out.println(price);
-                    }
-
-                }*/
             }
 
 
