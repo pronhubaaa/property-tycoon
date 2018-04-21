@@ -11,12 +11,13 @@ public class Group {
      */
     private ArrayList<Ownable> group;
 
-    public Group(){
+    public Group() {
         this.group = new ArrayList<>();
     }
 
     /**
      * getGroups
+     *
      * @return An array of property groups
      * This method gets all groups of properties on the game board.
      */
@@ -26,8 +27,9 @@ public class Group {
 
     /**
      * setGroups
+     *
      * @param ownables An array of property groups
-     * This method sets all groups of properties on the game board for initialisation.
+     *                 This method sets all groups of properties on the game board for initialisation.
      */
     public void setGroups(ArrayList<Ownable> ownables) {
         this.group = ownables;
@@ -35,19 +37,20 @@ public class Group {
 
     /**
      * add
+     *
      * @param ownable A group
-     * This method adds a group of properties on the game board for initialisation.
+     *                This method adds a group of properties on the game board for initialisation.
      */
-    public void add(Ownable ownable){
+    public void add(Ownable ownable) {
         this.group.add(ownable);
 
     }
 
-    public ArrayList<Player> getGroupOwners(Ownable ownable){
+    public ArrayList<Player> getGroupOwners(Ownable ownable) {
         ArrayList<Player> players = new ArrayList<>();
 
-        if(ownable.getGroup() != null){
-            for(Ownable owned: ownable.getGroup().getGroup()) {
+        if (ownable.getGroup() != null) {
+            for (Ownable owned : ownable.getGroup().getGroup()) {
 
 
                 players.add(owned == null ? null : owned.getOwner());
@@ -56,6 +59,15 @@ public class Group {
         }
 
         return players;
+    }
+
+    //TODO
+    public boolean isAllOwned(Player player) {
+        return false;
+    }
+
+    public int getAmountOwned(Player player) {
+        return 0;
     }
 
 }
