@@ -16,6 +16,14 @@ repositories {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
+
+task copyResources(type: Copy) {
+    from "${projectDir}/src/main/java/resources"
+    into "${buildDir}/classes/java/main/resources"
+}
+processResources.dependsOn copyResources
+
+
 dependencies {
     compile 'com.alibaba:fastjson:1.2.46'
 
