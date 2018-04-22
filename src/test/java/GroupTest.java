@@ -65,7 +65,7 @@ public class GroupTest {
         group.add(ownable3);
 
 
-        assertEquals(players, group.getGroupOwners(ownable1));
+        assertEquals(players, group.getGroupOwners());
 
 
 
