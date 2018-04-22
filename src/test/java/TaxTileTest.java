@@ -10,13 +10,12 @@ public class TaxTileTest {
     private static final int TEST_SECOND_TAX_AMOUNT = 200;
 
     private TaxTile taxTile;
-    private Board board;
     private Player player;
 
     @Before
     public void setUp() throws Exception {
         taxTile = new TaxTile("", 0, TEST_INITIAL_TAX_AMOUNT);
-        board = new Board(new JSONObject());
+        Board board = new Board(new JSONObject());
         player = new Player(TEST_SECOND_TAX_AMOUNT, "", board);
     }
 

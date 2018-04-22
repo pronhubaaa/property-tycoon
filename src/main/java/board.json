@@ -58,7 +58,7 @@
 			"type": "Card",
 			"position" : "8",
 			"name": "Opportunity Knocks",
-			"cardType": "OpportunityKnocks",
+			"cardType": "OpportunityKnocks"
 		},
 		{
 			"type": "Property",
@@ -137,7 +137,7 @@
 			"type": "Card",
 			"position" : "18",
 			"name": "Plot Luck",
-			"cardType": "PlotLuck",
+			"cardType": "PlotLuck"
 		},
 		{
 			"type": "Property",
@@ -160,7 +160,7 @@
 		{
 			"type": "FreeParking",
 			"position": "21",
-			"name": "Free Parking",
+			"name": "Free Parking"
 		},
 		{
 			"type": "Property",
@@ -175,7 +175,7 @@
 			"type": "Card",
 			"position" : "23",
 			"name": "Opportunity Knocks",
-			"cardType": "OpportunityKnocks",
+			"cardType": "OpportunityKnocks"
 		},
 		{
 			"type": "Property",
@@ -238,7 +238,7 @@
 		{
 			"type": "GoToJail",
 			"position": "31",
-			"name": "Go to Jail",
+			"name": "Go to Jail"
 		},
 		{
 			"type": "Property",
@@ -262,7 +262,7 @@
 			"type": "Card",
 			"position" : "34",
 			"name": "Plot Luck",
-			"cardType": "PlotLuck",
+			"cardType": "PlotLuck"
 		},
 		{
 			"type": "Property",
@@ -284,7 +284,7 @@
 			"type": "Card",
 			"position" : "37",
 			"name": "Opportunity Knocks",
-			"cardType": "OpportunityKnocks",
+			"cardType": "OpportunityKnocks"
 		},
 		{
 			"type": "Property",
