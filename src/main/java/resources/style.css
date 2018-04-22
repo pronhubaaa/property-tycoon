@@ -8,78 +8,18 @@
     -fx-alignment: center;
 }
 
-#new-game-button {
+.main-menu-button {
     -fx-font-size: 24px;
     -fx-font-family: 'Raleway';
     -fx-background-color: '#a2dcab';
     -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
 }
 
-#new-game-button:hover {
+.main-menu-button:hover {
     -fx-background-color: '#98d0a0';
 }
 
-#new-game-button:pressed {
-    -fx-effect: none;
-}
-
-#load-game-button {
-    -fx-font-size: 24px;
-    -fx-font-family: 'Raleway';
-    -fx-background-color: '#a2dcab';
-    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
-}
-
-#load-game-button:hover {
-    -fx-background-color: '#98d0a0';
-}
-
-#load-game-button:pressed {
-    -fx-effect: none;
-}
-
-#import-board-button {
-    -fx-font-size: 24px;
-    -fx-font-family: 'Raleway';
-    -fx-background-color: '#a2dcab';
-    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
-}
-
-#import-board-button:hover {
-    -fx-background-color: '#98d0a0';
-}
-
-#import-board-button:pressed {
-    -fx-effect: none;
-}
-
-#settings-button {
-    -fx-font-size: 24px;
-    -fx-font-family: 'Raleway';
-    -fx-background-color: '#a2dcab';
-    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
-}
-
-#settings-button:hover {
-    -fx-background-color: '#98d0a0';
-}
-
-#settings-button:pressed {
-    -fx-effect: none;
-}
-
-#exit-button {
-    -fx-font-size: 24px;
-    -fx-font-family: 'Raleway';
-    -fx-background-color: '#a2dcab';
-    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
-}
-
-#exit-button:hover {
-    -fx-background-color: '#98d0a0';
-}
-
-#exit-button:pressed {
+.main-menu-button:pressed {
     -fx-effect: none;
 }
 

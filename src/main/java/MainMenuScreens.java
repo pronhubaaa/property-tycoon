@@ -27,14 +27,17 @@ public class MainMenuScreens {
         VBox mainMenuLayout = new VBox();
         mainMenuLayout.getStylesheets().add(css);
         mainMenuLayout.setSpacing(8);
-        Button newGameButton = new Button();
-        newGameButton.setText("New game");
-        newGameButton.setId("new-game-button");
+
         Image logo = new Image("resources/main-logo.png"); //set image to be  logo
         ImageView imageView = new ImageView(logo); //add the image to an image view
         imageView.setFitHeight(286);
         imageView.setFitWidth(500); //formatting logo
         mainMenuLayout.getChildren().add(imageView); //add image view to the scene
+
+        Button newGameButton = new Button();
+        newGameButton.setText("New game");
+        newGameButton.setId("new-game-button");
+        newGameButton.getStyleClass().add("main-menu-button");
         setSize(newGameButton, 678, 90);
         newGameButton.setOnAction((ActionEvent e) -> {
             ui.showScene(MainMenuScreens.getNewGame(ui));
@@ -43,6 +46,7 @@ public class MainMenuScreens {
         Button loadGameButton = new Button();
         loadGameButton.setText("Load game");
         loadGameButton.setId("load-game-button");
+        loadGameButton.getStyleClass().add("main-menu-button");
         setSize(loadGameButton, 678, 90);
         loadGameButton.setOnAction((ActionEvent e) -> {
             ui.showScene(MainMenuScreens.getLoadGame(ui));
@@ -51,6 +55,7 @@ public class MainMenuScreens {
         Button importBoardButton = new Button();
         importBoardButton.setText("Import board");
         importBoardButton.setId("import-board-button");
+        importBoardButton.getStyleClass().add("main-menu-button");
         setSize(importBoardButton, 678, 90);
         importBoardButton.setOnAction((ActionEvent e) -> {
             ui.showScene(MainMenuScreens.getImportBoard(ui));
@@ -59,6 +64,7 @@ public class MainMenuScreens {
         Button settingsButton = new Button();
         settingsButton.setText("Settings");
         settingsButton.setId("settings-button");
+        settingsButton.getStyleClass().add("main-menu-button");
         setSize(settingsButton, 678, 90);
         settingsButton.setOnAction((ActionEvent e) -> {
             ui.showScene(MainMenuScreens.getSettings(ui));
@@ -67,6 +73,7 @@ public class MainMenuScreens {
         Button exitButton = new Button();
         exitButton.setText("Exit");
         exitButton.setId("exit-button");
+        exitButton.getStyleClass().add("main-menu-button");
         setSize(exitButton, 678, 90);
         exitButton.setOnAction((ActionEvent e) -> {
             ui.close();
