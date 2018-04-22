@@ -17,17 +17,17 @@ import java.util.ArrayList;
 
 public class NewGameScreen extends Scene {
 
-    private VBox rectLeft = new VBox();
-    private int playerCount = 0;
+    private static VBox rectLeft = new VBox();
+    private static int playerCount = 0;
 
-    public void addNewPlayer() {
-        if (playerCount > 7) {
+    public static void addNewPlayer() {
+        playerCount++;
+        if (playerCount > Game.getMaxPlayers()) {
             //error
         } else {
             HBox row2 = new HBox();
             row2.setPadding(new Insets(20, 0, 0, 30));
-            int playerNum = 1;
-            Label player1text = new Label("Player " + playerNum);
+            Label player1text = new Label("Player " + playerCount);
             row2.setId("players-text");
             row2.getChildren().add(player1text);
             rectLeft.getChildren().add(row2);
@@ -59,7 +59,7 @@ public class NewGameScreen extends Scene {
             rectLeft.getChildren().add(row4);
 
             HBox row5 = new HBox();
-            row5.setPadding(new Insets(20, 0, 0, 30));
+            row5.setPadding(new Insets(20, 0, 20, 30));
             row5.setAlignment(Pos.CENTER_LEFT);
             Label pieces = new Label("Piece: ");
             pieces.setPadding(new Insets(0, 5, 0, 0));
@@ -142,9 +142,17 @@ public class NewGameScreen extends Scene {
         colConst2.setMinWidth(500);
         mainGrid.getColumnConstraints().add(colConst2);
 
-
-        rectLeft.setMinHeight(800);
-        rectLeft.setMaxHeight(800);
+        VBox rectLeftHolder = new VBox();
+        rectLeftHolder.setMinHeight(800);
+        rectLeftHolder.setMaxHeight(800);
+        rectLeftHolder.setMinWidth(470);
+        rectLeftHolder.setMaxWidth(470);
+        rectLeftHolder.setId("menu-background");
+        ScrollPane rectLeftScroll = new ScrollPane();
+        rectLeftScroll.setId("menu-background");
+        rectLeftScroll.setContent(rectLeft);
+        rectLeftScroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        rectLeftHolder.getChildren().add(rectLeftScroll);
         rectLeft.setMinWidth(470);
         rectLeft.setMaxWidth(470);
         rectLeft.setId("menu-background");
@@ -173,10 +181,11 @@ public class NewGameScreen extends Scene {
         rectLeft.getChildren().add(row1);
 
         addNewPlayer();
+        addNewPlayer();
 
         HBox addPlayerRow = new HBox();
         Button addPlayer = new Button("Add Player");
-        addPlayerRow.setPadding(new Insets(30, 20, 0 ,0));
+        addPlayerRow.setPadding(new Insets(20, 30, 15 ,0));
         addPlayer.setId("add-player-button");
         addPlayerRow.getChildren().add(addPlayer);
         addPlayerRow.setAlignment(Pos.CENTER_RIGHT);
@@ -192,12 +201,12 @@ public class NewGameScreen extends Scene {
         rectLeft.getChildren().add(new StackPane());
 
         addPlayer.setOnAction((ActionEvent e) -> {
-            rectLeft.getChildren().remove(addPlayer);
+            rectLeft.getChildren().remove(addPlayerRow);
             addNewPlayer();
-            rectLeft.getChildren().add(addPlayer);
+            rectLeft.getChildren().add(addPlayerRow);
         });
 
-        mainGrid.add(rectLeft, 0, 0);
+        mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
         mainGrid.add(rectRightBot, 1, 0);
         mainGrid.setValignment(rectRight, VPos.TOP);

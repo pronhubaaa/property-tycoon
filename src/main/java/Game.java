@@ -38,13 +38,13 @@ public class Game extends Application {
      * minPlayers: Int
      * The minimum amount of players able to play.
      */
-    private int minPlayers;
+    private static int minPlayers;
 
     /**
      * maxPlayers: Int
      * The maximum amount of players able to play.
      */
-    private int maxPlayers;
+    private static int maxPlayers = 8;
 
 
 
@@ -64,6 +64,10 @@ public class Game extends Application {
      */
     private void constructUI(GameEngine gameEngine){
 
+    }
+
+    public static int getMaxPlayers() {
+        return maxPlayers;
     }
 
 
