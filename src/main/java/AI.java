@@ -1,5 +1,5 @@
-/**
- * This class is used to create an artificial player.
+/*
+  This class is used to create an artificial player.
  */
 
 import java.util.ArrayList;
@@ -66,11 +66,11 @@ public class AI extends Player {
     }
 
     public ArrayList<Boolean> buyHouses(){
-        ArrayList<Boolean> purchases = new ArrayList<Boolean>();
+        ArrayList<Boolean> purchases = new ArrayList<>();
         //Get array list of all streets that are owned
         if(this.getOwnedTiles().isEmpty()) {
             ArrayList<Ownable> temp = streetOwned(this.getOwnedTiles());
-            ArrayList<Property> ownedStreets = new ArrayList<Property>();
+            ArrayList<Property> ownedStreets = new ArrayList<>();
             for (Ownable current : temp) {
                 if (current instanceof Property) {
                     ownedStreets.add((Property) current);
@@ -116,19 +116,13 @@ public class AI extends Player {
 
 
             if (streetOwned(currentTiles).size() > streetOwned(this.getOwnedTiles()).size()) {
-                /**
-                 * Street gained
-                 */
+                // Street gained
                 score = score +10;
             } else if(Collections.frequency(owners, this) > 0){
                 score = score +5;
-                /**
-                 * Extra part of set gained
-                 */
+                 // Extra part of set gained
             } else {
-                /**
-                 * Nothing gained
-                 */
+                // Nothing gained
             }
         }
 
@@ -234,12 +228,10 @@ public class AI extends Player {
             return true;
         }
         ArrayList<Ownable> myTiles = this.getOwnedTiles();
-        ArrayList<Ownable> streetTiles = new ArrayList<Ownable>();
-        Collections.sort( myTiles, new Comparator<Ownable>() {
-            public int compare (Ownable o1, Ownable o2) {
-                int comp = o1.getPrice() - o2.getPrice();
-                return comp;
-            }
+        ArrayList<Ownable> streetTiles = new ArrayList<>();
+        myTiles.sort((o1, o2) -> {
+            int comp = o1.getPrice() - o2.getPrice();
+            return comp;
         });
         for(Ownable tile: myTiles){
 
@@ -302,7 +294,7 @@ public class AI extends Player {
 
             //Get array list of all streets that are owned
             ArrayList<Ownable> ownedTiles = inputTiles;
-            ArrayList<Ownable> ownedStreets = new ArrayList<Ownable>();
+            ArrayList<Ownable> ownedStreets = new ArrayList<>();
             if(!ownedTiles.isEmpty()) {
                 for (Ownable current : ownedTiles) {
                     Group temp = current.getGroup();
@@ -326,7 +318,7 @@ public class AI extends Player {
 
 
 
-/**
+/*
 
  Turn:
 
@@ -361,6 +353,6 @@ public class AI extends Player {
  DONE sell houses on cheapest street
  DONE sell property from this group to raise funds
 
- **/
+ */
 
 

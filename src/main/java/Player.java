@@ -66,7 +66,7 @@ public class Player {
         setName(name);
         setInJail(false);
         setBoard(board);
-        ownedTiles = new ArrayList<Ownable>();
+        ownedTiles = new ArrayList<>();
 
     }
 

@@ -1,6 +1,4 @@
-import com.alibaba.fastjson.JSONObject;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -397,8 +397,8 @@ public class AITest {
     @Test
     public void trader(){
 
-        ArrayList<Ownable> opponentTiles = new ArrayList<Ownable>();
-        ArrayList<Ownable> myTiles = new ArrayList<Ownable>();
+        ArrayList<Ownable> opponentTiles = new ArrayList<>();
+        ArrayList<Ownable> myTiles = new ArrayList<>();
         Player player = new Player(10, "Peter", this.board);
         boolean result = ai.trader(opponentTiles, myTiles, player);
         assertTrue(result || !result);
@@ -425,10 +425,10 @@ public class AITest {
     @Test
     public void payBill(){
         this.ai.setBalance(3000);
-        assertEquals(this.ai.payBill(3000), true);
+        assertTrue(this.ai.payBill(3000));
 
         this.ai.setBalance(3000);
-        assertEquals(this.ai.payBill(5000), false);
+        assertFalse(this.ai.payBill(5000));
 
         this.ai.setBalance(3000);
         Group group = new Group();

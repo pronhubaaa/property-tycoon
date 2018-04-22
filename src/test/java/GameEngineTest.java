@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 
 import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -389,7 +390,7 @@ public class GameEngineTest {
             assertFalse(gameEngineSaved.getTrading());
         } catch(Exception e){
             System.out.println(e);
-            assertTrue(false);
+            fail();
         }
     }
 
@@ -413,7 +414,7 @@ public class GameEngineTest {
 
             assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
         } catch(Exception e){
-            assertTrue(false);
+            fail();
         }
 
 
@@ -451,7 +452,7 @@ public class GameEngineTest {
             assertNotNull(gameEngineFull.nextTurn());
             assertEquals(players.get(2), gameEngineFull.getCurrentPlayer());
         } catch(Exception e) {
-            assertTrue(false);
+            fail();
         }
 
 
@@ -484,7 +485,7 @@ public class GameEngineTest {
             assertEquals(4, gameEngineFull.getNumberOfTurns());
             assertNotNull(gameEngineFull.nextTurn());
         } catch(Exception e){
-            assertTrue(false);
+            fail();
         }
 
     }
@@ -508,7 +509,7 @@ public class GameEngineTest {
             GameEngine gameEngineFull = new GameEngine(json, players, type);
             assertEquals(-1, gameEngineFull.getTime());
         } catch (Exception e){
-            assertTrue(false);
+            fail();
         }
 
 
@@ -517,7 +518,7 @@ public class GameEngineTest {
             GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
             assertEquals(105, gameEngineAbridgedGame.getTime());
         } catch (Exception e){
-            assertTrue(false);
+            fail();
         }
 
     }
