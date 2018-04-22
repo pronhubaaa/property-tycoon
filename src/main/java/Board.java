@@ -164,6 +164,8 @@ public class Board {
                             } else {
                                 PropertyGroup propertyGroup = new PropertyGroup();
                                 Property property = new Property(tileName, tilePosition, propertyGroup);
+
+
                                 JSONArray rents = tile.getJSONArray(jsonFields.Rent.toString());
 
                                 ArrayList<Integer> rent = new ArrayList<>();

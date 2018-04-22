@@ -106,9 +106,14 @@ public class GameEngine {
             }
         }
 
-        if(jsonObject.containsKey("current_player")){
-            this.currentPlayer = this.players.get(jsonObject.getIntValue("current_player"));
-        }
+        //TODO
+        // Parse Players
+        // Parse current player position
+
+
+//        if(jsonObject.containsKey("current_player")){
+//            this.currentPlayer = this.players.get(jsonObject.getIntValue("current_player"));
+//        }
 
         if(jsonObject.containsKey("number_of_turns")){
             this.numberOfTurns = jsonObject.getIntValue("number_of_turns");
@@ -116,13 +121,13 @@ public class GameEngine {
             this.numberOfTurns = 0;
         }
 
-        if(jsonObject.containsKey("trading")){
-            this.trading = jsonObject.getBooleanValue("trading");
+        if(jsonObject.containsKey("trade")){
+            this.trading = jsonObject.getBooleanValue("trade");
         } else {
             throw new GameEngineTradingException("Please include trading boolean");
         }
 
-        //this.gameBoard = constructGameBoard(jsonObject);
+        this.gameBoard = constructGameBoard(jsonObject);
 
     }
 
