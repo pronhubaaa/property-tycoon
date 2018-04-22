@@ -22,12 +22,15 @@ The players current position on the board, represented by a tile object which is
 This is an array of all the 'ownable' tiles that the player owns. 'Ownable' is an array of all tiles that is is possible for a player to posses. 
 
 - #### piece: PlayerPiece
-This is the object that the player is displayed as in the GUI. 
+This is the object that the player is displayed as in the GUI.
+
+- #### board: Board
+This is the board object.
 
 ### Public Methods 
 
-- #### Player(Int, String)
-*Parameters*: Int for the player balance, String for the players name
+- #### Player(Int, String, Board)
+*Parameters*: Int for the player balance, String for the players name, Board for the board
 *Returns*: Void
 
 This is the initialiser for the object, it initialises the name and balance.
@@ -66,17 +69,17 @@ This method sets the players name.
 *Parameters*:  None
 *Returns*: Boolean- true if player is in jail
 
-This method chekcs if the player is in jail.
+This method checks if the player is in jail.
 
 - #### setInJail(Boolean): Void
 *Parameters*:  Boolean true if moving to jail, false if moving to just visiting
 *Returns*: Void
 
-This method moves a plyer in and out of jail.
+This method moves a player in and out of jail.
 
 - #### getBalance(): Int
 *Parameters*:  None
-*Returns*: Players avaliable balance
+*Returns*: Players available balance
 
 This method returns the amount of money the player currently has.
 

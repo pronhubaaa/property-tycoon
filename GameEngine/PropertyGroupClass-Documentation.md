@@ -25,7 +25,7 @@ Check if a player owns the street.
 Gets the colour for this street.
 
 - #### setColour(String): Void
-*Parameters*: A string containing the colour for this street 
+*Parameters*: The colour for this street
 *Returns*: Void
 
 Sets the colour of this group.
