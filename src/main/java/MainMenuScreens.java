@@ -7,7 +7,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.image.Image;
-
 import java.net.URL;
 
 public class MainMenuScreens {

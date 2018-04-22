@@ -17,6 +17,74 @@ import java.util.ArrayList;
 
 public class NewGameScreen extends Scene {
 
+    private VBox rectLeft = new VBox();
+    private int playerCount = 0;
+
+    public void addNewPlayer() {
+        if (playerCount > 7) {
+            //error
+        } else {
+            HBox row2 = new HBox();
+            row2.setPadding(new Insets(20, 0, 0, 30));
+            int playerNum = 1;
+            Label player1text = new Label("Player " + playerNum);
+            row2.setId("players-text");
+            row2.getChildren().add(player1text);
+            rectLeft.getChildren().add(row2);
+
+            HBox row3 = new HBox();
+            row3.setPadding(new Insets(20, 0, 0, 30));
+            Label nameText = new Label("Name: ");
+            row3.setId("players-text");
+            row3.getChildren().add(nameText);
+            TextField nameEntry = new TextField();
+            row3.getChildren().add(nameEntry);
+            row3.setAlignment(Pos.CENTER_LEFT);
+            rectLeft.getChildren().add(row3);
+
+            HBox row4 = new HBox();
+            row4.setPadding(new Insets(20, 0, 0, 30));
+            Label playerType = new Label("Type: ");
+            row4.setId("players-text");
+            Slider humanAi = new Slider();
+            humanAi.setMax(1);
+            humanAi.setMin(0);
+            Label person = new Label("Person");
+            Label AI = new Label("AI");
+            person.setId("slider-text");
+            AI.setId("slider-text");
+            person.setPadding(new Insets(0, 0, 0, 12));
+            row4.getChildren().addAll(playerType, person, humanAi, AI);
+            row4.setAlignment(Pos.CENTER_LEFT);
+            rectLeft.getChildren().add(row4);
+
+            HBox row5 = new HBox();
+            row5.setPadding(new Insets(20, 0, 0, 30));
+            row5.setAlignment(Pos.CENTER_LEFT);
+            Label pieces = new Label("Piece: ");
+            pieces.setPadding(new Insets(0, 5, 0, 0));
+            pieces.setId("players-text");
+            row5.getChildren().add(pieces);
+            HBox piecesList = new HBox();
+            piecesList.setAlignment(Pos.CENTER_LEFT);
+            ScrollPane scroll = new ScrollPane();
+            for (int i = 0; i < 8; i++) {
+                Image img = new Image("resources/icon.png");
+                ImageView v = new ImageView(img);
+                v.setFitHeight(50);
+                v.setFitWidth(50);
+                piecesList.getChildren().add(v);
+            }
+            scroll.setMaxHeight(70);
+            scroll.setMinHeight(70);
+            scroll.setMaxWidth(300);
+            scroll.setMinWidth(300);
+            scroll.setContent(piecesList);
+            row5.getChildren().add(scroll);
+            rectLeft.getChildren().add(row5);
+        }
+    }
+
     public NewGameScreen(VBox scene) {
         super(scene);
         scene.setId("menu-container");
@@ -74,12 +142,13 @@ public class NewGameScreen extends Scene {
         colConst2.setMinWidth(500);
         mainGrid.getColumnConstraints().add(colConst2);
 
-        VBox rectLeft = new VBox();
+
         rectLeft.setMinHeight(800);
         rectLeft.setMaxHeight(800);
         rectLeft.setMinWidth(470);
         rectLeft.setMaxWidth(470);
         rectLeft.setId("menu-background");
+
 
         VBox rectRight = new VBox();
         rectRight.setMinHeight(300);
@@ -103,64 +172,7 @@ public class NewGameScreen extends Scene {
         row1.getChildren().add(players);
         rectLeft.getChildren().add(row1);
 
-        HBox row2 = new HBox();
-        row2.setPadding(new Insets(20, 0, 0, 30));
-        int playerNum = 1;
-        Label player1text = new Label("Player " + playerNum);
-        row2.setId("players-text");
-        row2.getChildren().add(player1text);
-        rectLeft.getChildren().add(row2);
-
-        HBox row3 = new HBox();
-        row3.setPadding(new Insets(20, 0, 0, 30));
-        Label nameText = new Label("Name: ");
-        row3.setId("players-text");
-        row3.getChildren().add(nameText);
-        TextField nameEntry = new TextField();
-        row3.getChildren().add(nameEntry);
-        row3.setAlignment(Pos.CENTER_LEFT);
-        rectLeft.getChildren().add(row3);
-
-        HBox row4 = new HBox();
-        row4.setPadding(new Insets(20, 0, 0, 30));
-        Label playerType = new Label("Type: ");
-        row4.setId("players-text");
-        Slider humanAi = new Slider();
-        humanAi.setMax(1);
-        humanAi.setMin(0);
-        Label person = new Label("Person");
-        Label AI = new Label("AI");
-        person.setId("slider-text");
-        AI.setId("slider-text");
-        person.setPadding(new Insets(0, 0, 0, 12));
-        row4.getChildren().addAll(playerType, person, humanAi, AI);
-        row4.setAlignment(Pos.CENTER_LEFT);
-        rectLeft.getChildren().add(row4);
-
-        HBox row5 = new HBox();
-        row5.setPadding(new Insets(20, 0, 0, 30));
-        row5.setAlignment(Pos.CENTER_LEFT);
-        Label pieces = new Label("Piece: ");
-        pieces.setPadding(new Insets(0, 5, 0, 0));
-        pieces.setId("players-text");
-        row5.getChildren().add(pieces);
-        HBox piecesList = new HBox();
-        piecesList.setAlignment(Pos.CENTER_LEFT);
-        ScrollPane scroll = new ScrollPane();
-        for (int i = 0; i < 8; i++) {
-            Image img = new Image("resources/icon.png");
-            ImageView v = new ImageView(img);
-            v.setFitHeight(50);
-            v.setFitWidth(50);
-            piecesList.getChildren().add(v);
-        }
-        scroll.setMaxHeight(70);
-        scroll.setMinHeight(70);
-        scroll.setMaxWidth(300);
-        scroll.setMinWidth(300);
-        scroll.setContent(piecesList);
-        row5.getChildren().add(scroll);
-        rectLeft.getChildren().add(row5);
+        addNewPlayer();
 
         HBox addPlayerRow = new HBox();
         Button addPlayer = new Button("Add Player");
@@ -170,25 +182,19 @@ public class NewGameScreen extends Scene {
         addPlayerRow.setAlignment(Pos.CENTER_RIGHT);
         rectLeft.getChildren().add(addPlayerRow);
 
-        ArrayList<Node> menuSection = new ArrayList<Node>();
-        menuSection.add(row1);
-        menuSection.add(row2);
-        menuSection.add(row3);
-        menuSection.add(row4);
-        menuSection.add(row5);
-        menuSection.add(addPlayerRow);
+//        ArrayList<Node> menuSection = new ArrayList<Node>();
+//        menuSection.add(row1);
+//        menuSection.add(row2);
+//        menuSection.add(row3);
+//        menuSection.add(row4);
+//        menuSection.add(row5);
+//        menuSection.add(addPlayerRow);
+        rectLeft.getChildren().add(new StackPane());
 
         addPlayer.setOnAction((ActionEvent e) -> {
-            Pane sp = new Pane();
-            sp.setMaxWidth(500);
-            sp.setMaxHeight(500);
-            sp.setMinWidth(500);
-            sp.setMinHeight(500);
-            sp.setId("black");
-            for (Node n : menuSection) {
-                sp.getChildren().add(n);
-            }
-            rectLeft.getChildren().add(sp);
+            rectLeft.getChildren().remove(addPlayer);
+            addNewPlayer();
+            rectLeft.getChildren().add(addPlayer);
         });
 
         mainGrid.add(rectLeft, 0, 0);
