@@ -30,4 +30,5 @@ public class TaxTile extends Tile {
         player.setBalance(player.getBalance() - amount);
         // TODO @Issue #17
     }
+    
 }
