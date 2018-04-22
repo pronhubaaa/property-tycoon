@@ -1,3 +1,5 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -159,17 +161,19 @@ public class NewGameScreen extends Scene {
 
 
         VBox rectRight = new VBox();
-        rectRight.setMinHeight(300);
+        rectRight.setPadding(new Insets(0, 0, 0, 30));
+        rectRight.setSpacing(20);
+        rectRight.setMinHeight(250);
         rectRight.setMinWidth(470);
-        rectRight.setMaxHeight(300);
+        rectRight.setMaxHeight(250);
         rectRight.setMaxWidth(470);
         rectRight.setId("menu-background");
 
 
         VBox rectRightBot = new VBox();
-        rectRightBot.setMinHeight(470);
+        rectRightBot.setMinHeight(520);
         rectRightBot.setMinWidth(470);
-        rectRightBot.setMaxHeight(470);
+        rectRightBot.setMaxHeight(520   );
         rectRightBot.setMaxWidth(470);
         rectRightBot.setId("menu-background");
 
@@ -205,6 +209,23 @@ public class NewGameScreen extends Scene {
             addNewPlayer();
             rectLeft.getChildren().add(addPlayerRow);
         });
+
+        Label board = new Label("Board");
+        board.setId("players-title");
+        board.setPadding(new Insets(30, 0, 0, 0));
+        rectRight.getChildren().add(board);
+
+        ObservableList<String> options = FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
+        ComboBox dropdown = new ComboBox(options); //will change this list later to check for previous imports?
+        dropdown.setMinWidth(400);
+        dropdown.setMaxWidth(400);
+        dropdown.setMinHeight(40);
+        dropdown.setMaxHeight(40);
+        rectRight.getChildren().add(dropdown);
+
+        Button importNewBoard = new Button("Import New Board");
+        importNewBoard.setId("add-player-button");
+        rectRight.getChildren().add(importNewBoard);
 
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
