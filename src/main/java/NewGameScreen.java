@@ -171,9 +171,11 @@ public class NewGameScreen extends Scene {
 
 
         VBox rectRightBot = new VBox();
+        rectRightBot.setSpacing(20);
+        rectRightBot.setPadding(new Insets(0, 0, 0, 20));
         rectRightBot.setMinHeight(520);
         rectRightBot.setMinWidth(470);
-        rectRightBot.setMaxHeight(520   );
+        rectRightBot.setMaxHeight(520);
         rectRightBot.setMaxWidth(470);
         rectRightBot.setId("menu-background");
 
@@ -212,7 +214,7 @@ public class NewGameScreen extends Scene {
 
         Label board = new Label("Board");
         board.setId("players-title");
-        board.setPadding(new Insets(30, 0, 0, 0));
+        board.setPadding(new Insets(20, 0, 0, 0));
         rectRight.getChildren().add(board);
 
         ObservableList<String> options = FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
@@ -226,6 +228,78 @@ public class NewGameScreen extends Scene {
         Button importNewBoard = new Button("Import New Board");
         importNewBoard.setId("add-player-button");
         rectRight.getChildren().add(importNewBoard);
+
+        HBox botRow1 = new HBox();
+        botRow1.setAlignment(Pos.CENTER_LEFT);
+        botRow1.setPadding(new Insets(20, 0, 0, 20));
+        botRow1.setSpacing(20);
+        Label boardType = new Label("Game type");
+        boardType.setId("players-title");
+        botRow1.getChildren().add(boardType);
+        rectRightBot.getChildren().add(botRow1);
+        Slider trading = new Slider();
+        trading.setMax(1);
+        trading.setMin(0);
+        trading.setMinWidth(50);
+        trading.setMaxWidth(50);
+        Label tradingOn = new Label("Trading on");
+        Label tradingOff = new Label("Trading off");
+        tradingOn.setId("slider-text");
+        tradingOff.setId("slider-text");
+        botRow1.getChildren().addAll(tradingOn, trading, tradingOff);
+
+        VBox fullGame = new VBox();
+        VBox abridgedGame = new VBox();
+        Label fullGameTitle = new Label("Full game");
+
+        fullGameTitle.setId("game-type-title");
+        fullGame.getChildren().add(fullGameTitle);
+        fullGame.setMaxWidth(420);
+        fullGame.setMinWidth(420);
+        fullGame.setMaxHeight(180);
+        fullGame.setMinHeight(180);
+        fullGameTitle.setPadding(new Insets(20, 0, 0, 20));
+
+        abridgedGame.setMaxWidth(420);
+        abridgedGame.setMinWidth(420);
+        abridgedGame.setMaxHeight(180);
+        abridgedGame.setMinHeight(180);
+        Label abridgedGameTitle = new Label("Abridged game");
+        abridgedGameTitle.setId("game-type-title");
+        abridgedGameTitle.setPadding(new Insets(20, 0, 0, 20));
+        abridgedGame.getChildren().add(abridgedGameTitle);
+
+        fullGame.setId("game-type");
+        abridgedGame.setId("game-type");
+        rectRightBot.getChildren().add(fullGame);
+        rectRightBot.getChildren().add(abridgedGame);
+
+        Label fullGameText = new Label("Standard Property Tycoon! Play until one player emerges victorious.");
+        fullGameText.setPadding(new Insets(0, 20, 0, 20));
+        fullGameText.setWrapText(true);
+        fullGameText.setId("game-type-text");
+
+        Label abridgedGameText = new Label("Same as the full game, except there's a time limit. Play until time is up, the player with the most assets wins!");
+        abridgedGameText.setPadding(new Insets(0, 20, 0, 20));
+        abridgedGameText.setWrapText(true);
+        abridgedGameText.setId("game-type-text");
+
+        fullGame.getChildren().add(fullGameText);
+        abridgedGame.getChildren().add(abridgedGameText);
+
+        HBox timeLimitRow = new HBox();
+        timeLimitRow.setSpacing(10);
+        Label timeLimitText = new Label("Time limit: ");
+        timeLimitText.setId("time-limit");
+        TextField timeLimit = new TextField();
+        timeLimit.setMinWidth(100);
+        timeLimit.setMaxWidth(100);
+        Label timeLimitMins = new Label("mins");
+        timeLimitMins.setId("game-type-text");
+
+        timeLimitRow.getChildren().addAll(timeLimitText, timeLimit, timeLimitMins);
+        timeLimitRow.setPadding(new Insets(20, 0, 0, 20));
+        abridgedGame.getChildren().add(timeLimitRow);
 
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);

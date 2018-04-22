@@ -105,3 +105,22 @@
 #black {
     -fx-background-color: black;
 }
+
+#game-type {
+    -fx-background-color: '#98d0a0';
+}
+
+#game-type-title {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 25px;
+}
+
+#game-type-text {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 18px;
+}
+
+#time-limit {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 20px;
+}
