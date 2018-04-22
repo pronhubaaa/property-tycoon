@@ -65,7 +65,6 @@ public class Player {
         setBalance(balance);
         setName(name);
         setInJail(false);
-        setBoard(board);
         ownedTiles = new ArrayList<>();
 
     }
@@ -157,21 +156,13 @@ public class Player {
         return this.name;
     }
 
-    /**
-     * setBoard
-     * @param board
-     * This method sets the board within a player object.
-     */
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 
     /**
      * getBoard
      * @return board
      * This method gets the board within a player object.
      */
-    public Board getBoard() {
+    protected Board getBoard() {
         return this.board;
     }
 

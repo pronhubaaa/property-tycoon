@@ -59,6 +59,11 @@ public class GameEngine {
      */
     private boolean trading;
 
+    /**
+     * checkGameType
+     * @param str
+     * @return GameType or null
+     */
     private GameType checkGameType(String str){
         for (GameType me : gameType.values()) {
             if (me.name().equals(str))
@@ -74,7 +79,7 @@ public class GameEngine {
      * This is the constructor method. The JSON data will include board data, player data, the game type and any remaining time.
      * This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
      */
-    public GameEngine(JSONObject jsonObject) throws GameEngineTypeException, GameEngineTimeException, GameEngineTradingException {
+    public GameEngine(JSONObject jsonObject) throws GameEngineTypeException, GameEngineTimeException, GameEngineTradingException, BoardTileException {
         if(jsonObject.containsKey("game_type")){
 
             GameType type = checkGameType(jsonObject.getString("game_type"));

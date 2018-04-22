@@ -25,14 +25,8 @@ public class AI extends Player {
         if(tile instanceof Ownable){
             Ownable ownable = (Ownable) tile;
             if (!ownable.isOwned()) {
-                //If a player owns more than 1 in the set
-                if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice()) {
-                    ownable.setOwner(this);
-                    setBalance(getBalance() - ownable.getPrice());
-                    return true;
-                }
-                //If a player owns 1 of two tiles
-                else if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice() && this.getBoard().groupSize(ownable) == 2) {
+                // If a player owns 1 of two tiles
+                if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice() && ownable.getGroup().getGroupOwners().size() == 2) {
                     ownable.setOwner(this);
                     setBalance(getBalance() - ownable.getPrice());
                     return true;
@@ -163,24 +157,10 @@ public class AI extends Player {
         if (buyable instanceof Ownable) {
             Ownable current = (Ownable) buyable;
 
-            //If a player owns more than 1 in the set
-            if (this.getBoard().getPlayerOwned(current) > 0) {
-                if(this.getBalance() > current.getPrice()*3){
-                    return current.getPrice()*2;
-                } else if(this.getBalance() > current.getPrice()*2){
-                    double random = Math.random();
-                    if (random > 0.2) {
-                        return (int) Math.round(current.getPrice() * 1.5);
-                    }
-                }   else if(this.getBalance() > current.getPrice()){
-                    double random = Math.random();
-                    if (random > 0.3) {
-                        return current.getPrice() + 10;
-                    }
-                }
-            }
+
+
             //If a player owns 1 of two tiles or If another player owns a tile in the same group
-            else if (this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice() && this.getBoard().groupSize(current) == 2 || this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice()) {
+            if (this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice() && current.getGroup().getGroupOwners().size() == 2 || this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice()) {
                 if(this.getBalance() > current.getPrice()*3){
                     double random = Math.random();
                     if (random > 0.3) {
@@ -194,6 +174,22 @@ public class AI extends Player {
                 }   else if(this.getBalance() > current.getPrice()){
                     double random = Math.random();
                     if (random > 0.5) {
+                        return current.getPrice() + 10;
+                    }
+                }
+            }
+            //If a player owns more than 1 in the set
+            else if (this.getBoard().getPlayerOwned(current) > 0) {
+                if(this.getBalance() > current.getPrice()*3){
+                    return current.getPrice()*2;
+                } else if(this.getBalance() > current.getPrice()*2){
+                    double random = Math.random();
+                    if (random > 0.2) {
+                        return (int) Math.round(current.getPrice() * 1.5);
+                    }
+                }   else if(this.getBalance() > current.getPrice()){
+                    double random = Math.random();
+                    if (random > 0.3) {
                         return current.getPrice() + 10;
                     }
                 }

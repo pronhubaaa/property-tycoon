@@ -5,15 +5,10 @@
  */
 public class PropertyGroup extends Group {
 
-    /**
-     * colour: Colour
-     * The colour code for the colour of this particular group.
-     */
-    private Colour colour;
+
 
     public PropertyGroup(){
         super();
-        this.colour = Colour.White;
 
     }
 
@@ -34,23 +29,6 @@ public class PropertyGroup extends Group {
         return true;
     }
 
-    /**
-     * getColour
-     * @return String containing the colour code
-     * Gets the colour for this street.
-     */
-    public Colour getColour() {
-        return this.colour;
-    }
-
-    /**
-     * setColour
-     * @param colour The colour for this street
-     * Sets the colour of this group
-     */
-    public void setColour(Colour colour) {
-        this.colour = colour;
-    }
 }
 
 

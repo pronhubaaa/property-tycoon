@@ -11,8 +11,19 @@ public class Group {
      */
     private ArrayList<Ownable> group;
 
+    /**
+     * colour: Colour
+     * The colour code for the colour of this particular group.
+     */
+    private Colour colour;
+
+
+    /**
+     * Constructor
+     */
     public Group() {
         this.group = new ArrayList<>();
+        this.colour = Colour.White;
     }
 
     /**
@@ -47,6 +58,10 @@ public class Group {
     }
 
 
+    /**
+     * getGroupOwners
+     * @return players
+     */
     public ArrayList<Player> getGroupOwners(){
         ArrayList<Player> players = new ArrayList<>();
 
@@ -55,6 +70,25 @@ public class Group {
             players.add(player);
         }
         return players;
+    }
+
+
+    /**
+     * getColour
+     * @return String containing the colour code
+     * Gets the colour for this street.
+     */
+    public Colour getColour() {
+        return this.colour;
+    }
+
+    /**
+     * setColour
+     * @param colour The colour for this street
+     * Sets the colour of this group
+     */
+    public void setColour(Colour colour) {
+        this.colour = colour;
     }
 
 
