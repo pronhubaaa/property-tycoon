@@ -279,11 +279,18 @@ public class Player {
      * setPiece
      *
      * @param piece A PlayerPiece object from the enumerator
-     *              This assigns a player a specific player piece, this could be a hatstand, cat, etc.
+     * This assigns a player a specific player piece, this could be a hatstand, cat, etc.
      */
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
     }
 
+    /**
+     * removeOwnable
+     * @param ownable
+     */
+    public void removeOwnable(Ownable ownable){
+        this.ownedTiles.remove(ownable);
+    }
 
 }

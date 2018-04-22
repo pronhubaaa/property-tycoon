@@ -35,12 +35,6 @@ public class Board {
     private HashMap<String, UtilityGroup> utilityGroups;
 
     /**
-     * cards: [Card]
-     * The "Opportunity Knocks" and "Pot Luck" cards on the board.
-     */
-    private ArrayList<Card> cards;
-
-    /**
      * jsonFields
      */
     private enum jsonFields{
