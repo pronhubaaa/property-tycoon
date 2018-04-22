@@ -39,8 +39,11 @@ public class Trade {
      */
     public void addOwnable(Player player, Ownable ownable) {
         this.players.get(player).add(ownable);
+    }
 
+    public ArrayList<Ownable> getOwnable(Player player){
 
+        return this.players.get(player);
     }
 
     /**
@@ -50,7 +53,7 @@ public class Trade {
      * @return boolean
      */
     public boolean acceptTrade(boolean boolean1, boolean boolean2){
-        if(boolean1 == boolean2){
+        if(boolean1 && boolean2){
             this.tradeOwnable();
             return true;
         }
