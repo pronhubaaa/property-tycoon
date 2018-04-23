@@ -32,7 +32,7 @@ public class GameEngineTest {
     @Test
     public void constructSavedGame() throws Exception{
 
-        URL url = getClass().getResource("savedGame.json");
+        URL url = getClass().getResource("./resources/savedGame.json");
         File file = new File(url.getPath());
 
         String myJson = new Scanner(file).useDelimiter("\\Z").next();
@@ -182,7 +182,7 @@ public class GameEngineTest {
 
     @Test
     public void saveGame() throws FileNotFoundException {
-        URL url = getClass().getResource("board.json");
+        URL url = getClass().getResource("./resources/board.json");
         File file = new File(url.getPath());
 
         String myJson = new Scanner(file).useDelimiter("\\Z").next();

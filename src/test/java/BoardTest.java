@@ -21,7 +21,7 @@ public class BoardTest {
     public void setUp() throws Exception {
 
 
-        URL url = getClass().getResource("board.json");
+        URL url = getClass().getResource("./resources/board.json");
         File file = new File(url.getPath());
 
         String myJson = new Scanner(file).useDelimiter("\\Z").next();
