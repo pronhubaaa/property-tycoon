@@ -246,7 +246,23 @@ public class NewGameScreen extends Scene {
         rectRight.getChildren().add(board);
 
         ObservableList<String> options = FXCollections.observableArrayList("Standard Board");
-        ComboBox dropdown = new ComboBox(options); //will change this list later to check for previous imports?
+
+        try {
+            FileReader fr = new FileReader("saved-boards.ted");
+            BufferedReader br = new BufferedReader(fr);
+            int lineNo = 1;
+            String line;
+            while((line = br.readLine()) != null) {
+                if (lineNo % 2 == 0) {
+                    options.add(line);
+                }
+                lineNo++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ComboBox dropdown = new ComboBox(options);
         dropdown.setPromptText("Standard Board");
         dropdown.setMinWidth(400);
         dropdown.setMaxWidth(400);
@@ -331,16 +347,30 @@ public class NewGameScreen extends Scene {
            });
 
            applyImport.setOnAction((ActionEvent emm) -> {
-               File prevSaves = new File("saved-boards.ted");
-               try {
-                   FileWriter fw = new FileWriter(prevSaves);
-                   PrintWriter pw = new PrintWriter(prevSaves);
-                   pw.println(pathToImport.getText());
-                   pw.println(importNameInput.getText());
-                   pw.close();
-                   fw.close();
-               } catch (Exception exc) {
-                   //error
+               File f = new File("saved-boards.ted");
+               if(f.exists()) {
+                   try {
+                       FileWriter fw = new FileWriter("saved-boards.ted", true);
+                       BufferedWriter bw = new BufferedWriter(fw);
+                       bw.append(pathToImport.getText());
+                       bw.newLine();
+                       bw.append(importNameInput.getText());
+                       bw.newLine();
+                       bw.close();
+                   } catch (IOException eq) {
+                       //throw exception
+                   }
+               } else {
+                   try {
+                       FileWriter fw = new FileWriter(f);
+                       PrintWriter pw = new PrintWriter(f);
+                       pw.println(pathToImport.getText());
+                       pw.println(importNameInput.getText());
+                       pw.close();
+                       fw.close();
+                   } catch (Exception exc) {
+                       //error
+                   }
                }
                stack.getChildren().remove(menuOverlay);
            });

@@ -1,2 +1,0 @@
-C:\Users\Sam\IdeaProjects\property-tycoon\src\main\java\savedGame.json
-hii
