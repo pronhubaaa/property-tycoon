@@ -35,6 +35,20 @@ public class NewGameScreen extends Scene {
             Label player1text = new Label("Player " + playerCount);
             row2.setId("players-text");
             row2.getChildren().add(player1text);
+
+            Button deletePlayer = new Button("X");
+            deletePlayer.setAlignment(Pos.CENTER_RIGHT);
+            deletePlayer.setId("delete-player");
+            deletePlayer.setOnAction((ActionEvent e) -> {
+                if (playerCount == 1) {
+                    // do nothing
+                } else {
+                    rectLeft.getChildren().remove(rectLeft.getChildren().size() - 5, rectLeft.getChildren().size() - 1);
+                    playerCount--;
+                }
+            });
+            row2.getChildren().add(deletePlayer);
+
             rectLeft.getChildren().add(row2);
 
             HBox row3 = new HBox();
@@ -210,7 +224,6 @@ public class NewGameScreen extends Scene {
 //        menuSection.add(row4);
 //        menuSection.add(row5);
 //        menuSection.add(addPlayerRow);
-        rectLeft.getChildren().add(new StackPane());
 
         addPlayer.setOnAction((ActionEvent e) -> {
             rectLeft.getChildren().remove(addPlayerRow);
