@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BoardTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2018-04-23T10:14:20" hostname="localhost.susx.ac.uk" time="0.501">
+  <properties/>
+  <testcase name="getStationGroups" classname="BoardTest" time="0.194"/>
+  <testcase name="constructor" classname="BoardTest" time="0.112"/>
+  <testcase name="addTiles" classname="BoardTest" time="0.009"/>
+  <testcase name="getUtilityGroups" classname="BoardTest" time="0.004"/>
+  <testcase name="setStationGroups" classname="BoardTest" time="0.003"/>
+  <testcase name="setPropertyGroups" classname="BoardTest" time="0.003"/>
+  <testcase name="setUtilityGroups" classname="BoardTest" time="0.014"/>
+  <testcase name="getPropertyGroups" classname="BoardTest" time="0.004"/>
+  <testcase name="getTiles" classname="BoardTest" time="0.062"/>
+  <system-out><![CDATA[[Go@1f, Property@1f, Card@1f, Property@1f, Tax@1f, Station@1f, Property@1f, Card@1f, Property@1f, Property@1f, Jail@1f, Property@1f, Utility@1f, Property@1f, Property@1f, Station@1f, Property@1f, Card@1f, Property@1f, Property@1f, FreeParking@1f, Property@1f, Card@1f, Property@1f, Property@1f, Station@1f, Property@1f, Property@1f, Utility@1f, Property@1f, GoToJail@1f, Property@1f, Property@1f, Card@1f, Property@1f, Station@1f, Card@1f, Property@1f, Tax@1f, Property@1f]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

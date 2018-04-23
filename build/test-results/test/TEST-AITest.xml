@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AITest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-04-23T10:14:21" hostname="localhost.susx.ac.uk" time="0.098">
+  <properties/>
+  <testcase name="buyHouses" classname="AITest" time="0.038"/>
+  <testcase name="trader" classname="AITest" time="0.008"/>
+  <testcase name="payBill" classname="AITest" time="0.005"/>
+  <testcase name="bid" classname="AITest" time="0.013"/>
+  <testcase name="buyTile" classname="AITest" time="0.018"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

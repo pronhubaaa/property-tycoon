@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GameEngineTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-04-23T10:14:23" hostname="localhost.susx.ac.uk" time="16.046">
+  <properties/>
+  <testcase name="startGame" classname="GameEngineTest" time="6.019"/>
+  <testcase name="startTimer" classname="GameEngineTest" time="6.007"/>
+  <testcase name="getTime" classname="GameEngineTest" time="0.001"/>
+  <testcase name="constructSavedGame" classname="GameEngineTest" time="0.003"/>
+  <testcase name="getCurrentPlayer" classname="GameEngineTest" time="0.0"/>
+  <testcase name="nextTurn" classname="GameEngineTest" time="0.001"/>
+  <testcase name="stopTimer" classname="GameEngineTest" time="4.009"/>
+  <testcase name="getNumberOfTurns" classname="GameEngineTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

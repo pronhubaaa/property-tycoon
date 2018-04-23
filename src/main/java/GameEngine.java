@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 
@@ -106,23 +107,30 @@ public class GameEngine {
             }
         }
 
-        //TODO
-        // Parse Players
-        // Parse current player position
+//        if(jsonObject.containsKey(JsonFields.Player.toString())) {
+//
+//            JSONArray players = jsonObject.getJSONArray(JsonFields.Player.toString());
+//
+//            for(Object object: players){
+//
+//                JSONObject player = (JSONObject) object;
+//
+//
+//        }
 
 
 //        if(jsonObject.containsKey("current_player")){
 //            this.currentPlayer = this.players.get(jsonObject.getIntValue("current_player"));
 //        }
 
-        if(jsonObject.containsKey("number_of_turns")){
-            this.numberOfTurns = jsonObject.getIntValue("number_of_turns");
+        if(jsonObject.containsKey(JsonFields.NumberTurns.toString())){
+            this.numberOfTurns = jsonObject.getIntValue(JsonFields.NumberTurns.toString());
         } else {
             this.numberOfTurns = 0;
         }
 
-        if(jsonObject.containsKey("trade")){
-            this.trading = jsonObject.getBooleanValue("trade");
+        if(jsonObject.containsKey(JsonFields.Trade.toString())){
+            this.trading = jsonObject.getBooleanValue(JsonFields.Trade.toString());
         } else {
             throw new GameEngineTradingException("Please include trading boolean");
         }

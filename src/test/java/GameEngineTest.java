@@ -340,17 +340,28 @@ public class GameEngineTest {
                 "\t\t\t\"rent\": [\"50\", \"200\", \"600\", \"1400\", \"1700\", \"2000\"]\n" +
                 "\t\t}\n" +
                 "\t],\n" +
-                "\t\"player\": [\n" +
+                "\t\"players\": [\n" +
                 "\t\t{\n" +
                 "\t\t\t\"in_jail\": \"false\",\n" +
                 "\t\t\t\"balance\": \"2200\",\n" +
                 "\t\t\t\"name\": \"Peter\",\n" +
                 "\t\t\t\"position\": \"7\",\n" +
                 "\t\t\t\"owned_tiles\": [\n" +
-                "\t\t\t\t\"3\"\n" +
+                "\t\t\t\t\"2\"\n" +
+                "\t\t\t],\n" +
+                "\t\t\t\"piece\":\"2\"\n" +
+                "\t\t},\n" +
+                "\t\t{\n" +
+                "\t\t\t\"in_jail\": \"false\",\n" +
+                "\t\t\t\"balance\": \"1000\",\n" +
+                "\t\t\t\"name\": \"Guy\",\n" +
+                "\t\t\t\"position\": \"7\",\n" +
+                "\t\t\t\"owned_tiles\": [\n" +
+                "\t\t\t\t\"4\"\n" +
                 "\t\t\t],\n" +
                 "\t\t\t\"piece\":\"2\"\n" +
                 "\t\t}\n" +
+                "\n" +
                 "\n" +
                 "\t],\n" +
                 "\t\"game_type\": \"FullGame\",\n" +

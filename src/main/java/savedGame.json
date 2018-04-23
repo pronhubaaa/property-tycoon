@@ -311,17 +311,28 @@
 			"rent": ["50", "200", "600", "1400", "1700", "2000"]
 		}
 	],
-	"player": [
+	"players": [
 		{
 			"in_jail": "false",
 			"balance": "2200",
 			"name": "Peter",
 			"position": "7",
 			"owned_tiles": [
-				"3"
+				"2"
+			],
+			"piece":"2"
+		},
+		{
+			"in_jail": "false",
+			"balance": "1000",
+			"name": "Guy",
+			"position": "7",
+			"owned_tiles": [
+				"4"
 			],
 			"piece":"2"
 		}
+
 
 	],
 	"game_type": "FullGame",
