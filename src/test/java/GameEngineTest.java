@@ -48,8 +48,8 @@ public class GameEngineTest {
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Card\",\n" +
                 "\t\t\t\"position\" : \"3\",\n" +
-                "\t\t\t\"name\": \"Plot Luck\",\n" +
-                "\t\t\t\"cardType\": \"PlotLuck\"\n" +
+                "\t\t\t\"name\": \"Pot Luck\",\n" +
+                "\t\t\t\"cardType\": \"PotLuck\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Property\",\n" +
@@ -165,8 +165,8 @@ public class GameEngineTest {
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Card\",\n" +
                 "\t\t\t\"position\" : \"18\",\n" +
-                "\t\t\t\"name\": \"Plot Luck\",\n" +
-                "\t\t\t\"cardType\": \"PlotLuck\"\n" +
+                "\t\t\t\"name\": \"Pot Luck\",\n" +
+                "\t\t\t\"cardType\": \"PotLuck\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Property\",\n" +
@@ -290,8 +290,8 @@ public class GameEngineTest {
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Card\",\n" +
                 "\t\t\t\"position\" : \"34\",\n" +
-                "\t\t\t\"name\": \"Plot Luck\",\n" +
-                "\t\t\t\"cardType\": \"PlotLuck\"\n" +
+                "\t\t\t\"name\": \"Pot Luck\",\n" +
+                "\t\t\t\"cardType\": \"PotLuck\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"type\": \"Property\",\n" +

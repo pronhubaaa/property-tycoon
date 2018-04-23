@@ -201,7 +201,8 @@ public class Board {
                             this.tiles.add(taxTile);
                             break;
                         case Card:
-                            CardStack cardStack = new CardStack();
+                            CardType cardType = CardType.valueOf(tile.getString(jsonFields.CardType.toString()));
+                            CardStack cardStack = new CardStack(cardType);
                             CardTile cardTile = new CardTile(tileName, tilePosition, cardStack);
                             this.tiles.add(cardTile);
                             break;
