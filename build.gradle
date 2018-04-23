@@ -23,6 +23,13 @@ task copyResources(type: Copy) {
 }
 processResources.dependsOn copyResources
 
+task copyResources2(type: Copy) {
+    from "${projectDir}/src/main/java/resources"
+    into "${projectDir}/out/production/classes/resources"
+}
+processResources.dependsOn copyResources2
+
+
 
 dependencies {
     compile 'com.alibaba:fastjson:1.2.46'
