@@ -44,8 +44,13 @@ public class NewGameScreen extends Scene {
                 if (playerCount == 1) {
                     // do nothing
                 } else {
-                    rectLeft.getChildren().remove(4 * (boundary - 1), 4*boundary); 
-                    playerCount--;
+                    if (4 * (boundary - 1) == 0) {
+                        rectLeft.getChildren().remove(1, 5);
+                        playerCount--;
+                    } else {
+                        rectLeft.getChildren().remove(4 * (boundary - 1), 4 * boundary);
+                        playerCount--;
+                    }
                 }
             });
             row2.getChildren().add(deletePlayer);
