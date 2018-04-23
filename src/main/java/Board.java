@@ -201,9 +201,9 @@ public class Board {
                             this.tiles.add(taxTile);
                             break;
                         case Card:
-                            CardType cardType = CardType.valueOf(tile.getString(jsonFields.CardType.toString()));
-                            Card card = new Card(tileName, tilePosition, cardType);
-                            this.tiles.add(card);
+                            CardStack cardStack = new CardStack();
+                            CardTile cardTile = new CardTile(tileName, tilePosition, cardStack);
+                            this.tiles.add(cardTile);
                             break;
                         default:
                             throw new BoardTileException("Tile type is invalid");
