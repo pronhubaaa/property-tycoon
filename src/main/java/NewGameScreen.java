@@ -23,37 +23,39 @@ public class NewGameScreen extends Scene {
 
     private static VBox rectLeft = new VBox();
     private static int playerCount = 0;
+    private static int playerCountExternal = 0;
     private static boolean fullGameType = true;
 
     public static void addNewPlayer() {
         playerCount++;
+        playerCountExternal++;
         if (playerCount > Game.getMaxPlayers()) {
             //error
         } else {
             HBox row2 = new HBox();
             row2.setPadding(new Insets(20, 0, 0, 30));
-            Label player1text = new Label("Player " + playerCount);
+            Label player1text = new Label("Player " + playerCountExternal);
             row2.setId("players-text");
             row2.getChildren().add(player1text);
 
             Button deletePlayer = new Button("X");
             deletePlayer.setAlignment(Pos.CENTER_RIGHT);
             deletePlayer.setId("delete-player");
-            int boundary = playerCount;
+            row2.getChildren().add(deletePlayer);
             deletePlayer.setOnAction((ActionEvent e) -> {
-                if (playerCount == 1) {
+                if (playerCount == 2) {
                     // do nothing
                 } else {
+                    int boundary = rectLeft.getChildren().indexOf(row2);
                     if (4 * (boundary - 1) == 0) {
                         rectLeft.getChildren().remove(1, 5);
                         playerCount--;
                     } else {
-                        rectLeft.getChildren().remove(4 * (boundary - 1), 4 * boundary);
+                        rectLeft.getChildren().remove(boundary, boundary + 4);
                         playerCount--;
                     }
                 }
             });
-            row2.getChildren().add(deletePlayer);
 
             rectLeft.getChildren().add(row2);
 
