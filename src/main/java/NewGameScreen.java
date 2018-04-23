@@ -87,7 +87,7 @@ public class NewGameScreen extends Scene {
         }
     }
 
-    public NewGameScreen(VBox scene) {
+    public NewGameScreen(VBox scene, UI ui) {
         super(scene);
         scene.setId("menu-container");
         URL url = MainMenuScreens.class.getResource("resources/style.css");
@@ -112,8 +112,11 @@ public class NewGameScreen extends Scene {
         imageView1.setFitHeight(100);
         imageView1.setFitWidth(100);
         newGameScreen.getChildren().add(imageView1);
-        Label rtnToMenu = new Label("Return to main menu");
+        Button rtnToMenu = new Button("Return to main menu");
         rtnToMenu.setId("menu-text");
+        rtnToMenu.setOnAction((ActionEvent e) -> {
+                ui.showScene(MainMenuScreens.getMainMenu(ui));
+            });
         newGameScreen.getChildren().add(rtnToMenu);
         HBox secondLayer = new HBox();
         secondLayer.setSpacing(200);

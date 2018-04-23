@@ -92,7 +92,7 @@ public class MainMenuScreens {
      * @return A scene containing the new game setup screen.
      */
     public static Scene getNewGame(UI ui) {
-        return new NewGameScreen(new VBox());
+        return new NewGameScreen(new VBox(), ui);
     }
 
     /**

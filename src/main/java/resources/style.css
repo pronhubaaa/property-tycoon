@@ -17,6 +17,7 @@
 
 .main-menu-button:hover {
     -fx-background-color: '#98d0a0';
+    -fx-cursor: hand;
 }
 
 .main-menu-button:pressed {
@@ -34,6 +35,8 @@
 #menu-text {
     -fx-font-size: 24px;
     -fx-font-family: 'Raleway';
+    -fx-background-color: none;
+    -fx-cursor: hand;
 }
 
 #menu-container{
@@ -66,6 +69,7 @@
 
 #start-game-button:hover {
     -fx-background-color: '#98d0a0';
+    -fx-cursor: hand;
 }
 
 #menu-background {
@@ -96,6 +100,7 @@
 
 #add-player-button:hover {
     -fx-background-color: '#8bc593';
+    -fx-cursor: hand;
 }
 
 #add-player-button:pressed {
@@ -108,6 +113,7 @@
 
 #game-type {
     -fx-background-color: '#98d0a0';
+    -fx-cursor: hand;
 }
 
 #game-type-title {
@@ -124,3 +130,4 @@
     -fx-font-family: 'Raleway';
     -fx-font-size: 20px;
 }
+
