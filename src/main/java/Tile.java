@@ -5,9 +5,9 @@ public class Tile {
     private String name;
     private int position;
 
-
     public Tile(String name, int position) {
-
+        this.name = name;
+        this.position = position;
     }
 
     /**
@@ -61,4 +61,10 @@ public class Tile {
 
         return Objects.hash(name);
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
 }

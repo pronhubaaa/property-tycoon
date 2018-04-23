@@ -1,9 +1,7 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-import javax.rmi.CORBA.Util;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 
 
@@ -36,39 +34,7 @@ public class Board {
      */
     private HashMap<String, UtilityGroup> utilityGroups;
 
-    /**
-     * cards: [Card]
-     * The "Opportunity Knocks" and "Pot Luck" cards on the board.
-     */
-    private ArrayList<Card> cards;
 
-    /**
-     * jsonFields
-     */
-    private enum jsonFields{
-        Tile("tile"),
-        Type("type"),
-        Name("name"),
-        Position("position"),
-        Value("value"),
-        Group("group"),
-        CardType("cardType");
-
-        private String value;
-
-        jsonFields(final String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return this.getValue();
-        }
-    }
 
 
     /**
@@ -83,9 +49,9 @@ public class Board {
         this.tiles = new ArrayList<>();
 
 
-        if(jsonObject.containsKey(jsonFields.Tile.toString())){
+        if(jsonObject.containsKey(JsonFields.Tile.toString())){
 
-            JSONArray tiles = jsonObject.getJSONArray(jsonFields.Tile.toString());
+            JSONArray tiles = jsonObject.getJSONArray(JsonFields.Tile.toString());
 
             for(Object object: tiles){
                 if(this.tiles.size() > 40){
@@ -93,17 +59,19 @@ public class Board {
                 }
                 JSONObject tile = (JSONObject) object;
 
-                if(tile.containsKey(jsonFields.Type.toString())){
-                    TileType type = TileType.valueOf(tile.getString(jsonFields.Type.toString()));
-                    String tileName = tile.getString(jsonFields.Name.toString());
-                    int tilePosition = tile.getIntValue(jsonFields.Position.toString());
-                    int tileValue = tile.getIntValue(jsonFields.Value.toString());
-                    String groupType = tile.getString(jsonFields.Group.toString());
+                if(tile.containsKey(JsonFields.Type.toString())){
+                    TileType type = TileType.valueOf(tile.getString(JsonFields.Type.toString()));
+                    String tileName = tile.getString(JsonFields.Name.toString());
+                    int tilePosition = tile.getIntValue(JsonFields.Position.toString());
+                    int tileValue = tile.getIntValue(JsonFields.Value.toString());
+                    String groupType = tile.getString(JsonFields.Group.toString());
 
 
                     switch(type) {
                         case Go:
                             Go go = new Go(tileName, tilePosition, tileValue);
+                            int value = tile.getIntValue(JsonFields.Value.toString());
+                            go.setValue(value);
                             this.tiles.add(go);
                             break;
                         case FreeParking:
@@ -113,27 +81,32 @@ public class Board {
                         case Utility:
                             if (this.utilityGroups.containsKey(groupType)) {
                                 Utility utility = new Utility(tileName, tilePosition, this.utilityGroups.get(groupType));
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
+                                utility.setPrice(cost);
                                 this.tiles.add(utility);
                              } else {
                                 UtilityGroup utilityGroup = new UtilityGroup();
                                 Utility utility = new Utility(tileName, tilePosition, utilityGroup);
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
+                                utility.setPrice(cost);
                                 utilityGroup.add(utility);
                                 this.utilityGroups.put(groupType, utilityGroup);
                                 this.tiles.add(utility);
                             }
-
-
-
 
                             break;
                         case Station:
 
                             if (this.stationGroups.containsKey(groupType)) {
                                 Station station = new Station(tileName, tilePosition, this.stationGroups.get(groupType));
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
+                                station.setPrice(cost);
                                 this.tiles.add(station);
                             } else {
                                 StationGroup stationGroup = new StationGroup();
                                 Station station = new Station(tileName, tilePosition, stationGroup);
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
+                                station.setPrice(cost);
                                 stationGroup.add(station);
                                 this.stationGroups.put(groupType, stationGroup);
                                 this.tiles.add(station);
@@ -144,10 +117,38 @@ public class Board {
 
                             if (this.propertyGroups.containsKey(groupType)) {
                                 Property property = new Property(tileName, tilePosition, this.propertyGroups.get(groupType));
+                                JSONArray rents = tile.getJSONArray(JsonFields.Rent.toString());
+
+                                ArrayList<Integer> rent = new ArrayList<>();
+                                for(int i = 0; i < rents.size(); i++){
+                                    rent.add(rents.getIntValue(i));
+                                }
+                                property.setRent(rent);
+                                int houseCost = tile.getIntValue(JsonFields.HouseCost.toString());
+                                property.setCostOfHouse(houseCost);
+
+                                int propertyCost = tile.getIntValue(JsonFields.Cost.toString());
+                                property.setPrice(propertyCost);
+
                                 this.tiles.add(property);
                             } else {
                                 PropertyGroup propertyGroup = new PropertyGroup();
                                 Property property = new Property(tileName, tilePosition, propertyGroup);
+
+
+                                JSONArray rents = tile.getJSONArray(JsonFields.Rent.toString());
+
+                                ArrayList<Integer> rent = new ArrayList<>();
+                                for(int i = 0; i < rents.size(); i++){
+                                    rent.add(rents.getIntValue(i));
+                                }
+                                property.setRent(rent);
+                                int houseCost = tile.getIntValue(JsonFields.HouseCost.toString());
+                                property.setCostOfHouse(houseCost);
+
+                                int propertyCost = tile.getIntValue(JsonFields.Cost.toString());
+                                property.setPrice(propertyCost);
+
                                 propertyGroup.add(property);
                                 this.propertyGroups.put(groupType, propertyGroup);
                                 this.tiles.add(property);
@@ -164,11 +165,13 @@ public class Board {
                             this.tiles.add(goToJail);
                             break;
                         case Tax:
-                            Tax tax = new Tax(tileName, tilePosition, tileValue);
-                            this.tiles.add(tax);
+                            TaxTile taxTile = new TaxTile(tileName, tilePosition, tileValue);
+                            int amount = tile.getIntValue(JsonFields.Value.toString());
+                            taxTile.setAmount(amount);
+                            this.tiles.add(taxTile);
                             break;
                         case Card:
-                            CardType cardType = CardType.valueOf(tile.getString(jsonFields.CardType.toString()));
+                            CardType cardType = CardType.valueOf(tile.getString(JsonFields.CardType.toString()));
                             Card card = new Card(tileName, tilePosition, cardType);
                             this.tiles.add(card);
                             break;
@@ -178,49 +181,6 @@ public class Board {
                     }
 
                 }
-
-
-
-
-/*
-
-                if(tile.containsKey("ownable")){
-                    boolean ownable = tile.getBooleanValue("ownable");
-                    System.out.println(ownable);
-
-                }
-
-                if(tile.containsKey("property_group")){
-                    String group = tile.getString("property_group");
-                    System.out.println(group);
-
-                }
-
-                if(tile.containsKey("action")){
-                    JSONObject actionObject = tile.getJSONObject("action");
-
-                    String action = actionObject.getString("action");
-                    int value =  actionObject.getIntValue("value");
-                }
-
-                if(tile.containsKey("cost")){
-                    int cost = tile.getIntValue("cost");
-                    System.out.println(cost);
-
-                }
-
-                if(tile.containsKey("rent")){
-                    int rent = tile.getIntValue("rent");
-                    System.out.println(rent);
-
-                }
-
-                if(tile.containsKey("houses")){
-                    for(Object price: tile.getJSONArray("houses")){
-                        System.out.println(price);
-                    }
-
-                }*/
             }
 
 
@@ -249,25 +209,26 @@ public class Board {
 
     }
 
-    public int getPlayerOwned(Ownable tile){
+    /**
+     * This method is to see what other tiles in a set are owned. It is given a tile, then it must return the amount of tiles owned by the player that owns the most
+     * This could be 1 if two players own one, 2 if a player owns 2 etc.
+     * @param ownable
+     * @return mostTilesOwned
+     */
+    public int getPlayerOwned(Ownable ownable){
         int mostTilesOwned = 0;
-
-        // This method is to see what other tiles in a set are owned. It is given a tile, then it must return the amount of tiles owned by the player that owns the most
-        // This could be 1 if two players own one, 2 if a player owns 2 etc.
+        for(Tile tile: getTiles()) {
+            if (tile instanceof Ownable) {
+                if(ownable.getOwner() != null){
+                    if (ownable.getOwner().equals(((Ownable) tile).getOwner())) {
+                        mostTilesOwned++;
+                    }
+                }
+            }
+        }
         return mostTilesOwned;
 
     }
-
-
-
-    public int groupSize(Ownable tile){
-        return 1;
-    }
-
-    public boolean isStreetOwned(Ownable tile){
-        return true;
-    }
-
 
     /**
      * getPropertyGroups

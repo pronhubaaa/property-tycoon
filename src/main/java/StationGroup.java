@@ -4,6 +4,12 @@
 public class StationGroup extends Group {
 
     /**
+     * Constructor
+     */
+    public StationGroup(){
+        super();
+    }
+    /**
      * checkOwnedStations
      * @param player A Player
      * @return Amount of stations that player owns

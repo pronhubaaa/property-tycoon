@@ -4,6 +4,12 @@
 public class UtilityGroup extends Group {
 
     /**
+     * Constructor
+     */
+    public UtilityGroup(){
+        super();
+    }
+    /**
      * checkOwnedUtility
      * @param player A player
      * @return The amount of utilities they own

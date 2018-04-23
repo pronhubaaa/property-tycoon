@@ -72,16 +72,3 @@ public class GroupTest {
 
     }
 }
-
-
-//    public ArrayList<Player> getGroupOwners(Ownable ownable){
-//        ArrayList<Player> players = new ArrayList<>();
-//
-//        for(Ownable owned: ownable.getGroup().getGroup()) {
-//            players.add(owned.getOwner());
-//        }
-//
-//        return players;
-//    }
-//
-//}

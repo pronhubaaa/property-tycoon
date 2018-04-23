@@ -61,11 +61,11 @@ public class Player {
 
     public Player(int balance, String name, Board board) {
         this.board = board;
+        this.ownedTiles = new ArrayList<>();
         setBalance(balance);
         setName(name);
         setInJail(false);
-        setBoard(board);
-        ownedTiles = new ArrayList<Ownable>();
+        ownedTiles = new ArrayList<>();
 
     }
 
@@ -130,7 +130,6 @@ public class Player {
      * @return Boolean - true if mortgage successful
      * This method allows a player to mortgage a tile.
      */
-
     public boolean mortgageTile(Tile tile) {
         if(tile instanceof Ownable){
             Ownable ownable = (Ownable) tile;
@@ -157,21 +156,13 @@ public class Player {
         return this.name;
     }
 
-    /**
-     * setBoard
-     * @param board
-     * This method sets the board within a player object.
-     */
-    public void setBoard(Board board) {
-        this.board = board;
-    }
 
     /**
      * getBoard
      * @return board
      * This method gets the board within a player object.
      */
-    public Board getBoard() {
+    protected Board getBoard() {
         return this.board;
     }
 
@@ -267,11 +258,11 @@ public class Player {
     /**
      * addOwnable
      *
-     * @param ownedTiles A tile that a player can possess
+     * @param ownedTile A tile that a player can possess
      *                   Allows a player to own a property, through purchasing auction or otherwise.
      */
-    public void setOwnedTiles(ArrayList<Ownable> ownedTiles) {
-        this.ownedTiles = ownedTiles;
+    public void addOwnable(Ownable ownedTile) {
+        this.ownedTiles.add(ownedTile);
     }
 
     /**
@@ -288,11 +279,18 @@ public class Player {
      * setPiece
      *
      * @param piece A PlayerPiece object from the enumerator
-     *              This assigns a player a specific player piece, this could be a hatstand, cat, etc.
+     * This assigns a player a specific player piece, this could be a hatstand, cat, etc.
      */
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
     }
 
+    /**
+     * removeOwnable
+     * @param ownable
+     */
+    public void removeOwnable(Ownable ownable){
+        this.ownedTiles.remove(ownable);
+    }
 
 }
