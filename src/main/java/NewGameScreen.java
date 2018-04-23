@@ -16,6 +16,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
+
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -36,9 +39,14 @@ public class NewGameScreen extends Scene {
             row2.setPadding(new Insets(20, 0, 0, 30));
             Label player1text = new Label("Player " + playerCountExternal);
             row2.setId("players-text");
-            row2.getChildren().add(player1text);
-
+            BorderPane playerCross = new BorderPane();
+            playerCross.setLeft(player1text);
+            playerCross.setMaxWidth(375);
+            playerCross.setMinWidth(375);
             Button deletePlayer = new Button("X");
+            playerCross.setRight(deletePlayer);
+            row2.getChildren().add(playerCross);
+
             deletePlayer.setAlignment(Pos.CENTER_RIGHT);
             deletePlayer.setId("delete-player");
             row2.getChildren().add(deletePlayer);
@@ -119,6 +127,7 @@ public class NewGameScreen extends Scene {
         if (url == null) {
             System.out.println("Resource not found");
         }
+        StackPane stack = new StackPane();
         String css = url.toExternalForm();
         scene.getStylesheets().add(css);
         BorderPane root = new BorderPane();
@@ -225,14 +234,6 @@ public class NewGameScreen extends Scene {
         addPlayerRow.setAlignment(Pos.CENTER_RIGHT);
         rectLeft.getChildren().add(addPlayerRow);
 
-//        ArrayList<Node> menuSection = new ArrayList<Node>();
-//        menuSection.add(row1);
-//        menuSection.add(row2);
-//        menuSection.add(row3);
-//        menuSection.add(row4);
-//        menuSection.add(row5);
-//        menuSection.add(addPlayerRow);
-
         addPlayer.setOnAction((ActionEvent e) -> {
             rectLeft.getChildren().remove(addPlayerRow);
             addNewPlayer();
@@ -244,8 +245,9 @@ public class NewGameScreen extends Scene {
         board.setPadding(new Insets(20, 0, 0, 0));
         rectRight.getChildren().add(board);
 
-        ObservableList<String> options = FXCollections.observableArrayList("Option 1", "Option 2", "Option 3");
+        ObservableList<String> options = FXCollections.observableArrayList("Standard Board");
         ComboBox dropdown = new ComboBox(options); //will change this list later to check for previous imports?
+        dropdown.setPromptText("Standard Board");
         dropdown.setMinWidth(400);
         dropdown.setMaxWidth(400);
         dropdown.setMinHeight(40);
@@ -254,6 +256,95 @@ public class NewGameScreen extends Scene {
 
         Button importNewBoard = new Button("Import New Board");
         importNewBoard.setId("add-player-button");
+        importNewBoard.setOnAction((ActionEvent e) -> {
+
+           VBox importGameScreen = new VBox();
+           importGameScreen.setMaxWidth(500);
+           importGameScreen.setMinWidth(500);
+           importGameScreen.setMaxHeight(300);
+           importGameScreen.setMinHeight(300);
+           importGameScreen.setId("import-game-screen");
+
+           Label importGameTitle = new Label("Import a board");
+           importGameTitle.setId("players-title");
+           importGameTitle.setPadding(new Insets(30, 0, 0, 0));
+           importGameScreen.getChildren().add(importGameTitle);
+
+           HBox importRow1 = new HBox();
+           Label path = new Label("Path: ");
+           path.setId("time-limit");
+           TextField pathToImport = new TextField();
+           Image folder = new Image("resources/folder.png");
+           ImageView folderView = new ImageView(folder);
+           folderView.setFitHeight(20);
+           folderView.setFitWidth(20);
+           Button search = new Button("", folderView);
+           search.setId("clear-button");
+           importRow1.getChildren().addAll(path, pathToImport, search);
+           importRow1.setAlignment(Pos.CENTER);
+           importRow1.setPadding(new Insets(50, 0, 5, 0));
+
+           HBox importRow2 = new HBox();
+           Label importName = new Label("Name: ");
+           importName.setId("time-limit");
+           TextField importNameInput = new TextField();
+           importRow2.getChildren().addAll(importName, importNameInput);
+           importRow2.setAlignment(Pos.CENTER);
+
+           importGameScreen.getChildren().addAll(importRow1, importRow2);
+
+           HBox importRow3 = new HBox();
+           Button applyImport = new Button("Apply");
+           Button cancelImport = new Button("Cancel");
+           applyImport.setId("add-player-button");
+           cancelImport.setId("add-player-button");
+
+           importRow3.getChildren().addAll(applyImport, cancelImport);
+           importRow3.setAlignment(Pos.CENTER);
+           importRow3.setPadding(new Insets(20, 0 , 0, 0));
+           importRow3.setSpacing(10);
+
+           importGameScreen.getChildren().add(importRow3);
+
+           VBox menuOverlay = new VBox();
+           menuOverlay.setMaxSize(1920, 1080);
+           menuOverlay.setMinSize(1920, 1080);
+           menuOverlay.getChildren().add(importGameScreen);
+           menuOverlay.setAlignment(Pos.CENTER);
+           importGameScreen.setAlignment(Pos.TOP_CENTER);
+           stack.getChildren().add(menuOverlay);
+           menuOverlay.toFront();
+
+           cancelImport.setOnAction((ActionEvent em) -> {
+               stack.getChildren().remove(menuOverlay);
+           });
+
+
+
+           search.setOnAction((ActionEvent im) -> {
+               FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("JSON files (.json)", "*.json");
+               FileChooser fileChooser = new FileChooser();
+               fileChooser.getExtensionFilters().add(extFilter);
+               fileChooser.setTitle("Import board");
+               File file = fileChooser.showOpenDialog(ui.getStage());
+               pathToImport.setText(file.getAbsolutePath());
+           });
+
+           applyImport.setOnAction((ActionEvent emm) -> {
+               File prevSaves = new File("saved-boards.ted");
+               try {
+                   FileWriter fw = new FileWriter(prevSaves);
+                   PrintWriter pw = new PrintWriter(prevSaves);
+                   pw.println(pathToImport.getText());
+                   pw.println(importNameInput.getText());
+                   pw.close();
+                   fw.close();
+               } catch (Exception exc) {
+                   //error
+               }
+               stack.getChildren().remove(menuOverlay);
+           });
+        });
         rectRight.getChildren().add(importNewBoard);
 
         HBox botRow1 = new HBox();
@@ -363,7 +454,7 @@ public class NewGameScreen extends Scene {
         mainGrid.setAlignment(Pos.CENTER);
 
         holder.getChildren().add(mainGrid);
-
-        scene.getChildren().add(root);
+        stack.getChildren().add(root);
+        scene.getChildren().add(stack);
     }
 }

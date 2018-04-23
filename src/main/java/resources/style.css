@@ -141,3 +141,19 @@
     -fx-font-size: 20px;
 }
 
+#delete-player:hover {
+    -fx-cursor: hand;
+}
+
+#import-game-screen {
+    -fx-background-color: '#86bf8e';
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+#clear-button {
+    -fx-background-color: none;
+}
+
+#clear-button:hover {
+    -fx-cursor: hand;
+}
