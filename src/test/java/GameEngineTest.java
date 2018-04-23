@@ -349,7 +349,7 @@ public class GameEngineTest {
                 "\t\t\t\"owned_tiles\": [\n" +
                 "\t\t\t\t\"2\"\n" +
                 "\t\t\t],\n" +
-                "\t\t\t\"piece\":\"2\"\n" +
+                "\t\t\t\"piece\":\"Phone\"\n" +
                 "\t\t},\n" +
                 "\t\t{\n" +
                 "\t\t\t\"in_jail\": \"false\",\n" +
@@ -359,7 +359,7 @@ public class GameEngineTest {
                 "\t\t\t\"owned_tiles\": [\n" +
                 "\t\t\t\t\"4\"\n" +
                 "\t\t\t],\n" +
-                "\t\t\t\"piece\":\"2\"\n" +
+                "\t\t\t\"piece\":\"Candle\"\n" +
                 "\t\t}\n" +
                 "\n" +
                 "\n" +

@@ -11,7 +11,14 @@ public enum JsonFields {
     HouseCost("house"),
     Trade("trade"),
     NumberTurns("number_of_turns"),
-    Player("players");
+    Player("players"),
+    Jail("in_jail"),
+    Balance("balance"),
+    Owned("owned_tiles"),
+    Piece("piece"),
+    CurrentPlayer("current_player"),
+    GameType("game_type"),
+    TimeLeft("time_left");
 
 
     private String value;

@@ -320,7 +320,7 @@
 			"owned_tiles": [
 				"2"
 			],
-			"piece":"2"
+			"piece":"Phone"
 		},
 		{
 			"in_jail": "false",
@@ -330,7 +330,7 @@
 			"owned_tiles": [
 				"4"
 			],
-			"piece":"2"
+			"piece":"Candle"
 		}
 
 
