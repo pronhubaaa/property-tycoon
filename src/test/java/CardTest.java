@@ -22,7 +22,7 @@ public class CardTest {
     public void setUp() throws Exception {
         CardStack initialCardStack = new CardStack(TEST_INITIAL_CARD_TYPE);
         secondCardStack = new CardStack(TEST_SECOND_CARD_TYPE);
-        card = new Card(initialCardStack);
+        card = new Card();
         initialAction = new CardAction(CardActionType.DRAW, card, TEST_INITIAL_CARD_ACTION_DESC);
         secondAction = new CardAction(CardActionType.DRAW, card, TEST_SECOND_CARD_ACTION_DESC);
     }
@@ -52,16 +52,5 @@ public class CardTest {
     public void addAction() {
         card.addAction(secondAction);
         assertEquals(TEST_SECOND_CARD_ACTION_DESC, card.getActions().get(0).toString());
-    }
-
-    @Test
-    public void getCardStack() {
-        assertEquals(TEST_INITIAL_CARD_TYPE, card.getCardStack().getCardType());
-    }
-
-    @Test
-    public void setCardStack() {
-        card.setCardStack(secondCardStack);
-        assertEquals(TEST_SECOND_CARD_TYPE, card.getCardStack().getCardType());
     }
 }

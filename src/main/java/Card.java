@@ -3,11 +3,9 @@ import java.util.ArrayList;
 public class Card {
 
     private ArrayList<CardAction> actions;
-    private CardStack cardStack;
 
-    public Card(CardStack cardStack) {
+    public Card() {
         this.actions = new ArrayList<>();
-        this.cardStack = cardStack;
     }
 
     public ArrayList<CardAction> getActions() {
@@ -22,11 +20,4 @@ public class Card {
         actions.add(action);
     }
 
-    public CardStack getCardStack() {
-        return cardStack;
-    }
-
-    public void setCardStack(CardStack cardStack) {
-        this.cardStack = cardStack;
-    }
 }
