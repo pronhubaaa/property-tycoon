@@ -5,7 +5,6 @@ public class Card {
     private ArrayList<CardAction> actions;
     private CardStack cardStack;
 
-
     public Card(CardStack cardStack) {
         this.actions = new ArrayList<>();
         this.cardStack = cardStack;

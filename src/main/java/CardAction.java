@@ -235,4 +235,9 @@ public class CardAction {
         }
         return (amountOfHouses * amountPerHouse) + (amountOfHotels + amountPerHotel);
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }
