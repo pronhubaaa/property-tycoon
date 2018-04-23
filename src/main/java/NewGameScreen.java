@@ -39,11 +39,12 @@ public class NewGameScreen extends Scene {
             Button deletePlayer = new Button("X");
             deletePlayer.setAlignment(Pos.CENTER_RIGHT);
             deletePlayer.setId("delete-player");
+            int boundary = playerCount;
             deletePlayer.setOnAction((ActionEvent e) -> {
                 if (playerCount == 1) {
                     // do nothing
                 } else {
-                    rectLeft.getChildren().remove(rectLeft.getChildren().size() - 5, rectLeft.getChildren().size() - 1);
+                    rectLeft.getChildren().remove(4 * (boundary - 1), 4*boundary); 
                     playerCount--;
                 }
             });
