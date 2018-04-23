@@ -21,7 +21,7 @@ public class DiceTest {
     @Test
     public void roll() {
         assertEquals(2, dice.roll().length);
-        assertTrue(dice.roll() != null);
+        assertNotNull(dice.roll());
     }
 
     @Test

@@ -1,5 +1,5 @@
-/**
- * This class is used to create an artificial player.
+/*
+  This class is used to create an artificial player.
  */
 
 import java.util.ArrayList;
@@ -25,14 +25,8 @@ public class AI extends Player {
         if(tile instanceof Ownable){
             Ownable ownable = (Ownable) tile;
             if (!ownable.isOwned()) {
-                //If a player owns more than 1 in the set
-                if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice()) {
-                    ownable.setOwner(this);
-                    setBalance(getBalance() - ownable.getPrice());
-                    return true;
-                }
-                //If a player owns 1 of two tiles
-                else if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice() && this.getBoard().groupSize(ownable) == 2) {
+                // If a player owns 1 of two tiles
+                if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice() && ownable.getGroup().getGroupOwners().size() == 2) {
                     ownable.setOwner(this);
                     setBalance(getBalance() - ownable.getPrice());
                     return true;
@@ -66,11 +60,11 @@ public class AI extends Player {
     }
 
     public ArrayList<Boolean> buyHouses(){
-        ArrayList<Boolean> purchases = new ArrayList<Boolean>();
+        ArrayList<Boolean> purchases = new ArrayList<>();
         //Get array list of all streets that are owned
         if(this.getOwnedTiles().isEmpty()) {
             ArrayList<Ownable> temp = streetOwned(this.getOwnedTiles());
-            ArrayList<Property> ownedStreets = new ArrayList<Property>();
+            ArrayList<Property> ownedStreets = new ArrayList<>();
             for (Ownable current : temp) {
                 if (current instanceof Property) {
                     ownedStreets.add((Property) current);
@@ -116,19 +110,13 @@ public class AI extends Player {
 
 
             if (streetOwned(currentTiles).size() > streetOwned(this.getOwnedTiles()).size()) {
-                /**
-                 * Street gained
-                 */
+                // Street gained
                 score = score +10;
             } else if(Collections.frequency(owners, this) > 0){
                 score = score +5;
-                /**
-                 * Extra part of set gained
-                 */
+                 // Extra part of set gained
             } else {
-                /**
-                 * Nothing gained
-                 */
+                // Nothing gained
             }
         }
 
@@ -169,24 +157,10 @@ public class AI extends Player {
         if (buyable instanceof Ownable) {
             Ownable current = (Ownable) buyable;
 
-            //If a player owns more than 1 in the set
-            if (this.getBoard().getPlayerOwned(current) > 0) {
-                if(this.getBalance() > current.getPrice()*3){
-                    return current.getPrice()*2;
-                } else if(this.getBalance() > current.getPrice()*2){
-                    double random = Math.random();
-                    if (random > 0.2) {
-                        return (int) Math.round(current.getPrice() * 1.5);
-                    }
-                }   else if(this.getBalance() > current.getPrice()){
-                    double random = Math.random();
-                    if (random > 0.3) {
-                        return current.getPrice() + 10;
-                    }
-                }
-            }
+
+
             //If a player owns 1 of two tiles or If another player owns a tile in the same group
-            else if (this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice() && this.getBoard().groupSize(current) == 2 || this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice()) {
+            if (this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice() && current.getGroup().getGroupOwners().size() == 2 || this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice()) {
                 if(this.getBalance() > current.getPrice()*3){
                     double random = Math.random();
                     if (random > 0.3) {
@@ -200,6 +174,22 @@ public class AI extends Player {
                 }   else if(this.getBalance() > current.getPrice()){
                     double random = Math.random();
                     if (random > 0.5) {
+                        return current.getPrice() + 10;
+                    }
+                }
+            }
+            //If a player owns more than 1 in the set
+            else if (this.getBoard().getPlayerOwned(current) > 0) {
+                if(this.getBalance() > current.getPrice()*3){
+                    return current.getPrice()*2;
+                } else if(this.getBalance() > current.getPrice()*2){
+                    double random = Math.random();
+                    if (random > 0.2) {
+                        return (int) Math.round(current.getPrice() * 1.5);
+                    }
+                }   else if(this.getBalance() > current.getPrice()){
+                    double random = Math.random();
+                    if (random > 0.3) {
                         return current.getPrice() + 10;
                     }
                 }
@@ -234,12 +224,10 @@ public class AI extends Player {
             return true;
         }
         ArrayList<Ownable> myTiles = this.getOwnedTiles();
-        ArrayList<Ownable> streetTiles = new ArrayList<Ownable>();
-        Collections.sort( myTiles, new Comparator<Ownable>() {
-            public int compare (Ownable o1, Ownable o2) {
-                int comp = o1.getPrice() - o2.getPrice();
-                return comp;
-            }
+        ArrayList<Ownable> streetTiles = new ArrayList<>();
+        myTiles.sort((o1, o2) -> {
+            int comp = o1.getPrice() - o2.getPrice();
+            return comp;
         });
         for(Ownable tile: myTiles){
 
@@ -302,7 +290,7 @@ public class AI extends Player {
 
             //Get array list of all streets that are owned
             ArrayList<Ownable> ownedTiles = inputTiles;
-            ArrayList<Ownable> ownedStreets = new ArrayList<Ownable>();
+            ArrayList<Ownable> ownedStreets = new ArrayList<>();
             if(!ownedTiles.isEmpty()) {
                 for (Ownable current : ownedTiles) {
                     Group temp = current.getGroup();
@@ -326,7 +314,7 @@ public class AI extends Player {
 
 
 
-/**
+/*
 
  Turn:
 
@@ -361,6 +349,6 @@ public class AI extends Player {
  DONE sell houses on cheapest street
  DONE sell property from this group to raise funds
 
- **/
+ */
 
 

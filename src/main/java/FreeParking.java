@@ -1,40 +1,14 @@
-public class FreeParking extends Tile {
+public class FreeParking extends IncomeTile {
 
-    /**
-     * freeMoney: Int
-     * The amount of money on the free parking tile.
-     */
-    private int freeMoney;
+    private final static int FREE_PARKING_RESET_VALUE = 0;
 
     public FreeParking(String name, int position) {
-        super(name, position);
-        this.freeMoney = 0;
+        super(name, position, FREE_PARKING_RESET_VALUE);
     }
 
-    /**
-     * getFreeMoney(): Int
-     *
-     * @return Amount of money on the free parking tile
-     */
-    public int getFreeMoney() {
-        return freeMoney;
-    }
-
-    /**
-     * addFreeMoney(Int): Void
-     * Adds a given amount to the free parking tile.
-     *
-     * @param freeMoney Amount to add to free pakring tile
-     */
-    public void addFreeMoney(int freeMoney) {
-        this.freeMoney += freeMoney;
-    }
-
-    /**
-     * collect(): Void
-     * Allows a player to collect the money on the tile for landing on it.
-     */
-    public void collect() {
-        // TODO
+    @Override
+    public void collect(Player player) {
+        player.addBalance(getValue());
+        setValue(FREE_PARKING_RESET_VALUE);
     }
 }
