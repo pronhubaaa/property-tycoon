@@ -1,6 +1,7 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,6 +23,7 @@ public class NewGameScreen extends Scene {
 
     private static VBox rectLeft = new VBox();
     private static int playerCount = 0;
+    private static boolean fullGameType = true;
 
     public static void addNewPlayer() {
         playerCount++;
@@ -272,7 +275,7 @@ public class NewGameScreen extends Scene {
         abridgedGameTitle.setPadding(new Insets(20, 0, 0, 20));
         abridgedGame.getChildren().add(abridgedGameTitle);
 
-        fullGame.setId("game-type");
+        fullGame.setId("game-type-selected");
         abridgedGame.setId("game-type");
         rectRightBot.getChildren().add(fullGame);
         rectRightBot.getChildren().add(abridgedGame);
@@ -299,6 +302,32 @@ public class NewGameScreen extends Scene {
         timeLimit.setMaxWidth(100);
         Label timeLimitMins = new Label("mins");
         timeLimitMins.setId("game-type-text");
+
+        fullGame.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (fullGameType) {
+                    //do nothing
+                } else {
+                    fullGameType = true;
+                    fullGame.setId("game-type-selected");
+                    abridgedGame.setId("game-type");
+                }
+            }
+        });
+
+        abridgedGame.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (fullGameType) {
+                    abridgedGame.setId("game-type-selected");
+                    fullGame.setId("game-type");
+                    fullGameType = !fullGameType;
+                } else {
+                    //do nothing
+                }
+            }
+        });
 
         timeLimitRow.getChildren().addAll(timeLimitText, timeLimit, timeLimitMins);
         timeLimitRow.setPadding(new Insets(20, 0, 0, 20));

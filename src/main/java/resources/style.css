@@ -131,3 +131,7 @@
     -fx-font-size: 20px;
 }
 
+#game-type-selected {
+    -fx-background-color: '#86bf8e';
+}
+
