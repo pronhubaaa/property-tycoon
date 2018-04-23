@@ -1,7 +1,7 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -205,6 +205,34 @@ public class GameEngine {
      */
     public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type) throws BoardTileException {
         this(jsonObject, players, type, -1);
+    }
+
+    /**
+     * saveGame
+     * Saves the whole game to a json file
+     */
+    public void saveGame(){
+        JSONObject json = new JSONObject();
+        json.put(JsonFields.GameType.toString(), this.gameType.name());
+        json.put(JsonFields.CurrentPlayer.toString(), String.valueOf(this.players.indexOf(this.currentPlayer)));
+        json.put(JsonFields.NumberTurns.toString(), String.valueOf(this.numberOfTurns));
+        json.put(JsonFields.Trade.toString(), String.valueOf(this.trading));
+        json.put(JsonFields.TimeLeft.toString(), String.valueOf(this.timeLeft));
+
+
+
+
+        try {
+            PrintWriter out = new PrintWriter("filename.json");
+            out.println(json.toString());
+            out.close();
+        } catch(Exception e){
+
+        }
+
+
+
+
     }
 
     /**
