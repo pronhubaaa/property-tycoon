@@ -168,7 +168,7 @@ public class CardAction {
                 if (destination < 0) {
                     destination = tiles.size() - destination - 1;
                 }
-                if (value == 0) {
+                if (value <= 0) {
                     throw new MalformedCardActionException("The speed value of a player during a Move action cannot be zero");
                 }
                 if (collectSalaryAtGo) {
@@ -179,9 +179,7 @@ public class CardAction {
                             ((Go) tile).collect(player);
                         }
                         destination += value;
-                        if (destination < 0) {
-                            destination = tiles.size() - 1;
-                        } else if (destination == tiles.size()) {
+                        if (destination == tiles.size()) {
                             destination = 0;
                         }
                     }
