@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
@@ -10,6 +11,7 @@ public class AITest {
 
     private AI ai;
     private Board board;
+
     @Before
     public void setUp() throws Exception {
         JSONObject board = (JSONObject) JSONObject.parse("{\n" +
@@ -337,43 +339,39 @@ public class AITest {
     }
 
 
-
-
-
-
     @Test
-    public void buyTile(){
+    public void buyTile() {
 
-    Tile tile = new Go("", 0, 300);
-    assertFalse(this.ai.buyTile(tile));
-    assertEquals(this.ai.getBalance(), 10);
-    Group group = new Group();
+        Tile tile = new Go("", 0, 300);
+        assertFalse(this.ai.buyTile(tile));
+        assertEquals(this.ai.getBalance(), 10);
+        Group group = new Group();
 
-    tile = new Property("", 0, group);
-    ((Property) tile).setPrice(100);
-    assertFalse(this.ai.buyTile(tile));
-    assertEquals(this.ai.getBalance(), 10);
+        tile = new Property("", 0, group);
+        ((Property) tile).setPrice(100);
+        assertFalse(this.ai.buyTile(tile));
+        assertEquals(this.ai.getBalance(), 10);
 
-    this.ai.setBalance(300);
-    assertEquals(this.ai.getBalance(), 300);
-
-
-    assertTrue(this.ai.buyTile(tile));
-    assertTrue(((Property) tile).isOwned());
+        this.ai.setBalance(300);
+        assertEquals(this.ai.getBalance(), 300);
 
 
-    assertEquals(this.ai, ((Property) tile).getOwner());
-    assertEquals(this.ai.getBalance(), 200);
+        assertTrue(this.ai.buyTile(tile));
+        assertTrue(((Property) tile).isOwned());
 
-    assertFalse(this.ai.buyTile(tile));
-    assertEquals(this.ai.getBalance(), 200);
+
+        assertEquals(this.ai, ((Property) tile).getOwner());
+        assertEquals(this.ai.getBalance(), 200);
+
+        assertFalse(this.ai.buyTile(tile));
+        assertEquals(this.ai.getBalance(), 200);
     }
 
     @Test
     public void buyHouses() {
 
-        for (Boolean result : ai.buyHouses()){
-        assertFalse(result);
+        for (Boolean result : ai.buyHouses()) {
+            assertFalse(result);
         }
         assertEquals(this.ai.getBalance(), 10);
 
@@ -388,14 +386,14 @@ public class AITest {
         this.ai.buyTile(gangstersParadise);
         assertEquals(this.ai.getBalance(), 2880);
 
-        for (Boolean result : ai.buyHouses()){
+        for (Boolean result : ai.buyHouses()) {
             assertFalse(result);
         }
 
     }
 
     @Test
-    public void trader(){
+    public void trader() {
 
         ArrayList<Ownable> opponentTiles = new ArrayList<>();
         ArrayList<Ownable> myTiles = new ArrayList<>();
@@ -407,7 +405,7 @@ public class AITest {
     }
 
     @Test
-    public void bid(){
+    public void bid() {
         Group group = new Group();
         this.ai.setBalance(30000);
         Tile crapperStreet = new Property("crapperStreet", 2, group);
@@ -423,7 +421,7 @@ public class AITest {
     }
 
     @Test
-    public void payBill(){
+    public void payBill() {
         this.ai.setBalance(3000);
         assertTrue(this.ai.payBill(3000));
 
@@ -440,10 +438,7 @@ public class AITest {
         assertEquals(this.ai.getBalance(), 2800);
 
 
-
-
     }
-
 
 
 }

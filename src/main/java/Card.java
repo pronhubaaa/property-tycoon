@@ -1,4 +1,4 @@
-public class Card extends Tile{
+public class Card extends Tile {
 
     /**
      * cardType: CardType
@@ -8,6 +8,7 @@ public class Card extends Tile{
 
     /**
      * Card
+     *
      * @param tileName
      * @param tilePosition
      * @param cardType

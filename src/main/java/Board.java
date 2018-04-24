@@ -35,12 +35,10 @@ public class Board {
     private HashMap<String, UtilityGroup> utilityGroups;
 
 
-
-
     /**
      * Board
-     * @param jsonObject
-     * The JSON data will come from the GameEngine, this includes all tiles, property groups, station groups, utility groups and cards. This constructor initialises the board.
+     *
+     * @param jsonObject The JSON data will come from the GameEngine, this includes all tiles, property groups, station groups, utility groups and cards. This constructor initialises the board.
      */
     public Board(JSONObject jsonObject) throws BoardTileException {
         this.propertyGroups = new HashMap<>();
@@ -49,17 +47,17 @@ public class Board {
         this.tiles = new ArrayList<>();
 
 
-        if(jsonObject.containsKey(JsonFields.Tile.toString())){
+        if (jsonObject.containsKey(JsonFields.Tile.toString())) {
 
             JSONArray tiles = jsonObject.getJSONArray(JsonFields.Tile.toString());
 
-            for(Object object: tiles){
-                if(this.tiles.size() > 40){
+            for (Object object : tiles) {
+                if (this.tiles.size() > 40) {
                     throw new BoardTileException("More than 40 tiles");
                 }
                 JSONObject tile = (JSONObject) object;
 
-                if(tile.containsKey(JsonFields.Type.toString())){
+                if (tile.containsKey(JsonFields.Type.toString())) {
                     TileType type = TileType.valueOf(tile.getString(JsonFields.Type.toString()));
                     String tileName = tile.getString(JsonFields.Name.toString());
                     int tilePosition = tile.getIntValue(JsonFields.Position.toString());
@@ -67,7 +65,7 @@ public class Board {
                     String groupType = tile.getString(JsonFields.Group.toString());
 
 
-                    switch(type) {
+                    switch (type) {
                         case Go:
                             Go go = new Go(tileName, tilePosition, tileValue);
                             int value = tile.getIntValue(JsonFields.Value.toString());
@@ -84,7 +82,7 @@ public class Board {
                                 int cost = tile.getIntValue(JsonFields.Cost.toString());
                                 utility.setPrice(cost);
                                 this.tiles.add(utility);
-                             } else {
+                            } else {
                                 UtilityGroup utilityGroup = new UtilityGroup();
                                 Utility utility = new Utility(tileName, tilePosition, utilityGroup);
                                 int cost = tile.getIntValue(JsonFields.Cost.toString());
@@ -120,7 +118,7 @@ public class Board {
                                 JSONArray rents = tile.getJSONArray(JsonFields.Rent.toString());
 
                                 ArrayList<Integer> rent = new ArrayList<>();
-                                for(int i = 0; i < rents.size(); i++){
+                                for (int i = 0; i < rents.size(); i++) {
                                     rent.add(rents.getIntValue(i));
                                 }
                                 property.setRent(rent);
@@ -139,7 +137,7 @@ public class Board {
                                 JSONArray rents = tile.getJSONArray(JsonFields.Rent.toString());
 
                                 ArrayList<Integer> rent = new ArrayList<>();
-                                for(int i = 0; i < rents.size(); i++){
+                                for (int i = 0; i < rents.size(); i++) {
                                     rent.add(rents.getIntValue(i));
                                 }
                                 property.setRent(rent);
@@ -191,20 +189,22 @@ public class Board {
 
     /**
      * getTiles
+     *
      * @return An array of tiles
      * This method will get all tiles on the board.
      */
-    public ArrayList<Tile> getTiles(){
+    public ArrayList<Tile> getTiles() {
         return this.tiles;
     }
 
 
     /**
      * addTile
+     *
      * @param tile The tile being added to the board
-     * This allows the game board to be initialised, tiles can be added in this way.
+     *             This allows the game board to be initialised, tiles can be added in this way.
      */
-    public void addTile(Tile tile){
+    public void addTile(Tile tile) {
         this.tiles.add(tile);
 
     }
@@ -212,14 +212,15 @@ public class Board {
     /**
      * This method is to see what other tiles in a set are owned. It is given a tile, then it must return the amount of tiles owned by the player that owns the most
      * This could be 1 if two players own one, 2 if a player owns 2 etc.
+     *
      * @param ownable
      * @return mostTilesOwned
      */
-    public int getPlayerOwned(Ownable ownable){
+    public int getPlayerOwned(Ownable ownable) {
         int mostTilesOwned = 0;
-        for(Tile tile: getTiles()) {
+        for (Tile tile : getTiles()) {
             if (tile instanceof Ownable) {
-                if(ownable.getOwner() != null){
+                if (ownable.getOwner() != null) {
                     if (ownable.getOwner().equals(((Ownable) tile).getOwner())) {
                         mostTilesOwned++;
                     }
@@ -232,6 +233,7 @@ public class Board {
 
     /**
      * getPropertyGroups
+     *
      * @return propertyGroups
      */
     public HashMap<String, PropertyGroup> getPropertyGroups() {
@@ -240,6 +242,7 @@ public class Board {
 
     /**
      * setPropertyGroups
+     *
      * @param propertyGroups
      */
     public void setPropertyGroups(HashMap<String, PropertyGroup> propertyGroups) {
@@ -248,6 +251,7 @@ public class Board {
 
     /**
      * getStationGroups
+     *
      * @return stationGroups
      */
     public HashMap<String, StationGroup> getStationGroups() {
@@ -257,6 +261,7 @@ public class Board {
 
     /**
      * setStationGroups
+     *
      * @param stationGroups
      */
     public void setStationGroups(HashMap<String, StationGroup> stationGroups) {
@@ -265,6 +270,7 @@ public class Board {
 
     /**
      * getUtilityGroups
+     *
      * @return utilityGroups
      */
     public HashMap<String, UtilityGroup> getUtilityGroups() {
@@ -273,6 +279,7 @@ public class Board {
 
     /**
      * setUtilityGroups
+     *
      * @param utilityGroups
      */
     public void setUtilityGroups(HashMap<String, UtilityGroup> utilityGroups) {

@@ -20,10 +20,11 @@ public class Trade {
 
     /**
      * Constructor
+     *
      * @param player1
      * @param player2
      */
-    public Trade(Player player1, Player player2){
+    public Trade(Player player1, Player player2) {
         this.players = new HashMap<>();
         this.player1 = player1;
         this.player2 = player2;
@@ -34,6 +35,7 @@ public class Trade {
 
     /**
      * addOwnable
+     *
      * @param player
      * @param ownable
      */
@@ -41,19 +43,20 @@ public class Trade {
         this.players.get(player).add(ownable);
     }
 
-    public ArrayList<Ownable> getOwnable(Player player){
+    public ArrayList<Ownable> getOwnable(Player player) {
 
         return this.players.get(player);
     }
 
     /**
      * acceptTrade
+     *
      * @param boolean1
      * @param boolean2
      * @return boolean
      */
-    public boolean acceptTrade(boolean boolean1, boolean boolean2){
-        if(boolean1 && boolean2){
+    public boolean acceptTrade(boolean boolean1, boolean boolean2) {
+        if (boolean1 && boolean2) {
             this.tradeOwnable();
             return true;
         }
@@ -63,17 +66,16 @@ public class Trade {
     /**
      * tradeOwnable
      */
-    private void tradeOwnable(){
-        for(Ownable ownable: this.players.get(player1)){
+    private void tradeOwnable() {
+        for (Ownable ownable : this.players.get(player1)) {
             ownable.setOwner(player2);
             player1.removeOwnable(ownable);
         }
 
-        for(Ownable ownable: this.players.get(player2)){
+        for (Ownable ownable : this.players.get(player2)) {
             ownable.setOwner(player1);
             player2.removeOwnable(ownable);
         }
-
 
 
     }

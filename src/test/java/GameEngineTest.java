@@ -26,7 +26,7 @@ public class GameEngineTest {
 
 
     @Test
-    public void constructSavedGame() throws Exception{
+    public void constructSavedGame() throws Exception {
 
         URL url = getClass().getResource("./resources/savedGame.json");
         File file = new File(url.getPath());
@@ -41,7 +41,7 @@ public class GameEngineTest {
             GameEngine gameEngineSaved = new GameEngine(json);
             assertEquals(0, gameEngineSaved.getTime());
             assertFalse(gameEngineSaved.getTrading());
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             fail();
         }
@@ -66,7 +66,7 @@ public class GameEngineTest {
             GameEngine gameEngineFull = new GameEngine(json, players, type);
 
             assertEquals(players.get(0), gameEngineFull.getCurrentPlayer());
-        } catch(Exception e){
+        } catch (Exception e) {
             fail();
         }
 
@@ -104,7 +104,7 @@ public class GameEngineTest {
             assertEquals(players.get(1), gameEngineFull.getCurrentPlayer());
             assertNotNull(gameEngineFull.nextTurn());
             assertEquals(players.get(2), gameEngineFull.getCurrentPlayer());
-        } catch(Exception e) {
+        } catch (Exception e) {
             fail();
         }
 
@@ -137,7 +137,7 @@ public class GameEngineTest {
             assertNotNull(gameEngineFull.nextTurn());
             assertEquals(4, gameEngineFull.getNumberOfTurns());
             assertNotNull(gameEngineFull.nextTurn());
-        } catch(Exception e){
+        } catch (Exception e) {
             fail();
         }
 
@@ -161,7 +161,7 @@ public class GameEngineTest {
         try {
             GameEngine gameEngineFull = new GameEngine(json, players, type);
             assertEquals(-1, gameEngineFull.getTime());
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
 
@@ -170,7 +170,7 @@ public class GameEngineTest {
         try {
             GameEngine gameEngineAbridgedGame = new GameEngine(json, players, type, 105);
             assertEquals(105, gameEngineAbridgedGame.getTime());
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
 
@@ -201,7 +201,7 @@ public class GameEngineTest {
         try {
             GameEngine gameEngineFull = new GameEngine(json, players, type);
             gameEngineFull.saveGame();
-        } catch (Exception e){
+        } catch (Exception e) {
             fail();
         }
 

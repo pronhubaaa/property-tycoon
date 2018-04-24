@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 
 /**
@@ -55,8 +53,8 @@ public class Player {
      * Player
      *
      * @param balance Int for the player balance
-     * @param name String for the players name
-     * This is the initialiser for the object, it initialises the name and balance.
+     * @param name    String for the players name
+     *                This is the initialiser for the object, it initialises the name and balance.
      */
 
     public Player(int balance, String name, Board board) {
@@ -78,10 +76,10 @@ public class Player {
      * This allows a player to purchase a tile on the board.
      */
     public boolean buyTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
-            if(!ownable.isOwned()){
-                if(this.balance >= ownable.getPrice()){
+            if (!ownable.isOwned()) {
+                if (this.balance >= ownable.getPrice()) {
                     ownable.setOwner(this);
                     ownedTiles.add(ownable);
                     setBalance(getBalance() - ownable.getPrice());
@@ -101,9 +99,9 @@ public class Player {
      * This allows a player to sell a tile on the board.
      */
     public boolean sellTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
-            if(ownable.isOwned() && ownable.getOwner().equals(this)){
+            if (ownable.isOwned() && ownable.getOwner().equals(this)) {
                 ownable.setOwner(null);
                 this.addBalance(ownable.getSellPrice());
             }
@@ -118,7 +116,7 @@ public class Player {
      * This method returns if a player has no funds and is thus out of the game.
      */
 
-    public boolean isBankrupt(){
+    public boolean isBankrupt() {
         return this.balance <= 0;
 
     }
@@ -131,10 +129,10 @@ public class Player {
      * This method allows a player to mortgage a tile.
      */
     public boolean mortgageTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
-            if(ownable instanceof Property){
-                if(((Property) ownable).getAmountOfHouses() > 0){
+            if (ownable instanceof Property) {
+                if (((Property) ownable).getAmountOfHouses() > 0) {
                     return false;
                 }
             }
@@ -159,6 +157,7 @@ public class Player {
 
     /**
      * getBoard
+     *
      * @return board
      * This method gets the board within a player object.
      */
@@ -253,13 +252,15 @@ public class Player {
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
-    public ArrayList<Ownable> getOwnedTiles() {return this.ownedTiles; }
+    public ArrayList<Ownable> getOwnedTiles() {
+        return this.ownedTiles;
+    }
 
     /**
      * addOwnable
      *
      * @param ownedTile A tile that a player can possess
-     *                   Allows a player to own a property, through purchasing auction or otherwise.
+     *                  Allows a player to own a property, through purchasing auction or otherwise.
      */
     public void addOwnable(Ownable ownedTile) {
         this.ownedTiles.add(ownedTile);
@@ -279,7 +280,7 @@ public class Player {
      * setPiece
      *
      * @param piece A PlayerPiece object from the enumerator
-     * This assigns a player a specific player piece, this could be a hatstand, cat, etc.
+     *              This assigns a player a specific player piece, this could be a hatstand, cat, etc.
      */
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
@@ -287,9 +288,10 @@ public class Player {
 
     /**
      * removeOwnable
+     *
      * @param ownable
      */
-    public void removeOwnable(Ownable ownable){
+    public void removeOwnable(Ownable ownable) {
         this.ownedTiles.remove(ownable);
     }
 
