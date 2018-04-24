@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * The player class is responsible for storing a players assets and storing methods for how players can perform actions
  */
-public class Player {
+public class Player implements Payable {
 
     /**
      * inJail: Boolean
@@ -42,6 +42,11 @@ public class Player {
      */
     private PlayerPiece piece;
 
+    /**
+     * cards: [Card]
+     * The cards the player currently holds.
+     */
+    private ArrayList<Card> cards;
 
     /**
      * board: Board
@@ -64,7 +69,7 @@ public class Player {
         setName(name);
         setInJail(false);
         ownedTiles = new ArrayList<>();
-
+        this.cards = new ArrayList<>();
     }
 
 
@@ -295,4 +300,15 @@ public class Player {
         this.ownedTiles.remove(ownable);
     }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
 }

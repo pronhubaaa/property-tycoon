@@ -1,28 +1,23 @@
-public class Card extends Tile {
+import java.util.ArrayList;
 
-    /**
-     * cardType: CardType
-     * The type of card tile e.g. Plot Luck
-     */
-    private CardType cardType;
+public class Card {
 
-    /**
-     * Card
-     *
-     * @param tileName
-     * @param tilePosition
-     * @param cardType
-     */
-    public Card(String tileName, int tilePosition, CardType cardType) {
-        super(tileName, tilePosition);
-        this.cardType = cardType;
+    private ArrayList<CardAction> actions;
+
+    public Card() {
+        this.actions = new ArrayList<>();
     }
 
-    public CardType getCardType() {
-        return cardType;
+    public ArrayList<CardAction> getActions() {
+        return actions;
     }
 
-    public void setCardType(CardType cardType) {
-        this.cardType = cardType;
+    public void setActions(ArrayList<CardAction> actions) {
+        this.actions = actions;
     }
+
+    public void addAction(CardAction action) {
+        actions.add(action);
+    }
+
 }

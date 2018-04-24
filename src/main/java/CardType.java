@@ -1,5 +1,5 @@
 public enum CardType {
-    PlotLuck("Plot Luck"),
+    PotLuck("Pot Luck"),
     OpportunityKnocks("Opportunity Knocks");
 
     private String value;
