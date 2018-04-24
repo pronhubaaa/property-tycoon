@@ -479,7 +479,29 @@ public class NewGameScreen extends Scene {
         abridgedGame.getChildren().add(timeLimitRow);
 
         startGame.setOnAction((ActionEvent e) -> {
-            System.out.println("HI");
+            //check players
+            ArrayList<Player> playersList = new ArrayList<Player>();
+            for (Node n : rectLeft.getChildren()) {
+                HBox h = (HBox) n;
+                String playerName = "";
+                boolean human = true;
+                for (Node m : h.getChildren()) {
+                    if (m instanceof TextField) {
+                        playerName = ((TextField) m).getText();
+                    }
+                    if (m instanceof Slider) {
+                        if (((Slider) m).getValue() > 0.5) {
+                            human = false;
+                        } else {
+                            human = true;
+                        }
+                    }
+                    if (m instanceof ScrollPane) {
+                        System.out.println("PIECE SELECTION");
+                    }
+                }
+            }
+
             String n = dropdown.getValue().toString();
             ArrayList<String> boards = new ArrayList<String>();
             try {
@@ -511,8 +533,6 @@ public class NewGameScreen extends Scene {
 
             }
             json = (JSONObject) JSONObject.parse(myJson);
-            System.out.println(json);
-
             makeGame(gameEngine, json);
         });
 
@@ -535,9 +555,9 @@ public class NewGameScreen extends Scene {
     public void makeGame(GameEngine gameEngine, JSONObject json) { //do this so we are not initialising gameengine in lambda function
         try {
             gameEngine = new GameEngine(json);
+            //gameEngine.addPlayer();
         } catch (Exception e){
             //nothing
         }
-        return null;
     }
 }
