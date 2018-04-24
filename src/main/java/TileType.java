@@ -10,7 +10,7 @@ public enum TileType {
     Jail,
     GoToJail,
     Tax,
-    Card;
+    Card
 
 
 }

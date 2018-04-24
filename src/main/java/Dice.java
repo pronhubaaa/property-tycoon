@@ -13,15 +13,16 @@ public class Dice {
 
     /**
      * roll
+     *
      * @return An array of integers
      * This method returns the two values between 1 and 6 shown on the two dice. The function will also add to doubleCount where appropriate.
      */
-    public int[] roll(){
+    public int[] roll() {
         Random rand = new Random();
         int[] values = new int[2];
         values[0] = rand.nextInt(6) + 1;
         values[1] = rand.nextInt(6) + 1;
-        if (values[0] == values[1]){
+        if (values[0] == values[1]) {
             this.doubleCount++;
         }
         return values;
@@ -30,6 +31,7 @@ public class Dice {
 
     /**
      * getDoubleCount
+     *
      * @return Number of times a double has rolled
      * This method returns the number of times a double has been rolled.
      */

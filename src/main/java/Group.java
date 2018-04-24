@@ -60,12 +60,13 @@ public class Group {
 
     /**
      * getGroupOwners
+     *
      * @return players
      */
-    public ArrayList<Player> getGroupOwners(){
+    public ArrayList<Player> getGroupOwners() {
         ArrayList<Player> players = new ArrayList<>();
 
-        for(Ownable tile: this.getGroup()){
+        for (Ownable tile : this.getGroup()) {
             Player player = tile.getOwner();
             players.add(player);
         }
@@ -75,6 +76,7 @@ public class Group {
 
     /**
      * getColour
+     *
      * @return String containing the colour code
      * Gets the colour for this street.
      */
@@ -84,13 +86,13 @@ public class Group {
 
     /**
      * setColour
+     *
      * @param colour The colour for this street
-     * Sets the colour of this group
+     *               Sets the colour of this group
      */
     public void setColour(Colour colour) {
         this.colour = colour;
     }
-
 
 
 }

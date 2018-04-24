@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class GroupTest {
 
@@ -41,7 +41,6 @@ public class GroupTest {
     public void getGroupOwners() {
 
 
-
         Player player1 = new Player(50, "Liam", null);
         Player player2 = new Player(50, "Pete", null);
 
@@ -66,8 +65,6 @@ public class GroupTest {
 
 
         assertEquals(players, group.getGroupOwners());
-
-
 
 
     }

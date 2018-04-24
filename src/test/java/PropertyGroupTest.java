@@ -24,9 +24,6 @@ public class PropertyGroupTest {
         Player player1 = new Player(0, "", null);
 
 
-
-
-
         Property property1 = new Property("", 0, null);
         property1.setOwner(player1);
         group.add(property1);
