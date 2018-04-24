@@ -71,7 +71,7 @@ public class Player implements Payable {
         setName(name);
         setInJail(false);
         ownedTiles = new ArrayList<>();
-
+        this.cards = new ArrayList<>();
     }
 
 

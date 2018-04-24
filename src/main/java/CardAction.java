@@ -130,6 +130,14 @@ public class CardAction {
         this.card = card;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public void performAction(Player player) throws MalformedCardActionException {
         switch(cardActionType) {
             case DRAW:
