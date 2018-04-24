@@ -246,6 +246,16 @@ public class GameEngine {
     }
 
     /**
+     * getBoard
+     * @return Board The game boad.
+     *
+     * This method returns a pointer to the game board.
+     */
+    public Board getBoard(){
+        return this.gameBoard;
+    }
+
+    /**
      * getCurrentPlayer
      * @return Player Player whose goes it is.
      *
