@@ -45,13 +45,11 @@ public class PropertyGroupTest {
 
     @Test
     public void getColour() {
-        assertTrue(this.group.getColour() instanceof Colour);
         assertEquals(Colour.White, this.group.getColour());
     }
 
     @Test
     public void setColour() {
-        assertTrue(this.group.getColour() instanceof Colour);
         this.group.setColour(Colour.Blue);
         assertEquals(Colour.Blue, this.group.getColour());
 

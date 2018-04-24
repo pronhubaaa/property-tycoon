@@ -14,7 +14,7 @@ public class Ownable extends Tile {
 
     /**
      * mortgagePrice: Int
-     * This is the morgage price for this tile.
+     * This is the mortgage price for this tile.
      */
     private int mortgagePrice;
 

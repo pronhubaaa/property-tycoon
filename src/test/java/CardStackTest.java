@@ -46,6 +46,7 @@ public class CardStackTest {
             cardStack.add(card);
         }
         int i = 0;
+        assert cardStack.peek() != null;
         while (cardStack.peek().getActions().get(0).toString().equals("0") && i < TEST_SHUFFLE_ITERATIONS) {
             cardStack.shuffle();
             i++;

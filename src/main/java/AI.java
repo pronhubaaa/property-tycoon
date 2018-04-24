@@ -286,10 +286,9 @@ public class AI extends Player {
     private ArrayList<Ownable> streetOwned(ArrayList<Ownable> inputTiles) {
 
         //Get array list of all streets that are owned
-        ArrayList<Ownable> ownedTiles = inputTiles;
         ArrayList<Ownable> ownedStreets = new ArrayList<>();
-        if (!ownedTiles.isEmpty()) {
-            for (Ownable current : ownedTiles) {
+        if (!inputTiles.isEmpty()) {
+            for (Ownable current : inputTiles) {
                 Group temp = current.getGroup();
                 if (groupOwned(temp)) {
                     ownedStreets.add(current);

@@ -131,7 +131,6 @@ public class PlayerTest {
 
         this.player.setPosition(tile);
         assertEquals(tile, this.player.getPosition());
-        assertTrue(this.player.getPosition() instanceof Tile);
 
         this.player.setPosition(tile2);
         assertEquals(tile2, this.player.getPosition());
@@ -166,6 +165,5 @@ public class PlayerTest {
         PlayerPiece piece = PlayerPiece.Car;
         this.player.setPiece(piece);
         assertEquals(piece, this.player.getPiece());
-        assertTrue(this.player.getPiece() instanceof PlayerPiece);
     }
 }

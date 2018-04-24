@@ -13,7 +13,7 @@ public class Player implements Payable {
 
     /**
      * balance: Int
-     * This is the players avaliable money.
+     * This is the players available money.
      */
     private int balance;
 
