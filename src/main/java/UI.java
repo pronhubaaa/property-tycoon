@@ -24,7 +24,7 @@ public class UI {
 
         this._primaryStage = primaryStage;
 
-        Scene mainMenuScene = MainMenuScreens.getMainMenu(this);
+        Scene mainMenuScene = MainMenuScreens.getMainMenu(this, gameEngine);
 
         this._primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         this._primaryStage.setFullScreen(true);

@@ -38,13 +38,13 @@ public class Game extends Application {
      * minPlayers: Int
      * The minimum amount of players able to play.
      */
-    private static int minPlayers;
+    private static int minPlayers = 2;
 
     /**
      * maxPlayers: Int
      * The maximum amount of players able to play.
      */
-    private static int maxPlayers = 8;
+    private static int maxPlayers = 6;
 
 
 

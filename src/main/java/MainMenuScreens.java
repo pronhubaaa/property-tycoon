@@ -17,7 +17,7 @@ public class MainMenuScreens {
      */
 
 
-    public static Scene getMainMenu(UI ui) {
+    public static Scene getMainMenu(UI ui, GameEngine gameEngine) {
         URL url = MainMenuScreens.class.getResource("resources/style.css");
         if (url == null) {
             System.out.println("Resource not found");
@@ -39,7 +39,7 @@ public class MainMenuScreens {
         newGameButton.getStyleClass().add("main-menu-button");
         setSize(newGameButton, 678, 90);
         newGameButton.setOnAction((ActionEvent e) -> {
-            ui.showScene(MainMenuScreens.getNewGame(ui));
+            ui.showScene(MainMenuScreens.getNewGame(ui, gameEngine));
         });
 
         Button loadGameButton = new Button();
@@ -91,8 +91,8 @@ public class MainMenuScreens {
      * @param ui    The UI object.
      * @return A scene containing the new game setup screen.
      */
-    public static Scene getNewGame(UI ui) {
-        return new NewGameScreen(new VBox(), ui);
+    public static Scene getNewGame(UI ui, GameEngine gameEngine) {
+        return new NewGameScreen(new VBox(), ui, gameEngine);
     }
 
     /**

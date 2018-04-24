@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSONObject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.stage.FileChooser;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class NewGameScreen extends Scene {
 
@@ -120,7 +122,7 @@ public class NewGameScreen extends Scene {
         }
     }
 
-    public NewGameScreen(VBox scene, UI ui) {
+    public NewGameScreen(VBox scene, UI ui, GameEngine gameEngine) {
         super(scene);
         scene.setId("menu-container");
         URL url = MainMenuScreens.class.getResource("resources/style.css");
@@ -149,7 +151,7 @@ public class NewGameScreen extends Scene {
         Button rtnToMenu = new Button("Return to main menu");
         rtnToMenu.setId("menu-text");
         rtnToMenu.setOnAction((ActionEvent e) -> {
-                ui.showScene(MainMenuScreens.getMainMenu(ui));
+                ui.showScene(MainMenuScreens.getMainMenu(ui, gameEngine));
             });
         newGameScreen.getChildren().add(rtnToMenu);
         HBox secondLayer = new HBox();
@@ -163,6 +165,7 @@ public class NewGameScreen extends Scene {
         secondLayer.getChildren().add(setup);
         Button startGame = new Button("Start Game");
         startGame.setId("start-game-button");
+
         secondLayer.getChildren().add(startGame);
         holder.getChildren().add(secondLayer);
         StackPane separator = new StackPane();
@@ -475,6 +478,47 @@ public class NewGameScreen extends Scene {
         timeLimitRow.setPadding(new Insets(20, 0, 0, 20));
         abridgedGame.getChildren().add(timeLimitRow);
 
+        startGame.setOnAction((ActionEvent e) -> {
+            System.out.println("HI");
+            String n = dropdown.getValue().toString();
+            ArrayList<String> boards = new ArrayList<String>();
+            try {
+                FileReader fr = new FileReader("saved-boards.ted");
+                BufferedReader br = new BufferedReader(fr);
+                int lineNo = 1;
+                String line;
+                while((line = br.readLine()) != null) {
+                    boards.add(line);
+                    System.out.println(line);
+                }
+            } catch (Exception ex) {
+                System.out.println(ex.toString() + " ERROR");
+            }
+            String JSONpath = "";
+            for (int i = 0; i < boards.size(); i++) {
+                if (boards.get(i).equals(n)) {
+                    JSONpath = boards.get(i - 1);
+                    System.out.println("JSON PATH: " + JSONpath);
+                }
+            }
+            URL jsonurl = getClass().getResource(JSONpath);
+            File file = new File(JSONpath);
+            JSONObject json;
+            String myJson = "";
+            try {
+                myJson = new Scanner(file).useDelimiter("\\Z").next();
+            } catch (Exception ex) {
+
+            }
+            json = (JSONObject) JSONObject.parse(myJson);
+            System.out.println(json);
+
+            makeGame(gameEngine, json);
+        });
+
+
+
+
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
         mainGrid.add(rectRightBot, 1, 0);
@@ -486,5 +530,14 @@ public class NewGameScreen extends Scene {
         holder.getChildren().add(mainGrid);
         stack.getChildren().add(root);
         scene.getChildren().add(stack);
+    }
+
+    public void makeGame(GameEngine gameEngine, JSONObject json) { //do this so we are not initialising gameengine in lambda function
+        try {
+            gameEngine = new GameEngine(json);
+        } catch (Exception e){
+            //nothing
+        }
+        return null;
     }
 }
