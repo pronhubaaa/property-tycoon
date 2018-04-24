@@ -3,7 +3,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.Assert.*;
 
@@ -11,12 +14,13 @@ public class CardActionTest {
 
     private static final CardActionType TEST_INITIAL_CARDACTIONTYPE = CardActionType.TRANSACTION;
     private static final CardActionType TEST_SECOND_CARDACTIONTYPE = CardActionType.DRAW;
-    private final static Object TEST_ACTION_MEMBER_OBJECT = new Object();
-    private final static Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {};
+    private static final Object TEST_ACTION_MEMBER_OBJECT = new Object();
+    private static final Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {};
     private Player TEST_ACTION_MEMBER_PLAYER;
-    private final static String TEST_CARD_ACTION_DESC = "test";
+    private static final String TEST_CARD_ACTION_DESC = "test";
+    private static final int TEST_JSON_GO_SALARY = 200;
 
-    private final static ArrayList<Payable> TEST_ACTION_MEMBER_ARRAYLIST = new ArrayList<Payable>() {{
+    private static final ArrayList<Payable> TEST_ACTION_MEMBER_ARRAYLIST = new ArrayList<Payable>() {{
         add(amount -> {});
         add(amount -> {});
         add(amount -> {});
@@ -31,7 +35,11 @@ public class CardActionTest {
     public void setUp() throws Exception {
         card = new Card();
         cardAction = new CardAction(TEST_INITIAL_CARDACTIONTYPE, card, "", TEST_ACTION_MEMBER_PAYABLE, TEST_ACTION_MEMBER_PAYABLE, 0);
-        board = new Board(new JSONObject());
+        URL url = getClass().getResource("./resources/board.json");
+        File file = new File(url.getPath());
+        String myJson = new Scanner(file).useDelimiter("\\Z").next();
+        JSONObject boardJson = (JSONObject) JSONObject.parse(myJson);
+        board = new Board(boardJson);
         TEST_ACTION_MEMBER_PLAYER = new Player(0, "", board);
         player = new Player(0, "", board);
     }
@@ -127,7 +135,39 @@ public class CardActionTest {
         assertEquals(TEST_CARD_ACTION_DESC, player.getCards().get(0).getActions().get(0).getDescription());
 
         // ActionType.MOVE:
-        // direct move
+        ArrayList<Tile> tiles = board.getTiles();
+        CardAction action = new CardAction(CardActionType.MOVE, card, TEST_CARD_ACTION_DESC, null, tiles.get(1), 1);
+        action.setCollectSalaryAtGo(true);
+        // move to tile 1, collect salary
+        testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);
+        // move 2 tiles forward, collect salary
+        action.setIntent(2);
+        testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);
+        // move 2 tiles forward, no salary
+        action.setCollectSalaryAtGo(false);
+        testOverGo(tiles, player, action, 0);
+        // move to tile 3, no salary
+        action.setIntent(tiles.get(3));
+        testOverGo(tiles, player, action, 0);
+        // move 2 tiles backward
+        action.setIntent(-2);
+        player.setPosition(tiles.get(1));
+        action.performAction(player);
+        assertEquals(tiles.size() - 1, player.getPosition().getPosition());
 
+        // ActionType.TRANSACTION:
+    }
+
+    private static void testOverGo(ArrayList<Tile> tiles, Player player, CardAction action, int goSalary) throws MalformedCardActionException {
+        player.setPosition(tiles.get(tiles.size() - 1));
+        int preTestBalance = player.getBalance();
+        action.performAction(player);
+        if (action.getIntent() instanceof Tile) {
+            //noinspection SuspiciousMethodCalls
+            assertEquals(tiles.indexOf(action.getIntent()), tiles.indexOf(player.getPosition()));
+        } else {
+            assertEquals(((int) action.getIntent()) - 1, tiles.indexOf(player.getPosition()));
+        }
+        assertEquals(preTestBalance + goSalary, player.getBalance());
     }
 }

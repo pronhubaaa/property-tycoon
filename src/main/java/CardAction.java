@@ -165,8 +165,9 @@ public class CardAction {
                     }
                     destination = tiles.indexOf(player.getPosition()) + move;
                 }
+                destination = destination % tiles.size();
                 if (destination < 0) {
-                    destination = tiles.size() - destination - 1;
+                    destination = tiles.size() + destination - 1;
                 }
                 if (value <= 0) {
                     throw new MalformedCardActionException("The speed value of a player during a Move action cannot be zero");
@@ -174,18 +175,17 @@ public class CardAction {
                 if (collectSalaryAtGo) {
                     int i = tiles.indexOf(player.getPosition());
                     while (i != destination) {
-                        Tile tile = tiles.get(destination);
+                        Tile tile = tiles.get(i);
                         if (tile instanceof Go) {
                             ((Go) tile).collect(player);
                         }
-                        destination += value;
-                        if (destination == tiles.size()) {
-                            destination = 0;
+                        i += value;
+                        if (i == tiles.size()) {
+                            i = 0;
                         }
                     }
-                } else {
-                    player.setPosition(tiles.get(destination));
                 }
+                player.setPosition(tiles.get(destination));
 
                 break;
             case TRANSACTION:
