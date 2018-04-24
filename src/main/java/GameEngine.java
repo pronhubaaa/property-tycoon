@@ -1,6 +1,7 @@
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
-
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -72,6 +73,20 @@ public class GameEngine {
         return null;
     }
 
+    /**
+     * checkPieceType
+     * @param str
+     * @return PlayerPiece or null
+     */
+    private PlayerPiece checkPieceType(String str){
+        for (PlayerPiece me : PlayerPiece.values()) {
+            if (me.name().equals(str))
+                return me;
+        }
+        return null;
+    }
+
+
 
     /**
      * GameEngine
@@ -80,15 +95,17 @@ public class GameEngine {
      * This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
      */
     public GameEngine(JSONObject jsonObject) throws GameEngineTypeException, GameEngineTimeException, GameEngineTradingException, BoardTileException {
-        if(jsonObject.containsKey("game_type")){
+        this.players = new ArrayList<>();
 
-            GameType type = checkGameType(jsonObject.getString("game_type"));
+        if(jsonObject.containsKey(JsonFields.GameType.toString())){
+
+            GameType type = checkGameType(jsonObject.getString(JsonFields.GameType.toString()));
             if(type != null){
                 this.gameType = type;
 
                 if(this.gameType.equals(GameType.AbridgedGame)){
-                    if(jsonObject.containsKey("remaining_time")){
-                        int time = jsonObject.getIntValue("remaining_time");
+                    if(jsonObject.containsKey(JsonFields.TimeLeft.toString())){
+                        int time = jsonObject.getIntValue(JsonFields.TimeLeft.toString());
                         if(time < 0){
                             this.timeLeft = 0;
                         } else {
@@ -106,28 +123,56 @@ public class GameEngine {
             }
         }
 
-        //TODO
-        // Parse Players
-        // Parse current player position
-
-
-//        if(jsonObject.containsKey("current_player")){
-//            this.currentPlayer = this.players.get(jsonObject.getIntValue("current_player"));
-//        }
-
-        if(jsonObject.containsKey("number_of_turns")){
-            this.numberOfTurns = jsonObject.getIntValue("number_of_turns");
+        if(jsonObject.containsKey(JsonFields.NumberTurns.toString())){
+            this.numberOfTurns = jsonObject.getIntValue(JsonFields.NumberTurns.toString());
         } else {
             this.numberOfTurns = 0;
         }
 
-        if(jsonObject.containsKey("trade")){
-            this.trading = jsonObject.getBooleanValue("trade");
+        if(jsonObject.containsKey(JsonFields.Trade.toString())){
+            this.trading = jsonObject.getBooleanValue(JsonFields.Trade.toString());
         } else {
             throw new GameEngineTradingException("Please include trading boolean");
         }
 
         this.gameBoard = constructGameBoard(jsonObject);
+
+        if(jsonObject.containsKey(JsonFields.Player.toString())) {
+
+            JSONArray players = jsonObject.getJSONArray(JsonFields.Player.toString());
+
+            for(Object object: players) {
+
+                JSONObject player = (JSONObject) object;
+
+                boolean inJail = player.getBooleanValue(JsonFields.Jail.toString());
+                int balance = player.getIntValue(JsonFields.Balance.toString());
+                String name = player.getString(JsonFields.Name.toString());
+                int position = player.getIntValue(JsonFields.Position.toString());
+
+                JSONArray ownedTiles = player.getJSONArray(JsonFields.Owned.toString());
+
+                ArrayList<Integer> ownedTile = new ArrayList<>();
+                for (int i = 0; i < ownedTiles.size(); i++) {
+                    ownedTile.add(ownedTiles.getIntValue(i));
+                }
+
+                PlayerPiece type = checkPieceType(jsonObject.getString(JsonFields.Piece.toString()));
+
+                Player player1 = new Player(balance, name, this.gameBoard);
+                player1.setPiece(type);
+                player1.setPosition(this.gameBoard.getTiles().get(position));
+                player1.setInJail(inJail);
+                this.players.add(player1);
+
+
+            }
+            if(jsonObject.containsKey(JsonFields.CurrentPlayer.toString()) && this.players.size() > jsonObject.getIntValue(JsonFields.CurrentPlayer.toString())){
+                this.currentPlayer = this.players.get(jsonObject.getIntValue(JsonFields.CurrentPlayer.toString()));
+            }
+
+
+        }
 
     }
 
@@ -160,6 +205,34 @@ public class GameEngine {
      */
     public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type) throws BoardTileException {
         this(jsonObject, players, type, -1);
+    }
+
+    /**
+     * saveGame
+     * Saves the whole game to a json file
+     */
+    public void saveGame(){
+        JSONObject json = new JSONObject();
+        json.put(JsonFields.GameType.toString(), this.gameType.name());
+        json.put(JsonFields.CurrentPlayer.toString(), String.valueOf(this.players.indexOf(this.currentPlayer)));
+        json.put(JsonFields.NumberTurns.toString(), String.valueOf(this.numberOfTurns));
+        json.put(JsonFields.Trade.toString(), String.valueOf(this.trading));
+        json.put(JsonFields.TimeLeft.toString(), String.valueOf(this.timeLeft));
+
+
+
+
+        try {
+            PrintWriter out = new PrintWriter("filename.json");
+            out.println(json.toString());
+            out.close();
+        } catch(Exception e){
+
+        }
+
+
+
+
     }
 
     /**

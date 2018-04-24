@@ -34,37 +34,7 @@ public class Board {
      */
     private HashMap<String, UtilityGroup> utilityGroups;
 
-    /**
-     * jsonFields
-     */
-    private enum jsonFields{
-        Tile("tile"),
-        Type("type"),
-        Name("name"),
-        Position("position"),
-        Value("value"),
-        Group("group"),
-        CardType("cardType"),
-        Rent("rent"),
-        Cost("cost"),
-        HouseCost("house");
 
-
-        private String value;
-
-        jsonFields(final String value) {
-            this.value = value;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return this.getValue();
-        }
-    }
 
 
     /**
@@ -79,9 +49,9 @@ public class Board {
         this.tiles = new ArrayList<>();
 
 
-        if(jsonObject.containsKey(jsonFields.Tile.toString())){
+        if(jsonObject.containsKey(JsonFields.Tile.toString())){
 
-            JSONArray tiles = jsonObject.getJSONArray(jsonFields.Tile.toString());
+            JSONArray tiles = jsonObject.getJSONArray(JsonFields.Tile.toString());
 
             for(Object object: tiles){
                 if(this.tiles.size() > 40){
@@ -89,18 +59,18 @@ public class Board {
                 }
                 JSONObject tile = (JSONObject) object;
 
-                if(tile.containsKey(jsonFields.Type.toString())){
-                    TileType type = TileType.valueOf(tile.getString(jsonFields.Type.toString()));
-                    String tileName = tile.getString(jsonFields.Name.toString());
-                    int tilePosition = tile.getIntValue(jsonFields.Position.toString());
-                    int tileValue = tile.getIntValue(jsonFields.Value.toString());
-                    String groupType = tile.getString(jsonFields.Group.toString());
+                if(tile.containsKey(JsonFields.Type.toString())){
+                    TileType type = TileType.valueOf(tile.getString(JsonFields.Type.toString()));
+                    String tileName = tile.getString(JsonFields.Name.toString());
+                    int tilePosition = tile.getIntValue(JsonFields.Position.toString());
+                    int tileValue = tile.getIntValue(JsonFields.Value.toString());
+                    String groupType = tile.getString(JsonFields.Group.toString());
 
 
                     switch(type) {
                         case Go:
                             Go go = new Go(tileName, tilePosition, tileValue);
-                            int value = tile.getIntValue(jsonFields.Value.toString());
+                            int value = tile.getIntValue(JsonFields.Value.toString());
                             go.setValue(value);
                             this.tiles.add(go);
                             break;
@@ -111,13 +81,13 @@ public class Board {
                         case Utility:
                             if (this.utilityGroups.containsKey(groupType)) {
                                 Utility utility = new Utility(tileName, tilePosition, this.utilityGroups.get(groupType));
-                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
                                 utility.setPrice(cost);
                                 this.tiles.add(utility);
                              } else {
                                 UtilityGroup utilityGroup = new UtilityGroup();
                                 Utility utility = new Utility(tileName, tilePosition, utilityGroup);
-                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
                                 utility.setPrice(cost);
                                 utilityGroup.add(utility);
                                 this.utilityGroups.put(groupType, utilityGroup);
@@ -129,13 +99,13 @@ public class Board {
 
                             if (this.stationGroups.containsKey(groupType)) {
                                 Station station = new Station(tileName, tilePosition, this.stationGroups.get(groupType));
-                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
                                 station.setPrice(cost);
                                 this.tiles.add(station);
                             } else {
                                 StationGroup stationGroup = new StationGroup();
                                 Station station = new Station(tileName, tilePosition, stationGroup);
-                                int cost = tile.getIntValue(jsonFields.Cost.toString());
+                                int cost = tile.getIntValue(JsonFields.Cost.toString());
                                 station.setPrice(cost);
                                 stationGroup.add(station);
                                 this.stationGroups.put(groupType, stationGroup);
@@ -147,17 +117,17 @@ public class Board {
 
                             if (this.propertyGroups.containsKey(groupType)) {
                                 Property property = new Property(tileName, tilePosition, this.propertyGroups.get(groupType));
-                                JSONArray rents = tile.getJSONArray(jsonFields.Rent.toString());
+                                JSONArray rents = tile.getJSONArray(JsonFields.Rent.toString());
 
                                 ArrayList<Integer> rent = new ArrayList<>();
                                 for(int i = 0; i < rents.size(); i++){
                                     rent.add(rents.getIntValue(i));
                                 }
                                 property.setRent(rent);
-                                int houseCost = tile.getIntValue(jsonFields.HouseCost.toString());
+                                int houseCost = tile.getIntValue(JsonFields.HouseCost.toString());
                                 property.setCostOfHouse(houseCost);
 
-                                int propertyCost = tile.getIntValue(jsonFields.Cost.toString());
+                                int propertyCost = tile.getIntValue(JsonFields.Cost.toString());
                                 property.setPrice(propertyCost);
 
                                 this.tiles.add(property);
@@ -166,17 +136,17 @@ public class Board {
                                 Property property = new Property(tileName, tilePosition, propertyGroup);
 
 
-                                JSONArray rents = tile.getJSONArray(jsonFields.Rent.toString());
+                                JSONArray rents = tile.getJSONArray(JsonFields.Rent.toString());
 
                                 ArrayList<Integer> rent = new ArrayList<>();
                                 for(int i = 0; i < rents.size(); i++){
                                     rent.add(rents.getIntValue(i));
                                 }
                                 property.setRent(rent);
-                                int houseCost = tile.getIntValue(jsonFields.HouseCost.toString());
+                                int houseCost = tile.getIntValue(JsonFields.HouseCost.toString());
                                 property.setCostOfHouse(houseCost);
 
-                                int propertyCost = tile.getIntValue(jsonFields.Cost.toString());
+                                int propertyCost = tile.getIntValue(JsonFields.Cost.toString());
                                 property.setPrice(propertyCost);
 
                                 propertyGroup.add(property);
@@ -196,7 +166,7 @@ public class Board {
                             break;
                         case Tax:
                             TaxTile taxTile = new TaxTile(tileName, tilePosition, tileValue);
-                            int amount = tile.getIntValue(jsonFields.Value.toString());
+                            int amount = tile.getIntValue(JsonFields.Value.toString());
                             taxTile.setAmount(amount);
                             this.tiles.add(taxTile);
                             break;
