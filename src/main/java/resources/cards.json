@@ -1,0 +1,273 @@
+[
+    {
+        "card_type": "pot luck",
+        "desc": "Pay a \u00a310 fine or take opportunity knocks",
+        "action_desc": "If fine paid, player puts \u00a310 on free parking (choice b)",
+        "action_type": "draw",
+        "origin": "player",
+        "intent": "opportunity knocks"
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Get out of jail free",
+        "action_desc": "Retained by the player until needed. No resale or trade value",
+        "action_type": "get out of jail free"
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Get out of jail free",
+        "action_desc": "Retained by the player until needed. No resale or trade value",
+        "action_type": "get out of jail free"
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Go to jail. Do not pass GO, do not collect \u00a3200",
+        "action_desc": "As the card says",
+        "action_type": "jail",
+        "intent": "jail",
+        "collect_salary": false
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Go to jail. Do not pass GO, do not collect \u00a3200",
+        "action_desc": "As the card says",
+        "action_type": "jail",
+        "intent": "jail",
+        "collect_salary": false
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Go back to Crapper Street",
+        "action_desc": "Player token moves backwards to Crapper Street",
+        "action_type": "move",
+        "intent": "crapper street",
+        "value": -1
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Advance to go",
+        "action_desc": "Player moves forwards to GO",
+        "action_type": "move",
+        "intent": "go",
+        "value": 1,
+        "collect_salary": false
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Advance to Turing Heights",
+        "action_desc": "Player token moves forwards to Turing Heights",
+        "action_type": "move",
+        "intent": "turing heights",
+        "value": 1
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Advance to Han Xin Gardens. If you pass GO, collect \u00a3200",
+        "action_desc": "Player moves token",
+        "action_type": "move",
+        "intent": "han xin gardens",
+        "value": 1,
+        "collect_salary": true
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Take a trip to Hove station. If you pass GO collect \u00a3200",
+        "action_desc": "Player moves token",
+        "action_type": "move",
+        "intent": "hove station",
+        "value": 1,
+        "collect_salary": true
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Advance to GO",
+        "action_desc": "Player moves token",
+        "action_type": "move",
+        "intent": "go",
+        "value": 1
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Go back 3 spaces",
+        "action_desc": "Player moves token",
+        "action_type": "move",
+        "intent": -3,
+        "value": -1
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Advance to Skywalker Drive. If you pass GO collect \u00a3200",
+        "action_desc": "Player moves token",
+        "action_type": "move",
+        "intent": "skywalker drive",
+        "value": 1,
+        "collect_salary": true
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "You inherit \u00a3100",
+        "action_desc": "pays player \u00a3100",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 100
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "You have won 2nd prize in a beauty contest, collect \u00a320",
+        "action_desc": "pays player \u00a320",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 20
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Student loan refund. Collect \u00a320",
+        "action_desc": "pays player \u00a320",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 20
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "error in your favour. Collect \u00a3200",
+        "action_desc": "pays player \u00a3200",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 200
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Pay bill for text books of \u00a3100",
+        "action_desc": "Player pays \u00a3100 to the",
+        "action_type": "transaction",
+        "origin": "player",
+        "value": 100
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Mega late night taxi bill pay \u00a350",
+        "action_desc": "Player pays \u00a350 to the",
+        "action_type": "transaction",
+        "origin": "player",
+        "value": 50
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "From sale of Bitcoin you get \u00a350",
+        "action_desc": "pays player \u00a350",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 50
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Pay a \u00a310 fine or take opportunity knocks",
+        "action_desc": "If fine paid, player puts \u00a310 on free parking (choice a)",
+        "action_type": "transaction",
+        "origin": "player",
+        "intent": "free parking",
+        "value": 10
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Pay insurance fee of \u00a350",
+        "action_desc": "Player puts \u00a350 on free parking",
+        "action_type": "transaction",
+        "origin": "player",
+        "intent": "free parking",
+        "value": 50
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Savings bond matures, collect \u00a310",
+        "action_desc": "pays \u00a3100 to the player",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 100
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "Received interest on shares of \u00a325",
+        "action_desc": "pays player \u00a325",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 25
+    },
+    {
+        "card_type": "pot luck",
+        "desc": "It's your birthday. Collect \u00a310 from each player",
+        "action_desc": "Player receives \u00a310 from each player",
+        "action_type": "transaction",
+        "origin": "each player",
+        "intent": "player",
+        "value": 10
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "pays you divided of \u00a350",
+        "action_desc": "pays player \u00a350",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 50
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "You have won a lip sync battle. Collect \u00a3100",
+        "action_desc": "pays player \u00a3100",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 100
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Fined \u00a315 for speeding",
+        "action_desc": "Player puts \u00a315 on free parking",
+        "action_type": "transaction",
+        "origin": "player",
+        "intent": "free parking",
+        "value": 15
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Pay university fees of \u00a3150",
+        "action_desc": "Player pays \u00a3150 to the",
+        "action_type": "transaction",
+        "origin": "player",
+        "value": 150
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Loan matures, collect \u00a3150",
+        "action_desc": "pays \u00a3150 to the player",
+        "action_type": "transaction",
+        "intent": "player",
+        "value": 150
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "You are assessed for repairs, \u00a340\/house, \u00a3115\/hotel",
+        "action_desc": "Player pays money to the",
+        "action_type": "transaction",
+        "origin": "player",
+        "amount_house": 40,
+        "amount_hotel": 115
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "You are assessed for repairs, \u00a325\/house, \u00a3100\/hotel",
+        "action_desc": "Player pays money to the",
+        "action_type": "transaction",
+        "origin": "player",
+        "amount_house": 25,
+        "amount_hotel": 100
+    },
+    {
+        "card_type": "opportunity knocks",
+        "desc": "Drunk in charge of a skateboard. Fine \u00a320",
+        "action_desc": "Player puts \u00a320 on free parking",
+        "action_type": "transaction",
+        "origin": "player",
+        "intent": "free parking",
+        "value": 20
+    }
+]
