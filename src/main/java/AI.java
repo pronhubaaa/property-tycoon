@@ -225,10 +225,7 @@ public class AI extends Player {
         }
         ArrayList<Ownable> myTiles = this.getOwnedTiles();
         ArrayList<Ownable> streetTiles = new ArrayList<>();
-        myTiles.sort((o1, o2) -> {
-            int comp = o1.getPrice() - o2.getPrice();
-            return comp;
-        });
+        myTiles.sort(Comparator.comparingInt(Ownable::getPrice));
         for(Ownable tile: myTiles){
 
             ArrayList<Ownable> currentTiles = this.getOwnedTiles();
@@ -294,7 +291,7 @@ public class AI extends Player {
             if(!ownedTiles.isEmpty()) {
                 for (Ownable current : ownedTiles) {
                     Group temp = current.getGroup();
-                    if (groupOwned(temp) == true) {
+                    if (groupOwned(temp)) {
                         ownedStreets.add(current);
                     }
                 }

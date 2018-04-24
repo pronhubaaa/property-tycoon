@@ -20,7 +20,7 @@ public class PropertyGroup extends Group {
      */
     public Boolean checkOwnedStreet(Player player){
         for(Ownable ownable: this.getGroup()){
-            if(ownable != null && ownable instanceof Property){
+            if(ownable instanceof Property){
                 if(ownable.getOwner() == null || !ownable.getOwner().equals(player)){
                     return false;
                 }

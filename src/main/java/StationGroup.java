@@ -18,7 +18,7 @@ public class StationGroup extends Group {
     public int checkOwnedStations(Player player){
         int count = 0;
         for(Ownable ownable: this.getGroup()){
-            if(ownable != null && ownable instanceof Station){
+            if(ownable instanceof Station){
                 if(ownable.getOwner() != null && ownable.getOwner().equals(player)){
                     count++;
                 }

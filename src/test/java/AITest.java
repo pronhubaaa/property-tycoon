@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 
 public class AITest {
 
-    AI ai;
-    Board board;
+    private AI ai;
+    private Board board;
     @Before
     public void setUp() throws Exception {
         JSONObject board = (JSONObject) JSONObject.parse("{\n" +

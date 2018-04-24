@@ -18,7 +18,7 @@ public class UtilityGroup extends Group {
     public int checkOwnedUtility(Player player){
         int count = 0;
         for(Ownable ownable: this.getGroup()){
-            if(ownable != null && ownable instanceof Utility){
+            if(ownable instanceof Utility){
                 if(ownable.getOwner() != null && ownable.getOwner().equals(player)){
                     count++;
                 }

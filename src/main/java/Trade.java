@@ -27,8 +27,8 @@ public class Trade {
         this.players = new HashMap<>();
         this.player1 = player1;
         this.player2 = player2;
-        this.players.put(player1, new ArrayList<Ownable>());
-        this.players.put(player2, new ArrayList<Ownable>());
+        this.players.put(player1, new ArrayList<>());
+        this.players.put(player2, new ArrayList<>());
 
     }
 

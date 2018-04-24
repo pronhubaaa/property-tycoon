@@ -66,7 +66,7 @@ public class GameEngine {
      * @return GameType or null
      */
     private GameType checkGameType(String str){
-        for (GameType me : gameType.values()) {
+        for (GameType me : GameType.values()) {
             if (me.name().equals(str))
                 return me;
         }
@@ -357,10 +357,8 @@ public class GameEngine {
      * This method is intended to be accessed from incrementCurrentTurn. It will determine whether the game is over, by using methods such as getTime (if it is the abridged version) and also by checking the number of players still in the game.
      */
     private Boolean endGame(){
-        if((getTime() == 0) && getCurrentPlayer().equals(this.players.get(this.players.size()-1))){
-            return true;
-        }
-        return false;
+        return (getTime() == 0) &&
+                getCurrentPlayer().equals(this.players.get(this.players.size() - 1));
     }
 
 

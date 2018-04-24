@@ -1,4 +1,4 @@
 public interface Facility {
 
-    public void calculateRent();
+    void calculateRent();
 }

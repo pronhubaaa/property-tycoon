@@ -16,4 +16,12 @@ public class Card extends Tile{
         super(tileName, tilePosition);
         this.cardType = cardType;
     }
+
+    public CardType getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(CardType cardType) {
+        this.cardType = cardType;
+    }
 }

@@ -9,12 +9,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-import static junit.framework.TestCase.assertTrue;
 import static junit.framework.TestCase.fail;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class GameEngineTest {
 
@@ -56,7 +52,7 @@ public class GameEngineTest {
     public void getCurrentPlayer() {
 
         JSONObject json = new JSONObject();
-        ArrayList<Player> players = new ArrayList<Player>(5);
+        ArrayList<Player> players = new ArrayList<>(5);
 
         players.add(new Player(10, "Peter", null));
         players.add(new Player(10, "Elliot", null));
@@ -80,7 +76,7 @@ public class GameEngineTest {
     @Test
     public void nextTurn() {
         JSONObject json = new JSONObject();
-        ArrayList<Player> players = new ArrayList<Player>(5);
+        ArrayList<Player> players = new ArrayList<>(5);
 
         players.add(new Player(10, "Peter", null));
         players.add(new Player(10, "Elliot", null));
@@ -118,7 +114,7 @@ public class GameEngineTest {
     @Test
     public void getNumberOfTurns() {
         JSONObject json = new JSONObject();
-        ArrayList<Player> players = new ArrayList<Player>(5);
+        ArrayList<Player> players = new ArrayList<>(5);
 
         players.add(new Player(10, "Peter", null));
         players.add(new Player(10, "Elliot", null));
@@ -151,7 +147,7 @@ public class GameEngineTest {
     @Test
     public void getTime() {
         JSONObject json = new JSONObject();
-        ArrayList<Player> players = new ArrayList<Player>(5);
+        ArrayList<Player> players = new ArrayList<>(5);
 
         players.add(new Player(10, "Peter", null));
         players.add(new Player(10, "Elliot", null));
@@ -191,7 +187,7 @@ public class GameEngineTest {
         JSONObject json = (JSONObject) JSONObject.parse(myJson);
 
 
-        ArrayList<Player> players = new ArrayList<Player>(5);
+        ArrayList<Player> players = new ArrayList<>(5);
 
         players.add(new Player(10, "Peter", null));
         players.add(new Player(10, "Elliot", null));
