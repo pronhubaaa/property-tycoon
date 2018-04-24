@@ -193,21 +193,28 @@ public class GameEngineTest {
 
         ArrayList<Player> players = new ArrayList<Player>(5);
 
-        players.add(new Player(10, "Peter", null));
-        players.add(new Player(10, "Elliot", null));
-        players.add(new Player(10, "Sam", null));
-        players.add(new Player(10, "Liam", null));
-        players.add(new Player(10, "Guy", null));
-
-
-        GameType type = GameType.FullGame;
-
         try {
-            GameEngine gameEngineFull = new GameEngine(json, players, type);
-            gameEngineFull.saveGame();
-        } catch (Exception e){
-            fail();
+            Board board = new Board(json);
+            players.add(new Player(10, "Peter", board));
+            players.add(new Player(10, "Elliot", board));
+            players.add(new Player(10, "Sam", board));
+            players.add(new Player(10, "Liam", board));
+            players.add(new Player(10, "Guy", board));
+
+
+            GameType type = GameType.FullGame;
+
+            try {
+                GameEngine gameEngineFull = new GameEngine(json, players, type);
+                gameEngineFull.saveGame();
+            } catch (Exception e){
+                fail();
+            }
+        } catch(Exception e){
+
         }
+
+
 
     }
 }

@@ -66,7 +66,14 @@ public class Player {
         setName(name);
         setInJail(false);
         ownedTiles = new ArrayList<>();
+        if(this.board != null){
+            if(this.board.getTiles() != null) {
+                if(this.board.getTiles().size() > 0){
+                    this.position = this.board.getTiles().get(0);
+                }
+            }
 
+        }
     }
 
 
