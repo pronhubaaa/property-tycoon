@@ -2,7 +2,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DiceTest {
 
@@ -28,9 +29,9 @@ public class DiceTest {
     public void getDoubleCount() {
         assertEquals(0, this.dice.getDoubleCount());
         int doubleRollCount = 0;
-        for(int i = 0; i< 50; i++){
+        for (int i = 0; i < 50; i++) {
             int[] diceRoll = this.dice.roll();
-            if(diceRoll[0] == diceRoll[1]){
+            if (diceRoll[0] == diceRoll[1]) {
                 doubleRollCount++;
             }
         }
@@ -41,8 +42,8 @@ public class DiceTest {
 
         int[] diceRoll2;
         do {
-          diceRoll2 = dice2.roll();
-        } while(diceRoll2[0] != diceRoll2[1]);
+            diceRoll2 = dice2.roll();
+        } while (diceRoll2[0] != diceRoll2[1]);
 
         assertEquals(1, dice2.getDoubleCount());
 

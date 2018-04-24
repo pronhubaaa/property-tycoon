@@ -35,7 +35,6 @@ public class Property extends Ownable {
     }
 
 
-
     /**
      * getRent(): [Int]
      *

@@ -19,8 +19,8 @@
 		{
 			"type": "Card",
 			"position" : "3",
-			"name": "Plot Luck",
-			"cardType": "PlotLuck"
+			"name": "Pot Luck",
+			"cardType": "PotLuck"
 		},
 		{
 			"type": "Property",
@@ -136,8 +136,8 @@
 		{
 			"type": "Card",
 			"position" : "18",
-			"name": "Plot Luck",
-			"cardType": "PlotLuck"
+			"name": "Pot Luck",
+			"cardType": "PotLuck"
 		},
 		{
 			"type": "Property",
@@ -261,8 +261,8 @@
 		{
 			"type": "Card",
 			"position" : "34",
-			"name": "Plot Luck",
-			"cardType": "PlotLuck"
+			"name": "Pot Luck",
+			"cardType": "PotLuck"
 		},
 		{
 			"type": "Property",

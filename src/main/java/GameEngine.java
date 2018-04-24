@@ -2,7 +2,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
@@ -62,11 +65,12 @@ public class GameEngine {
 
     /**
      * checkGameType
+     *
      * @param str
      * @return GameType or null
      */
-    private GameType checkGameType(String str){
-        for (GameType me : gameType.values()) {
+    private GameType checkGameType(String str) {
+        for (GameType me : GameType.values()) {
             if (me.name().equals(str))
                 return me;
         }
@@ -75,10 +79,11 @@ public class GameEngine {
 
     /**
      * checkPieceType
+     *
      * @param str
      * @return PlayerPiece or null
      */
-    private PlayerPiece checkPieceType(String str){
+    private PlayerPiece checkPieceType(String str) {
         for (PlayerPiece me : PlayerPiece.values()) {
             if (me.name().equals(str))
                 return me;
@@ -87,26 +92,26 @@ public class GameEngine {
     }
 
 
-
     /**
      * GameEngine
+     *
      * @param jsonObject JsonObject of save file data
-     * This is the constructor method. The JSON data will include board data, player data, the game type and any remaining time.
-     * This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
+     *                   This is the constructor method. The JSON data will include board data, player data, the game type and any remaining time.
+     *                   This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
      */
     public GameEngine(JSONObject jsonObject) throws GameEngineTypeException, GameEngineTimeException, GameEngineTradingException, BoardTileException {
         this.players = new ArrayList<>();
 
-        if(jsonObject.containsKey(JsonFields.GameType.toString())){
+        if (jsonObject.containsKey(JsonFields.GameType.toString())) {
 
             GameType type = checkGameType(jsonObject.getString(JsonFields.GameType.toString()));
-            if(type != null){
+            if (type != null) {
                 this.gameType = type;
 
-                if(this.gameType.equals(GameType.AbridgedGame)){
-                    if(jsonObject.containsKey(JsonFields.TimeLeft.toString())){
+                if (this.gameType.equals(GameType.AbridgedGame)) {
+                    if (jsonObject.containsKey(JsonFields.TimeLeft.toString())) {
                         int time = jsonObject.getIntValue(JsonFields.TimeLeft.toString());
-                        if(time < 0){
+                        if (time < 0) {
                             this.timeLeft = 0;
                         } else {
                             this.timeLeft = time;
@@ -123,13 +128,13 @@ public class GameEngine {
             }
         }
 
-        if(jsonObject.containsKey(JsonFields.NumberTurns.toString())){
+        if (jsonObject.containsKey(JsonFields.NumberTurns.toString())) {
             this.numberOfTurns = jsonObject.getIntValue(JsonFields.NumberTurns.toString());
         } else {
             this.numberOfTurns = 0;
         }
 
-        if(jsonObject.containsKey(JsonFields.Trade.toString())){
+        if (jsonObject.containsKey(JsonFields.Trade.toString())) {
             this.trading = jsonObject.getBooleanValue(JsonFields.Trade.toString());
         } else {
             throw new GameEngineTradingException("Please include trading boolean");
@@ -137,11 +142,11 @@ public class GameEngine {
 
         this.gameBoard = constructGameBoard(jsonObject);
 
-        if(jsonObject.containsKey(JsonFields.Player.toString())) {
+        if (jsonObject.containsKey(JsonFields.Player.toString())) {
 
             JSONArray players = jsonObject.getJSONArray(JsonFields.Player.toString());
 
-            for(Object object: players) {
+            for (Object object : players) {
 
                 JSONObject player = (JSONObject) object;
 
@@ -167,7 +172,7 @@ public class GameEngine {
 
 
             }
-            if(jsonObject.containsKey(JsonFields.CurrentPlayer.toString()) && this.players.size() > jsonObject.getIntValue(JsonFields.CurrentPlayer.toString())){
+            if (jsonObject.containsKey(JsonFields.CurrentPlayer.toString()) && this.players.size() > jsonObject.getIntValue(JsonFields.CurrentPlayer.toString())) {
                 this.currentPlayer = this.players.get(jsonObject.getIntValue(JsonFields.CurrentPlayer.toString()));
             }
 
@@ -178,14 +183,15 @@ public class GameEngine {
 
     /**
      * GameEngine
-     * @param jsonObject JsonObject of imported board data
-     * @param players Array of Players
-     * @param type GameType enum
-     * @param numberOfMinutes Int number of minutes
      *
-     * This is the constructor method. It will be used to start a new game and initialise the board.
+     * @param jsonObject      JsonObject of imported board data
+     * @param players         Array of Players
+     * @param type            GameType enum
+     * @param numberOfMinutes Int number of minutes
+     *                        <p>
+     *                        This is the constructor method. It will be used to start a new game and initialise the board.
      */
-    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes) throws BoardTileException{
+    public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes) throws BoardTileException {
         this.players = players;
         this.currentPlayer = this.players.get(0);
         this.gameType = type;
@@ -197,11 +203,12 @@ public class GameEngine {
 
     /**
      * GameEngine
-     * @param jsonObject JsonObject of imported board data
-     * @param players Array of Players
-     * @param type GameType enum
      *
-     * This is the constructor method. It will be used to start a new game and initialise the board.
+     * @param jsonObject JsonObject of imported board data
+     * @param players    Array of Players
+     * @param type       GameType enum
+     *                   <p>
+     *                   This is the constructor method. It will be used to start a new game and initialise the board.
      */
     public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type) throws BoardTileException {
         this(jsonObject, players, type, -1);
@@ -211,7 +218,7 @@ public class GameEngine {
      * saveGame
      * Saves the whole game to a json file
      */
-    public void saveGame(){
+    public void saveGame() {
         JSONObject json = new JSONObject();
         json.put(JsonFields.GameType.toString(), this.gameType.name());
         json.put(JsonFields.CurrentPlayer.toString(), String.valueOf(this.players.indexOf(this.currentPlayer)));
@@ -220,6 +227,7 @@ public class GameEngine {
         json.put(JsonFields.TimeLeft.toString(), String.valueOf(this.timeLeft));
 
         JSONArray players = new JSONArray();
+
 
         for(Player player: this.players){
             JSONObject playerObject = new JSONObject();
@@ -242,44 +250,48 @@ public class GameEngine {
 
         json.put(JsonFields.Player.toString(), players);
 
+
         try {
             PrintWriter out = new PrintWriter("filename.json");
             out.println(json.toString());
             out.close();
-        } catch(Exception e){
+        } catch (Exception e) {
 
         }
+
     }
 
     /**
      * startGame
      * This method is intended to be accessed from the UI class. It will start the game.
      */
-    public void startGame(){
-        if(this.gameType.equals(GameType.AbridgedGame)){
+    public void startGame() {
+        if (this.gameType.equals(GameType.AbridgedGame)) {
             this.startTimer();
         }
     }
 
     /**
      * getCurrentPlayer
-     * @return Player Player whose goes it is.
      *
+     * @return Player Player whose goes it is.
+     * <p>
      * This method return a pointer to the player whose turn it currently is.
      */
-    public Player getCurrentPlayer(){
+    public Player getCurrentPlayer() {
         return this.currentPlayer;
     }
 
     /**
      * nextTurn
-     * @return Player whose go it is _now_ is.
      *
+     * @return Player whose go it is _now_ is.
+     * <p>
      * This method will be used by the UI class to end the current player's turn and begin the next player's turn.
      * It will be responsible for checking whether the game is over (using endGame method), changing the current player reference and incrementing the numberOfTurns attribute.
      */
-    public Player nextTurn(){
-        this.currentPlayer = this.players.get((this.players.indexOf(this.currentPlayer)+1)%this.players.size());
+    public Player nextTurn() {
+        this.currentPlayer = this.players.get((this.players.indexOf(this.currentPlayer) + 1) % this.players.size());
         this.incrementNumberOfTurns();
         return this.currentPlayer;
 
@@ -287,21 +299,23 @@ public class GameEngine {
 
     /**
      * getNumberOfTurns
-     * @return Int representing the number of turns
      *
+     * @return Int representing the number of turns
+     * <p>
      * This method returns the accumulated number of turns in the game.
      */
-    public int getNumberOfTurns(){
+    public int getNumberOfTurns() {
         return this.numberOfTurns;
     }
 
     /**
      * incrementNumberOfTurns
+     *
      * @return Boolean to show if the game is over
      * This methods increments the numberOfTurns attribute by one.
      */
-    public boolean incrementNumberOfTurns(){
-        if(this.endGame()){
+    public boolean incrementNumberOfTurns() {
+        if (this.endGame()) {
             this.stopTimer();
             return false;
         } else {
@@ -335,7 +349,7 @@ public class GameEngine {
      * stopTimer
      * This stops the timer for the abridged version of the game.
      */
-    public void stopTimer(){
+    public void stopTimer() {
         this.timer.cancel();
 
 
@@ -343,20 +357,22 @@ public class GameEngine {
 
     /**
      * getTime
-     * @return time
      *
+     * @return time
+     * <p>
      * This gets the amount of time left in the abridged version.
      */
-    public int getTime(){
+    public int getTime() {
         return this.timeLeft;
     }
 
 
     /**
      * constructGameBoard
+     *
      * @param jsonObject
      * @return Board
-     *
+     * <p>
      * Sets up a board using the imported board data.
      * If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
      */
@@ -368,32 +384,32 @@ public class GameEngine {
 
     /**
      * endGame
-     * @return Boolean
      *
+     * @return Boolean
+     * <p>
      * This method is intended to be accessed from incrementCurrentTurn. It will determine whether the game is over, by using methods such as getTime (if it is the abridged version) and also by checking the number of players still in the game.
      */
-    private Boolean endGame(){
-        if((getTime() == 0) && getCurrentPlayer().equals(this.players.get(this.players.size()-1))){
-            return true;
-        }
-        return false;
+    private Boolean endGame() {
+        return (getTime() == 0) &&
+                getCurrentPlayer().equals(this.players.get(this.players.size() - 1));
     }
 
 
     /**
      * addPlayer
-     *
+     * <p>
      * This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
      */
-    private void addPlayer(Player player){
+    private void addPlayer(Player player) {
         this.players.add(player);
 
     }
 
     /**
      * getTrading
-     * @return trading boolean
      *
+     * @return trading boolean
+     * <p>
      * This gets the trading boolean.
      */
     public boolean getTrading() {
@@ -402,7 +418,7 @@ public class GameEngine {
 
     /**
      * setTrading
-     *
+     * <p>
      * This sets the trading boolean.
      */
     public void setTrading(boolean trading) {

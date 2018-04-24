@@ -24,9 +24,6 @@ public class PropertyGroupTest {
         Player player1 = new Player(0, "", null);
 
 
-
-
-
         Property property1 = new Property("", 0, null);
         property1.setOwner(player1);
         group.add(property1);
@@ -48,13 +45,11 @@ public class PropertyGroupTest {
 
     @Test
     public void getColour() {
-        assertTrue(this.group.getColour() instanceof Colour);
         assertEquals(Colour.White, this.group.getColour());
     }
 
     @Test
     public void setColour() {
-        assertTrue(this.group.getColour() instanceof Colour);
         this.group.setColour(Colour.Blue);
         assertEquals(Colour.Blue, this.group.getColour());
 

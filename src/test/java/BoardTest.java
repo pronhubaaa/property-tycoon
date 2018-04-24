@@ -5,17 +5,15 @@ import org.junit.Test;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Scanner;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
 
-    Board board;
+    private Board board;
 
     @Before
     public void setUp() throws Exception {
@@ -68,7 +66,7 @@ public class BoardTest {
     }
 
     @Test
-    public void getPropertyGroups() throws Exception{
+    public void getPropertyGroups() throws Exception {
 
         this.board = new Board(new JSONObject());
         HashMap<String, PropertyGroup> propertyGroups = new HashMap<>();
