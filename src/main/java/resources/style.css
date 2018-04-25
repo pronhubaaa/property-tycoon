@@ -157,3 +157,14 @@
 #clear-button:hover {
     -fx-cursor: hand;
 }
+
+#piece-selected {
+    -fx-border-color: '#86bf8e';
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+}
+
+#piece-taken {
+    -fx-fill: green;
+    -fx-opacity: 0.5;
+}

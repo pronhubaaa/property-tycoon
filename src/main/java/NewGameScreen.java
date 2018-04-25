@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -107,10 +108,56 @@ public class NewGameScreen extends Scene {
             ScrollPane scroll = new ScrollPane();
             for (int i = 0; i < 8; i++) {
                 Image img = new Image("resources/icon.png");
+                HBox outline = new HBox();
+                outline.setId("unclicked");
+                if (rectLeft.getChildren().size() > 7) {
+                    HBox firstPlayerPieces = (HBox) rectLeft.getChildren().get(4);
+                    ScrollPane piecesBox = (ScrollPane) firstPlayerPieces.getChildren().get(1);
+                    HBox spContent = (HBox) piecesBox.getContent();
+                    if (spContent.getChildren().get(i).getId() == "unclicked") {
+                        outline.setId("unclicked");
+                    } else if (spContent.getChildren().get(i).getId() == "piece-taken" | spContent.getChildren().get(i).getId() == "piece-selected") {
+                        outline.setId("piece-taken");
+                        outline.setDisable(true);
+                    }
+                }
                 ImageView v = new ImageView(img);
+                outline.getChildren().add(v);
                 v.setFitHeight(50);
                 v.setFitWidth(50);
-                piecesList.getChildren().add(v);
+                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent t) {
+                        int prevSelected = 0;
+                        int count = 0;
+                        for (Node hb : piecesList.getChildren()) {
+                            if (hb.getId() == "piece-selected") {
+                                hb = (HBox) hb;
+                                hb.setId("unclicked");
+                                prevSelected = count;
+                            }
+                            count++;
+                        }
+                        for (int ix = 0; ix < rectLeft.getChildren().size(); ix++) {
+                            if (rectLeft.getChildren().get(ix) instanceof HBox) {
+                                HBox h = (HBox) rectLeft.getChildren().get(ix);
+                                for (int j = 0; j < h.getChildren().size(); j++) {
+                                    if (h.getChildren().get(j) instanceof ScrollPane) {
+                                        ScrollPane sp = (ScrollPane) h.getChildren().get(j);
+                                        HBox images = (HBox) sp.getContent();
+                                        int pieceTaken = piecesList.getChildren().indexOf(outline);
+                                        images.getChildren().get(pieceTaken).setId("piece-taken");
+                                        images.getChildren().get(pieceTaken).setDisable(true);
+                                        images.getChildren().get(prevSelected).setId("unclicked");
+                                        images.getChildren().get(prevSelected).setDisable(false);
+                                    }
+                                }
+                            }
+                        }
+                        outline.setId("piece-selected");
+                    }
+                });
+                piecesList.getChildren().add(outline);
             }
             scroll.setMaxHeight(70);
             scroll.setMinHeight(70);
@@ -536,8 +583,8 @@ public class NewGameScreen extends Scene {
             makeGame(gameEngine, json);
         });
 
-
-
+        VBox errorMsg = displayError("Hi");
+        stack.getChildren().add(errorMsg);
 
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
@@ -549,6 +596,7 @@ public class NewGameScreen extends Scene {
 
         holder.getChildren().add(mainGrid);
         stack.getChildren().add(root);
+        root.toBack();
         scene.getChildren().add(stack);
     }
 
@@ -559,5 +607,16 @@ public class NewGameScreen extends Scene {
         } catch (Exception e){
             //nothing
         }
+    }
+
+    public VBox displayError(String msg) {
+        VBox error = new VBox();
+        error.setAlignment(Pos.CENTER);
+        error.setMinHeight(500);
+        error.setMaxHeight(500);
+        error.setMinWidth(400);
+        error.setMaxWidth(400);
+        error.setId("import-game-screen");
+        return error;
     }
 }
