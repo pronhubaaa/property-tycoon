@@ -1,11 +1,11 @@
 public enum JsonFields {
-    Tile("tile"),
+    Tiles("tiles"),
     Type("type"),
     Name("name"),
     Position("position"),
     Value("value"),
     Group("group"),
-    CardType("cardType"),
+    CardType("card_type"),
     Rent("rent"),
     Cost("cost"),
     HouseCost("house"),
@@ -18,7 +18,19 @@ public enum JsonFields {
     Piece("piece"),
     CurrentPlayer("current_player"),
     GameType("game_type"),
-    TimeLeft("time_left");
+    TimeLeft("time_left"),
+
+    Cards("cards"),
+    Description("desc"),
+    CardActionType("action_type"),
+    Origin("origin"),
+    Intent("intent"),
+    CollectSalary("collect_salary"),
+    CardValue("value"),
+    AmountHouse("amount_house"),
+    AmountHotel("amount_hotel");
+
+
 
 
     private String value;

@@ -47,9 +47,9 @@ public class Board {
         this.tiles = new ArrayList<>();
 
 
-        if (jsonObject.containsKey(JsonFields.Tile.toString())) {
+        if (jsonObject.containsKey(JsonFields.Tiles.toString())) {
 
-            JSONArray tiles = jsonObject.getJSONArray(JsonFields.Tile.toString());
+            JSONArray tiles = jsonObject.getJSONArray(JsonFields.Tiles.toString());
 
             for (Object object : tiles) {
                 if (this.tiles.size() > 40) {

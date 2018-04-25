@@ -1,5 +1,5 @@
 {
-	"tile":
+	"tiles":
 	[
 		{
 			"type": "Go",
@@ -20,7 +20,7 @@
 			"type": "Card",
 			"position" : "3",
 			"name": "Pot Luck",
-			"cardType": "PotLuck"
+			"card_type": "PotLuck"
 		},
 		{
 			"type": "Property",
@@ -58,7 +58,7 @@
 			"type": "Card",
 			"position" : "8",
 			"name": "Opportunity Knocks",
-			"cardType": "OpportunityKnocks"
+			"card_type": "OpportunityKnocks"
 		},
 		{
 			"type": "Property",
@@ -137,7 +137,7 @@
 			"type": "Card",
 			"position" : "18",
 			"name": "Pot Luck",
-			"cardType": "PotLuck"
+			"card_type": "PotLuck"
 		},
 		{
 			"type": "Property",
@@ -175,7 +175,7 @@
 			"type": "Card",
 			"position" : "23",
 			"name": "Opportunity Knocks",
-			"cardType": "OpportunityKnocks"
+			"card_type": "OpportunityKnocks"
 		},
 		{
 			"type": "Property",
@@ -262,7 +262,7 @@
 			"type": "Card",
 			"position" : "34",
 			"name": "Pot Luck",
-			"cardType": "PotLuck"
+			"card_type": "PotLuck"
 		},
 		{
 			"type": "Property",
@@ -284,7 +284,7 @@
 			"type": "Card",
 			"position" : "37",
 			"name": "Opportunity Knocks",
-			"cardType": "OpportunityKnocks"
+			"card_type": "OpportunityKnocks"
 		},
 		{
 			"type": "Property",
