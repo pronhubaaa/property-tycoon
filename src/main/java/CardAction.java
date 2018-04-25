@@ -140,7 +140,7 @@ public class CardAction {
 
     public void performAction(Player player) throws MalformedCardActionException {
         switch(cardActionType) {
-            case DRAW:
+            case Draw:
                 try {
                     assert(intent instanceof CardType);
                 } catch (Exception e) {
@@ -148,10 +148,10 @@ public class CardAction {
                 }
                 //TODO draw card
                 break;
-            case GET_OUT_OF_JAIL_FREE:
+            case GetOutOfJailFree:
                 player.addCard(card);
                 break;
-            case MOVE:
+            case Move:
                 int destination;
                 ArrayList<Tile> tiles = player.getBoard().getTiles();
                 if (intent instanceof Tile) {
@@ -188,7 +188,7 @@ public class CardAction {
                 player.setPosition(tiles.get(destination));
 
                 break;
-            case TRANSACTION:
+            case Transaction:
                 int amount = value;
                 if (amountPerHouse + amountPerHotel > 0) {
                     amount = getRelativeTransactionAmount(player, amountPerHouse, amountPerHotel);

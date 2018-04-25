@@ -1,11 +1,11 @@
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.net.URL;
+import java.util.*;
 
 /**
  * The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
@@ -250,9 +250,28 @@ public class GameEngine {
 
         json.put(JsonFields.Player.toString(), players);
 
+        try {
+            URL url = getClass().getResource("./resources/board.json");
+            File file = new File(url.getPath());
+
+            String board = new Scanner(file).useDelimiter("\\Z").next();
+
+            JSONObject boardJson = (JSONObject) JSONObject.parse(board);
+
+
+            json.put(JsonFields.Tiles.toString(), boardJson.getJSONArray(JsonFields.Tiles.toString()));
+        } catch(FileNotFoundException e) {
+
+        }
+
+        String fileName = "";
+        for(Player player: this.players){
+            fileName += player.getName();
+        }
+        fileName += ".json";
 
         try {
-            PrintWriter out = new PrintWriter("filename.json");
+            PrintWriter out = new PrintWriter(fileName);
             out.println(json.toString());
             out.close();
         } catch (Exception e) {

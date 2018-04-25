@@ -40,7 +40,7 @@ public class CardStackTest {
         for (int i = 0; i < TEST_AMOUNT_CARDS; i++) {
             Card card = new Card();
             ArrayList<CardAction> actions = new ArrayList<>();
-            CardAction action = new CardAction(CardActionType.DRAW, card, Integer.toString(i));
+            CardAction action = new CardAction(CardActionType.Draw, card, Integer.toString(i));
             actions.add(action);
             card.setActions(actions);
             cardStack.add(card);

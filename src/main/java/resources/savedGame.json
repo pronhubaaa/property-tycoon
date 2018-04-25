@@ -1,5 +1,5 @@
 {
-  "tile": [
+  "tiles": [
     {
       "type": "Go",
       "position": "1",
@@ -26,7 +26,7 @@
       "type": "Card",
       "position": "3",
       "name": "Pot Luck",
-      "cardType": "PotLuck"
+      "card_type": "PotLuck"
     },
     {
       "type": "Property",
@@ -82,7 +82,7 @@
       "type": "Card",
       "position": "8",
       "name": "Opportunity Knocks",
-      "cardType": "OpportunityKnocks"
+      "card_type": "OpportunityKnocks"
     },
     {
       "type": "Property",
@@ -208,7 +208,7 @@
       "type": "Card",
       "position": "18",
       "name": "Pot Luck",
-      "cardType": "PotLuck"
+      "card_type": "PotLuck"
     },
     {
       "type": "Property",
@@ -267,7 +267,7 @@
       "type": "Card",
       "position": "23",
       "name": "Opportunity Knocks",
-      "cardType": "OpportunityKnocks"
+      "card_type": "OpportunityKnocks"
     },
     {
       "type": "Property",
@@ -408,7 +408,7 @@
       "type": "Card",
       "position": "34",
       "name": "Pot Luck",
-      "cardType": "PotLuck"
+      "card_type": "PotLuck"
     },
     {
       "type": "Property",
@@ -442,7 +442,7 @@
       "type": "Card",
       "position": "37",
       "name": "Opportunity Knocks",
-      "cardType": "OpportunityKnocks"
+      "card_type": "OpportunityKnocks"
     },
     {
       "type": "Property",
@@ -492,7 +492,7 @@
       "owned_tiles": [
         "2"
       ],
-      "piece": "Phone"
+      "piece": "Car"
     },
     {
       "in_jail": "false",
@@ -502,7 +502,7 @@
       "owned_tiles": [
         "4"
       ],
-      "piece": "Candle"
+      "piece": "Car"
     }
   ],
   "game_type": "FullGame",

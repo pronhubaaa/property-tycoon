@@ -12,8 +12,8 @@ import static org.junit.Assert.*;
 
 public class CardActionTest {
 
-    private static final CardActionType TEST_INITIAL_CARDACTIONTYPE = CardActionType.TRANSACTION;
-    private static final CardActionType TEST_SECOND_CARDACTIONTYPE = CardActionType.DRAW;
+    private static final CardActionType TEST_INITIAL_CARDACTIONTYPE = CardActionType.Transaction;
+    private static final CardActionType TEST_SECOND_CARDACTIONTYPE = CardActionType.Draw;
     private static final Object TEST_ACTION_MEMBER_OBJECT = new Object();
     private static final Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {};
     private Player TEST_ACTION_MEMBER_PLAYER;
@@ -128,7 +128,7 @@ public class CardActionTest {
 
         // ActionType.GET_OUT_OF_JAIL_FREE:
         ArrayList<CardAction> actions = new ArrayList<CardAction>() {{
-            add(new CardAction(CardActionType.GET_OUT_OF_JAIL_FREE, card, TEST_CARD_ACTION_DESC));
+            add(new CardAction(CardActionType.GetOutOfJailFree, card, TEST_CARD_ACTION_DESC));
         }};
         card.setActions(actions);
         card.getActions().get(0).performAction(player);
@@ -136,7 +136,7 @@ public class CardActionTest {
 
         // ActionType.MOVE:
         ArrayList<Tile> tiles = board.getTiles();
-        CardAction action = new CardAction(CardActionType.MOVE, card, TEST_CARD_ACTION_DESC, null, tiles.get(1), 1);
+        CardAction action = new CardAction(CardActionType.Move, card, TEST_CARD_ACTION_DESC, null, tiles.get(1), 1);
         action.setCollectSalaryAtGo(true);
         // move to tile 1, collect salary
         testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);

@@ -23,8 +23,8 @@ public class CardTest {
         CardStack initialCardStack = new CardStack(TEST_INITIAL_CARD_TYPE);
         secondCardStack = new CardStack(TEST_SECOND_CARD_TYPE);
         card = new Card();
-        initialAction = new CardAction(CardActionType.DRAW, card, TEST_INITIAL_CARD_ACTION_DESC);
-        secondAction = new CardAction(CardActionType.DRAW, card, TEST_SECOND_CARD_ACTION_DESC);
+        initialAction = new CardAction(CardActionType.Draw, card, TEST_INITIAL_CARD_ACTION_DESC);
+        secondAction = new CardAction(CardActionType.Draw, card, TEST_SECOND_CARD_ACTION_DESC);
     }
 
     @After

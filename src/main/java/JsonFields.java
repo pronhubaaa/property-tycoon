@@ -19,7 +19,6 @@ public enum JsonFields {
     CurrentPlayer("current_player"),
     GameType("game_type"),
     TimeLeft("time_left"),
-
     Cards("cards"),
     Description("desc"),
     CardActionType("action_type"),
