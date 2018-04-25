@@ -226,6 +226,30 @@ public class GameEngine {
         json.put(JsonFields.Trade.toString(), String.valueOf(this.trading));
         json.put(JsonFields.TimeLeft.toString(), String.valueOf(this.timeLeft));
 
+        JSONArray players = new JSONArray();
+
+
+        for(Player player: this.players){
+            JSONObject playerObject = new JSONObject();
+            playerObject.put(JsonFields.Jail.toString(), String.valueOf(player.getInJail()));
+            playerObject.put(JsonFields.Balance.toString(), String.valueOf(player.getBalance()));
+            playerObject.put(JsonFields.Name.toString(), String.valueOf(player.getName()));
+
+            playerObject.put(JsonFields.Position.toString(), String.valueOf(this.gameBoard.getTiles().indexOf(player.getPosition())));
+            if(player.getPiece() != null){
+                playerObject.put(JsonFields.Piece.toString(), player.getPiece().toString());
+            }
+
+            JSONArray ownedTiles = new JSONArray();
+            for(Tile tile: player.getOwnedTiles()){
+                ownedTiles.add(this.gameBoard.getTiles().indexOf(tile));
+            }
+            playerObject.put(JsonFields.Owned.toString(), ownedTiles);
+            players.add(playerObject);
+        }
+
+        json.put(JsonFields.Player.toString(), players);
+
 
         try {
             PrintWriter out = new PrintWriter("filename.json");
@@ -234,7 +258,6 @@ public class GameEngine {
         } catch (Exception e) {
 
         }
-
 
     }
 
