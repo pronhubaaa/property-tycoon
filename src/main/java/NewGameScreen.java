@@ -642,7 +642,7 @@ public class NewGameScreen extends Scene {
                 gameEngine.addPlayer(p);
                 p.setBoard(gameEngine.getGameBoard());
             }
-            // UI SHOW BOARD 
+            // UI SHOW BOARD
         } catch (Exception e){
             //nothing
         }
@@ -669,6 +669,5 @@ public class NewGameScreen extends Scene {
         error.getChildren().add(accept);
         return error;
     }
-
-    public Board getNewBoard() { return new Board()}
+    
 }
