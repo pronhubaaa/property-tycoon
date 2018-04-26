@@ -31,6 +31,7 @@ public class NewGameScreen extends Scene {
     private static int playerCount = 0;
     private static int playerCountExternal = 0;
     private static boolean fullGameType = true;
+    private static ArrayList<Player> playersList;
 
     public static void addNewPlayer() {
         playerCount++;
@@ -526,15 +527,23 @@ public class NewGameScreen extends Scene {
         abridgedGame.getChildren().add(timeLimitRow);
 
         startGame.setOnAction((ActionEvent e) -> {
+            String errorMsg = "";
             //check players
-            ArrayList<Player> playersList = new ArrayList<Player>();
-            for (Node n : rectLeft.getChildren()) {
+            playersList = new ArrayList<Player>();
+            for (int child = 0; child < rectLeft.getChildren().size(); child++) {
+                Node n = rectLeft.getChildren().get(child);
                 HBox h = (HBox) n;
                 String playerName = "";
                 boolean human = true;
+                int pieceNo = -1;
                 for (Node m : h.getChildren()) {
                     if (m instanceof TextField) {
-                        playerName = ((TextField) m).getText();
+                        TextField nameEntry = (TextField) m;
+                        if (nameEntry.getText() == null | nameEntry.getText().trim().isEmpty()) {
+                            errorMsg += "Player names cannot be blank. \n";
+                        } else {
+                            playerName = ((TextField) m).getText();
+                        }
                     }
                     if (m instanceof Slider) {
                         if (((Slider) m).getValue() > 0.5) {
@@ -544,47 +553,73 @@ public class NewGameScreen extends Scene {
                         }
                     }
                     if (m instanceof ScrollPane) {
-                        System.out.println("PIECE SELECTION");
+                        ScrollPane sp = (ScrollPane) m;
+                        HBox pieces = (HBox) sp.getContent();
+                        for (int j = 0; j < pieces.getChildren().size(); j++) {
+                            if (pieces.getChildren().get(j).getId() == "piece-selected") {
+                                pieceNo = j;
+                            }
+                        }
+                        if (pieceNo == -1) {
+                            errorMsg += "You must select a player piece. \n";
+                        }
+                    }
+                }
+                if (errorMsg == "") {
+                    try {
+                        if (human) {
+                            Board tempBoard = new Board(new JSONObject());
+                            playersList.add(new Human(1500, playerName, tempBoard));
+                        } else {
+                            Board tempBoard = new Board(new JSONObject());
+                            playersList.add(new AI(1500, playerName, tempBoard));
+                        }
+                    } catch (Exception exp) {
+                        //do nothing
                     }
                 }
             }
+            if (errorMsg != "") {
+                VBox error = displayError(errorMsg, stack);
+                stack.getChildren().add(error);
+            } else {
 
-            String n = dropdown.getValue().toString();
-            ArrayList<String> boards = new ArrayList<String>();
-            try {
-                FileReader fr = new FileReader("saved-boards.ted");
-                BufferedReader br = new BufferedReader(fr);
-                int lineNo = 1;
-                String line;
-                while((line = br.readLine()) != null) {
-                    boards.add(line);
-                    System.out.println(line);
+                String n = dropdown.getValue().toString();
+                ArrayList<String> boards = new ArrayList<String>();
+                try {
+                    FileReader fr = new FileReader("saved-boards.ted");
+                    BufferedReader br = new BufferedReader(fr);
+                    int lineNo = 1;
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        boards.add(line);
+                        System.out.println(line);
+                    }
+                } catch (Exception ex) {
+                    System.out.println(ex.toString() + " ERROR");
                 }
-            } catch (Exception ex) {
-                System.out.println(ex.toString() + " ERROR");
-            }
-            String JSONpath = "";
-            for (int i = 0; i < boards.size(); i++) {
-                if (boards.get(i).equals(n)) {
-                    JSONpath = boards.get(i - 1);
-                    System.out.println("JSON PATH: " + JSONpath);
+                String JSONpath = "";
+                for (int i = 0; i < boards.size(); i++) {
+                    if (boards.get(i).equals(n)) {
+                        JSONpath = boards.get(i - 1);
+                        System.out.println("JSON PATH: " + JSONpath);
+                    }
                 }
-            }
-            URL jsonurl = getClass().getResource(JSONpath);
-            File file = new File(JSONpath);
-            JSONObject json;
-            String myJson = "";
-            try {
-                myJson = new Scanner(file).useDelimiter("\\Z").next();
-            } catch (Exception ex) {
+                URL jsonurl = getClass().getResource(JSONpath);
+                File file = new File(JSONpath);
+                JSONObject json;
+                String myJson = "";
+                try {
+                    myJson = new Scanner(file).useDelimiter("\\Z").next();
+                } catch (Exception ex) {
 
+                }
+                json = (JSONObject) JSONObject.parse(myJson);
+                GameEngine newGame = makeGame(gameEngine, json, ui);
+                Board newBoard = newGame.getGameBoard();
             }
-            json = (JSONObject) JSONObject.parse(myJson);
-            makeGame(gameEngine, json);
         });
 
-        VBox errorMsg = displayError("Hi");
-        stack.getChildren().add(errorMsg);
 
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
@@ -600,23 +635,40 @@ public class NewGameScreen extends Scene {
         scene.getChildren().add(stack);
     }
 
-    public void makeGame(GameEngine gameEngine, JSONObject json) { //do this so we are not initialising gameengine in lambda function
+    public GameEngine makeGame(GameEngine gameEngine, JSONObject json, UI ui) { //do this so we are not initialising gameengine in lambda function
         try {
             gameEngine = new GameEngine(json);
-            //gameEngine.addPlayer();
+            for (Player p : playersList) {
+                gameEngine.addPlayer(p);
+                p.setBoard(gameEngine.getGameBoard());
+            }
+            // UI SHOW BOARD 
         } catch (Exception e){
             //nothing
         }
     }
 
-    public VBox displayError(String msg) {
+    public VBox displayError(String msg, StackPane stack) {
         VBox error = new VBox();
         error.setAlignment(Pos.CENTER);
+        error.setSpacing(50);
         error.setMinHeight(500);
         error.setMaxHeight(500);
         error.setMinWidth(400);
         error.setMaxWidth(400);
         error.setId("import-game-screen");
+        Label message = new Label(msg);
+        message.setId("game-type-text");
+        message.setWrapText(true);
+        error.getChildren().add(message);
+        Button accept = new Button("Accept");
+        accept.setId("add-player-button");
+        accept.setOnAction((ActionEvent e) -> {
+            stack.getChildren().remove(error);
+        });
+        error.getChildren().add(accept);
         return error;
     }
+
+    public Board getNewBoard() { return new Board()}
 }

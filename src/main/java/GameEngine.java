@@ -309,4 +309,6 @@ public class GameEngine {
     public void setTrading(boolean trading) {
         this.trading = trading;
     }
+
+    public Board getGameBoard() {return this.gameBoard;}
 }
