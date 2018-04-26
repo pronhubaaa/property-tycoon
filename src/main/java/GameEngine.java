@@ -261,7 +261,7 @@ public class GameEngine {
      * Sets up a board using the imported board data.
      * If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
      */
-    private Board constructGameBoard(JSONObject jsonObject) throws BoardTileException {
+    public Board constructGameBoard(JSONObject jsonObject) throws BoardTileException {
         return new Board(jsonObject);
 
     }

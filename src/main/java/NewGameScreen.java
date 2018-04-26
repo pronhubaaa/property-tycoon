@@ -314,7 +314,6 @@ public class NewGameScreen extends Scene {
         }
 
         ComboBox dropdown = new ComboBox(options);
-        dropdown.setPromptText("Standard Board");
         dropdown.setMinWidth(400);
         dropdown.setMaxWidth(400);
         dropdown.setMinHeight(40);
@@ -616,7 +615,6 @@ public class NewGameScreen extends Scene {
                 }
                 json = (JSONObject) JSONObject.parse(myJson);
                 GameEngine newGame = makeGame(gameEngine, json, ui);
-                Board newBoard = newGame.getGameBoard();
             }
         });
 
@@ -646,6 +644,7 @@ public class NewGameScreen extends Scene {
         } catch (Exception e){
             //nothing
         }
+        return gameEngine;
     }
 
     public VBox displayError(String msg, StackPane stack) {
@@ -669,5 +668,5 @@ public class NewGameScreen extends Scene {
         error.getChildren().add(accept);
         return error;
     }
-    
+
 }
