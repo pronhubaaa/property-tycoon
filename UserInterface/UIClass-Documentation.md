@@ -26,4 +26,10 @@ Initialise the user interface for the current dataset.
 
 This method allows us to view a specific scene, game, menu etc. 
 
+- #### close(): Void
+*Parameters*: None
+*Returns*: Void
+
+This method closes the UI windows
+
 ---

@@ -1,0 +1,170 @@
+@font-face {
+       font-family: Raleway;
+       src: url('Raleway-Regular.ttf');
+}
+
+#pane {
+    -fx-background-color: '#c4e0c8';
+    -fx-alignment: center;
+}
+
+.main-menu-button {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Raleway';
+    -fx-background-color: '#a2dcab';
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+.main-menu-button:hover {
+    -fx-background-color: '#98d0a0';
+    -fx-cursor: hand;
+}
+
+.main-menu-button:pressed {
+    -fx-effect: none;
+}
+
+#new-game-screen-top {
+    -fx-alignment: center;
+}
+
+#new-game-screen-right {
+    -fx-alignment: right;
+}
+
+#menu-text {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Raleway';
+    -fx-background-color: none;
+    -fx-cursor: hand;
+}
+
+#menu-container{
+    -fx-background: '#c4e0c8';
+}
+
+#setup-text {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 50px;
+}
+
+#start-game-button {
+    -fx-font-size: 24px;
+    -fx-font-family: 'Raleway';
+    -fx-background-color: '#a2dcab';
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+#start-game-button:pressed {
+    -fx-effect: none;
+}
+
+#menu-rectangle {
+    -fx-color: '#a2dcab';
+}
+
+#players-title{
+    -fx-font-family: 'Raleway';
+}
+
+#start-game-button:hover {
+    -fx-background-color: '#98d0a0';
+    -fx-cursor: hand;
+}
+
+#menu-background {
+    -fx-background-color: '#a2dcab';
+}
+
+#players-title {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 40px;
+}
+
+#players-text{
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 20px;
+}
+
+#slider-text {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 10px;
+}
+
+#add-player-button {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 20px;
+    -fx-background-color: '#98d0a0';
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+#add-player-button:hover {
+    -fx-background-color: '#8bc593';
+    -fx-cursor: hand;
+}
+
+#add-player-button:pressed {
+    -fx-effect: none;
+}
+
+#black {
+    -fx-background-color: black;
+}
+
+#game-type {
+    -fx-background-color: '#98d0a0';
+    -fx-cursor: hand;
+}
+
+#game-type-title {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 25px;
+}
+
+#game-type-text {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 18px;
+}
+
+#time-limit {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 20px;
+}
+
+#game-type-selected {
+    -fx-background-color: '#86bf8e';
+}
+
+#delete-player {
+    -fx-background-color: none;
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 20px;
+}
+
+#delete-player:hover {
+    -fx-cursor: hand;
+}
+
+#import-game-screen {
+    -fx-background-color: '#86bf8e';
+    -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+}
+
+#clear-button {
+    -fx-background-color: none;
+}
+
+#clear-button:hover {
+    -fx-cursor: hand;
+}
+
+#piece-selected {
+    -fx-border-color: '#86bf8e';
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+}
+
+#piece-taken {
+    -fx-fill: green;
+    -fx-opacity: 0.5;
+}

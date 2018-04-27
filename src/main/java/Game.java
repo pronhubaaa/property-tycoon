@@ -24,8 +24,6 @@ public class Game extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("hi");
-
         launch(args);
     }
 
@@ -39,13 +37,14 @@ public class Game extends Application {
      * minPlayers: Int
      * The minimum amount of players able to play.
      */
-    private int minPlayers;
+    private static int minPlayers = 2;
 
     /**
      * maxPlayers: Int
      * The maximum amount of players able to play.
      */
-    private int maxPlayers;
+    private static int maxPlayers = 6;
+
 
 
     /**
@@ -64,6 +63,10 @@ public class Game extends Application {
      */
     private void constructUI(GameEngine gameEngine){
 
+    }
+
+    public static int getMaxPlayers() {
+        return maxPlayers;
     }
 
 

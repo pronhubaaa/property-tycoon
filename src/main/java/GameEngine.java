@@ -354,7 +354,7 @@ public class GameEngine {
      * Sets up a board using the imported board data.
      * If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
      */
-    private Board constructGameBoard(JSONObject jsonObject) throws BoardTileException {
+    public Board constructGameBoard(JSONObject jsonObject) throws BoardTileException {
         return new Board(jsonObject);
 
     }
@@ -379,7 +379,7 @@ public class GameEngine {
      *
      * This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
      */
-    private void addPlayer(Player player){
+    public void addPlayer(Player player){
         this.players.add(player);
 
     }
@@ -402,4 +402,6 @@ public class GameEngine {
     public void setTrading(boolean trading) {
         this.trading = trading;
     }
+
+    public Board getGameBoard() {return this.gameBoard;}
 }

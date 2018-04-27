@@ -293,4 +293,6 @@ public class Player {
         this.ownedTiles.remove(ownable);
     }
 
+    public void setBoard(Board b) {this.board = b;}
+
 }
