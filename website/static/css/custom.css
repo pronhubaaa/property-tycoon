@@ -1,0 +1,35 @@
+/* your custom css */
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (max-width: 1023px) {
+}
+
+@media only screen and (min-width: 1400px) {
+}
+
+@media only screen and (min-width: 1500px) {
+}
+
+/* @font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  src:
+    url(../font/Raleway-Regular.ttf) format('ttf');
+}
+
+
+
+body {
+  font-family: 'Raleway', Verdana, sans-serif;
+} */
+
+
+.homeSplashFade {
+  background: #c4e0c8 url(../img/property-tycoon-header.png) center/cover;
+  box-shadow: inset 0 0 100px black;
+}
