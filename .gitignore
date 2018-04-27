@@ -4,6 +4,19 @@ out/
 build/
 .gradle/
 
+### React ###
+
+
+
+lib/core/metadata.js
+lib/core/MetadataBlog.js
+
+website/translated_docs
+website/yarn.lock
+website/i18n/*
+!website/i18n/en.json
+
+
 ### Intellij ###
 
 
@@ -67,4 +80,3 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
-
