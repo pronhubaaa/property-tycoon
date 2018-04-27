@@ -33,17 +33,17 @@ public class NewGameScreenTest extends ApplicationTest {
         this._primaryStage = stage;
     }
 
-    @Test
-    public void canInputText() {
-        // Click on the first player name TextField
-        clickOn("#test-input");
-
-        // Write in the field
-        write("Player 1");
-
-        //Assert the field isn't blank
-        assertNotEquals("", _newGameScene.getPlayerOneName());
-    }
+//    @Test
+//    public void canInputText() {
+//        // Click on the first player name TextField
+//        clickOn("#test-input");
+//
+//        // Write in the field
+//        write("Player 1");
+//
+//        //Assert the field isn't blank
+//        assertNotEquals("", _newGameScene.getPlayerOneName());
+//    }
 
     @Test
     public void canChangeGameType() {

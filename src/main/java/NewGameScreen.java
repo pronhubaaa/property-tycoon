@@ -601,15 +601,23 @@ public class NewGameScreen extends Scene {
             VBox v = (VBox) rectRightBot.getChildren().get(2);
             HBox h = (HBox) v.getChildren().get(2);
             TextField t = (TextField) h.getChildren().get(1);
-            int minutes = Integer.parseInt(t.getText());
-            if (Float.isNaN(minutes)) {
-                errorMsg += "Please enter a number.";
+            int minutes;
+            if (!fullGameType) {
+                try {
+                    minutes = Integer.parseInt(t.getText());
+                } catch (NumberFormatException nfe) {
+                    errorMsg += "Please enter a time for an abridged game\n";
+                }
+            }
+            try {
+                String n = dropdown.getValue().toString();
+            } catch (Exception nothingSelected) {
+                errorMsg += "Please select a board type.\n";
             }
             if (errorMsg != "") {
                 VBox error = displayError(errorMsg, stack);
                 stack.getChildren().add(error);
             } else {
-
                 String n = dropdown.getValue().toString();
                 ArrayList<String> boards = new ArrayList<String>();
                 try {
