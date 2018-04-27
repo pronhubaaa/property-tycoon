@@ -1,4 +1,6 @@
 import com.alibaba.fastjson.JSONObject;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,12 +24,14 @@ import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class NewGameScreen extends Scene {
 
     private static VBox rectLeft = new VBox();
+    private static VBox rectRightBot;
     private static int playerCount = 0;
     private static int playerCountExternal = 0;
     private static boolean fullGameType = true;
@@ -77,6 +81,7 @@ public class NewGameScreen extends Scene {
             row3.setId("players-text");
             row3.getChildren().add(nameText);
             TextField nameEntry = new TextField();
+            nameEntry.setId("test-input");
             row3.getChildren().add(nameEntry);
             row3.setAlignment(Pos.CENTER_LEFT);
             rectLeft.getChildren().add(row3);
@@ -258,7 +263,7 @@ public class NewGameScreen extends Scene {
         rectRight.setId("menu-background");
 
 
-        VBox rectRightBot = new VBox();
+        rectRightBot = new VBox();
         rectRightBot.setSpacing(20);
         rectRightBot.setPadding(new Insets(0, 0, 0, 20));
         rectRightBot.setMinHeight(520);
@@ -354,6 +359,7 @@ public class NewGameScreen extends Scene {
            Label importName = new Label("Name: ");
            importName.setId("time-limit");
            TextField importNameInput = new TextField();
+           importNameInput.setId("timer-input");
            importRow2.getChildren().addAll(importName, importNameInput);
            importRow2.setAlignment(Pos.CENTER);
 
@@ -492,6 +498,20 @@ public class NewGameScreen extends Scene {
         TextField timeLimit = new TextField();
         timeLimit.setMinWidth(100);
         timeLimit.setMaxWidth(100);
+        timeLimit.lengthProperty().addListener(new ChangeListener<Number>(){
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    char ch = timeLimit.getText().charAt(oldValue.intValue());
+                    // Check if the new character is the number or other's
+                    if (!(ch >= '0' && ch <= '9' )) {
+                        // if it's not number then just setText to previous one
+                        timeLimit.setText(timeLimit.getText().substring(0,timeLimit.getText().length()-1));
+                    }
+                }
+            }
+
+        });
         Label timeLimitMins = new Label("mins");
         timeLimitMins.setId("game-type-text");
 
@@ -578,6 +598,13 @@ public class NewGameScreen extends Scene {
                     }
                 }
             }
+            VBox v = (VBox) rectRightBot.getChildren().get(2);
+            HBox h = (HBox) v.getChildren().get(2);
+            TextField t = (TextField) h.getChildren().get(1);
+            int minutes = Integer.parseInt(t.getText());
+            if (Float.isNaN(minutes)) {
+                errorMsg += "Please enter a number.";
+            }
             if (errorMsg != "") {
                 VBox error = displayError(errorMsg, stack);
                 stack.getChildren().add(error);
@@ -614,10 +641,10 @@ public class NewGameScreen extends Scene {
 
                 }
                 json = (JSONObject) JSONObject.parse(myJson);
+                GameType g = null;
                 GameEngine newGame = makeGame(gameEngine, json, ui);
             }
         });
-
 
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
@@ -634,16 +661,36 @@ public class NewGameScreen extends Scene {
     }
 
     public GameEngine makeGame(GameEngine gameEngine, JSONObject json, UI ui) { //do this so we are not initialising gameengine in lambda function
-        try {
-            gameEngine = new GameEngine(json);
-            for (Player p : playersList) {
-                gameEngine.addPlayer(p);
-                p.setBoard(gameEngine.getGameBoard());
+        if (fullGameType) {
+            GameType g = GameType.FullGame;
+            try {
+                gameEngine = new GameEngine(json, playersList, g);
+                for (Player p : playersList) {
+                    gameEngine.addPlayer(p);
+                    p.setBoard(gameEngine.getGameBoard());
+                }
+                // UI SHOW BOARD
+            } catch (Exception e){
+                //nothing
             }
-            // UI SHOW BOARD
-        } catch (Exception e){
-            //nothing
+        } else {
+            GameType g = GameType.AbridgedGame;
+            VBox v = (VBox) rectRightBot.getChildren().get(2);
+            HBox h = (HBox) v.getChildren().get(2);
+            TextField t = (TextField) h.getChildren().get(1);
+            int minutes = Integer.parseInt(t.getText());
+            try {
+                gameEngine = new GameEngine(json, playersList, g, minutes);
+                for (Player p : playersList) {
+                    gameEngine.addPlayer(p);
+                    p.setBoard(gameEngine.getGameBoard());
+                }
+                // UI SHOW BOARD
+            } catch (Exception e){
+                //nothing
+            }
         }
+
         return gameEngine;
     }
 
@@ -669,4 +716,41 @@ public class NewGameScreen extends Scene {
         return error;
     }
 
+    public String getPlayerOneName() {
+        HBox row = (HBox) rectLeft.getChildren().get(2);
+        TextField tf = (TextField) row.getChildren().get(1);
+        return tf.getText();
+    }
+
+    public VBox getRectLeft() {
+        return rectLeft;
+    }
+
+    public TextField getMostRecentPlayerNameField() {
+        TextField returnThis = null;
+        for (Node n : rectLeft.getChildren()) {
+            HBox h = (HBox) n;
+            for (Node elements : h.getChildren()) {
+                if (elements instanceof TextField) {
+                    returnThis = (TextField) elements;
+                }
+            }
+        }
+        return returnThis;
+    }
+
+    public boolean getGameType() {
+        return fullGameType;
+    }
+
+    public VBox getAbridgedBox() {
+        return (VBox) rectRightBot.getChildren().get(2);
+    }
+
+    public TextField getTimer() {
+        VBox timerBox = (VBox) rectRightBot.getChildren().get(2);
+        HBox timerRow = (HBox) timerBox.getChildren().get(2);
+        TextField tf = (TextField) timerRow.getChildren().get(1);
+        return tf;
+    }
 }

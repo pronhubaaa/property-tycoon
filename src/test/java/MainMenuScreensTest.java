@@ -31,8 +31,8 @@ public class MainMenuScreensTest extends ApplicationTest {
         UI ui = new UI(stage, gameEngine);
         stage.setTitle("Property Tycoon");
 
-        this._mainMenuScene = MainMenuScreens.getMainMenu(ui);
-        this._newGameScene = MainMenuScreens.getNewGame(ui);
+        this._mainMenuScene = MainMenuScreens.getMainMenu(ui, gameEngine);
+        this._newGameScene = MainMenuScreens.getNewGame(ui, gameEngine);
         this._loadGameScene = MainMenuScreens.getLoadGame(ui);
         this._importBoardScene = MainMenuScreens.getImportBoard(ui);
         this._settingsScene = MainMenuScreens.getSettings(ui);
