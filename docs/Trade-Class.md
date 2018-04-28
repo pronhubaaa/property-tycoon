@@ -55,12 +55,14 @@ public boolean acceptTrade(boolean boolean1, boolean boolean2)
 *Parameters*: boolean from each player accepting or denying the trade 
 *Returns*: Void
 
-
+This function will allow players to decide if they want to trade for the current ownables.
 
 ## Private Methods
 ### tradeOwnable
 ```java
-public void constructUI(GameEngine gameEngine)
+private void tradeOwnable()
 ```
-*Parameters*: A game engine
+*Parameters*: void
 *Returns*: Void
+
+This method will exchange the tiles being traded between the two players.
