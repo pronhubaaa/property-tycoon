@@ -443,4 +443,12 @@ public class GameEngine {
     public void setTrading(boolean trading) {
         this.trading = trading;
     }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
 }
