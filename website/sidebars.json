@@ -24,9 +24,7 @@
     "GameEngine": ["TileType-Enum"],
     "GameEngine": ["Trade-Class"],
     "GameEngine": ["UtilityGroup-Class"],
-
     "Artificial Intelligence": ["AI-Class"],
     "User Interface": ["doc2"]
-
   }
 }
