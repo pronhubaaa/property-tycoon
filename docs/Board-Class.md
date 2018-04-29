@@ -19,13 +19,13 @@ private HashMap<String, PropertyGroup> propertyGroups;
 ```
 The groups of properties as shown by their colour groups on the board.
 
-- #### stationGroups: [StationGroup]
+- #### stationGroups
 ```java
 private HashMap<String, StationGroup> stationGroups;
 ```
 The train station tiles shown on the board.
 
-- #### UtilityGroups: [UtilityGroup]
+- #### UtilityGroups
 ```java
 private HashMap<String, UtilityGroup> utilityGroups;
 ```
@@ -33,7 +33,7 @@ The utility tiles shown on the board.
 
 ### Public Methods 
 
-- #### Board(JsonObject)
+- #### Board
 ```java
 public Board(JSONObject jsonObject)
 ```
@@ -52,7 +52,7 @@ public ArrayList<Tile> getTiles()
 This method will get all tiles on the board.
 
 
-- #### addTile(Tile): Void
+- #### addTile
 ```java
 public void addTile(Tile tile)
 ```

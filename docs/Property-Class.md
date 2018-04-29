@@ -43,7 +43,7 @@ public Property(String name, int position, Group group)
 This method initilaises the property object
 
 
-- #### getRent(): [Int]
+- #### getRent
 ```java
 public ArrayList<Integer> getRent()
 ```
@@ -52,7 +52,7 @@ public ArrayList<Integer> getRent()
 
 This returns an array of prices, the slot chosen depends on the current ownership status as seen for the private attribute 'rent'. 
 
-- #### setRent([Int]): Void
+- #### setRent
 ```java
 public void setRent(ArrayList<Integer> rent)
 ```
@@ -61,7 +61,7 @@ public void setRent(ArrayList<Integer> rent)
 
 This sets an array of prices, the slot chosen depends on the current ownership status as seen for the private attribute 'rent'.
 
-- #### getCostOfHouse(): Int
+- #### getCostOfHouse
 ```java
 public int getCostOfHouse()
 ```
@@ -70,7 +70,7 @@ public int getCostOfHouse()
 
 This method gets the cost to put a house on this property.
 
-- #### setCostOfHouse(Int): Void
+- #### setCostOfHouse
 ```java
 public void setCostOfHouse(int costOfHouse)
 ```
@@ -88,7 +88,7 @@ public void addHouses(int amount)
 
 Add a set amount of houses to the property.
 
-- #### addHouses(): Void
+- #### addHouses
 ```java
 public void addHouses()
 ```
@@ -97,7 +97,7 @@ public void addHouses()
 
 Add a house to the property.
 
-- #### removeHouses(Int): Void
+- #### removeHouses
 ```java
 public void removeHouses(int amount)
 ```

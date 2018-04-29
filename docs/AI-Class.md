@@ -7,6 +7,15 @@ sidebar_label: Computer Player
 This class is used to create an artificial player. 
 
 ### Public Methods
+- ### AI
+```java
+public AI(int balance, String name, Board board)
+```
+
+*Parameters*: The balance and name of a player and the game board
+*Returns*: Void
+
+This initialises the AI object.
 
 - ### buyTile
 ```java

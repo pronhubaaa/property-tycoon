@@ -1,5 +1,5 @@
 ---
-id: goToJail-Class
+id: GoToJail-Class
 title: Go To Jail class
 sidebar_label: Go To Jail 
 ---

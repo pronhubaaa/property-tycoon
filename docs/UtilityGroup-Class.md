@@ -8,7 +8,7 @@ The utility group class is responsible for checking how many utilities a player 
 
 ### Public Methods 
 
-- #### checkOwnedUtility(Player): Int
+- #### checkOwnedUtility
 ```java
 public int checkOwnedUtility(Player player)
 ```

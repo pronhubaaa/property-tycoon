@@ -8,7 +8,7 @@ The jail class is responsible for players in jail, it contains the price to get 
 
 ### Private Attributes 
 
-- fee: Int
+- #### fee
 ```java
 private int fee;
 ```
@@ -24,7 +24,7 @@ public Jail(String name, int position, int value)
 
 Initialises the jail tile
 
-- #### getFee(): Int
+- #### getFee
 ```java
 public int getFee()
 ```
@@ -33,7 +33,7 @@ public int getFee()
 
 Returns the fee to get out of jail.
 
-- #### setFee(Int): Void
+- #### setFee
 ```java
 public void setFee(int fee)
 ```
@@ -42,7 +42,7 @@ public void setFee(int fee)
 
 Set the amount of money it costs to get out of jail.
 
-- #### freeFromJail(Player): Void
+- #### freeFromJail
 ```java
 public void freeFromJail(Player player)
 ```

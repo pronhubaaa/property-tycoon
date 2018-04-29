@@ -9,49 +9,49 @@ The game engine will be responsible for any action that happens on the board and
 
 ### Private Attributes
 
-- #### gameBoard: Board
+- #### gameBoard
 ```java
 private Board gameBoard;
 ```
 This is the representation of the board, which contains tiles, player locations, etc.
 
-- #### players: Array of Players
+- #### players
 ```java
 private ArrayList<Player> players;
 ```
 This array represents all the players playing the game. The order of the array will represent the order of play.
 
-- #### numberOfTurns: Int
+- #### numberOfTurns
 ```java
 private int numberOfTurns;
 ```
 This represents the current turn number. This will increment at the end of each turn.
 
-- #### currentTurn: Player
+- #### currentTurn
 ```java
 private Player currentPlayer;
 ```
 This is a pointer to the player object whose turn it currently is.
 
-- #### timer: Timer
+- #### timer
 ```java
 private Timer timer;
 ```
 This is the timer counting down for the abridged version of the game. 
 
-- #### timeLeft: int
+- #### timeLeft
 ```java
 private int timeLeft;
 ```
 This is the time left of the game.
 
-- #### gameType: GameType
+- #### gameType
 ```java
 private GameType gameType;
 ```
 This is the type of game e.g. Abridged or Full.
 
-- #### trading: Boolean
+- #### trading
 ```java
 private boolean trading;
 ```

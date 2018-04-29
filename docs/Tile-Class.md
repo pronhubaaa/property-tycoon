@@ -7,21 +7,29 @@ sidebar_label: Tile
 The tile class is responsible for storing all tiles on the game board. It contains common functions that all tiles will need such as storing the position. 
 
 ### Private Attributes 
-- #### name: String
+- #### name
 ```java
 private String name;
 ```
 The name of this specific tile.
 
-- #### position: Int
+- #### position
 ```java
 private int position;
 ```
 The position on the board of this specific tile.
 
 ### Public Methods 
+- #### Tile
+```java
 
-- #### getName(): String
+```
+*Parameters*: The name and position of the tile
+*Returns*: Void
+
+This method constructs a new tile object
+
+- #### getName
 ```java
 public String getName()
 ```
@@ -30,7 +38,7 @@ public String getName()
 
 This method returns the name of this tile.
 
-- #### getPosition(): Int
+- #### getPosition
 ```java
 public int getPosition()
 ```
@@ -40,7 +48,7 @@ public int getPosition()
 An integer showing where this tile is located on the board.
 
 
-- #### setName(String): Void
+- #### setName
 ```java
 public void setName(String name)
 ```
@@ -49,7 +57,7 @@ public void setName(String name)
 
 Allows the name of the tile to be set.
 
-- #### setPosition(Int): Void
+- #### setPosition
 ```java
 public void setPosition(int position)
 ```

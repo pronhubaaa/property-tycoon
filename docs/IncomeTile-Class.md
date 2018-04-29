@@ -8,7 +8,7 @@ The income tile class is responsible for tiles that give players money.
 
 ### Private Attributes 
 
-- value: Int
+- #### value: Int
 ```java
 private int value;
 ```

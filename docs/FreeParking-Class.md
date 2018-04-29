@@ -7,6 +7,15 @@ sidebar_label: Free Parking
 The free parking class will contain all of the money stored on this tile, it will also be responsible for updating this amount. 
 
 ### Public Methods 
+- #### collect
+```java
+public FreeParking(String name, int position)
+```
+
+*Parameters*: The name and position of the tile
+*Returns*: Void
+
+Initialise the free parking object
 
 - #### collect
 ```java

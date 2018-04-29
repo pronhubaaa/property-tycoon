@@ -21,6 +21,14 @@ private Colour colour;
 This contains the colour of the given group.
 
 #### Public Methods 
+- #### Group
+```java
+public Group()
+```
+*Parameters*: None
+*Returns*: Void
+
+This is the constructor for the Group object
 
 - #### getGroups
 ```java

@@ -15,7 +15,6 @@ private int doubleCount;
 This integer value counts the amount of doubles a player rolls in a row.
 
 ### Public Methods
-
 - #### roll
 ```java
 public int[] roll()

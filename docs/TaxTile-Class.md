@@ -8,7 +8,7 @@ The tax tile class is responsible for storing the value of the tax and charging 
 
 ### Private Attributes 
 
-- amount: Int
+- #### amount: Int
 ```java
 private int amount;
 ```
@@ -24,7 +24,7 @@ public TaxTile(String tileName, int tilePosition, int tileValue)
 
 Initialises the tax tile object
 
-- #### getAmount(): Int
+- #### getAmount
 ```java
 public int getAmount()
 ```
@@ -33,7 +33,7 @@ public int getAmount()
 
 Returns the cost of the tax
 
-- #### setFee(Int): Void
+- #### setFee
 ```java
 public void setAmount(int amount)
 ```
@@ -42,7 +42,7 @@ public void setAmount(int amount)
 
 Set the amount of money it costs to pay tax
 
-- #### payTax(Player): Void
+- #### payTax
 ```java
 public void payTax(Player player)
 ```

@@ -7,19 +7,19 @@ sidebar_label: Ownable
 The ownable class contains all tiles that a player could possess. 
 
 ### Private Attributes 
-- #### owner: Player
+- #### owner
 ```java
 private Player owner;
 ```
 This is the player who owns this tile.
 
-- #### price: Int
+- #### price
 ```java
 private int price;
 ```
 This is the price for this tile.
 
-- #### mortgagePrice: Int
+- #### mortgagePrice
 ```java
 private int mortgagePrice;
 ```
@@ -44,7 +44,16 @@ private Group group;
 The group this ownable tile is in
 
 ### Public Methods 
-- #### isOwned(): Boolean
+- #### Ownable
+```java
+public Ownable(String name, int position, Group group)
+```
+*Parameters*: The name position and group of the new ownable tile. 
+*Returns*: Void
+
+This is the initialiser for an ownable object.
+
+- #### isOwned
 ```java
 public boolean isOwned()
 ```
@@ -53,7 +62,7 @@ public boolean isOwned()
 
 This method returns if the property is owned or not.
 
-- #### getPrice(): Int
+- #### getPrice
 ```java
 public int getPrice()
 ```
@@ -62,7 +71,7 @@ public int getPrice()
 
 This method returns the price of this property.
 
-- #### setPrice(Int): Void
+- #### setPrice
 ```java
 public void setPrice(int price)
 ```
@@ -71,7 +80,7 @@ public void setPrice(int price)
 
 This method sets the price for the property for initialisation. 
 
-- #### getMortgagePrice(): Int
+- #### getMortgagePrice
 ```java
 public int getMortgagePrice()
 ```
@@ -80,7 +89,7 @@ public int getMortgagePrice()
 
 This method gets the value given to the player for morgaging the property.
 
-- #### setMortgagePrice(Int): Void
+- #### setMortgagePrice
 ```java
 public void setMortgagePrice(int mortgagePrice)
 ```
@@ -89,7 +98,7 @@ public void setMortgagePrice(int mortgagePrice)
 
 This method will set the morgage price for the property. 
 
-- #### getOwner(): Player
+- #### getOwner
 ```java
 public Player getOwner()
 ```
@@ -98,7 +107,7 @@ public Player getOwner()
 
 This method returns the player who owns the tile.
 
-- #### setOwner(Player): Void
+- #### setOwner
 ```java
 public void setOwner(Player owner)
 ```
@@ -116,7 +125,7 @@ public int getSellPrice()
 
 This method is uesd to get the sell price of the property
 
-- #### setOwner(Player): Void
+- #### setOwner
 ```java
 public void setSellPrice(int sellPrice)
 ```

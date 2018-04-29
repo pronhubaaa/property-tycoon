@@ -8,7 +8,7 @@ The station group class is used to check how many stations a player owns.
 
 ### Public Methods 
 
-- #### checkOwnedStations(Player): Int
+- #### checkOwnedStations
 ```java
 public int checkOwnedStations(Player player)
 ```
