@@ -70,9 +70,9 @@ public class Player implements Payable {
         setInJail(false);
         ownedTiles = new ArrayList<>();
 
-        if(this.board != null){
-            if(this.board.getTiles() != null) {
-                if(this.board.getTiles().size() > 0){
+        if (this.board != null) {
+            if (this.board.getTiles() != null) {
+                if (this.board.getTiles().size() > 0) {
                     this.position = this.board.getTiles().get(0);
                 }
             }
@@ -239,6 +239,20 @@ public class Player implements Payable {
      */
     public void addBalance(int amount) {
         this.balance += amount;
+    }
+
+    /**
+     * Attempts to debit $amount from this player, and returns the result of the transaction.
+     * @param amount The amount to be debited.
+     * @return Whether the transaction was successful or not.
+     */
+    public boolean attemptDebit(int amount) {
+        if (balance - amount < 0) {
+            return false;
+        } else {
+            addBalance(-amount);
+            return true;
+        }
     }
 
     /**
