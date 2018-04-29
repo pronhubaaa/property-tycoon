@@ -27,31 +27,28 @@ public class AI extends Player {
             Ownable ownable = (Ownable) tile;
             if (!ownable.isOwned()) {
                 // If a player owns 1 of two tiles
-                if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice() && ownable.getGroup().getGroupOwners().size() == 2) {
+                if (this.getBoard().getPlayerOwned(ownable) > 0 && ownable.getGroup().getGroupOwners().size() == 2 && attemptDebit(ownable.getPrice())) {
                     ownable.setOwner(this);
-                    setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
                 //If another player owns a tile in the same group
-                else if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice()) {
+                else if (this.getBoard().getPlayerOwned(ownable) > 0) {
                     double random = Math.random();
-                    if (random > 0.25) {
+                    if (random > 0.25 && attemptDebit(ownable.getPrice())) {
                         ownable.setOwner(this);
-                        setBalance(getBalance() - ownable.getPrice());
                         return true;
                     }
 
                 } else if (this.getBalance() >= ownable.getPrice() * 3) {
+                    attemptDebit(ownable.getPrice());
                     ownable.setOwner(this);
-                    setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
                 //If no other tiles in the group are owned
                 else {
                     double random = Math.random();
-                    if (random > 0.5 && this.getBalance() > ownable.getPrice()) {
+                    if (random > 0.5 && attemptDebit(ownable.getPrice())) {
                         ownable.setOwner(this);
-                        setBalance(getBalance() - ownable.getPrice());
                         return true;
                     }
                 }
