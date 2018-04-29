@@ -1,25 +1,4 @@
-public enum JsonField {
-    Tiles("tiles"),
-    Type("type"),
-    Name("name"),
-    Position("position"),
-    Value("value"),
-    Group("group"),
-    CardType("card_type"),
-    Rent("rent"),
-    Cost("cost"),
-    HouseCost("house"),
-    Trade("trade"),
-    NumberTurns("number_of_turns"),
-    Player("players"),
-    Jail("in_jail"),
-    Balance("balance"),
-    Owned("owned_tiles"),
-    Piece("piece"),
-    CurrentPlayer("current_player"),
-    GameType("game_type"),
-    TimeLeft("time_left"),
-
+public enum CardJsonField {
     // cards.json
     Cards("cards"),
     Description("desc"),
@@ -39,10 +18,9 @@ public enum JsonField {
     PotLuckIntentEntity("pot luck"),
     OpportunityKnocksIntentEntity("opportunity knocks");
 
-
     private String value;
 
-    JsonField(final String value) {
+    CardJsonField(final String value) {
         this.value = value;
     }
 
@@ -55,10 +33,10 @@ public enum JsonField {
         return this.getValue();
     }
 
-    public static JsonField fromString(String s) {
-        for (JsonField jsonField : JsonField.values()) {
-            if (jsonField.value.equalsIgnoreCase(s)) {
-                return jsonField;
+    public static CardJsonField fromString(String s) {
+        for (CardJsonField cardJsonField : CardJsonField.values()) {
+            if (cardJsonField.value.equalsIgnoreCase(s)) {
+                return cardJsonField;
             }
         }
         throw new IllegalArgumentException("No constant with that text:" + s);
