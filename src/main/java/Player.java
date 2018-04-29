@@ -94,12 +94,12 @@ public class Player implements Payable {
         if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
             if (!ownable.isOwned()) {
-                if (this.balance >= ownable.getPrice()) {
+                boolean transaction = attemptDebit(ownable.getPrice());
+                if (transaction) {
                     ownable.setOwner(this);
                     ownedTiles.add(ownable);
-                    setBalance(getBalance() - ownable.getPrice());
-                    return true;
                 }
+                return transaction;
             }
         }
         return false;
