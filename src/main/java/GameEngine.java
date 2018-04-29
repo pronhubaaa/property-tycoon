@@ -102,15 +102,15 @@ public class GameEngine {
     public GameEngine(JSONObject jsonObject) throws GameEngineTypeException, GameEngineTimeException, GameEngineTradingException, BoardTileException {
         this.players = new ArrayList<>();
 
-        if (jsonObject.containsKey(JsonFields.GameType.toString())) {
+        if (jsonObject.containsKey(JsonField.GameType.toString())) {
 
-            GameType type = checkGameType(jsonObject.getString(JsonFields.GameType.toString()));
+            GameType type = checkGameType(jsonObject.getString(JsonField.GameType.toString()));
             if (type != null) {
                 this.gameType = type;
 
                 if (this.gameType.equals(GameType.AbridgedGame)) {
-                    if (jsonObject.containsKey(JsonFields.TimeLeft.toString())) {
-                        int time = jsonObject.getIntValue(JsonFields.TimeLeft.toString());
+                    if (jsonObject.containsKey(JsonField.TimeLeft.toString())) {
+                        int time = jsonObject.getIntValue(JsonField.TimeLeft.toString());
                         if (time < 0) {
                             this.timeLeft = 0;
                         } else {
@@ -128,41 +128,41 @@ public class GameEngine {
             }
         }
 
-        if (jsonObject.containsKey(JsonFields.NumberTurns.toString())) {
-            this.numberOfTurns = jsonObject.getIntValue(JsonFields.NumberTurns.toString());
+        if (jsonObject.containsKey(JsonField.NumberTurns.toString())) {
+            this.numberOfTurns = jsonObject.getIntValue(JsonField.NumberTurns.toString());
         } else {
             this.numberOfTurns = 0;
         }
 
-        if (jsonObject.containsKey(JsonFields.Trade.toString())) {
-            this.trading = jsonObject.getBooleanValue(JsonFields.Trade.toString());
+        if (jsonObject.containsKey(JsonField.Trade.toString())) {
+            this.trading = jsonObject.getBooleanValue(JsonField.Trade.toString());
         } else {
             throw new GameEngineTradingException("Please include trading boolean");
         }
 
         this.gameBoard = constructGameBoard(jsonObject);
 
-        if (jsonObject.containsKey(JsonFields.Player.toString())) {
+        if (jsonObject.containsKey(JsonField.Player.toString())) {
 
-            JSONArray players = jsonObject.getJSONArray(JsonFields.Player.toString());
+            JSONArray players = jsonObject.getJSONArray(JsonField.Player.toString());
 
             for (Object object : players) {
 
                 JSONObject player = (JSONObject) object;
 
-                boolean inJail = player.getBooleanValue(JsonFields.Jail.toString());
-                int balance = player.getIntValue(JsonFields.Balance.toString());
-                String name = player.getString(JsonFields.Name.toString());
-                int position = player.getIntValue(JsonFields.Position.toString());
+                boolean inJail = player.getBooleanValue(JsonField.Jail.toString());
+                int balance = player.getIntValue(JsonField.Balance.toString());
+                String name = player.getString(JsonField.Name.toString());
+                int position = player.getIntValue(JsonField.Position.toString());
 
-                JSONArray ownedTiles = player.getJSONArray(JsonFields.Owned.toString());
+                JSONArray ownedTiles = player.getJSONArray(JsonField.Owned.toString());
 
                 ArrayList<Integer> ownedTile = new ArrayList<>();
                 for (int i = 0; i < ownedTiles.size(); i++) {
                     ownedTile.add(ownedTiles.getIntValue(i));
                 }
 
-                PlayerPiece type = checkPieceType(jsonObject.getString(JsonFields.Piece.toString()));
+                PlayerPiece type = checkPieceType(jsonObject.getString(JsonField.Piece.toString()));
 
                 Player player1 = new Player(balance, name, this.gameBoard);
                 player1.setPiece(type);
@@ -172,8 +172,8 @@ public class GameEngine {
 
 
             }
-            if (jsonObject.containsKey(JsonFields.CurrentPlayer.toString()) && this.players.size() > jsonObject.getIntValue(JsonFields.CurrentPlayer.toString())) {
-                this.currentPlayer = this.players.get(jsonObject.getIntValue(JsonFields.CurrentPlayer.toString()));
+            if (jsonObject.containsKey(JsonField.CurrentPlayer.toString()) && this.players.size() > jsonObject.getIntValue(JsonField.CurrentPlayer.toString())) {
+                this.currentPlayer = this.players.get(jsonObject.getIntValue(JsonField.CurrentPlayer.toString()));
             }
 
 
@@ -220,35 +220,35 @@ public class GameEngine {
      */
     public void saveGame() {
         JSONObject json = new JSONObject();
-        json.put(JsonFields.GameType.toString(), this.gameType.name());
-        json.put(JsonFields.CurrentPlayer.toString(), String.valueOf(this.players.indexOf(this.currentPlayer)));
-        json.put(JsonFields.NumberTurns.toString(), String.valueOf(this.numberOfTurns));
-        json.put(JsonFields.Trade.toString(), String.valueOf(this.trading));
-        json.put(JsonFields.TimeLeft.toString(), String.valueOf(this.timeLeft));
+        json.put(JsonField.GameType.toString(), this.gameType.name());
+        json.put(JsonField.CurrentPlayer.toString(), String.valueOf(this.players.indexOf(this.currentPlayer)));
+        json.put(JsonField.NumberTurns.toString(), String.valueOf(this.numberOfTurns));
+        json.put(JsonField.Trade.toString(), String.valueOf(this.trading));
+        json.put(JsonField.TimeLeft.toString(), String.valueOf(this.timeLeft));
 
         JSONArray players = new JSONArray();
 
 
         for(Player player: this.players){
             JSONObject playerObject = new JSONObject();
-            playerObject.put(JsonFields.Jail.toString(), String.valueOf(player.getInJail()));
-            playerObject.put(JsonFields.Balance.toString(), String.valueOf(player.getBalance()));
-            playerObject.put(JsonFields.Name.toString(), String.valueOf(player.getName()));
+            playerObject.put(JsonField.Jail.toString(), String.valueOf(player.getInJail()));
+            playerObject.put(JsonField.Balance.toString(), String.valueOf(player.getBalance()));
+            playerObject.put(JsonField.Name.toString(), String.valueOf(player.getName()));
 
-            playerObject.put(JsonFields.Position.toString(), String.valueOf(this.gameBoard.getTiles().indexOf(player.getPosition())));
+            playerObject.put(JsonField.Position.toString(), String.valueOf(this.gameBoard.getTiles().indexOf(player.getPosition())));
             if(player.getPiece() != null){
-                playerObject.put(JsonFields.Piece.toString(), player.getPiece().toString());
+                playerObject.put(JsonField.Piece.toString(), player.getPiece().toString());
             }
 
             JSONArray ownedTiles = new JSONArray();
             for(Tile tile: player.getOwnedTiles()){
                 ownedTiles.add(this.gameBoard.getTiles().indexOf(tile));
             }
-            playerObject.put(JsonFields.Owned.toString(), ownedTiles);
+            playerObject.put(JsonField.Owned.toString(), ownedTiles);
             players.add(playerObject);
         }
 
-        json.put(JsonFields.Player.toString(), players);
+        json.put(JsonField.Player.toString(), players);
 
         try {
             URL url = getClass().getResource("./resources/board.json");
@@ -259,7 +259,7 @@ public class GameEngine {
             JSONObject boardJson = (JSONObject) JSONObject.parse(board);
 
 
-            json.put(JsonFields.Tiles.toString(), boardJson.getJSONArray(JsonFields.Tiles.toString()));
+            json.put(JsonField.Tiles.toString(), boardJson.getJSONArray(JsonField.Tiles.toString()));
         } catch(FileNotFoundException e) {
 
         }
