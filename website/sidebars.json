@@ -1,7 +1,31 @@
 {
   "docs": {
-    "GameEngine": ["doc1"],
-    "AI": ["AI-Class"],
+    "GameEngine": ["GameEngine-Class"],
+    "GameEngine": ["Board-Class"],
+    "GameEngine": ["CardTile-Class"],
+    "GameEngine": ["CardType-Enum"],
+    "GameEngine": ["Dice-Class"],
+    "GameEngine": ["FreeParking-Class"],
+    "GameEngine": ["Game-Class"],
+    "GameEngine": ["GameType-Enum"],
+    "GameEngine": ["Go-Class"],
+    "GameEngine": ["GoToJail-Class"],
+    "GameEngine": ["Group-Class"],
+    "GameEngine": ["Human-Class"],
+    "GameEngine": ["IncomeTile-Class"],
+    "GameEngine": ["Jail-Class"],
+    "GameEngine": ["Ownable-Class"],
+    "GameEngine": ["Player-Class"],
+    "GameEngine": ["Property-Class"],
+    "GameEngine": ["PropertyGroup-Class"],
+    "GameEngine": ["StationGroup-Class"],
+    "GameEngine": ["TaxTile-Class"],
+    "GameEngine": ["Tile-Class"],
+    "GameEngine": ["TileType-Enum"],
+    "GameEngine": ["Trade-Class"],
+    "GameEngine": ["UtilityGroup-Class"],
+
+    "Artificial Intelligence": ["AI-Class"],
     "User Interface": ["doc2"]
 
   }
