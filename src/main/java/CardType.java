@@ -16,4 +16,13 @@ public enum CardType {
     public String toString() {
         return this.getValue();
     }
+
+    public static CardType fromString(String s) {
+        for (CardType cardType : CardType.values()) {
+            if (cardType.value.equalsIgnoreCase(s)) {
+                return cardType;
+            }
+        }
+        throw new IllegalArgumentException("No constant with that text");
+    }
 }

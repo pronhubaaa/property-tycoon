@@ -18,4 +18,13 @@ public enum CardActionType {
     public String toString() {
         return this.getValue();
     }
+
+    public static CardActionType fromString(String s) {
+        for (CardActionType actionType : CardActionType.values()) {
+            if (actionType.value.equalsIgnoreCase(s)) {
+                return actionType;
+            }
+        }
+        throw new IllegalArgumentException("No constant with that text "+ s);
+    }
 }
