@@ -5,6 +5,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GroupTest {
 
@@ -20,22 +22,6 @@ public class GroupTest {
     public void tearDown() throws Exception {
         this.group = null;
     }
-
-    @Test
-    public void getAndAddGroups() {
-
-        assertEquals(0, this.group.getGroup().size());
-        this.group.add(new Property("", 0, null));
-        assertEquals(1, this.group.getGroup().size());
-
-        ArrayList<Ownable> groups = new ArrayList<>();
-        groups.add(new Property("", 0, null));
-        groups.add(new Property("", 1, null));
-        this.group.setGroups(groups);
-        assertEquals(2, this.group.getGroup().size());
-
-    }
-
 
     @Test
     public void getGroupOwners() {
@@ -67,5 +53,49 @@ public class GroupTest {
         assertEquals(players, group.getGroupOwners());
 
 
+    }
+
+    @Test
+    public void checkOwnedStreet() {
+        Player player1 = new Player(0, "", null);
+
+
+        Property property1 = new Property("", 0, null);
+        property1.setOwner(player1);
+        group.add(property1);
+
+
+        Property property2 = new Property("", 0, null);
+        group.add(property2);
+
+        property1.setGroup(group);
+        property2.setGroup(group);
+
+        assertFalse(this.group.isGroupAllOwned(player1));
+
+        property2.setOwner(player1);
+        assertTrue(this.group.isGroupAllOwned(player1));
+    }
+
+    @Test
+    public void howManyAreOwned() {
+        // Creates station group
+        // Adds 2 stations owned by player
+        Group group = new Group();
+        Player player = new Player(0, "", null);
+        Station station = new Station("", 0, group);
+        station.setOwner(player);
+        Station station2 = new Station("", 0, group);
+        station2.setOwner(player);
+
+        group.add(station);
+        group.add(station2);
+
+        assertEquals(2, group.getAmountOwned(player));
+
+        // Adds an ownable and station without player being the owner
+        group.add(new Ownable("", 2, group));
+        group.add(new Station("", 3, group));
+        assertEquals(2, group.getAmountOwned(player));
     }
 }
