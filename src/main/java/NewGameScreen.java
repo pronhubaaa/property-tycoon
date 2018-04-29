@@ -652,6 +652,11 @@ public class NewGameScreen extends Scene {
                 json = (JSONObject) JSONObject.parse(myJson);
                 GameType g = null;
                 GameEngine newGame = makeGame(gameEngine, json, ui);
+                if (getTrading().getValue() > 0.5) {
+                    newGame.setTrading(false);
+                } else {
+                    newGame.setTrading(true);
+                }
                 ui.showScene(new GameBoard(newGame).getLayout());
             }
         });
@@ -762,5 +767,11 @@ public class NewGameScreen extends Scene {
         HBox timerRow = (HBox) timerBox.getChildren().get(2);
         TextField tf = (TextField) timerRow.getChildren().get(1);
         return tf;
+    }
+
+    public Slider getTrading() {
+        HBox firstRow = (HBox) rectRightBot.getChildren().get(0);
+        Slider s = (Slider) firstRow.getChildren().get(2);
+        return s;
     }
 }

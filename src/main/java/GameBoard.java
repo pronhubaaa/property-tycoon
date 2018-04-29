@@ -10,9 +10,9 @@ public class GameBoard {
     private Tile _tiles[];
 
     private StackPane _parentPane;
-    private HBox _sidebarSplitPane;
+    private VBox _sidebarSplitPane;
     private BorderPane _boardPane;
-
+    private HBox _boardContainer;
     private Button _detailsButton;
 
     public GameBoard(GameEngine gameEngine) {
@@ -20,8 +20,9 @@ public class GameBoard {
     }
 
     public Scene getLayout() {
-        this._parentPane = new StackPane();
-        this._sidebarSplitPane = new HBox();
+        _parentPane = new StackPane();
+        this._boardContainer = new HBox();
+        this._sidebarSplitPane = new VBox();
         this._boardPane = new BorderPane();
 
         this._parentPane.setMinWidth(400);
@@ -29,10 +30,7 @@ public class GameBoard {
 
         this._createBoardLayout();
 
-        this._sidebarSplitPane.getChildren().add(this._boardPane);
-        this._parentPane.getChildren().add(this._sidebarSplitPane);
         Scene returnPane = new Scene(_parentPane);
-
         return returnPane;
     }
 
@@ -41,6 +39,7 @@ public class GameBoard {
         this._detailsButton.setText("Property details");
         this._detailsButton.setId("property-details");
 
+        BorderPane board = new BorderPane();
         ArrayList<Tile> tiles = this._gameEngine.getBoard().getTiles();
         ArrayList<Button> tileButtons = new ArrayList<Button>();
 
@@ -72,12 +71,12 @@ public class GameBoard {
 
         for(int i = 0; i < tileButtons.size(); i++) {
             if(i < 10) {
-                bottomRow.getChildren().add(tileButtons.get(i));
+                bottomRow.getChildren().add(tileButtons.get(9 - i));
             }
             else if(i < 20) {
                 leftColumn.getChildren().add(tileButtons.get(i));
             }
-            else if(i < 30) {
+            else if(i < 31) {
                 topRow.getChildren().add(tileButtons.get(i));
             }
             else {
