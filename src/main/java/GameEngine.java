@@ -229,19 +229,19 @@ public class GameEngine {
         JSONArray players = new JSONArray();
 
 
-        for(Player player: this.players){
+        for (Player player : this.players) {
             JSONObject playerObject = new JSONObject();
             playerObject.put(BoardJsonField.Jail.toString(), String.valueOf(player.getInJail()));
             playerObject.put(BoardJsonField.Balance.toString(), String.valueOf(player.getBalance()));
             playerObject.put(BoardJsonField.Name.toString(), String.valueOf(player.getName()));
 
             playerObject.put(BoardJsonField.Position.toString(), String.valueOf(this.gameBoard.getTiles().indexOf(player.getPosition())));
-            if(player.getPiece() != null){
+            if (player.getPiece() != null) {
                 playerObject.put(BoardJsonField.Piece.toString(), player.getPiece().toString());
             }
 
             JSONArray ownedTiles = new JSONArray();
-            for(Tile tile: player.getOwnedTiles()){
+            for (Tile tile : player.getOwnedTiles()) {
                 ownedTiles.add(this.gameBoard.getTiles().indexOf(tile));
             }
             playerObject.put(BoardJsonField.Owned.toString(), ownedTiles);
@@ -260,12 +260,12 @@ public class GameEngine {
 
 
             json.put(BoardJsonField.Tiles.toString(), boardJson.getJSONArray(BoardJsonField.Tiles.toString()));
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
 
         }
 
         String fileName = "";
-        for(Player player: this.players){
+        for (Player player : this.players) {
             fileName += player.getName();
         }
         fileName += ".json";

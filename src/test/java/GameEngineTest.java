@@ -203,10 +203,10 @@ public class GameEngineTest {
             try {
                 GameEngine gameEngineFull = new GameEngine(json, players, type);
                 gameEngineFull.saveGame();
-            } catch (Exception e){
+            } catch (Exception e) {
                 fail();
             }
-        } catch(Exception e){
+        } catch (Exception e) {
 
         }
 

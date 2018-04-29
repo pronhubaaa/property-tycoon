@@ -25,6 +25,6 @@ public enum CardActionType {
                 return actionType;
             }
         }
-        throw new IllegalArgumentException("No constant with that text "+ s);
+        throw new IllegalArgumentException("No constant with that text " + s);
     }
 }

@@ -139,10 +139,10 @@ public class CardAction {
     }
 
     public void performAction(Player player) throws MalformedCardActionException {
-        switch(cardActionType) {
+        switch (cardActionType) {
             case Draw:
                 try {
-                    assert(intent instanceof CardType);
+                    assert intent instanceof CardType;
                 } catch (Exception e) {
                     throw new MalformedCardActionException("The intent of a Draw action must be a card type");
                 }
