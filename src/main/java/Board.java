@@ -212,6 +212,15 @@ public class Board {
 
     }
 
+    public Tile getTile(String name) {
+        for (Tile tile : tiles) {
+            if (tile.getName().toLowerCase().equals(name.toLowerCase())) {
+                return tile;
+            }
+        }
+        return null;
+    }
+
     /**
      * This method is to see what other tiles in a set are owned. It is given a tile, then it must return the amount of tiles owned by the player that owns the most
      * This could be 1 if two players own one, 2 if a player owns 2 etc.
