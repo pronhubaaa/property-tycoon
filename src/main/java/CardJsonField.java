@@ -2,11 +2,11 @@ public enum CardJsonField {
     // cards.json
     Cards("cards"),
     Description("desc"),
-    CardActionType("action_type"),
+    ActionType("action_type"),
     Origin("origin"),
     Intent("intent"),
     CollectSalary("collect_salary"),
-    CardValue("value"),
+    Value("value"),
     AmountHouse("amount_house"),
     AmountHotel("amount_hotel"),
 
