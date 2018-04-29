@@ -1,9 +1,8 @@
 ---
-id: doc1
+id: GameEngine-Class
 title: Game Engine class
 sidebar_label: Game Engine
 ---
-
 
 
 The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
