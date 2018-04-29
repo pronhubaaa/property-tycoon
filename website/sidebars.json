@@ -1,6 +1,6 @@
 {
   "docs": {
-    "GameEngine": ["GameEngine-Class"],
+    "GameEngine": ["doc1"],
     "Artificial Intelligence": ["AI-Class"],
     "User Interface": ["doc2"]
   }
