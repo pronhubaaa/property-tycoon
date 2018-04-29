@@ -18,7 +18,7 @@ public class MainMenuScreensTest extends ApplicationTest {
     @BeforeClass
     public static void beforeClass() {
         System.setProperty("testfx.robot", "glass");
-        System.setProperty("testfx.headless", "true");
+        System.setProperty("testfx.headless", "false");
         System.setProperty("prism.order", "sw");
         System.setProperty("prism.text", "t2k");
     }

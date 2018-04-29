@@ -2,6 +2,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.sun.javafx.robot.FXRobotFactory;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.hamcrest.CoreMatchers;
 import org.junit.BeforeClass;
@@ -65,7 +66,7 @@ public class GameBoardTest extends ApplicationTest {
     }
 
     public Scene createSandboxScene(GameBoard gameBoard) {
-        return new Scene(gameBoard.getLayout());
+        return gameBoard.getLayout();
     }
 
     @Test
