@@ -195,8 +195,10 @@ public class CardAction {
                 }
                 if (origin instanceof Player) {
                     // TODO @Issue #17
-                } else if (origin == null) {
-
+                } else if (origin instanceof String) {
+                    if (origin.equals("player")) {
+                        // TODO @Issue #17
+                    }
                 } else if (origin instanceof ArrayList<?>) {
                     ArrayList<?> list = (ArrayList) origin;
                     if (list.get(0) instanceof Player) {
@@ -217,6 +219,10 @@ public class CardAction {
                         }
                     } else {
                         throw new MalformedCardActionException("The list of intents was of an invalid type");
+                    }
+                } else if (intent instanceof String) {
+                    if (intent.equals("player")) {
+                        player.addBalance(amount);
                     }
                 } else {
                     throw new MalformedCardActionException("The transaction intent is not a valid payee");
