@@ -39,15 +39,13 @@ public class CardStackTest {
     public void shuffle() {
         for (int i = 0; i < TEST_AMOUNT_CARDS; i++) {
             Card card = new Card();
-            ArrayList<CardAction> actions = new ArrayList<>();
             CardAction action = new CardAction(CardActionType.Draw, card, Integer.toString(i));
-            actions.add(action);
-            card.setActions(actions);
+            card.add(action);
             cardStack.add(card);
         }
         int i = 0;
         assert cardStack.peek() != null;
-        while (cardStack.peek().getActions().get(0).toString().equals("0") && i < TEST_SHUFFLE_ITERATIONS) {
+        while (cardStack.peek().get(0).toString().equals("0") && i < TEST_SHUFFLE_ITERATIONS) {
             cardStack.shuffle();
             i++;
         }

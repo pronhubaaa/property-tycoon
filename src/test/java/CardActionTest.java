@@ -130,9 +130,10 @@ public class CardActionTest {
         ArrayList<CardAction> actions = new ArrayList<CardAction>() {{
             add(new CardAction(CardActionType.GetOutOfJailFree, card, TEST_CARD_ACTION_DESC));
         }};
-        card.setActions(actions);
-        card.getActions().get(0).performAction(player);
-        assertEquals(TEST_CARD_ACTION_DESC, player.getCards().get(0).getActions().get(0).getDescription());
+        card.clear();
+        card.addAll(actions);
+        card.get(0).performAction(player);
+        assertEquals(TEST_CARD_ACTION_DESC, player.getCards().get(0).get(0).getDescription());
 
         // ActionType.MOVE:
         ArrayList<Tile> tiles = board.getTiles();
