@@ -7,14 +7,14 @@ sidebar_label: Card Tile
 The card class is for storing action cards (Pot luck and oppertunity knocks)
 
 ### Private Attributes 
-- #### type
+#### type
 ```java
 private CardType cardType;
 ```
 Card type, oppertunity knocks or pot luck etc.
 
 ### Public Methods 
-- #### CardTile
+#### CardTile
 ```java
 public Card(String tileName, int tilePosition, CardType cardType)
 ```
@@ -23,7 +23,7 @@ public Card(String tileName, int tilePosition, CardType cardType)
 
 This is the intialiser for the card. 
 
-- #### getCardType
+#### getCardType
 ```java
 public CardType getCardType()
 ```
@@ -32,7 +32,7 @@ public CardType getCardType()
 
 This method returns the type of card stored. 
 
-- #### getCard
+#### getCard
 ```java
 public card getCard()
 ```

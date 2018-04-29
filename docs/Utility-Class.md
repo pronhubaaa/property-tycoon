@@ -7,7 +7,7 @@ sidebar_label: Utility
 The utility class extends ownable, allowing utilities to have different functions for rent and payment.
 
 ### Public Methods 
-- #### Utility
+#### Utility
 ```java
 public Utility(String name, int position)
 ```
@@ -16,7 +16,7 @@ public Utility(String name, int position)
 
 This constructor will build a station object. 
 
-- #### getRent
+#### getRent
 ```java
 public int getRent(Player player, int dice)
 ```
@@ -25,7 +25,7 @@ public int getRent(Player player, int dice)
 
 Returns the rent given the current state of ownership and the value on the dice; and checks that the player who landed on the tile is not the owner. 
 
-- #### applyPayment
+#### applyPayment
 ```java
 public boolean applyPayment(Player player, int dice)
 ```

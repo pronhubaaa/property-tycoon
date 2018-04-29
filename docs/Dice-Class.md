@@ -8,14 +8,14 @@ The dice class is for when dice are rolled and counting doubles
 
 ### Private Attributes
 
-- #### doubleCount
+#### doubleCount
 ```java
 private int doubleCount;
 ```
 This integer value counts the amount of doubles a player rolls in a row.
 
 ### Public Methods
-- #### roll
+#### roll
 ```java
 public int[] roll()
 ```
@@ -24,7 +24,7 @@ public int[] roll()
 
 This method returns the two values between 1 and 6 shown on the two dice. The function will also add to doubleCount where appropriate.
 
-- #### getDoubleCount
+#### getDoubleCount
 ```java
 public int getDoubleCount()
 ```

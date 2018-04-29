@@ -7,14 +7,14 @@ sidebar_label: Station
 The station class extends ownable, allowing stations to have different functions for rent and payment.
 
 ### Private Attributes 
-- #### rent
+#### rent
 ```java
 private ArrayList<Int> rent;
 ```
 The price of rent on this tile as an arraylist.
 
 ### Public Methods 
-- #### Station
+#### Station
 ```java
 public Station(String name, int position, ArrayList<Int> rent)
 ```
@@ -23,7 +23,7 @@ public Station(String name, int position, ArrayList<Int> rent)
 
 This constructor will build a station object. 
 
-- #### getRent
+#### getRent
 ```java
 public int getRent(Player player)
 ```
@@ -32,7 +32,7 @@ public int getRent(Player player)
 
 Returns the rent given the current state of ownership and checks that the player who landed on the tile is not the owner. 
 
-- #### setRent
+#### setRent
 ```java
 public void getRent(ArrayList<Int> rent)
 ```
@@ -41,7 +41,7 @@ public void getRent(ArrayList<Int> rent)
 
 Update the price of rent on the given tile
 
-- #### applyPayment
+#### applyPayment
 ```java
 public boolean applyPayment(Player player)
 ```

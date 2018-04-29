@@ -8,14 +8,14 @@ The income tile class is responsible for tiles that give players money.
 
 ### Private Attributes 
 
-- #### value: Int
+#### value: Int
 ```java
 private int value;
 ```
 The amount given to a player when landing on an income tile.
 
 ### Public Methods 
-- #### income tile
+#### income tile
 ```java
 public IncomeTile(String name, int position, int value)
 ```
@@ -24,7 +24,7 @@ public IncomeTile(String name, int position, int value)
 
 Initialises the income tile.
 
-- #### getValue
+#### getValue
 ```java
 public int getValue()
 ```
@@ -33,7 +33,7 @@ public int getValue()
 
 Returns the value given for landing on the tile.
 
-- #### setValue
+#### setValue
 ```java
 public void setValue(int value)
 ```
@@ -42,7 +42,7 @@ public void setValue(int value)
 
 Set the amount of money given to a player for landing on this tile.
 
-- #### addValue
+#### addValue
 ```java
 public void addValue(int value)
 ```
@@ -51,7 +51,7 @@ public void addValue(int value)
 
 Adds a specific amount to the value given on the tile
 
-- #### collect
+#### collect
 ```java
 public void collect(Player player)
 ```

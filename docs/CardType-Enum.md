@@ -7,13 +7,13 @@ sidebar_label: Card Type
 This enumeration is for selecting the type of card being used, this allows different card types to be added.
 
 ### Types
-- #### PotLuck
+#### PotLuck
 ```java
 Pot Luck,
 ```
 This is one of the two types of card the player can pick up around the board.
 
-- #### OppertunityKnocks
+#### OppertunityKnocks
 ```java
 Oppertunity Knocks
 ```

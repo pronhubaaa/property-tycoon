@@ -7,7 +7,7 @@ sidebar_label: Go To Jail
 The go to jail class will send a player to jail, without them passing go. 
 
 ### Public Methods 
-- #### goToJail
+#### goToJail
 ```java
 public GoToJail(String name, int position)
 ```
@@ -16,7 +16,7 @@ public GoToJail(String name, int position)
 
 This method initialises the tile
 
-- #### sendToJail
+#### sendToJail
 ```java
 public void sendToJail(Player player)
 ```

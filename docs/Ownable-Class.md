@@ -7,44 +7,44 @@ sidebar_label: Ownable
 The ownable class contains all tiles that a player could possess. 
 
 ### Private Attributes 
-- #### owner
+#### owner
 ```java
 private Player owner;
 ```
 This is the player who owns this tile.
 
-- #### price
+#### price
 ```java
 private int price;
 ```
 This is the price for this tile.
 
-- #### mortgagePrice
+#### mortgagePrice
 ```java
 private int mortgagePrice;
 ```
 This is the morgage price for this tile.
 
-- #### sellPrice
+#### sellPrice
 ```java
 private int sellPrice;
 ```
 This is the sale price for this tile.
 
-- #### mortgaged
+#### mortgaged
 ```java
 private boolean mortgaged;
 ```
 This boolean dictates if the tile is mortgaged
 
-- #### group
+#### group
 ```java
 private Group group;
 ```
 The group this ownable tile is in
 
 ### Public Methods 
-- #### Ownable
+#### Ownable
 ```java
 public Ownable(String name, int position, Group group)
 ```
@@ -53,7 +53,7 @@ public Ownable(String name, int position, Group group)
 
 This is the initialiser for an ownable object.
 
-- #### isOwned
+#### isOwned
 ```java
 public boolean isOwned()
 ```
@@ -62,7 +62,7 @@ public boolean isOwned()
 
 This method returns if the property is owned or not.
 
-- #### getPrice
+#### getPrice
 ```java
 public int getPrice()
 ```
@@ -71,7 +71,7 @@ public int getPrice()
 
 This method returns the price of this property.
 
-- #### setPrice
+#### setPrice
 ```java
 public void setPrice(int price)
 ```
@@ -80,7 +80,7 @@ public void setPrice(int price)
 
 This method sets the price for the property for initialisation. 
 
-- #### getMortgagePrice
+#### getMortgagePrice
 ```java
 public int getMortgagePrice()
 ```
@@ -89,7 +89,7 @@ public int getMortgagePrice()
 
 This method gets the value given to the player for morgaging the property.
 
-- #### setMortgagePrice
+#### setMortgagePrice
 ```java
 public void setMortgagePrice(int mortgagePrice)
 ```
@@ -98,7 +98,7 @@ public void setMortgagePrice(int mortgagePrice)
 
 This method will set the morgage price for the property. 
 
-- #### getOwner
+#### getOwner
 ```java
 public Player getOwner()
 ```
@@ -107,7 +107,7 @@ public Player getOwner()
 
 This method returns the player who owns the tile.
 
-- #### setOwner
+#### setOwner
 ```java
 public void setOwner(Player owner)
 ```
@@ -116,7 +116,7 @@ public void setOwner(Player owner)
 
 This method allows a player to own the tile.
 
-- #### getSellPrice
+#### getSellPrice
 ```java
 public int getSellPrice()
 ```
@@ -125,7 +125,7 @@ public int getSellPrice()
 
 This method is uesd to get the sell price of the property
 
-- #### setOwner
+#### setOwner
 ```java
 public void setSellPrice(int sellPrice)
 ```
@@ -134,7 +134,7 @@ public void setSellPrice(int sellPrice)
 
 This method is used to set the sell price of the property
 
-- #### isMortgaged
+#### isMortgaged
 ```java
 public boolean isMortgaged()
 ```
@@ -143,7 +143,7 @@ public boolean isMortgaged()
 
 This method is used to check if the property is mortgaged
 
-- #### setMortgaged
+#### setMortgaged
 ```java
 public void setMortgaged(boolean mortgaged)
 ```
@@ -152,7 +152,7 @@ public void setMortgaged(boolean mortgaged)
 
 This method is used to set the property is mortgaged of un-mortgaged
 
-- #### getGroup
+#### getGroup
 ```java
 public Group getGroup()
 ```
@@ -161,7 +161,7 @@ public Group getGroup()
 
 This method is used to set the group of the ownable
 
-- #### setGroup
+#### setGroup
 ```java
 public void setGroup(Group group)
 ```

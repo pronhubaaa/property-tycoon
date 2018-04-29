@@ -7,7 +7,7 @@ sidebar_label: Property
 The property class stores all information related to a property on the board, this being the rent, amount of houses present, etc. It also contains methods to change these figures. 
 
 ### Private Attributes 
-- #### rent
+#### rent
 ```java
 private ArrayList<Integer> rent;
 ```
@@ -20,20 +20,20 @@ This is an array of the price of rent on the property, each slot will represent 
 -- The rent with four houses 
 -- The rent with a hotel
 
-- #### costOfHouse
+#### costOfHouse
 ```java
 private int costOfHouse;
 ```
 This integer represents the cost to put a house on this property.
 
-- #### amountOfHouses
+#### amountOfHouses
 ```java
 private int amountOfHouses;
 ```
 The amount of houses on the property.
 
 ### Public Methods 
-- #### Property
+#### Property
 ```java
 public Property(String name, int position, Group group)
 ```
@@ -43,7 +43,7 @@ public Property(String name, int position, Group group)
 This method initilaises the property object
 
 
-- #### getRent
+#### getRent
 ```java
 public ArrayList<Integer> getRent()
 ```
@@ -52,7 +52,7 @@ public ArrayList<Integer> getRent()
 
 This returns an array of prices, the slot chosen depends on the current ownership status as seen for the private attribute 'rent'. 
 
-- #### setRent
+#### setRent
 ```java
 public void setRent(ArrayList<Integer> rent)
 ```
@@ -61,7 +61,7 @@ public void setRent(ArrayList<Integer> rent)
 
 This sets an array of prices, the slot chosen depends on the current ownership status as seen for the private attribute 'rent'.
 
-- #### getCostOfHouse
+#### getCostOfHouse
 ```java
 public int getCostOfHouse()
 ```
@@ -70,7 +70,7 @@ public int getCostOfHouse()
 
 This method gets the cost to put a house on this property.
 
-- #### setCostOfHouse
+#### setCostOfHouse
 ```java
 public void setCostOfHouse(int costOfHouse)
 ```
@@ -79,7 +79,7 @@ public void setCostOfHouse(int costOfHouse)
 
 This method allows the price to buy a house on this property to be set. 
 
-- #### addHouses
+#### addHouses
 ```java
 public void addHouses(int amount)
 ```
@@ -88,7 +88,7 @@ public void addHouses(int amount)
 
 Add a set amount of houses to the property.
 
-- #### addHouses
+#### addHouses
 ```java
 public void addHouses()
 ```
@@ -97,7 +97,7 @@ public void addHouses()
 
 Add a house to the property.
 
-- #### removeHouses
+#### removeHouses
 ```java
 public void removeHouses(int amount)
 ```
@@ -106,7 +106,7 @@ public void removeHouses(int amount)
 
 Remove houses from the property.
 
-- #### applyPayment
+#### applyPayment
 ```java
 public boolean applyPayment(Player player)
 ```
@@ -115,7 +115,7 @@ public boolean applyPayment(Player player)
 
 Applies the price of the rent to a player
 
-- #### getAmountOfHouses
+#### getAmountOfHouses
 ```java
 public int getAmountOfHouses()
 ```

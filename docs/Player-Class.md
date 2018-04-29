@@ -9,43 +9,43 @@ The player class is responsible for storing a players assets and storing methods
 
 ### Private Attributes
 
-- #### inJail
+#### inJail
 ```java
 private boolean inJail;
 ```
 This represents if the player is in jail or not.
 
-- #### balance
+#### balance
 ```java
 private int balance;
 ```
 This is the players avaliable money.
 
-- #### name
+#### name
 ```java
 private String name;
 ```
 This is the name of the player.
 
-- #### position
+#### position
 ```java
 private Tile position;
 ```
 The players current position on the board, represented by a tile object which is the location on the board.
 
-- #### ownedTile
+#### ownedTile
 ```java
 private ArrayList<Ownable> ownedTiles;
 ```
 This is an array of all the 'ownable' tiles that the player owns. 'Ownable' is an array of all tiles that is is possible for a player to posses. 
 
-- #### piece
+#### piece
 ```java
 private PlayerPiece piece;
 ```
 This is the object that the player is displayed as in the GUI.
 
-- #### board
+#### board
 ```java
 private Board board;
 ```
@@ -53,7 +53,7 @@ This is the board object.
 
 ### Public Methods 
 
-- #### Player
+#### Player
 ```java
 public Player(int balance, String name, Board board)
 ```
@@ -62,7 +62,7 @@ public Player(int balance, String name, Board board)
 
 This is the initialiser for the object, it initialises the name and balance.
 
-- #### buyTile
+#### buyTile
 ```java
 public boolean buyTile(Tile ownable)
 ```
@@ -71,7 +71,7 @@ public boolean buyTile(Tile ownable)
 
 This allows a player to purchase a tile on the board.
 
-- #### sellTile
+#### sellTile
 ```java
 public boolean sellTile(Tile tile)
 ```
@@ -80,7 +80,7 @@ public boolean sellTile(Tile tile)
 
 This allows a player to sell a tile they own on the board.
 
-- #### isBankrupt
+#### isBankrupt
 ```java
 public boolean isBankrupt()
 ```
@@ -89,7 +89,7 @@ public boolean isBankrupt()
 
 This method returns if a player has no funds and is thus out of the game.
 
-- #### mortgageTile
+#### mortgageTile
 ```java
 public boolean mortgageTile(Tile tile)
 ```
@@ -98,7 +98,7 @@ public boolean mortgageTile(Tile tile)
 
 This method allows a player to mortgage a tile.
 
-- #### getName
+#### getName
 ```java
 public String getName()
 ```
@@ -107,7 +107,7 @@ public String getName()
 
 This method will give the name of the player. 
 
-- #### setName
+#### setName
 ```java
 public void setName(String name)
 ```
@@ -116,7 +116,7 @@ public void setName(String name)
 
 This method sets the players name.
 
-- #### getBoard
+#### getBoard
 ```java
 protected Board getBoard()
 ```
@@ -125,7 +125,7 @@ protected Board getBoard()
 
 Get the current board
 
-- #### getInJail
+#### getInJail
 ```java
 public boolean getInJail()
 ```
@@ -134,7 +134,7 @@ public boolean getInJail()
 
 This method checks if the player is in jail.
 
-- #### setInJail
+#### setInJail
 ```java
 public void setInJail(boolean inJail)
 ```
@@ -143,7 +143,7 @@ public void setInJail(boolean inJail)
 
 This method moves a player in and out of jail.
 
-- #### getBalance
+#### getBalance
 ```java
 public int getBalance()
 ```
@@ -152,7 +152,7 @@ public int getBalance()
 
 This method returns the amount of money the player currently has.
 
-- #### setBalance
+#### setBalance
 ```java
 public void setBalance(int balance)
 ```
@@ -161,7 +161,7 @@ public void setBalance(int balance)
 
 This method sets the amount of money the player currently has.
 
-- #### addBalance
+#### addBalance
 ```java
 public void addBalance(int amount)
 ```
@@ -170,7 +170,7 @@ public void addBalance(int amount)
 
 This method sets the amount of money to add to what the player currently has.
 
-- #### getPosition
+#### getPosition
 ```java
 public Tile getPosition()
 ```
@@ -179,7 +179,7 @@ public Tile getPosition()
 
 This shows the current location of a player.
 
-- #### setPostion
+#### setPostion
 ```java
 public void setPosition(Tile position)
 ```
@@ -188,7 +188,7 @@ public void setPosition(Tile position)
 
 This method moves the player to another space on the board.
 
-- #### getOwnedTiles
+#### getOwnedTiles
 ```java
 public ArrayList<Ownable> getOwnedTiles()
 ```
@@ -197,7 +197,7 @@ public ArrayList<Ownable> getOwnedTiles()
 
 This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy. 
 
-- #### addOwnable
+#### addOwnable
 ```java
 public void addOwnable(Ownable ownedTile)
 ```
@@ -206,7 +206,7 @@ public void addOwnable(Ownable ownedTile)
 
 Allows a player to own a property, through purchasing auction or otherwise. 
 
-- #### setPlayerPiece
+#### setPlayerPiece
 ```java
 public void setPiece(PlayerPiece piece)
 ```
@@ -215,7 +215,7 @@ public void setPiece(PlayerPiece piece)
 
 This assigns a player a specific player piece, this could be a hatstand, cat, etc. 
 
-- #### getPlayerPiece
+#### getPlayerPiece
 ```java
 public PlayerPiece getPiece()
 ```
@@ -224,7 +224,7 @@ public PlayerPiece getPiece()
 
 Return the piece that the player is playing as this could be a hatstand, cat, etc.
 
-- #### removeOwnable
+#### removeOwnable
 ```java
 public PlayerPiece getPiece()
 ```

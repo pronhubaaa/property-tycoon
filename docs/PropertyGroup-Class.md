@@ -10,7 +10,7 @@ The property group class is responsible for containing all groups of properties.
 
 #### Public Methods 
 
-- #### checkOwnedStreet
+#### checkOwnedStreet
 ```java
 public Boolean checkOwnedStreet(Player player)
 ```

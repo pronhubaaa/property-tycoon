@@ -6,31 +6,31 @@ sidebar_label: Trade
 
 This class allows players to trade amongst each other.
 
-## Private Attributes
-### players
+### Private Attributes
+#### players
 ```java
 private HashMap<Player, ArrayList<Ownable>> players;
 ```
 
 The ownables present in the trade, indexed by their owner. 
 
-### player1
+#### player1
 ```java
 private Player player1;
 ```
 
 The first player in the trade.
 
-### player2
+#### player2
 ```java
 private Player player2;
 ```
 
 The seconds player in the trade. 
 
-## Public Methods
+### Public Methods
 
-### Trade
+#### Trade
 ```java
 public Trade(Player player1, Player player2)
 ```
@@ -39,7 +39,7 @@ public Trade(Player player1, Player player2)
 
 Constructor for trade object, setting players 1 and 2 and initialising the hash map. 
 
-### addOwnable
+#### addOwnable
 ```java
 public void addOwnable(Player player, Ownable ownable)
 ```
@@ -48,7 +48,7 @@ public void addOwnable(Player player, Ownable ownable)
 
 This method allows ownable items to be added to the hashmap 
 
-### acceptTrade
+#### acceptTrade
 ```java
 public boolean acceptTrade(boolean boolean1, boolean boolean2)
 ```
@@ -57,8 +57,8 @@ public boolean acceptTrade(boolean boolean1, boolean boolean2)
 
 This function will allow players to decide if they want to trade for the current ownables.
 
-## Private Methods
-### tradeOwnable
+### Private Methods
+#### tradeOwnable
 ```java
 private void tradeOwnable()
 ```
@@ -66,3 +66,5 @@ private void tradeOwnable()
 *Returns*: Void
 
 This method will exchange the tiles being traded between the two players.
+
+---

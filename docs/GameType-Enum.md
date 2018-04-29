@@ -11,13 +11,13 @@ public enum GameType
 This enumeration will show different game type options, this could be added to. 
 
 ### Types
-- #### FullGame
+#### FullGame
 ```java
 FullGame,
 ```
 In the full game there is no time limit. A winner is determined by whoever is the last player with funds.  
 
-- #### AbridgedGame 
+#### AbridgedGame 
 ```java
 AbridgedGame
 ```
