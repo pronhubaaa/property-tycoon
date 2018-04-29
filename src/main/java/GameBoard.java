@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class GameBoard {
     private GameEngine _gameEngine;
     private Tile _tiles[];
-
     private StackPane _parentPane;
     private VBox _sidebarSplitPane;
     private BorderPane _boardPane;
@@ -20,7 +19,7 @@ public class GameBoard {
     }
 
     public Scene getLayout() {
-        _parentPane = new StackPane();
+        this._parentPane = new StackPane();
         this._boardContainer = new HBox();
         this._sidebarSplitPane = new VBox();
         this._boardPane = new BorderPane();
@@ -38,6 +37,9 @@ public class GameBoard {
         this._detailsButton = new Button();
         this._detailsButton.setText("Property details");
         this._detailsButton.setId("property-details");
+
+        this._boardContainer.getChildren().addAll(this._boardPane, this._sidebarSplitPane);
+        this._parentPane.getChildren().add(_boardContainer);
 
         BorderPane board = new BorderPane();
         ArrayList<Tile> tiles = this._gameEngine.getBoard().getTiles();
