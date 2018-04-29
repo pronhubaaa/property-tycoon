@@ -31,6 +31,12 @@ private HashMap<String, UtilityGroup> utilityGroups;
 ```
 The utility tiles shown on the board.
 
+#### cardStacks
+```java
+private HashMap<CardType, CardStack> cardStacks;
+```
+Hash map of card stacks that would be located on the board
+
 ### Public Methods 
 
 #### Board
@@ -86,7 +92,7 @@ public HashMap<String, PropertyGroup> getPropertyGroups()
 *Parameters*: Void
 *Returns*: Hash map of property groups indexed by colour
 
-Get all property groups
+Get all property groups.
 
 #### setPropertyGroups
 ```java
@@ -95,7 +101,7 @@ public void setPropertyGroups(HashMap<String, PropertyGroup> propertyGroups)
 *Parameters*: Hash map of property groups indexed by colour
 *Returns*: none
 
-Set all property groups
+Set all property groups.
 
 #### getStationGroups
 ```java
@@ -104,7 +110,7 @@ public HashMap<String, StationGroup> getStationGroups()
 *Parameters*: Void
 *Returns*: Hash map of station groups indexed by colour
 
-Get all station groups
+Get all station groups.
 
 #### setStationGroups
 ```java
@@ -113,7 +119,7 @@ public void setStationGroups(HashMap<String, StationGroup> stationGroups)
 *Parameters*: Hash map of station groups indexed by colour
 *Returns*: none
 
-Set all station groups
+Set all station groups.
 
 #### getUtilityGroups
 ```java
@@ -122,7 +128,7 @@ public HashMap<String, UtilityGroup> getUtilityGroups()
 *Parameters*: Void
 *Returns*: Hash map of utility groups indexed by colour
 
-Get all utility groups
+Get all utility groups.
 
 #### setUtilityGroups
 ```java
@@ -131,6 +137,35 @@ public void setUtilityGroups(HashMap<String, UtilityGroup> utilityGroups)
 *Parameters*: Hash map of utility groups indexed by colour
 *Returns*: none
 
-Set all utility groups
+Set all utility groups.
+
+
+#### getCardStacks
+```java
+public HashMap<CardType, CardStack> getCardStacks()
+```
+*Parameters*: None
+*Returns*: Hash map of all card stacks on the board
+
+Get all card stacks on the current board.
+
+#### setCardStacks
+```java
+public void setCardStacks(HashMap<CardType, CardStack> cardStacks)
+```
+*Parameters*: Hash map of all card stacks to be placed on the board
+*Returns*: Void
+
+Set all card stacks on the current board.
+
+#### addToCardStack
+```java
+public void addToCardStack(Card card, CardType cardType)
+```
+*Parameters*: A specific card to add and the type of the specific card
+*Returns*: Void
+
+Add a specific card to a card stack.
+
 
 ---
