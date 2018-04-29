@@ -234,4 +234,23 @@ private PlayerPiece checkPieceType(String str)
 
 This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
 
+#### getPlayers
+```java
+private ArrayList<Player> getPlayers()
+```
+*Parameters*: none
+*Returns*: ArrayList of players in the game
+
+This method is used to get all players in the game.
+
+#### setPlayers
+```java
+private void getPlayers(ArrayList<Player> players)
+```
+*Parameters*: ArrayList of players to be in the game
+*Returns*: Void
+
+This method is used to set all players in the game.
+
+
 ---
