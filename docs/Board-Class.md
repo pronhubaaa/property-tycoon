@@ -51,6 +51,15 @@ public ArrayList<Tile> getTiles()
 
 This method will get all tiles on the board.
 
+#### getTile
+```java
+public Tile getTile(String name)
+```
+*Parameters*: The string name of the tile
+*Returns*: The specific tile
+
+This method will get an individual tile based upon name.
+
 
 #### addTile
 ```java
