@@ -34,6 +34,8 @@ public class Board {
      */
     private HashMap<String, UtilityGroup> utilityGroups;
 
+    private HashMap<CardType, CardStack> cardStacks;
+
 
     /**
      * Board
@@ -287,4 +289,15 @@ public class Board {
         this.utilityGroups = utilityGroups;
     }
 
+    public HashMap<CardType, CardStack> getCardStacks() {
+        return cardStacks;
+    }
+
+    public void setCardStacks(HashMap<CardType, CardStack> cardStacks) {
+        this.cardStacks = cardStacks;
+    }
+
+    public void addToCardStack(Card card, CardType cardType) {
+        this.cardStacks.get(cardType).add(card);
+    }
 }
