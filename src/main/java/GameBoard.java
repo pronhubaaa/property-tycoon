@@ -1,4 +1,5 @@
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
@@ -18,7 +19,7 @@ public class GameBoard {
         this._gameEngine = gameEngine;
     }
 
-    public Pane getLayout() {
+    public Scene getLayout() {
         this._parentPane = new StackPane();
         this._sidebarSplitPane = new HBox();
         this._boardPane = new BorderPane();
@@ -30,8 +31,9 @@ public class GameBoard {
 
         this._sidebarSplitPane.getChildren().add(this._boardPane);
         this._parentPane.getChildren().add(this._sidebarSplitPane);
+        Scene returnPane = new Scene(_parentPane);
 
-        return this._parentPane;
+        return returnPane;
     }
 
     private void _createBoardLayout() {

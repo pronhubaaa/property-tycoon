@@ -48,9 +48,8 @@ public class Board {
         this.utilityGroups = new HashMap<>();
         this.tiles = new ArrayList<>();
 
-
+        System.out.println(jsonObject.toString());
         if(jsonObject.containsKey(JsonFields.Tile.toString())){
-
             JSONArray tiles = jsonObject.getJSONArray(JsonFields.Tile.toString());
 
             for(Object object: tiles){

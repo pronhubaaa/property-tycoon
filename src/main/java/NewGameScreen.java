@@ -301,7 +301,7 @@ public class NewGameScreen extends Scene {
         board.setPadding(new Insets(20, 0, 0, 0));
         rectRight.getChildren().add(board);
 
-        ObservableList<String> options = FXCollections.observableArrayList("Standard Board");
+        ObservableList<String> options = FXCollections.observableArrayList("");
 
         try {
             FileReader fr = new FileReader("saved-boards.ted");
@@ -636,7 +636,6 @@ public class NewGameScreen extends Scene {
                 for (int i = 0; i < boards.size(); i++) {
                     if (boards.get(i).equals(n)) {
                         JSONpath = boards.get(i - 1);
-                        System.out.println("JSON PATH: " + JSONpath);
                     }
                 }
                 URL jsonurl = getClass().getResource(JSONpath);
@@ -644,13 +643,16 @@ public class NewGameScreen extends Scene {
                 JSONObject json;
                 String myJson = "";
                 try {
-                    myJson = new Scanner(file).useDelimiter("\\Z").next();
+                    Scanner read = new Scanner (new File(JSONpath));
+                    read.useDelimiter("\\Z");
+                    myJson += read.next();
                 } catch (Exception ex) {
-
+                    ex.printStackTrace();
                 }
                 json = (JSONObject) JSONObject.parse(myJson);
                 GameType g = null;
                 GameEngine newGame = makeGame(gameEngine, json, ui);
+                ui.showScene(new GameBoard(newGame).getLayout());
             }
         });
 
@@ -675,7 +677,7 @@ public class NewGameScreen extends Scene {
                 gameEngine = new GameEngine(json, playersList, g);
                 for (Player p : playersList) {
                     gameEngine.addPlayer(p);
-                    p.setBoard(gameEngine.getGameBoard());
+                    p.setBoard(gameEngine.getBoard());
                 }
                 // UI SHOW BOARD
             } catch (Exception e){
@@ -691,7 +693,7 @@ public class NewGameScreen extends Scene {
                 gameEngine = new GameEngine(json, playersList, g, minutes);
                 for (Player p : playersList) {
                     gameEngine.addPlayer(p);
-                    p.setBoard(gameEngine.getGameBoard());
+                    p.setBoard(gameEngine.getBoard());
                 }
                 // UI SHOW BOARD
             } catch (Exception e){

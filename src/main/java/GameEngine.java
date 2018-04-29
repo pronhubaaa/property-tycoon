@@ -403,5 +403,4 @@ public class GameEngine {
         this.trading = trading;
     }
 
-    public Board getGameBoard() {return this.gameBoard;}
 }
