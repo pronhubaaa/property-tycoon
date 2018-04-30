@@ -3,8 +3,8 @@ build/
 out/
 build/
 .gradle/
-
-
+.icloud
+.idea
 
 ### React ###
 
