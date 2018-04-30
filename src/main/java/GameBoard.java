@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
@@ -33,10 +34,24 @@ public class GameBoard {
         this._parentPane.setMinWidth(400);
         this._parentPane.setMinHeight(400);
 
+        this._createSideLayout();
         this._createBoardLayout();
 
         Scene returnPane = new Scene(_parentPane);
         return returnPane;
+    }
+
+    private void _createSideLayout() {
+        for(Player player: this._gameEngine.getPlayers()) {
+            HBox playerPane = new HBox();
+            StackPane innerPlayerPane = new StackPane();
+            Text playerName = new Text(player.getName());
+            playerName.getStyleClass().add("player-panel");
+
+            innerPlayerPane.getChildren().add(playerName);
+            playerPane.getChildren().add(innerPlayerPane);
+            this._sidebarSplitPane.getChildren().add(playerPane);
+        }
     }
 
     private void _createBoardLayout() {
