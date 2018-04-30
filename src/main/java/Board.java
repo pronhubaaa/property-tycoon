@@ -72,7 +72,7 @@ public class Board {
                             } else {
                                 facilityGroup = new Group();
                             }
-                            Facility facility;
+                            Rentable facility;
                             if (type == TileType.Utility) {
                                 facility = new Utility(tileName, tilePosition, facilityGroup);
                             } else { // (TileType.Station)
