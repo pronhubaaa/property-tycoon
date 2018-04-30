@@ -1,0 +1,8 @@
+{
+  "docs": {
+    "Game Engine": ["GameEngine-Class", "Board-Class", "CardTile-Class", "CardType-Enum", "Dice-Class", "FreeParking-Class", "Game-Class", "GameType-Enum", "Go-Class", "GoToJail-Class", "Group-Class", "Human-Class", "IncomeTile-Class", "Jail-Class", "Ownable-Class", "Player-Class", "Property-Class","PropertyGroup-Class",
+      "StationGroup-Class", "TaxTile-Class", "Tile-Class", "TileType-Enum", "Trade-Class", "UtilityGroup-Class", "Station-Class", "Utility-Class"],
+    "Artificial Intelligence": ["AI-Class"],
+    "User Interface": ["doc2"]
+  }
+}
