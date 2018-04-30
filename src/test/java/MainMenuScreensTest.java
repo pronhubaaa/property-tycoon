@@ -1,8 +1,15 @@
+import com.sun.javafx.robot.impl.FXRobotHelper;
+import com.sun.javafx.stage.StageHelper;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.rules.Timeout;
+import org.testfx.api.FxRobot;
+import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
+
+import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +23,7 @@ public class MainMenuScreensTest extends ApplicationTest {
     private Stage _primaryStage;
 
     @BeforeClass
-    public static void beforeClass() {
+    public static void beforeClass() throws TimeoutException {
         System.setProperty("testfx.robot", "glass");
         System.setProperty("testfx.headless", "false");
         System.setProperty("prism.order", "sw");
@@ -25,19 +32,25 @@ public class MainMenuScreensTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) {
+        this._primaryStage = stage;
+
         GameEngine gameEngine = null;
         stage.setTitle("Property Tycoon");
 
-        this._mainMenuScene = MainMenuScreens.getMainMenu(null, gameEngine);
-        this._newGameScene = MainMenuScreens.getNewGame(null, gameEngine);
-        this._loadGameScene = MainMenuScreens.getLoadGame(null);
-        this._importBoardScene = MainMenuScreens.getImportBoard(null);
-        this._settingsScene = MainMenuScreens.getSettings(null);
+        UI ui = new UI(stage, gameEngine, true);
 
-    //    ui.showScene(this._mainMenuScene);
-    //    stage.show();
-        stage.setScene(_mainMenuScene);
-        stage.show();
+        this._mainMenuScene = MainMenuScreens.getMainMenu(ui, gameEngine);
+        this._newGameScene = MainMenuScreens.getNewGame(ui, gameEngine);
+        this._loadGameScene = MainMenuScreens.getLoadGame(ui);
+        this._importBoardScene = MainMenuScreens.getImportBoard(ui);
+        this._settingsScene = MainMenuScreens.getSettings(ui);
+
+        ui.showScene(this._mainMenuScene);
+    }
+
+    @Override
+    public void stop() {
+        this._primaryStage.setScene(null);
     }
 
     @Test
