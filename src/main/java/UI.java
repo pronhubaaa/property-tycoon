@@ -27,12 +27,8 @@ public class UI {
 
         this._primaryStage = primaryStage;
 
-        if(isTest != null) {
-            this._isTest = isTest;
-        }
-        else {
-            this._isTest = false;
-        }
+
+        this._isTest = isTest;
 
         this._primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         this._primaryStage.setFullScreen(true);
