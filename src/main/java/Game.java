@@ -20,7 +20,8 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
         this._primaryStage = primaryStage;
         GameEngine gameEngine = null;
-        UI ui = new UI(primaryStage, gameEngine);
+        UI ui = new UI(primaryStage, gameEngine, false);
+        ui.showScene(MainMenuScreens.getMainMenu(ui,gameEngine));
     }
 
     public static void main(String[] args) {

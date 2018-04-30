@@ -24,7 +24,7 @@ public class NewGameScreenTest extends ApplicationTest {
     @Override
     public void start(Stage stage) {
         GameEngine gameEngine = null;
-        UI ui = new UI(stage, gameEngine);
+        UI ui = new UI(stage, gameEngine, true);
         stage.setTitle("Property Tycoon");
         _newGameScene = new NewGameScreen(new VBox(), ui, gameEngine);
         ui.showScene(this._newGameScene);
