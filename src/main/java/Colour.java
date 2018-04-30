@@ -11,8 +11,7 @@ public enum Colour {
     Green("#53fb50"),
     DeepBlue("#4e50fd"),
     Grey("#4d4d4d"),
-    White("");
-
+    White("#b8b8b8");
 
     private String value;
 
