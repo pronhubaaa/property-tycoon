@@ -54,4 +54,5 @@ public class UI {
         return _primaryStage;
     }
 
+    public Scene getScene() { return _primaryStage.getScene(); }
 }

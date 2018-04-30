@@ -24,6 +24,10 @@ import static org.hamcrest.CoreMatchers.*;
 public class GameBoardTest extends ApplicationTest {
     @BeforeClass
     public static void beforeClass() {
+        System.setProperty("testfx.robot", "glass");
+        System.setProperty("testfx.headless", "false");
+        System.setProperty("prism.order", "sw");
+        System.setProperty("prism.text", "t2k");
     }
 
     @Override
@@ -55,13 +59,13 @@ public class GameBoardTest extends ApplicationTest {
             System.out.println(e.getMessage());
         }
 
-        UI ui = new UI(stage, gameEngine);
+        //UI ui = new UI(stage, gameEngine);
         stage.setTitle("Property Tycoon");
+
 
         GameBoard gameBoard = new GameBoard(gameEngine);
 
-        ui.showScene(this.createSandboxScene(gameBoard));
-        //stage.setFullScreen(true);
+        stage.setScene(gameBoard.getLayout());
         stage.show();
     }
 

@@ -26,19 +26,18 @@ public class MainMenuScreensTest extends ApplicationTest {
     @Override
     public void start(Stage stage) {
         GameEngine gameEngine = null;
-        UI ui = new UI(stage, gameEngine);
         stage.setTitle("Property Tycoon");
 
-        this._mainMenuScene = MainMenuScreens.getMainMenu(ui, gameEngine);
-        this._newGameScene = MainMenuScreens.getNewGame(ui, gameEngine);
-        this._loadGameScene = MainMenuScreens.getLoadGame(ui);
-        this._importBoardScene = MainMenuScreens.getImportBoard(ui);
-        this._settingsScene = MainMenuScreens.getSettings(ui);
+        this._mainMenuScene = MainMenuScreens.getMainMenu(null, gameEngine);
+        this._newGameScene = MainMenuScreens.getNewGame(null, gameEngine);
+        this._loadGameScene = MainMenuScreens.getLoadGame(null);
+        this._importBoardScene = MainMenuScreens.getImportBoard(null);
+        this._settingsScene = MainMenuScreens.getSettings(null);
 
-        ui.showScene(this._mainMenuScene);
+    //    ui.showScene(this._mainMenuScene);
+    //    stage.show();
+        stage.setScene(_mainMenuScene);
         stage.show();
-
-        this._primaryStage = stage;
     }
 
     @Test
