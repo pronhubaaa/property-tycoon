@@ -264,14 +264,14 @@ public class GameEngine {
 
         }
 
-        String fileName = "";
+        StringBuilder fileName = new StringBuilder();
         for (Player player : this.players) {
-            fileName += player.getName();
+            fileName.append(player.getName());
         }
-        fileName += ".json";
+        fileName.append(".json");
 
         try {
-            PrintWriter out = new PrintWriter(fileName);
+            PrintWriter out = new PrintWriter(fileName.toString());
             out.println(json.toString());
             out.close();
         } catch (Exception e) {
