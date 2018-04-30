@@ -1,13 +1,13 @@
 ---
 id: AI-Class
 title: AI class
-sidebar_label: Computer Player 
+sidebar_label: Computer Player
 ---
 
-This class is used to create an artificial player. 
+This class is used to create an artificial player.
 
-### Public Methods
-- ### AI
+## Public Methods
+### AI
 ```java
 public AI(int balance, String name, Board board)
 ```
@@ -17,7 +17,7 @@ public AI(int balance, String name, Board board)
 
 This initialises the AI object.
 
-- ### buyTile
+### buyTile
 ```java
 public boolean buyTile(Tile ownable)
 ```
@@ -27,35 +27,35 @@ public boolean buyTile(Tile ownable)
 
 This allows the AI player to decide to buy or bid for a property.
 
-- ### buyHouses
+### buyHouses
 ```java
 public ArrayList<Boolean> buyHouses()
 ```
  *Parameters*: None
-*Returns*: ArrayList of booleans, true would represent a purchased house, false if a house was not purchased. 
+*Returns*: ArrayList of booleans, true would represent a purchased house, false if a house was not purchased.
 
-Assesses the AI current financial position and ownsership status, then buys houses accordingly on owned streets. 
- 
+Assesses the AI current financial position and ownsership status, then buys houses accordingly on owned streets.
 
-- ### trader
+
+### trader
 ```java
 public boolean trader(ArrayList<Ownable> opponentTiles, ArrayList<Ownable> myTiles, Player player)
 ```
-*Parameters*: A set of tiles the player may trade, the tiles the player would trade for, and the opponent they are trading with. 
+*Parameters*: A set of tiles the player may trade, the tiles the player would trade for, and the opponent they are trading with.
 *Returns*: Boolean suggesting if the player should make the trade
 
 This allows the AI Player to trade a property.
 
-- ### bid
+### bid
 ```java
 public int bid(Tile buyable)
 ```
-*Parameters*: The tile being auctioned 
+*Parameters*: The tile being auctioned
 *Returns*: Amount to bid
 
 This allows the AI Player to trade a property.
 
-- ### payBill
+### payBill
 ```java
 public boolean payBill(int bill)
 ```
@@ -65,25 +65,25 @@ public boolean payBill(int bill)
 
 This allows the AI to decide how to pay a bill.
 
-### Private Methods 
+## Private Methods
 
-- ### streetOwned
+### streetOwned
 ```java
 private ArrayList<Ownable> streetOwned(ArrayList<Ownable> inputTiles)
 ```
 *Parameters*: ArrayList of all properties owned by the player
 *Returns*: An array list of properties that belong to a full street owned by the player
 
-This function should return an array list of properties owned by the players that are part of a full group. 
+This function should return an array list of properties owned by the players that are part of a full group.
 
 
-- ### groupOwned
+### groupOwned
 ```java
 private boolean groupOwned(Group group)
 ```
 *Parameters*: A tile group
 *Returns*: True if the player owns all tiles in a group
 
-This function should return an array list of properties owned by the players that are part of a full group. 
+This function should return an array list of properties owned by the players that are part of a full group.
 
---- 
+---

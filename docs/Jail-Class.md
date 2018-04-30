@@ -6,16 +6,16 @@ sidebar_label: Jail
 
 The jail class is responsible for players in jail, it contains the price to get out and can free a player from jail.  
 
-### Private Attributes 
+## Private Attributes
 
-- #### fee
+### fee
 ```java
 private int fee;
 ```
 The price it costs to get out of jail.
 
-### Public Methods 
-- #### Jail
+## Public Methods
+### Jail
 ```java
 public Jail(String name, int position, int value)
 ```
@@ -24,7 +24,7 @@ public Jail(String name, int position, int value)
 
 Initialises the jail tile
 
-- #### getFee
+### getFee
 ```java
 public int getFee()
 ```
@@ -33,7 +33,7 @@ public int getFee()
 
 Returns the fee to get out of jail.
 
-- #### setFee
+### setFee
 ```java
 public void setFee(int fee)
 ```
@@ -42,13 +42,13 @@ public void setFee(int fee)
 
 Set the amount of money it costs to get out of jail.
 
-- #### freeFromJail
+### freeFromJail
 ```java
 public void freeFromJail(Player player)
 ```
-*Parameters*: The player you want to move to "Just visiting" 
+*Parameters*: The player you want to move to "Just visiting"
 *Returns*: Void
 
 Allows a player to move out of jail.
 
---- 
+---

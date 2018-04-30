@@ -1,59 +1,59 @@
 ---
 id: Player-Class
 title: Player class
-sidebar_label: Player 
+sidebar_label: Player
 ---
 
 
-The player class is responsible for storing a players assets and storing methods for how players can perform actions. 
+The player class is responsible for storing a players assets and storing methods for how players can perform actions.
 
-### Private Attributes
+## Private Attributes
 
-- #### inJail
+### inJail
 ```java
 private boolean inJail;
 ```
 This represents if the player is in jail or not.
 
-- #### balance
+### balance
 ```java
 private int balance;
 ```
-This is the players avaliable money.
+This is the players available money.
 
-- #### name
+### name
 ```java
 private String name;
 ```
 This is the name of the player.
 
-- #### position
+### position
 ```java
 private Tile position;
 ```
 The players current position on the board, represented by a tile object which is the location on the board.
 
-- #### ownedTile
+### ownedTile
 ```java
 private ArrayList<Ownable> ownedTiles;
 ```
-This is an array of all the 'ownable' tiles that the player owns. 'Ownable' is an array of all tiles that is is possible for a player to posses. 
+This is an array of all the 'ownable' tiles that the player owns. 'Ownable' is an array of all tiles that is is possible for a player to posses.
 
-- #### piece
+### piece
 ```java
 private PlayerPiece piece;
 ```
 This is the object that the player is displayed as in the GUI.
 
-- #### board
+### board
 ```java
 private Board board;
 ```
 This is the board object.
 
-### Public Methods 
+## Public Methods
 
-- #### Player
+### Player
 ```java
 public Player(int balance, String name, Board board)
 ```
@@ -62,52 +62,52 @@ public Player(int balance, String name, Board board)
 
 This is the initialiser for the object, it initialises the name and balance.
 
-- #### buyTile
+### buyTile
 ```java
 public boolean buyTile(Tile ownable)
 ```
 *Parameters*: The tile the player wishes to buy
-*Returns*: Boolean- true if purchase successful 
+*Returns*: Boolean- true if purchase successful
 
 This allows a player to purchase a tile on the board.
 
-- #### sellTile
+### sellTile
 ```java
 public boolean sellTile(Tile tile)
 ```
 *Parameters*: The tile the player wishes to sell
-*Returns*: Boolean- true if sale successful 
+*Returns*: Boolean- true if sale successful
 
 This allows a player to sell a tile they own on the board.
 
-- #### isBankrupt
+### isBankrupt
 ```java
 public boolean isBankrupt()
 ```
 *Parameters*: None
-*Returns*: Boolean- true if player has no funds avaliable, cash or property.
+*Returns*: Boolean- true if player has no funds available, cash or property.
 
 This method returns if a player has no funds and is thus out of the game.
 
-- #### mortgageTile
+### mortgageTile
 ```java
 public boolean mortgageTile(Tile tile)
 ```
 *Parameters*: The tile the player wishes to mortgage
-*Returns*: Boolean - true if mortgage successful 
+*Returns*: Boolean - true if mortgage successful
 
 This method allows a player to mortgage a tile.
 
-- #### getName
+### getName
 ```java
 public String getName()
 ```
 *Parameters*: None  
 *Returns*: The players name
 
-This method will give the name of the player. 
+This method will give the name of the player.
 
-- #### setName
+### setName
 ```java
 public void setName(String name)
 ```
@@ -116,7 +116,7 @@ public void setName(String name)
 
 This method sets the players name.
 
-- #### getBoard
+### getBoard
 ```java
 protected Board getBoard()
 ```
@@ -125,7 +125,7 @@ protected Board getBoard()
 
 Get the current board
 
-- #### getInJail
+### getInJail
 ```java
 public boolean getInJail()
 ```
@@ -134,7 +134,7 @@ public boolean getInJail()
 
 This method checks if the player is in jail.
 
-- #### setInJail
+### setInJail
 ```java
 public void setInJail(boolean inJail)
 ```
@@ -143,7 +143,7 @@ public void setInJail(boolean inJail)
 
 This method moves a player in and out of jail.
 
-- #### getBalance
+### getBalance
 ```java
 public int getBalance()
 ```
@@ -152,7 +152,7 @@ public int getBalance()
 
 This method returns the amount of money the player currently has.
 
-- #### setBalance
+### setBalance
 ```java
 public void setBalance(int balance)
 ```
@@ -161,7 +161,7 @@ public void setBalance(int balance)
 
 This method sets the amount of money the player currently has.
 
-- #### addBalance
+### addBalance
 ```java
 public void addBalance(int amount)
 ```
@@ -170,7 +170,7 @@ public void addBalance(int amount)
 
 This method sets the amount of money to add to what the player currently has.
 
-- #### getPosition
+### getPosition
 ```java
 public Tile getPosition()
 ```
@@ -179,7 +179,7 @@ public Tile getPosition()
 
 This shows the current location of a player.
 
-- #### setPostion
+### setPostion
 ```java
 public void setPosition(Tile position)
 ```
@@ -188,34 +188,34 @@ public void setPosition(Tile position)
 
 This method moves the player to another space on the board.
 
-- #### getOwnedTiles
+### getOwnedTiles
 ```java
 public ArrayList<Ownable> getOwnedTiles()
 ```
 *Parameters*:  None
 *Returns*: All tiles owned by the player
 
-This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy. 
+This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
 
-- #### addOwnable
+### addOwnable
 ```java
 public void addOwnable(Ownable ownedTile)
 ```
 *Parameters*:  A tile that a player can possess
 *Returns*: Void
 
-Allows a player to own a property, through purchasing auction or otherwise. 
+Allows a player to own a property, through purchasing auction or otherwise.
 
-- #### setPlayerPiece
+### setPlayerPiece
 ```java
 public void setPiece(PlayerPiece piece)
 ```
 *Parameters*:  A PlayerPiece object from the enumerator
 *Returns*: Void
 
-This assigns a player a specific player piece, this could be a hatstand, cat, etc. 
+This assigns a player a specific player piece, this could be a hatstand, cat, etc.
 
-- #### getPlayerPiece
+### getPlayerPiece
 ```java
 public PlayerPiece getPiece()
 ```
@@ -224,7 +224,7 @@ public PlayerPiece getPiece()
 
 Return the piece that the player is playing as this could be a hatstand, cat, etc.
 
-- #### removeOwnable
+### removeOwnable
 ```java
 public PlayerPiece getPiece()
 ```
