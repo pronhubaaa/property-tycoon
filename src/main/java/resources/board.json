@@ -448,7 +448,7 @@
             "type": "Property",
             "position": "38",
             "name": "Hawking Way",
-            "group": "Deep Blue",
+            "group": "DeepBlue",
             "house": "200",
             "cost": "350",
             "rent": [
@@ -470,7 +470,7 @@
             "type": "Property",
             "position": "40",
             "name": "Turning Heights",
-            "group": "Deep Blue",
+            "group": "DeepBlue",
             "house": "200",
             "cost": "400",
             "rent": [

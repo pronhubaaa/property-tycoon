@@ -96,7 +96,7 @@ public class Board {
                                 propertyGroup = new Group();
                             }
                             Property property = new Property(tileName, tilePosition, propertyGroup);
-                            propertyGroup.setColour(Colour.fromString(groupType));
+                            propertyGroup.setColour(Colour.valueOf(groupType));
 
                             JSONArray rents = tile.getJSONArray(BoardJsonField.Rent.toString());
                             ArrayList<Integer> rent = new ArrayList<>();
