@@ -5,17 +5,15 @@ import org.junit.Test;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Scanner;
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
 public class BoardTest {
 
-    Board board;
+    private Board board;
 
     @Before
     public void setUp() throws Exception {
@@ -66,65 +64,5 @@ public class BoardTest {
     public void constructor() {
         assertEquals(40, this.board.getTiles().size());
     }
-
-    @Test
-    public void getPropertyGroups() throws Exception{
-
-        this.board = new Board(new JSONObject());
-        HashMap<String, PropertyGroup> propertyGroups = new HashMap<>();
-
-        assertEquals(propertyGroups, this.board.getPropertyGroups());
-
-    }
-
-    @Test
-    public void setPropertyGroups() throws Exception {
-        this.board = new Board(new JSONObject());
-        HashMap<String, PropertyGroup> propertyGroups = new HashMap<>();
-        propertyGroups.put("Blue", new PropertyGroup());
-
-        this.board.setPropertyGroups(propertyGroups);
-
-        assertEquals(propertyGroups, this.board.getPropertyGroups());
-    }
-
-    @Test
-    public void getStationGroups() throws Exception {
-        this.board = new Board(new JSONObject());
-        HashMap<String, StationGroup> stationGroups = new HashMap<>();
-
-        assertEquals(stationGroups, this.board.getStationGroups());
-    }
-
-    @Test
-    public void setStationGroups() throws Exception {
-        this.board = new Board(new JSONObject());
-        HashMap<String, StationGroup> stationGroups = new HashMap<>();
-        stationGroups.put("Blue", new StationGroup());
-
-        this.board.setStationGroups(stationGroups);
-
-        assertEquals(stationGroups, this.board.getStationGroups());
-    }
-
-    @Test
-    public void getUtilityGroups() throws Exception {
-        this.board = new Board(new JSONObject());
-        HashMap<String, UtilityGroup> utilityGroups = new HashMap<>();
-
-        assertEquals(utilityGroups, this.board.getUtilityGroups());
-    }
-
-    @Test
-    public void setUtilityGroups() throws Exception {
-        this.board = new Board(new JSONObject());
-        HashMap<String, UtilityGroup> utilityGroups = new HashMap<>();
-        utilityGroups.put("Blue", new UtilityGroup());
-
-        this.board.setUtilityGroups(utilityGroups);
-
-        assertEquals(utilityGroups, this.board.getUtilityGroups());
-    }
-
 
 }

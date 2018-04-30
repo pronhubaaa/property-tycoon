@@ -8,11 +8,13 @@ import static org.junit.Assert.*;
 
 public class PlayerTest {
 
+    private static final int TEST_PLAYER_INITIAL_BALANCE = 10;
+
     Player player;
 
     @Before
     public void setUp() throws Exception {
-        this.player = new Player(10, "Peter", null);
+        this.player = new Player(TEST_PLAYER_INITIAL_BALANCE, "Peter", null);
 
     }
 
@@ -25,12 +27,12 @@ public class PlayerTest {
     public void buyTile() {
         Tile tile = new Go("", 0, 0);
         assertFalse(this.player.buyTile(tile));
-        assertEquals(this.player.getBalance(), 10);
+        assertEquals(this.player.getBalance(), TEST_PLAYER_INITIAL_BALANCE);
 
         tile = new Property("", 0, null);
         ((Property) tile).setPrice(100);
         assertFalse(this.player.buyTile(tile));
-        assertEquals(this.player.getBalance(), 10);
+        assertEquals(this.player.getBalance(), TEST_PLAYER_INITIAL_BALANCE);
 
         this.player.setBalance(100);
         assertEquals(this.player.getBalance(), 100);
@@ -118,7 +120,7 @@ public class PlayerTest {
 
     @Test
     public void getBalance() {
-        assertEquals(10, this.player.getBalance());
+        assertEquals(TEST_PLAYER_INITIAL_BALANCE, this.player.getBalance());
     }
 
 
@@ -131,7 +133,6 @@ public class PlayerTest {
 
         this.player.setPosition(tile);
         assertEquals(tile, this.player.getPosition());
-        assertTrue(this.player.getPosition() instanceof Tile);
 
         this.player.setPosition(tile2);
         assertEquals(tile2, this.player.getPosition());
@@ -147,7 +148,7 @@ public class PlayerTest {
     @Test
     public void setOwnedTiles() {
         assertEquals(0, this.player.getOwnedTiles().size());
-        Ownable ownable = new Ownable("", 0, null);
+        Ownable ownable = new Utility("", 0, null);
 
         this.player.addOwnable(ownable);
 
@@ -166,6 +167,17 @@ public class PlayerTest {
         PlayerPiece piece = PlayerPiece.Car;
         this.player.setPiece(piece);
         assertEquals(piece, this.player.getPiece());
-        assertTrue(this.player.getPiece() instanceof PlayerPiece);
     }
+
+    @Test
+    public void attemptDebit() {
+        // Failing payment
+        assertFalse(player.attemptDebit(TEST_PLAYER_INITIAL_BALANCE + 1));
+        assertEquals(TEST_PLAYER_INITIAL_BALANCE, player.getBalance());
+
+        // Payment should succeed
+        assertTrue(player.attemptDebit(TEST_PLAYER_INITIAL_BALANCE));
+        assertEquals(0, player.getBalance());
+    }
+
 }

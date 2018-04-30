@@ -3,8 +3,8 @@ import javafx.stage.Stage;
 
 /**
  * Game
- * @date 2018-03-19
  *
+ * @date 2018-03-19
  */
 public class Game extends Application {
 
@@ -28,8 +28,8 @@ public class Game extends Application {
     }
 
     /**
-     *  ui: UI
-     *  The current interface objects being used.
+     * ui: UI
+     * The current interface objects being used.
      */
     private UI ui;
 
@@ -51,24 +51,23 @@ public class Game extends Application {
      * Game()
      * This constructor will construct the game user interface.
      */
-    public Game(){
+    public Game() {
         //this.gameEngine = new GameEngine();
         this.constructUI(null);
     }
 
     /**
      * constructUI(GameEngine)
-     * @param gameEngine
-     * This will build a user interface given a setup game engine, this being the data used to initialise the board.
+     *
+     * @param gameEngine This will build a user interface given a setup game engine, this being the data used to initialise the board.
      */
-    private void constructUI(GameEngine gameEngine){
+    private void constructUI(GameEngine gameEngine) {
 
     }
 
     public static int getMaxPlayers() {
         return maxPlayers;
     }
-
 
 
 }

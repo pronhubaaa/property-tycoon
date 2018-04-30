@@ -4,7 +4,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotEquals;
 
 public class MainMenuScreensTest extends ApplicationTest {
     private Scene _mainMenuScene;

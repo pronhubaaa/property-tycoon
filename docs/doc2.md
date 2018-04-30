@@ -1,4 +1,4 @@
 ---
 id: doc2
-title: User Inferface
+title: User Interface
 ---

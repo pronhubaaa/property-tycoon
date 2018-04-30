@@ -37,7 +37,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     //{page: 'help', label: 'Download'},
-    {doc: 'doc1', label: 'Documentation'},
+    {doc: 'GameEngine-Class', label: 'Documentation'},
 
   ],
 
@@ -78,7 +78,7 @@ const siteConfig = {
   },
 
   // Add custom scripts here that would be placed in <script> tags
-  scripts: ['https://buttons.github.io/buttons.js'],
+  // scripts: ['https://buttons.github.io/buttons.js'],
 
   /* On page navigation for the current documentation page */
   onPageNav: 'separate',

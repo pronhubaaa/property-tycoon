@@ -3,10 +3,12 @@ build/
 out/
 build/
 .gradle/
+.icloud
+.idea
 
 ### React ###
 
-
+website/node_modules
 
 lib/core/metadata.js
 lib/core/MetadataBlog.js
@@ -80,3 +82,6 @@ fabric.properties
 
 # Sonarlint plugin
 .idea/sonarlint
+
+
+\.idea/codeStyles/
