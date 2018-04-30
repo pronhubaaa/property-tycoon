@@ -37,7 +37,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     //{page: 'help', label: 'Download'},
-    {doc: 'doc1', label: 'Documentation'},
+    {doc: 'GameEngine-Class', label: 'Documentation'},
 
   ],
 

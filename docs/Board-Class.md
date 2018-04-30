@@ -1,45 +1,45 @@
 ---
 id: Board-Class
 title: Board class
-sidebar_label: Board 
+sidebar_label: Board
 ---
 
-The board class controls all tiles on the board, initialising them, keeping track of player locations property sales, etc. 
+The board class controls all tiles on the board, initialising them, keeping track of player locations property sales, etc.
 
-### Private Attributes 
-#### tiles
+## Private Attributes
+### tiles
 ```java
 private ArrayList<Tile> tiles;
 ```
 All tiles that appear on the board.
 
-#### propertyGroups
+### propertyGroups
 ```java
 private HashMap<String, PropertyGroup> propertyGroups;
 ```
 The groups of properties as shown by their colour groups on the board.
 
-#### stationGroups
+### stationGroups
 ```java
 private HashMap<String, StationGroup> stationGroups;
 ```
 The train station tiles shown on the board.
 
-#### UtilityGroups
+### UtilityGroups
 ```java
 private HashMap<String, UtilityGroup> utilityGroups;
 ```
 The utility tiles shown on the board.
 
-#### cardStacks
+### cardStacks
 ```java
 private HashMap<CardType, CardStack> cardStacks;
 ```
 Hash map of card stacks that would be located on the board
 
-### Public Methods 
+## Public Methods
 
-#### Board
+### Board
 ```java
 public Board(JSONObject jsonObject)
 ```
@@ -48,7 +48,7 @@ public Board(JSONObject jsonObject)
 
 The JSON data will come from the GameEngine, this includes all tiles, property groups, station groups, utility groups and cards. This constructor initialises the board.
 
-#### getTiles
+### getTiles
 ```java
 public ArrayList<Tile> getTiles()
 ```
@@ -57,7 +57,7 @@ public ArrayList<Tile> getTiles()
 
 This method will get all tiles on the board.
 
-#### getTile
+### getTile
 ```java
 public Tile getTile(String name)
 ```
@@ -67,7 +67,7 @@ public Tile getTile(String name)
 This method will get an individual tile based upon name.
 
 
-#### addTile
+### addTile
 ```java
 public void addTile(Tile tile)
 ```
@@ -76,7 +76,7 @@ public void addTile(Tile tile)
 
 This allows the game board to be initialised, tiles can be added in this way.
 
-#### getPlayerOwned
+### getPlayerOwned
 ```java
 public int getPlayerOwned(Ownable ownable)
 ```
@@ -85,7 +85,7 @@ public int getPlayerOwned(Ownable ownable)
 
 Return the amount of tiles owned in the same group as the given tile by the owner of the given tile.
 
-#### getPropertyGroups
+### getPropertyGroups
 ```java
 public HashMap<String, PropertyGroup> getPropertyGroups()
 ```
@@ -94,7 +94,7 @@ public HashMap<String, PropertyGroup> getPropertyGroups()
 
 Get all property groups.
 
-#### setPropertyGroups
+### setPropertyGroups
 ```java
 public void setPropertyGroups(HashMap<String, PropertyGroup> propertyGroups)
 ```
@@ -103,7 +103,7 @@ public void setPropertyGroups(HashMap<String, PropertyGroup> propertyGroups)
 
 Set all property groups.
 
-#### getStationGroups
+### getStationGroups
 ```java
 public HashMap<String, StationGroup> getStationGroups()
 ```
@@ -112,7 +112,7 @@ public HashMap<String, StationGroup> getStationGroups()
 
 Get all station groups.
 
-#### setStationGroups
+### setStationGroups
 ```java
 public void setStationGroups(HashMap<String, StationGroup> stationGroups)
 ```
@@ -121,7 +121,7 @@ public void setStationGroups(HashMap<String, StationGroup> stationGroups)
 
 Set all station groups.
 
-#### getUtilityGroups
+### getUtilityGroups
 ```java
 public HashMap<String, UtilityGroup> getUtilityGroups()
 ```
@@ -130,7 +130,7 @@ public HashMap<String, UtilityGroup> getUtilityGroups()
 
 Get all utility groups.
 
-#### setUtilityGroups
+### setUtilityGroups
 ```java
 public void setUtilityGroups(HashMap<String, UtilityGroup> utilityGroups)
 ```
@@ -140,7 +140,7 @@ public void setUtilityGroups(HashMap<String, UtilityGroup> utilityGroups)
 Set all utility groups.
 
 
-#### getCardStacks
+### getCardStacks
 ```java
 public HashMap<CardType, CardStack> getCardStacks()
 ```
@@ -149,7 +149,7 @@ public HashMap<CardType, CardStack> getCardStacks()
 
 Get all card stacks on the current board.
 
-#### setCardStacks
+### setCardStacks
 ```java
 public void setCardStacks(HashMap<CardType, CardStack> cardStacks)
 ```
@@ -158,7 +158,7 @@ public void setCardStacks(HashMap<CardType, CardStack> cardStacks)
 
 Set all card stacks on the current board.
 
-#### addToCardStack
+### addToCardStack
 ```java
 public void addToCardStack(Card card, CardType cardType)
 ```

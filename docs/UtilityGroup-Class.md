@@ -1,20 +1,20 @@
 ---
 id: UtilityGroup-Class
 title: Utility Group class
-sidebar_label: Utility Group 
+sidebar_label: Utility Group
 ---
 
-The utility group class is responsible for checking how many utilities a player owns. 
+The utility group class is responsible for checking how many utilities a player owns.
 
-### Public Methods 
+## Public Methods
 
-#### checkOwnedUtility
+### checkOwnedUtility
 ```java
 public int checkOwnedUtility(Player player)
 ```
 *Parameters*: A player
 *Returns*: The amount of utilities they own
 
-This method returns the amount of utilities owned by a player. 
+This method returns the amount of utilities owned by a player.
 
 ---

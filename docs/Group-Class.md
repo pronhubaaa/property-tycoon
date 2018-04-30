@@ -1,27 +1,27 @@
 ---
 id: Group-Class
 title: Group class
-sidebar_label: Group 
+sidebar_label: Group
 ---
 
-The group class contains all methods and functions required by the different groups on the board, this being properties, utilities and stations. 
+The group class contains all methods and functions required by the different groups on the board, this being properties, utilities and stations.
 
-### Private Attributes 
+## Private Attributes
 
-#### groups
+### groups
 ```java
 private ArrayList<Ownable> group;
 ```
-This array of groups are all properties on the board that are assigned a group. 
+This array of groups are all properties on the board that are assigned a group.
 
-#### colour
+### colour
 ```java
 private Colour colour;
 ```
 This contains the colour of the given group.
 
-#### Public Methods 
-#### Group
+## Public Methods
+### Group
 ```java
 public Group()
 ```
@@ -30,16 +30,16 @@ public Group()
 
 This is the constructor for the Group object
 
-#### getGroups
+### getGroups
 ```java
 public ArrayList<Ownable> getGroup()
 ```
 *Parameters*: None
-*Returns*: An array of property groups 
+*Returns*: An array of property groups
 
 This method gets all groups of properties on the game board.
 
-#### setGroups
+### setGroups
 ```java
 public void setGroups(ArrayList<Ownable> ownables)
 ```
@@ -48,7 +48,7 @@ public void setGroups(ArrayList<Ownable> ownables)
 
 This method sets all groups of properties on the game board for initialisation.
 
-#### add
+### add
 ```java
 public void add(Ownable ownable)
 ```
@@ -57,7 +57,7 @@ public void add(Ownable ownable)
 
 This method adds a group of properties on the game board for initialisation.
 
-#### getGroupOwners
+### getGroupOwners
 ```java
 public ArrayList<Player> getGroupOwners()
 ```
@@ -66,16 +66,16 @@ public ArrayList<Player> getGroupOwners()
 
 This method gives a list of players that own a tile in this group
 
-#### getColour
+### getColour
 ```java
 public Colour getColour()
 ```
 *Parameters*: none
 *Returns*: The colour of the group
 
-This method is uded to get the colour of the group
+This method is used to get the colour of the group
 
-#### setColour
+### setColour
 ```java
 public void setColour(Colour colour)
 ```
@@ -85,4 +85,3 @@ public void setColour(Colour colour)
 This method is used to set the colour of the group.
 
 ---
-

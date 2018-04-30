@@ -7,59 +7,59 @@ sidebar_label: Game Engine
 
 The game engine will be responsible for any action that happens on the board and controlling all of the players actions.
 
-### Private Attributes
+## Private Attributes
 
-#### gameBoard
+### gameBoard
 ```java
 private Board gameBoard;
 ```
 This is the representation of the board, which contains tiles, player locations, etc.
 
-#### players
+### players
 ```java
 private ArrayList<Player> players;
 ```
 This array represents all the players playing the game. The order of the array will represent the order of play.
 
-#### numberOfTurns
+### numberOfTurns
 ```java
 private int numberOfTurns;
 ```
 This represents the current turn number. This will increment at the end of each turn.
 
-#### currentTurn
+### currentTurn
 ```java
 private Player currentPlayer;
 ```
 This is a pointer to the player object whose turn it currently is.
 
-#### timer
+### timer
 ```java
 private Timer timer;
 ```
-This is the timer counting down for the abridged version of the game. 
+This is the timer counting down for the abridged version of the game.
 
-#### timeLeft
+### timeLeft
 ```java
 private int timeLeft;
 ```
 This is the time left of the game.
 
-#### gameType
+### gameType
 ```java
 private GameType gameType;
 ```
 This is the type of game e.g. Abridged or Full.
 
-#### trading
+### trading
 ```java
 private boolean trading;
 ```
 This is a variable to store if trading is on or off.
 
-### Public Methods
+## Public Methods
 
-#### GameEngine
+### GameEngine
 ```java
  public GameEngine(JSONObject jsonObject)
 ```
@@ -68,7 +68,7 @@ This is a variable to store if trading is on or off.
 
 This is the constructor method. The JSON data will include board data, player data, the game type and any remaining time. This method will be used to load a save file, so it should fully restore a previous game state and initial the board.
 
-#### GameEngine
+### GameEngine
 ```java
 public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type, int numberOfMinutes)
 ```
@@ -77,7 +77,7 @@ public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType typ
 
 This is the constructor method. It will be used to start a new game and initialise the board.
 
-#### GameEngine
+### GameEngine
 ```java
 public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType type)
 ```
@@ -86,7 +86,7 @@ public GameEngine(JSONObject jsonObject, ArrayList<Player> players, GameType typ
 
 This is the constructor method. It will be used to start a new game and initialise the board.
 
-#### saveGame
+### saveGame
 ```java
 public void saveGame()
 ```
@@ -96,7 +96,7 @@ public void saveGame()
 This method is intended to be accessed from the UI class. It will save the game.
 
 
-#### startGame
+### startGame
 ```java
 public void startGame()
 ```
@@ -105,7 +105,7 @@ public void startGame()
 
 This method is intended to be accessed from the UI class. It will start the game.
 
-#### getCurrentPlayer
+### getCurrentPlayer
 ```java
 public Player getCurrentPlayer()
 ```
@@ -114,7 +114,7 @@ public Player getCurrentPlayer()
 
 This method return a pointer to the player whose turn it currently is.
 
-#### nextTurn
+### nextTurn
 ```java
 public Player nextTurn()
 ```
@@ -123,7 +123,7 @@ public Player nextTurn()
 
 This method will be used by the UI class to end the current player's turn and begin the next player's turn. It will be responsible for checking whether the game is over (using endGame method), changing the current player reference and incrementing the numberOfTurns attribute.
 
-#### getNumberOfTurns
+### getNumberOfTurns
 ```java
 public int getNumberOfTurns()
 ```
@@ -132,7 +132,7 @@ public int getNumberOfTurns()
 
 This method returns the accumulated number of turns in the game.
 
-#### incrementNumberOfTurns
+### incrementNumberOfTurns
 ```java
 public boolean incrementNumberOfTurns()
 ```
@@ -141,7 +141,7 @@ public boolean incrementNumberOfTurns()
 
 This methods increments the numberOfTurns attribute by one.
 
-#### startTimer
+### startTimer
 ```java
 public void startTimer()
 ```
@@ -150,7 +150,7 @@ public void startTimer()
 
 This starts the timer for the abridged version of the game.
 
-#### stopTimer
+### stopTimer
 ```java
 public void stopTimer()
 ```
@@ -159,7 +159,7 @@ public void stopTimer()
 
 This stops the timer for the abridged version of the game.
 
-#### getTime
+### getTime
 ```java
 public int getTime()
 ```
@@ -168,7 +168,7 @@ public int getTime()
 
 This gets the amount of time left in the abridged version.
 
-#### getTrading
+### getTrading
 ```java
 public boolean getTrading()
 ```
@@ -177,7 +177,7 @@ public boolean getTrading()
 
 This gets the trading boolean.
 
-#### setTrading
+### setTrading
 ```java
 public void setTrading(boolean trading)
 ```
@@ -186,9 +186,9 @@ public void setTrading(boolean trading)
 
 This sets the trading boolean.
 
-### Private Methods
+## Private Methods
 
-#### constructGameBoard
+### constructGameBoard
 ```java
 private Board constructGameBoard(JSONObject jsonObject)
 ```
@@ -197,7 +197,7 @@ private Board constructGameBoard(JSONObject jsonObject)
 
 Sets up a board using the imported board data. If the JSON object contains additional data (eg. from a save file) this should be filtered out before constructing the Board object.
 
-#### endGame
+### endGame
 ```java
 private Boolean endGame()
 ```
@@ -206,7 +206,7 @@ private Boolean endGame()
 
 This method is intended to be accessed from incrementCurrentTurn. It will determine whether the game is over, by using methods such as getTime (if it is the abridged version) and also by checking the number of players still in the game.
 
-#### addPlayer
+### addPlayer
 ```java
 private void addPlayer(Player player)
 ```
@@ -215,7 +215,7 @@ private void addPlayer(Player player)
 
 This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
 
-#### checkGameType
+### checkGameType
 ```java
 private GameType checkGameType(String str)
 ```
@@ -224,7 +224,7 @@ private GameType checkGameType(String str)
 
 This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
 
-#### checkPieceType
+### checkPieceType
 ```java
 private PlayerPiece checkPieceType(String str)
 ```
@@ -234,7 +234,7 @@ private PlayerPiece checkPieceType(String str)
 This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
 
 
-#### getPlayers
+### getPlayers
 ```java
 private ArrayList<Player> getPlayers()
 ```
@@ -243,7 +243,7 @@ private ArrayList<Player> getPlayers()
 
 This method is used to get all players in the game.
 
-#### setPlayers
+### setPlayers
 ```java
 private void getPlayers(ArrayList<Player> players)
 ```

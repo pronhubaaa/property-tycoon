@@ -1,38 +1,38 @@
 ---
 id: CardTile-Class
 title: Card Tile class
-sidebar_label: Card Tile 
+sidebar_label: Card Tile
 ---
 
-The card class is for storing action cards (Pot luck and oppertunity knocks)
+The card class is for storing action cards (Pot luck and opportunity knocks)
 
-### Private Attributes 
-#### type
+## Private Attributes
+### type
 ```java
 private CardType cardType;
 ```
-Card type, oppertunity knocks or pot luck etc.
+Card type, opportunity knocks or pot luck etc.
 
-### Public Methods 
-#### CardTile
+## Public Methods 
+### CardTile
 ```java
 public Card(String tileName, int tilePosition, CardType cardType)
 ```
 *Parameters*: The name of the tile, the position and the card type
 *Returns*: Void
 
-This is the intialiser for the card. 
+This is the initialiser for the card.
 
-#### getCardType
+### getCardType
 ```java
 public CardType getCardType()
 ```
 *Parameters*: None
 *Returns*: The card type
 
-This method returns the type of card stored. 
+This method returns the type of card stored.
 
-#### getCard
+### getCard
 ```java
 public card getCard()
 ```
@@ -42,4 +42,4 @@ public card getCard()
 This returns a card from the cardStack.
 
 
---- 
+---

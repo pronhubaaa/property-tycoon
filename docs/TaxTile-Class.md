@@ -1,21 +1,21 @@
 ---
 id: TaxTile-Class
 title: Tax Tile class
-sidebar_label: Tax Tile 
+sidebar_label: Tax Tile
 ---
 
 The tax tile class is responsible for storing the value of the tax and charging it to players who land on this tile.  
 
-### Private Attributes 
+## Private Attributes
 
-#### amount: Int
+### amount: Int
 ```java
 private int amount;
 ```
 The price it costs to pay tax.
 
-### Public Methods
-#### tax
+## Public Methods
+### tax
 ```java
 public TaxTile(String tileName, int tilePosition, int tileValue)
 ```
@@ -24,7 +24,7 @@ public TaxTile(String tileName, int tilePosition, int tileValue)
 
 Initialises the tax tile object
 
-#### getAmount
+### getAmount
 ```java
 public int getAmount()
 ```
@@ -33,7 +33,7 @@ public int getAmount()
 
 Returns the cost of the tax
 
-#### setFee
+### setFee
 ```java
 public void setAmount(int amount)
 ```
@@ -42,13 +42,13 @@ public void setAmount(int amount)
 
 Set the amount of money it costs to pay tax
 
-#### payTax
+### payTax
 ```java
 public void payTax(Player player)
 ```
 *Parameters*: The player paying tax
 *Returns*: Void
 
-Charge the price of the tax to a players balance. 
+Charge the price of the tax to a players balance.
 
---- 
+---

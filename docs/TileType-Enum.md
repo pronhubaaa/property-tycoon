@@ -11,40 +11,40 @@ public enum TileType
 
 This enumeration is for selecting the type of tile being created, this allows different tile types to be added.
 
-### Types
-#### Go
+## Types
+### Go
 ```java
 Go,
 ```
-#### Free parking
+### Free parking
 ```java
 FreeParking,
 ```
-#### Utility
+### Utility
 ```java
 Utility,
 ```
-#### Station
+### Station
 ```java
 Station,
 ```
-#### Property
+### Property
 ```java
 Property,
 ```
-#### Jail
+### Jail
 ```java
 Jail,
 ```
-#### Go To Jail
+### Go To Jail
 ```java
 GoToJail,
 ```
-#### Tax
+### Tax
 ```java
 Tax,
 ```
-#### Card
+### Card
 ```java
 Card;
 ```

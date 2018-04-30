@@ -1,14 +1,14 @@
 ---
 id: StationGroup-Class
 title: Station Group class
-sidebar_label: Station Group 
+sidebar_label: Station Group
 ---
 
-The station group class is used to check how many stations a player owns. 
+The station group class is used to check how many stations a player owns.
 
-### Public Methods 
+## Public Methods
 
-#### checkOwnedStations
+### checkOwnedStations
 ```java
 public int checkOwnedStations(Player player)
 ```
