@@ -94,7 +94,7 @@ public class GameBoard {
         ArrayList<HBox> leftColumnTiles = new ArrayList<HBox>();
         ArrayList<HBox> rightColumnTiles = new ArrayList<HBox>();
         for (int i = 0; i < bottomRow.size(); i++) {
-            if (bottomRow.get(i) instanceof Ownable) {
+            if (bottomRow.get(i) instanceof Ownable || bottomRow.get(i) instanceof Station) {
                 Ownable o = (Ownable) bottomRow.get(i);
                 VBox v = new VBox();
                 HBox colour = new HBox();
@@ -112,13 +112,25 @@ public class GameBoard {
                 v.getChildren().add(price);
                 bottomRowTiles.add(v);
             }
-            if (topRow.get(i) instanceof Ownable) {
-                Ownable o = (Ownable) bottomRow.get(i);
+            if (bottomRow.get(i) instanceof TaxTile) {
+                TaxTile t = (TaxTile) bottomRow.get(i);
+                VBox v = new VBox();
+                Label l = new Label("£" + t.getAmount());
+                l.setStyle("-fx-font-size: 12px; -fx-font-family: 'Raleway'; -fx-font-color: black;");
+                v.getChildren().add(l);
+                bottomRowTiles.add(v);
+            }
+            if (topRow.get(i) instanceof Ownable || topRow.get(i) instanceof Station) {
+                System.out.println(i);
+                System.out.println(topRow.get(i).toString());
+                System.out.println(topRow.get(i).getClass());
+                System.out.println(topRow.get(i).getName());
+                Ownable o = (Ownable) topRow.get(i);
                 VBox v = new VBox();
                 HBox colour = new HBox();
                 colour.setStyle(getStyle(o));
                 colour.setAlignment(Pos.CENTER);
-                Label l = new Label(bottomRow.get(i).getName());
+                Label l = new Label(topRow.get(i).getName());
                 l.setStyle("-fx-font-size: 10px; -fx-font-family: 'Raleway'; -fx-font-color: white;");
                 colour.getChildren().add(l);
                 colour.setMaxHeight(25);
@@ -128,6 +140,14 @@ public class GameBoard {
                 price.setMinHeight(75);
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
+                topRowTiles.add(v);
+            }
+            if (topRow.get(i) instanceof TaxTile) {
+                TaxTile t = (TaxTile) topRow.get(i);
+                VBox v = new VBox();
+                Label l = new Label("£" + t.getAmount());
+                l.setStyle("-fx-font-size: 12px; -fx-font-family: 'Raleway'; -fx-font-color: black;");
+                v.getChildren().add(l);
                 topRowTiles.add(v);
             }
         }
