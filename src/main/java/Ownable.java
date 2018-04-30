@@ -1,4 +1,4 @@
-public class Ownable extends Tile {
+public abstract class Ownable extends Tile {
 
     /**
      * owner: Player
@@ -101,4 +101,10 @@ public class Ownable extends Tile {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public boolean applyRentPayment(Player player) {
+        return player.attemptDebit(calculateRent(player));
+    }
+
+    public abstract int calculateRent(Player player);
 }

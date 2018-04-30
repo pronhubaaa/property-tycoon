@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class VariablyTieredRentable extends Rentable {
+public abstract class VariablyTieredRentable extends Ownable {
 
     ArrayList<Integer> rent;
 
