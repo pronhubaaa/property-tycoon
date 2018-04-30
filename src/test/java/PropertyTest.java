@@ -13,6 +13,7 @@ public class PropertyTest {
     private Group group;
     private Property property;
     private Player owner;
+    private Player player;
 
     @Before
     public void setUp() throws Exception {
@@ -20,6 +21,7 @@ public class PropertyTest {
         property = new Property("", 0, group);
         Board board = new Board(new JSONObject());
         owner = new Player(0, "", board);
+        player = new Player(0, "", board);
         property.setCostOfHouse(TEST_INITIAL_COSTOFHOUSE);
     }
 
@@ -53,6 +55,7 @@ public class PropertyTest {
     }
 
     @Test
-    public void applyPayment() {
+    public void applyRentPayment() {
+        // TODO
     }
 }
