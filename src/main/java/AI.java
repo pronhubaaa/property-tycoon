@@ -78,7 +78,7 @@ public class AI extends Player {
                         // Buy at a random rate of 0.5
                         double random = Math.random();
                         if (random > 0.5) {
-                            current.addHouses();
+                            current.addHouses(this, 1);
                             this.setBalance(this.getBalance() - current.getCostOfHouse());
                             purchases.add(true);
                         } else {

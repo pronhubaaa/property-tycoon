@@ -1,10 +1,16 @@
-public class Utility extends Facility {
+public class Utility extends Ownable {
 
     public Utility(String name, int position, Group group) {
         super(name, position, group);
     }
 
-    public void calculateRent() {
-        // TODO
+    @Override
+    public int calculateRent(Player player) {
+        if (getGroup().isGroupAllOwned(player)) {
+            // TODO return 10x dice value
+        } else {
+            // TODO return 4x dice value
+        }
+        return 0;
     }
 }
