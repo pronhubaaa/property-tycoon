@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Property extends Ownable {
+public class Property extends VariablyTieredRentable {
 
     /**
      * rent: [Int]
@@ -40,14 +40,6 @@ public class Property extends Ownable {
      *
      * @return Array of prices the rent may be
      */
-
-    public ArrayList<Integer> getRent() {
-        return rent;
-    }
-
-    public void setRent(ArrayList<Integer> rent) {
-        this.rent = rent;
-    }
 
     public int getCostOfHouse() {
         return costOfHouse;
