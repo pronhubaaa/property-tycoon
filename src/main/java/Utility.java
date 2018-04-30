@@ -4,7 +4,13 @@ public class Utility extends Rentable {
         super(name, position, group);
     }
 
-    public void calculateRent() {
-        // TODO
+    @Override
+    public int calculateRent(Player player) {
+        if (getGroup().isGroupAllOwned(player)) {
+            // TODO return 10x dice value
+        } else {
+            // TODO return 4x dice value
+        }
+        return 0;
     }
 }
