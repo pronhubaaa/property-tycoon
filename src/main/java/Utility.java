@@ -5,12 +5,11 @@ public class Utility extends Ownable {
     }
 
     @Override
-    public int calculateRent(Player player) {
+    public int calculateRent(Player player, int diceValue) {
         if (getGroup().isGroupAllOwned(player)) {
-            // TODO return 10x dice value
+            return diceValue * 10;
         } else {
-            // TODO return 4x dice value
+            return diceValue * 4;
         }
-        return 0;
     }
 }

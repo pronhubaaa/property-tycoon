@@ -72,7 +72,7 @@ public class Property extends VariablyTieredRentable {
     /**
      * @param player the player to apply the rent payment to
      */
-    public int calculateRent(Player player) {
+    public int calculateRent(Player player, int diceValue) {
         int rent = getRent().get(amountOfHouses);
         if (isOwned()) {
             if (getGroup().isGroupAllOwned(getOwner())) {

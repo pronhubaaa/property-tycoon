@@ -5,7 +5,7 @@ public class Station extends VariablyTieredRentable {
     }
 
     @Override
-    public int calculateRent(Player player) {
+    public int calculateRent(Player player, int diceValue) {
         return this.rent.get(getGroup().getAmountOwned(getOwner()) - 1);
     }
 

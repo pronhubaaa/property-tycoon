@@ -102,9 +102,9 @@ public abstract class Ownable extends Tile {
         this.group = group;
     }
 
-    public boolean applyRentPayment(Player player) {
-        return player.attemptDebit(calculateRent(player));
+    public boolean applyRentPayment(Player player, int diceValue) {
+        return player.attemptDebit(calculateRent(player, diceValue));
     }
 
-    public abstract int calculateRent(Player player);
+    public abstract int calculateRent(Player player, int diceValue);
 }
