@@ -4,7 +4,9 @@ public class Station extends VariablyTieredRentable {
         super(name, position, group);
     }
 
-    public void calculateRent() {
-        // TODO
+    @Override
+    public int calculateRent(Player player) {
+        return this.rent.get(getGroup().getAmountOwned(getOwner()) - 1);
     }
+
 }
