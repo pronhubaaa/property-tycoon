@@ -62,7 +62,6 @@ public class GameBoard {
         this._boardContainer.getChildren().addAll(this._boardPane, this._sidebarSplitPane);
         this._parentPane.getChildren().add(_boardContainer);
 
-        BorderPane board = new BorderPane();
         ArrayList<Tile> tiles = this._gameEngine.getBoard().getTiles();
 
         ArrayList<Tile> bottomRow = new ArrayList<Tile>();
@@ -558,10 +557,13 @@ public class GameBoard {
             rightTiles.getChildren().add(rightColumnTiles.get(i));
         }
         this._boardPane.setRight(rightTiles);
-        //this._boardPane.setBottom(bottomRowTiles);
-        //this._boardPane.setTop(topRowTiles);
-        //this._boardPane.setLeft(leftColumnTiles);
-        //this._boardPane.setRight(rightColumnTiles);
+
+        Image logo = new Image("resources/main-logo.png");
+        ImageView centerLogo = new ImageView(logo);
+        centerLogo.setFitHeight(225);
+        centerLogo.setFitWidth(400);
+        _centerStack.setAlignment(Pos.CENTER);
+        _centerStack.getChildren().add(centerLogo);
     }
 
     public String getStyle(Tile tile) {
