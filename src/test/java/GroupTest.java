@@ -38,16 +38,16 @@ public class GroupTest {
         Group group = new Group();
 
 
-        Ownable ownable1 = new Ownable("", 0, group);
-        ownable1.setOwner(player1);
-        Ownable ownable2 = new Ownable("", 1, group);
-        ownable2.setOwner(player2);
+        Utility Utility1 = new Utility("", 0, group);
+        Utility1.setOwner(player1);
+        Utility Utility2 = new Utility("", 1, group);
+        Utility2.setOwner(player2);
 
-        Ownable ownable3 = new Ownable("", 2, group);
+        Utility Utility3 = new Utility("", 2, group);
 
-        group.add(ownable1);
-        group.add(ownable2);
-        group.add(ownable3);
+        group.add(Utility1);
+        group.add(Utility2);
+        group.add(Utility3);
 
 
         assertEquals(players, group.getGroupOwners());
@@ -93,8 +93,8 @@ public class GroupTest {
 
         assertEquals(2, group.getAmountOwned(player));
 
-        // Adds an ownable and station without player being the owner
-        group.add(new Ownable("", 2, group));
+        // Adds an Utility and station without player being the owner
+        group.add(new Utility("", 2, group));
         group.add(new Station("", 3, group));
         assertEquals(2, group.getAmountOwned(player));
     }

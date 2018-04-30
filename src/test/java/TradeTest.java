@@ -30,7 +30,7 @@ public class TradeTest {
     @Test
     public void addOwnable() {
 
-        Ownable tile = new Ownable("", 0, null);
+        Ownable tile = new Utility("", 0, null);
 
 
         ArrayList<Ownable> ownables = new ArrayList<>();

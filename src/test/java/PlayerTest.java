@@ -148,7 +148,7 @@ public class PlayerTest {
     @Test
     public void setOwnedTiles() {
         assertEquals(0, this.player.getOwnedTiles().size());
-        Ownable ownable = new Ownable("", 0, null);
+        Ownable ownable = new Utility("", 0, null);
 
         this.player.addOwnable(ownable);
 
