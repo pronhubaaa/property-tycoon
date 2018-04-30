@@ -1,0 +1,431 @@
+{
+    "cards": [
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Take opportunity knocks",
+                    "action_type": "draw",
+                    "params": {
+                        "origin": "player",
+                        "intent": "opportunity knocks"
+                    }
+                },
+                {
+                    "desc": "Pay a £10 fine",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "intent": "free parking",
+                        "value": 10
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Get out of jail free",
+                    "action_type": "get out of jail free"
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Get out of jail free",
+                    "action_type": "get out of jail free"
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Go to jail. Do not pass GO, do not collect £200",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "jail",
+                        "collect_salary": false
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Go to jail. Do not pass GO, do not collect £200",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "jail",
+                        "collect_salary": false
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Go back to Crapper Street",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "crapper street",
+                        "value": -1
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Advance to go",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "go",
+                        "value": 1,
+                        "collect_salary": false
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Advance to Turing Heights",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "turing heights",
+                        "value": 1
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Advance to Han Xin Gardens. If you pass GO, collect £200",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "han xin gardens",
+                        "value": 1,
+                        "collect_salary": true
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Take a trip to Hove station. If you pass GO collect £200",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "hove station",
+                        "value": 1,
+                        "collect_salary": true
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Advance to GO",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "go",
+                        "value": 1
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Go back 3 spaces",
+                    "action_type": "move",
+                    "params": {
+                        "intent": -3,
+                        "value": -1
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Advance to Skywalker Drive. If you pass GO collect £200",
+                    "action_type": "move",
+                    "params": {
+                        "intent": "skywalker drive",
+                        "value": 1,
+                        "collect_salary": true
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "You inherit £100",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 100
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "You have won 2nd prize in a beauty contest, collect £20",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 20
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Student loan refund. Collect £20",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 20
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "error in your favour. Collect £200",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 200
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Pay bill for text books of £100",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "value": 100
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Mega late night taxi bill pay £50",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "value": 50
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "From sale of Bitcoin you get £50",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 50
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Pay insurance fee of £50",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "intent": "free parking",
+                        "value": 50
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Savings bond matures, collect £10",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 100
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "Received interest on shares of £25",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 25
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "pot luck",
+            "actions": [
+                {
+                    "desc": "It's your birthday. Collect £10 from each player",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "each player",
+                        "intent": "player",
+                        "value": 10
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "pays you divided of £50",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 50
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "You have won a lip sync battle. Collect £100",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 100
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Fined £15 for speeding",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "intent": "free parking",
+                        "value": 15
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Pay university fees of £150",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "value": 150
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Loan matures, collect £150",
+                    "action_type": "transaction",
+                    "params": {
+                        "intent": "player",
+                        "value": 150
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "You are assessed for repairs, £40\/house, £115\/hotel",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "amount_house": 40,
+                        "amount_hotel": 115
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "You are assessed for repairs, £25\/house, £100\/hotel",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "amount_house": 25,
+                        "amount_hotel": 100
+                    }
+                }
+            ]
+        },
+        {
+            "card_type": "opportunity knocks",
+            "actions": [
+                {
+                    "desc": "Drunk in charge of a skateboard. Fine £20",
+                    "action_type": "transaction",
+                    "params": {
+                        "origin": "player",
+                        "intent": "free parking",
+                        "value": 20
+                    }
+                }
+            ]
+        }
+    ]
+}

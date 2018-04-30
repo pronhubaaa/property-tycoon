@@ -19,8 +19,9 @@ public class UI {
 
     /**
      * Initialise the user interface for the current dataset.
-     * @param primaryStage  The primary stage for the UI.
-     * @param gameEngine    The current game engine.
+     *
+     * @param primaryStage The primary stage for the UI.
+     * @param gameEngine   The current game engine.
      */
     public UI(Stage primaryStage, GameEngine gameEngine, Boolean isTest) {
         primaryStage.setTitle("Property Tycoon");
@@ -39,7 +40,8 @@ public class UI {
 
     /**
      * This method allows us to view a specific scene, game, menu etc.
-     * @param scene     The screen being displayed.
+     *
+     * @param scene The screen being displayed.
      */
     public void showScene(Scene scene) {
         this._primaryStage.setScene(null);

@@ -27,7 +27,7 @@ public class OwnableTest {
         secondOwner = new Player(0, TEST_SECOND_OWNER_NAME, board);
         initialGroup = new Group();
         secondGroup = new Group();
-        ownable = new Ownable(TEST_OWNABLE_NAME, TEST_OWNABLE_POSITION, initialGroup);
+        ownable = new Utility(TEST_OWNABLE_NAME, TEST_OWNABLE_POSITION, initialGroup);
     }
 
     @Test

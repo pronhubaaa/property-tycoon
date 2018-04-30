@@ -1,113 +1,113 @@
----
+mortgage---
 id: Ownable-Class
 title: Ownable class
-sidebar_label: Ownable 
+sidebar_label: Ownable
 ---
 
-The ownable class contains all tiles that a player could possess. 
+The ownable class contains all tiles that a player could possess.
 
-### Private Attributes 
-- #### owner
+## Private Attributes
+### owner
 ```java
 private Player owner;
 ```
 This is the player who owns this tile.
 
-- #### price
+### price
 ```java
 private int price;
 ```
 This is the price for this tile.
 
-- #### mortgagePrice
+### mortgagePrice
 ```java
 private int mortgagePrice;
 ```
-This is the morgage price for this tile.
+This is the mortgage price for this tile.
 
-- #### sellPrice
+### sellPrice
 ```java
 private int sellPrice;
 ```
 This is the sale price for this tile.
 
-- #### mortgaged
+### mortgaged
 ```java
 private boolean mortgaged;
 ```
 This boolean dictates if the tile is mortgaged
 
-- #### group
+### group
 ```java
 private Group group;
 ```
 The group this ownable tile is in
 
-### Public Methods 
-- #### Ownable
+## Public Methods
+### Ownable
 ```java
 public Ownable(String name, int position, Group group)
 ```
-*Parameters*: The name position and group of the new ownable tile. 
+*Parameters*: The name position and group of the new ownable tile.
 *Returns*: Void
 
 This is the initialiser for an ownable object.
 
-- #### isOwned
+### isOwned
 ```java
 public boolean isOwned()
 ```
-*Parameters*: None 
+*Parameters*: None
 *Returns*: Boolean, true if the tile has an owner
 
 This method returns if the property is owned or not.
 
-- #### getPrice
+### getPrice
 ```java
 public int getPrice()
 ```
-*Parameters*: None 
+*Parameters*: None
 *Returns*: The price for this tile
 
 This method returns the price of this property.
 
-- #### setPrice
+### setPrice
 ```java
 public void setPrice(int price)
 ```
 *Parameters*: The given price for this tile
 *Returns*: Void
 
-This method sets the price for the property for initialisation. 
+This method sets the price for the property for initialisation.
 
-- #### getMortgagePrice
+### getMortgagePrice
 ```java
 public int getMortgagePrice()
 ```
-*Parameters*: None 
-*Returns*: The mortgage value of the property 
+*Parameters*: None
+*Returns*: The mortgage value of the property
 
-This method gets the value given to the player for morgaging the property.
+This method gets the value given to the player for mortgaging the property.
 
-- #### setMortgagePrice
+### setMortgagePrice
 ```java
 public void setMortgagePrice(int mortgagePrice)
 ```
-*Parameters*: The given morgage price for this tile 
+*Parameters*: The given mortgage price for this tile
 *Returns*: Void
 
-This method will set the morgage price for the property. 
+This method will set the mortgage price for the property.
 
-- #### getOwner
+### getOwner
 ```java
 public Player getOwner()
 ```
-*Parameters*: None 
-*Returns*: The player who owns the tile 
+*Parameters*: None
+*Returns*: The player who owns the tile
 
 This method returns the player who owns the tile.
 
-- #### setOwner
+### setOwner
 ```java
 public void setOwner(Player owner)
 ```
@@ -116,16 +116,16 @@ public void setOwner(Player owner)
 
 This method allows a player to own the tile.
 
-- #### getSellPrice
+### getSellPrice
 ```java
 public int getSellPrice()
 ```
-*Parameters*: None 
+*Parameters*: None
 *Returns*: The amount the property can be sold for
 
-This method is uesd to get the sell price of the property
+This method is used to get the sell price of the property
 
-- #### setOwner
+### setOwner
 ```java
 public void setSellPrice(int sellPrice)
 ```
@@ -134,16 +134,16 @@ public void setSellPrice(int sellPrice)
 
 This method is used to set the sell price of the property
 
-- #### isMortgaged
+### isMortgaged
 ```java
 public boolean isMortgaged()
 ```
-*Parameters*: None 
+*Parameters*: None
 *Returns*: true if the property is mortgaged
 
 This method is used to check if the property is mortgaged
 
-- #### setMortgaged
+### setMortgaged
 ```java
 public void setMortgaged(boolean mortgaged)
 ```
@@ -152,16 +152,16 @@ public void setMortgaged(boolean mortgaged)
 
 This method is used to set the property is mortgaged of un-mortgaged
 
-- #### getGroup
+### getGroup
 ```java
 public Group getGroup()
 ```
-*Parameters*: None 
+*Parameters*: None
 *Returns*: The group this property belongs to
 
 This method is used to set the group of the ownable
 
-- #### setGroup
+### setGroup
 ```java
 public void setGroup(Group group)
 ```

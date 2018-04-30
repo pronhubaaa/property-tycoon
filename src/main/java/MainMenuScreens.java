@@ -12,7 +12,8 @@ import java.net.URL;
 public class MainMenuScreens {
     /**
      * Returns a scene containing the main menu.
-     * @param ui    The UI object.
+     *
+     * @param ui The UI object.
      * @return A scene containing the main menu.
      */
 

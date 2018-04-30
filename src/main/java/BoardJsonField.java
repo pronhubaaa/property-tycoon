@@ -1,11 +1,11 @@
-public enum JsonFields {
-    Tile("tile"),
+public enum BoardJsonField {
+    Tiles("tiles"),
     Type("type"),
     Name("name"),
     Position("position"),
     Value("value"),
     Group("group"),
-    CardType("cardType"),
+    CardType("card_type"),
     Rent("rent"),
     Cost("cost"),
     HouseCost("house"),
@@ -20,10 +20,9 @@ public enum JsonFields {
     GameType("game_type"),
     TimeLeft("time_left");
 
-
     private String value;
 
-    JsonFields(final String value) {
+    BoardJsonField(final String value) {
         this.value = value;
     }
 
@@ -35,4 +34,14 @@ public enum JsonFields {
     public String toString() {
         return this.getValue();
     }
+
+    public static BoardJsonField fromString(String s) {
+        for (BoardJsonField boardJsonField : BoardJsonField.values()) {
+            if (boardJsonField.value.equalsIgnoreCase(s)) {
+                return boardJsonField;
+            }
+        }
+        throw new IllegalArgumentException("No constant with that text:" + s);
+    }
+
 }

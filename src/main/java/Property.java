@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Property extends Ownable {
+public class Property extends VariablyTieredRentable {
 
     /**
      * rent: [Int]
@@ -34,22 +34,6 @@ public class Property extends Ownable {
         super(name, position, group);
     }
 
-
-
-    /**
-     * getRent(): [Int]
-     *
-     * @return Array of prices the rent may be
-     */
-
-    public ArrayList<Integer> getRent() {
-        return rent;
-    }
-
-    public void setRent(ArrayList<Integer> rent) {
-        this.rent = rent;
-    }
-
     public int getCostOfHouse() {
         return costOfHouse;
     }
@@ -58,25 +42,27 @@ public class Property extends Ownable {
         this.costOfHouse = costOfHouse;
     }
 
-    public void addHouses(int amount) {
-        int charge = amountOfHouses == 4 ? costOfHouse * 4 : costOfHouse;
-        amountOfHouses += amount;
+    /**
+     * @param player
+     * @param amount
+     * @return Whether the player may purchase the requested amount of houses.
+     */
+    public boolean addHouses(Player player, int amount) {
+        if (amountOfHouses + amount > 5) {
+            return false;
+        } else {
+            boolean transaction = player.attemptDebit(costOfHouse * amount);
+            if (transaction) {
+                amountOfHouses += amount;
+            }
+            return transaction;
+        }
     }
 
 
     public void removeHouses(int amount) {
-
+        // Does removing houses credit the player?
         amountOfHouses -= amount;
-    }
-
-    /**
-     * addHouses(): Void
-     * Add a house to the property. Included for backwards-compatibility to previous spec.
-     */
-
-    public void addHouses() {
-        addHouses(1);
-
     }
 
     public int getAmountOfHouses() {
@@ -86,17 +72,15 @@ public class Property extends Ownable {
     /**
      * @param player the player to apply the rent payment to
      */
-    public boolean applyPayment(Player player) {
-//        int rent = getRent().get(amountOfHouses);
-//        if (isOwned()) {
-//            if (getGroup().isAllOwned(getOwner())) {
-//                rent *= 2;
-//            }
-//            // TODO @Issue #17
-//        } else {
-//            // TODO @Issue #17
-//        }
-//        // TODO @Issue #17
-        return true;
+    public int calculateRent(Player player, int diceValue) {
+        int rent = getRent().get(amountOfHouses);
+        if (isOwned()) {
+            if (getGroup().isGroupAllOwned(getOwner())) {
+                rent *= 2;
+            }
+            return this.rent.get(rent);
+        } else {
+            return 0;
+        }
     }
 }

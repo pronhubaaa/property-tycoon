@@ -159,8 +159,8 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof Card) {
-                Card c = (Card) rightColumn.get(i);
+            } else if (rightColumn.get(i) instanceof CardTile) {
+                CardTile c = (CardTile) rightColumn.get(i);
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -169,7 +169,7 @@ public class GameBoard {
                 v.setMinHeight(93);
                 v.setMaxHeight(93);
                 Label l = new Label("?");
-                l.getStyleClass().add("card-text");
+                l.getStyleClass().add("CardTile-text");
                 v.getChildren().add(l);
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Jail) {
@@ -280,8 +280,8 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof Card) {
-                Card c = (Card) leftColumn.get(i);
+            } else if (leftColumn.get(i) instanceof CardTile) {
+                CardTile c = (CardTile) leftColumn.get(i);
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -290,7 +290,7 @@ public class GameBoard {
                 v.setMinHeight(93);
                 v.setMaxHeight(93);
                 Label l = new Label("?");
-                l.getStyleClass().add("card-text");
+                l.getStyleClass().add("CardTile-text");
                 v.getChildren().add(l);
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof Jail) {
@@ -386,15 +386,15 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 bottomRowTiles.add(v);
-            } else if (bottomRow.get(i) instanceof Card) {
-                Card c = (Card) bottomRow.get(i);
+            } else if (bottomRow.get(i) instanceof CardTile) {
+                CardTile c = (CardTile) bottomRow.get(i);
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
                 v.setMinWidth(93);
                 v.setMaxWidth(93);
                 Label l = new Label("?");
-                l.getStyleClass().add("card-text");
+                l.getStyleClass().add("CardTile-text");
                 v.getChildren().add(l);
                 bottomRowTiles.add(v);
             } else if (bottomRow.get(i) instanceof Jail) {
@@ -488,15 +488,15 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 topRowTiles.add(v);
-            } else if (topRow.get(i) instanceof Card) {
-                Card c = (Card) topRow.get(i);
+            } else if (topRow.get(i) instanceof CardTile) {
+                CardTile c = (CardTile) topRow.get(i);
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
                 v.setMinWidth(93);
                 v.setMaxWidth(93);
                 Label l = new Label("?");
-                l.getStyleClass().add("card-text");
+                l.getStyleClass().add("CardTile-text");
                 v.getChildren().add(l);
                 topRowTiles.add(v);
             } else if (topRow.get(i) instanceof Jail) {

@@ -9,48 +9,46 @@ import java.util.Comparator;
 
 public class AI extends Player {
 
-    public AI(int balance, String name, Board board){
+    public AI(int balance, String name, Board board) {
         super(balance, name, board);
 
     }
 
     /**
      * buyTile
+     *
      * @param tile Ownable for the players owned properties
      * @return boolean for if transaction is successful
      * This allows the AI to choose to buy a property
      */
     @Override
     public boolean buyTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
             if (!ownable.isOwned()) {
                 // If a player owns 1 of two tiles
-                if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice() && ownable.getGroup().getGroupOwners().size() == 2) {
+                if (this.getBoard().getPlayerOwned(ownable) > 0 && ownable.getGroup().getGroupOwners().size() == 2 && attemptDebit(ownable.getPrice())) {
                     ownable.setOwner(this);
-                    setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
                 //If another player owns a tile in the same group
-                else if (this.getBoard().getPlayerOwned(ownable) > 0 && this.getBalance() > ownable.getPrice()) {
+                else if (this.getBoard().getPlayerOwned(ownable) > 0) {
                     double random = Math.random();
-                    if(random > 0.25){
+                    if (random > 0.25 && attemptDebit(ownable.getPrice())) {
                         ownable.setOwner(this);
-                        setBalance(getBalance() - ownable.getPrice());
                         return true;
                     }
 
                 } else if (this.getBalance() >= ownable.getPrice() * 3) {
+                    attemptDebit(ownable.getPrice());
                     ownable.setOwner(this);
-                    setBalance(getBalance() - ownable.getPrice());
                     return true;
                 }
                 //If no other tiles in the group are owned
                 else {
                     double random = Math.random();
-                    if(random > 0.5 && this.getBalance() > ownable.getPrice()){
+                    if (random > 0.5 && attemptDebit(ownable.getPrice())) {
                         ownable.setOwner(this);
-                        setBalance(getBalance() - ownable.getPrice());
                         return true;
                     }
                 }
@@ -59,10 +57,10 @@ public class AI extends Player {
         return false;
     }
 
-    public ArrayList<Boolean> buyHouses(){
+    public ArrayList<Boolean> buyHouses() {
         ArrayList<Boolean> purchases = new ArrayList<>();
         //Get array list of all streets that are owned
-        if(this.getOwnedTiles().isEmpty()) {
+        if (this.getOwnedTiles().isEmpty()) {
             ArrayList<Ownable> temp = streetOwned(this.getOwnedTiles());
             ArrayList<Property> ownedStreets = new ArrayList<>();
             for (Ownable current : temp) {
@@ -80,7 +78,7 @@ public class AI extends Player {
                         // Buy at a random rate of 0.5
                         double random = Math.random();
                         if (random > 0.5) {
-                            current.addHouses();
+                            current.addHouses(this, 1);
                             this.setBalance(this.getBalance() - current.getCostOfHouse());
                             purchases.add(true);
                         } else {
@@ -94,15 +92,15 @@ public class AI extends Player {
         return purchases;
     }
 
-    public boolean trader(ArrayList<Ownable> opponentTiles, ArrayList<Ownable> myTiles, Player player){
+    public boolean trader(ArrayList<Ownable> opponentTiles, ArrayList<Ownable> myTiles, Player player) {
         int score = 0;
 
-        if(opponentTiles.isEmpty() || myTiles.isEmpty()){
+        if (opponentTiles.isEmpty() || myTiles.isEmpty()) {
             return false;
         }
 
         // adding opponent tiles to AI tiles
-        for (Ownable tiles: opponentTiles) {
+        for (Ownable tiles : opponentTiles) {
             ArrayList<Ownable> currentTiles = this.getOwnedTiles();
             currentTiles.add(tiles);
 
@@ -111,67 +109,66 @@ public class AI extends Player {
 
             if (streetOwned(currentTiles).size() > streetOwned(this.getOwnedTiles()).size()) {
                 // Street gained
-                score = score +10;
-            } else if(Collections.frequency(owners, this) > 0){
-                score = score +5;
-                 // Extra part of set gained
+                score = score + 10;
+            } else if (Collections.frequency(owners, this) > 0) {
+                score = score + 5;
+                // Extra part of set gained
             } else {
                 // Nothing gained
             }
         }
 
-        for (Ownable tile: myTiles) {
+        for (Ownable tile : myTiles) {
             ArrayList<Player> players = tile.getGroup().getGroupOwners();
 
-            if (Collections.frequency(players, player) > 2){
-                score = score -10;
-            }else if (Collections.frequency(players, player) > 1){
+            if (Collections.frequency(players, player) > 2) {
+                score = score - 10;
+            } else if (Collections.frequency(players, player) > 1) {
                 score = score - 5;
             }
 
         }
 
-            if(score < -4){
-                double random = Math.random();
-                return random > 0.98;
-            } else if(score < -2){
-                double random = Math.random();
-                return random > 0.85;
-            } else if(score < 0){
-                double random = Math.random();
-                return random > 0.4;
-            }  else if(score < 2){
-                double random = Math.random();
-                return random > 0.2;
-            }  else if(score < 4){
-                double random = Math.random();
-                return random > 0.1;
-            } else {
-                double random = Math.random();
-                return random > 0.99;
-            }
+        if (score < -4) {
+            double random = Math.random();
+            return random > 0.98;
+        } else if (score < -2) {
+            double random = Math.random();
+            return random > 0.85;
+        } else if (score < 0) {
+            double random = Math.random();
+            return random > 0.4;
+        } else if (score < 2) {
+            double random = Math.random();
+            return random > 0.2;
+        } else if (score < 4) {
+            double random = Math.random();
+            return random > 0.1;
+        } else {
+            double random = Math.random();
+            return random > 0.99;
+        }
     }
 
-    public int bid(Tile buyable){
+    public int bid(Tile buyable) {
 
         if (buyable instanceof Ownable) {
             Ownable current = (Ownable) buyable;
 
 
-
             //If a player owns 1 of two tiles or If another player owns a tile in the same group
             if (this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice() && current.getGroup().getGroupOwners().size() == 2 || this.getBoard().getPlayerOwned(current) > 0 && this.getBalance() > current.getPrice()) {
-                if(this.getBalance() > current.getPrice()*3){
+                if (this.getBalance() > current.getPrice() * 3) {
                     double random = Math.random();
                     if (random > 0.3) {
-                        return current.getPrice()*2;
+                        return current.getPrice() * 2;
                     }
-                } else if(this.getBalance() > current.getPrice()*2){
+                } else if (this.getBalance() > current.getPrice() * 2) {
                     double random = Math.random();
                     if (random > 0.4) {
-                        return (int) Math.round(current.getPrice()*1.5);
+                        return (int) Math.round(current.getPrice() * 1.5);
                     }
-                }   else if(this.getBalance() > current.getPrice()){
+                } else if (this.getBalance() > current.getPrice()) {
                     double random = Math.random();
                     if (random > 0.5) {
                         return current.getPrice() + 10;
@@ -180,14 +177,14 @@ public class AI extends Player {
             }
             //If a player owns more than 1 in the set
             else if (this.getBoard().getPlayerOwned(current) > 0) {
-                if(this.getBalance() > current.getPrice()*3){
-                    return current.getPrice()*2;
-                } else if(this.getBalance() > current.getPrice()*2){
+                if (this.getBalance() > current.getPrice() * 3) {
+                    return current.getPrice() * 2;
+                } else if (this.getBalance() > current.getPrice() * 2) {
                     double random = Math.random();
                     if (random > 0.2) {
                         return (int) Math.round(current.getPrice() * 1.5);
                     }
-                }   else if(this.getBalance() > current.getPrice()){
+                } else if (this.getBalance() > current.getPrice()) {
                     double random = Math.random();
                     if (random > 0.3) {
                         return current.getPrice() + 10;
@@ -196,17 +193,17 @@ public class AI extends Player {
             }
             //If no other tiles in the group are owned
             else {
-                if(this.getBalance() > current.getPrice()*3){
+                if (this.getBalance() > current.getPrice() * 3) {
                     double random = Math.random();
                     if (random > 0) {
-                        return current.getPrice()*2;
+                        return current.getPrice() * 2;
                     }
-                } else if(this.getBalance() > current.getPrice()*2){
+                } else if (this.getBalance() > current.getPrice() * 2) {
                     double random = Math.random();
                     if (random > 0.5) {
-                        return (int) Math.round(current.getPrice()*1.5);
+                        return (int) Math.round(current.getPrice() * 1.5);
                     }
-                }   else if(this.getBalance() > current.getPrice()){
+                } else if (this.getBalance() > current.getPrice()) {
                     double random = Math.random();
                     if (random > 0.7) {
                         return current.getPrice() + 10;
@@ -219,17 +216,14 @@ public class AI extends Player {
 
     }
 
-    public boolean payBill(int bill){
-        if(this.getBalance() >= bill){
+    public boolean payBill(int bill) {
+        if (this.getBalance() >= bill) {
             return true;
         }
         ArrayList<Ownable> myTiles = this.getOwnedTiles();
         ArrayList<Ownable> streetTiles = new ArrayList<>();
-        myTiles.sort((o1, o2) -> {
-            int comp = o1.getPrice() - o2.getPrice();
-            return comp;
-        });
-        for(Ownable tile: myTiles){
+        myTiles.sort(Comparator.comparingInt(Ownable::getPrice));
+        for (Ownable tile : myTiles) {
 
             ArrayList<Ownable> currentTiles = this.getOwnedTiles();
             currentTiles.remove(tile);
@@ -238,23 +232,23 @@ public class AI extends Player {
             } else {
 
                 this.mortgageTile(tile);
-                if(this.getBalance() >= bill){
+                if (this.getBalance() >= bill) {
                     return true;
                 } else {
                     this.sellTile(tile);
-                    if(this.getBalance() >= bill){
+                    if (this.getBalance() >= bill) {
                         return true;
                     }
                 }
             }
         }
 
-        for(Ownable tile: streetTiles) {
+        for (Ownable tile : streetTiles) {
             if (tile instanceof Property) {
                 int amountOfHouses = ((Property) tile).getAmountOfHouses();
                 while (amountOfHouses > 0) {
                     ((Property) tile).removeHouses(1);
-                    if(this.getBalance() >= bill){
+                    if (this.getBalance() >= bill) {
                         return true;
                     }
                     amountOfHouses -= 1;
@@ -262,7 +256,7 @@ public class AI extends Player {
             }
         }
 
-        for(Ownable tile: streetTiles){
+        for (Ownable tile : streetTiles) {
 
             ArrayList<Ownable> currentTiles = this.getOwnedTiles();
             currentTiles.remove(tile);
@@ -270,11 +264,11 @@ public class AI extends Player {
                 streetTiles.add(tile);
             } else {
                 this.mortgageTile(tile);
-                if(this.getBalance() > bill){
+                if (this.getBalance() > bill) {
                     return true;
                 } else {
                     this.sellTile(tile);
-                    if(this.getBalance() >= bill){
+                    if (this.getBalance() >= bill) {
                         return true;
                     }
                 }
@@ -288,25 +282,23 @@ public class AI extends Player {
 
     private ArrayList<Ownable> streetOwned(ArrayList<Ownable> inputTiles) {
 
-            //Get array list of all streets that are owned
-            ArrayList<Ownable> ownedTiles = inputTiles;
-            ArrayList<Ownable> ownedStreets = new ArrayList<>();
-            if(!ownedTiles.isEmpty()) {
-                for (Ownable current : ownedTiles) {
-                    Group temp = current.getGroup();
-                    if (groupOwned(temp) == true) {
-                        ownedStreets.add(current);
-                    }
+        //Get array list of all streets that are owned
+        ArrayList<Ownable> ownedStreets = new ArrayList<>();
+        if (!inputTiles.isEmpty()) {
+            for (Ownable current : inputTiles) {
+                Group temp = current.getGroup();
+                if (groupOwned(temp)) {
+                    ownedStreets.add(current);
                 }
             }
-            return ownedStreets;
+        }
+        return ownedStreets;
     }
 
-    private boolean groupOwned(Group group){
+    private boolean groupOwned(Group group) {
         ArrayList<Player> owners = group.getGroupOwners();
         return owners.stream().distinct().limit(2).count() <= 1;
     }
-
 
 
 }
