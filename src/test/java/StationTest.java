@@ -44,7 +44,7 @@ public class StationTest {
     public void applyRentPayment() {
         station.setOwner(player);
         player.setBalance(1);
-        station.applyRentPayment(player);
+        station.applyRentPayment(player, 0);
         assertEquals(0, player.getBalance());
     }
 }
