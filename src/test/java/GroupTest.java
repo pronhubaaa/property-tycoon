@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GroupTest {
 
@@ -22,24 +24,7 @@ public class GroupTest {
     }
 
     @Test
-    public void getAndAddGroups() {
-
-        assertEquals(0, this.group.getGroup().size());
-        this.group.add(new Property("", 0, null));
-        assertEquals(1, this.group.getGroup().size());
-
-        ArrayList<Ownable> groups = new ArrayList<>();
-        groups.add(new Property("", 0, null));
-        groups.add(new Property("", 1, null));
-        this.group.setGroups(groups);
-        assertEquals(2, this.group.getGroup().size());
-
-    }
-
-
-    @Test
     public void getGroupOwners() {
-
 
 
         Player player1 = new Player(50, "Liam", null);
@@ -53,22 +38,64 @@ public class GroupTest {
         Group group = new Group();
 
 
-        Ownable ownable1 = new Ownable("", 0, group);
-        ownable1.setOwner(player1);
-        Ownable ownable2 = new Ownable("", 1, group);
-        ownable2.setOwner(player2);
+        Utility Utility1 = new Utility("", 0, group);
+        Utility1.setOwner(player1);
+        Utility Utility2 = new Utility("", 1, group);
+        Utility2.setOwner(player2);
 
-        Ownable ownable3 = new Ownable("", 2, group);
+        Utility Utility3 = new Utility("", 2, group);
 
-        group.add(ownable1);
-        group.add(ownable2);
-        group.add(ownable3);
+        group.add(Utility1);
+        group.add(Utility2);
+        group.add(Utility3);
 
 
         assertEquals(players, group.getGroupOwners());
 
 
+    }
+
+    @Test
+    public void checkOwnedStreet() {
+        Player player1 = new Player(0, "", null);
 
 
+        Property property1 = new Property("", 0, null);
+        property1.setOwner(player1);
+        group.add(property1);
+
+
+        Property property2 = new Property("", 0, null);
+        group.add(property2);
+
+        property1.setGroup(group);
+        property2.setGroup(group);
+
+        assertFalse(this.group.isGroupAllOwned(player1));
+
+        property2.setOwner(player1);
+        assertTrue(this.group.isGroupAllOwned(player1));
+    }
+
+    @Test
+    public void howManyAreOwned() {
+        // Creates station group
+        // Adds 2 stations owned by player
+        Group group = new Group();
+        Player player = new Player(0, "", null);
+        Station station = new Station("", 0, group);
+        station.setOwner(player);
+        Station station2 = new Station("", 0, group);
+        station2.setOwner(player);
+
+        group.add(station);
+        group.add(station2);
+
+        assertEquals(2, group.getAmountOwned(player));
+
+        // Adds an Utility and station without player being the owner
+        group.add(new Utility("", 2, group));
+        group.add(new Station("", 3, group));
+        assertEquals(2, group.getAmountOwned(player));
     }
 }

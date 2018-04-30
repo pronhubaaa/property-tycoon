@@ -1,11 +1,9 @@
-
-
 import java.util.ArrayList;
 
 /**
  * The player class is responsible for storing a players assets and storing methods for how players can perform actions
  */
-public class Player {
+public class Player implements Payable {
 
     /**
      * inJail: Boolean
@@ -15,7 +13,7 @@ public class Player {
 
     /**
      * balance: Int
-     * This is the players avaliable money.
+     * This is the players available money.
      */
     private int balance;
 
@@ -44,6 +42,11 @@ public class Player {
      */
     private PlayerPiece piece;
 
+    /**
+     * cards: [Card]
+     * The cards the player currently holds.
+     */
+    private ArrayList<Card> cards;
 
     /**
      * board: Board
@@ -55,8 +58,8 @@ public class Player {
      * Player
      *
      * @param balance Int for the player balance
-     * @param name String for the players name
-     * This is the initialiser for the object, it initialises the name and balance.
+     * @param name    String for the players name
+     *                This is the initialiser for the object, it initialises the name and balance.
      */
 
     public Player(int balance, String name, Board board) {
@@ -66,6 +69,16 @@ public class Player {
         setName(name);
         setInJail(false);
         ownedTiles = new ArrayList<>();
+
+        if (this.board != null) {
+            if (this.board.getTiles() != null) {
+                if (this.board.getTiles().size() > 0) {
+                    this.position = this.board.getTiles().get(0);
+                }
+            }
+
+        }
+        this.cards = new ArrayList<>();
 
     }
 
@@ -78,15 +91,15 @@ public class Player {
      * This allows a player to purchase a tile on the board.
      */
     public boolean buyTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
-            if(!ownable.isOwned()){
-                if(this.balance >= ownable.getPrice()){
+            if (!ownable.isOwned()) {
+                boolean transaction = attemptDebit(ownable.getPrice());
+                if (transaction) {
                     ownable.setOwner(this);
                     ownedTiles.add(ownable);
-                    setBalance(getBalance() - ownable.getPrice());
-                    return true;
                 }
+                return transaction;
             }
         }
         return false;
@@ -101,9 +114,9 @@ public class Player {
      * This allows a player to sell a tile on the board.
      */
     public boolean sellTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
-            if(ownable.isOwned() && ownable.getOwner().equals(this)){
+            if (ownable.isOwned() && ownable.getOwner().equals(this)) {
                 ownable.setOwner(null);
                 this.addBalance(ownable.getSellPrice());
             }
@@ -118,7 +131,7 @@ public class Player {
      * This method returns if a player has no funds and is thus out of the game.
      */
 
-    public boolean isBankrupt(){
+    public boolean isBankrupt() {
         return this.balance <= 0;
 
     }
@@ -131,10 +144,10 @@ public class Player {
      * This method allows a player to mortgage a tile.
      */
     public boolean mortgageTile(Tile tile) {
-        if(tile instanceof Ownable){
+        if (tile instanceof Ownable) {
             Ownable ownable = (Ownable) tile;
-            if(ownable instanceof Property){
-                if(((Property) ownable).getAmountOfHouses() > 0){
+            if (ownable instanceof Property) {
+                if (((Property) ownable).getAmountOfHouses() > 0) {
                     return false;
                 }
             }
@@ -159,6 +172,7 @@ public class Player {
 
     /**
      * getBoard
+     *
      * @return board
      * This method gets the board within a player object.
      */
@@ -228,6 +242,20 @@ public class Player {
     }
 
     /**
+     * Attempts to debit $amount from this player, and returns the result of the transaction.
+     * @param amount The amount to be debited.
+     * @return Whether the transaction was successful or not.
+     */
+    public boolean attemptDebit(int amount) {
+        if (balance - amount < 0) {
+            return false;
+        } else {
+            addBalance(-amount);
+            return true;
+        }
+    }
+
+    /**
      * getPosition
      *
      * @return The tile the player is currently on
@@ -253,13 +281,15 @@ public class Player {
      * @return All tiles owned by the player
      * This returns an array of the abstract objects called ownables that the player currently owns. Ownables are tiles that is it possible for a player to buy.
      */
-    public ArrayList<Ownable> getOwnedTiles() {return this.ownedTiles; }
+    public ArrayList<Ownable> getOwnedTiles() {
+        return this.ownedTiles;
+    }
 
     /**
      * addOwnable
      *
      * @param ownedTile A tile that a player can possess
-     *                   Allows a player to own a property, through purchasing auction or otherwise.
+     *                  Allows a player to own a property, through purchasing auction or otherwise.
      */
     public void addOwnable(Ownable ownedTile) {
         this.ownedTiles.add(ownedTile);
@@ -279,7 +309,7 @@ public class Player {
      * setPiece
      *
      * @param piece A PlayerPiece object from the enumerator
-     * This assigns a player a specific player piece, this could be a hatstand, cat, etc.
+     *              This assigns a player a specific player piece, this could be a hatstand, cat, etc.
      */
     public void setPiece(PlayerPiece piece) {
         this.piece = piece;
@@ -287,10 +317,22 @@ public class Player {
 
     /**
      * removeOwnable
+     *
      * @param ownable
      */
-    public void removeOwnable(Ownable ownable){
+    public void removeOwnable(Ownable ownable) {
         this.ownedTiles.remove(ownable);
     }
 
+    public ArrayList<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        this.cards = cards;
+    }
+
+    public void addCard(Card card) {
+        cards.add(card);
+    }
 }

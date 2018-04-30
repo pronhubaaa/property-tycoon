@@ -1,4 +1,4 @@
-public class IncomeTile extends Tile {
+public abstract class IncomeTile extends Tile {
 
     /**
      * value: Int
@@ -6,6 +6,12 @@ public class IncomeTile extends Tile {
      */
     private int value;
 
+    /**
+     * IncomeTiles provide a set amount to a Player when their collect() method is called.
+     * @param name
+     * @param position
+     * @param value
+     */
     public IncomeTile(String name, int position, int value) {
         super(name, position);
         this.value = value;

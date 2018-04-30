@@ -2,7 +2,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class IncomeTileTest {
 
@@ -15,7 +15,7 @@ public class IncomeTileTest {
 
     @Before
     public void setUp() throws Exception {
-        incomeTile = new IncomeTile("incomeTile", 0, TEST_INITIAL_INCOME_VALUE);
+        incomeTile = new Go("incomeTile", 0, TEST_INITIAL_INCOME_VALUE);
         Board board = new Board(new JSONObject());
         player = new Player(0, TEST_PLAYER_NAME, board);
     }
