@@ -82,8 +82,8 @@ public class Board {
                             facility.setPrice(cost);
 
                             if (!groups.containsKey(groupType)) {
+                                facilityGroup.add(facility);
                                 groups.put(groupType, facilityGroup);
-                                tiles.add(facility);
                             }
                             this.tiles.add(facility);
                             break;
