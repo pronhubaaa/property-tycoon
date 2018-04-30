@@ -102,9 +102,23 @@ public abstract class Ownable extends Tile {
         this.group = group;
     }
 
+    /**
+     * Safely attempt to take rent from $player, returning the result of the transaction.
+     *
+     * @param player    The player to be debited.
+     * @param diceValue The total dice value of the previous roll.
+     * @return Whether the result of the transaction was successful.
+     */
     public boolean applyRentPayment(Player player, int diceValue) {
         return player.attemptDebit(calculateRent(player, diceValue));
     }
 
+    /**
+     * Calculate applicable rent for $player.
+     *
+     * @param player    The player to calculate the rent for.
+     * @param diceValue The total dice value of the previous roll.
+     * @return The rent due to be paid by $player.
+     */
     public abstract int calculateRent(Player player, int diceValue);
 }

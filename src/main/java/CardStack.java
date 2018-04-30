@@ -12,14 +12,25 @@ public class CardStack extends ArrayDeque<Card> {
         this.cardType = cardType;
     }
 
+    /**
+     * @return The current CardType of this deck
+     */
     public CardType getCardType() {
         return cardType;
     }
 
+    /**
+     * Sets the card type of this stack. It should be noted that no add methods are safe; this is for information only and the deck will not prevent cards with a mismatching type being added to it.
+     *
+     * @param cardType The required CardType
+     */
     public void setCardType(CardType cardType) {
         this.cardType = cardType;
     }
 
+    /**
+     * Rearranges the cards in this deck.
+     */
     public void shuffle() {
         ArrayList<Card> deck = new ArrayList<>();
         this.iterator().forEachRemaining(deck::add);
@@ -28,6 +39,15 @@ public class CardStack extends ArrayDeque<Card> {
         this.addAll(deck);
     }
 
+    /**
+     * Initialises the card stacks from a provided JSON file. Multiple card stacks are constructed as it need not be guaranteed that the cards in the provided JSON are of the same type - separate stacks will be created for different CardTypes as appropriate.
+     *
+     * @param gameEngine The GameEngine that the card's actions should act in
+     * @param board      The board to place the card stacks on
+     * @param jsonObject A valid cards.json file
+     * @return An array of constructed CardStacks
+     * @throws MalformedJsonException
+     */
     public static ArrayList<CardStack> initialiseCardStacks(GameEngine gameEngine, Board board, JSONObject jsonObject) throws MalformedJsonException {
 
         if (!jsonObject.containsKey(CardJsonField.Cards.toString())) {

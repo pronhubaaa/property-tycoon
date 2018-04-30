@@ -35,7 +35,6 @@ public class Group extends ArrayList<Ownable> {
         return players;
     }
 
-
     /**
      * getColour
      *
@@ -63,7 +62,7 @@ public class Group extends ArrayList<Ownable> {
      * @return Boolean, true if all ownables owned by the player
      * Check if a player owns the group.
      */
-    public Boolean isGroupAllOwned(Player player) {
+    public boolean isGroupAllOwned(Player player) {
         for (Ownable ownable : this) {
             if (ownable.getOwner() == null || !ownable.getOwner().equals(player)) {
                 return false;

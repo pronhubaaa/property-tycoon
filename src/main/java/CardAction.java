@@ -48,6 +48,9 @@ public class CardAction {
      */
     private boolean collectSalaryAtGo;
 
+    /**
+     * The card this action is a member of
+     */
     private Card card;
 
     public CardAction(CardActionType cardActionType, Card card, String description) {
@@ -66,78 +69,156 @@ public class CardAction {
         this.value = value;
     }
 
+    /**
+     * * @return The action type of this cardAction.
+     */
     public CardActionType getCardActionType() {
         return cardActionType;
     }
 
+    /**
+     * Sets the action type of this CardAction.
+     *
+     * @param cardActionType The action type to be set.
+     */
     public void setCardActionType(CardActionType cardActionType) {
         this.cardActionType = cardActionType;
     }
 
+    /**
+     * @return The originating entity of this action.
+     */
     public Object getOrigin() {
         return origin;
     }
 
+    /**
+     * Sets the originating entity of this action.
+     *
+     * @param origin The required origin. Refer to the javadoc of the Origin field for the allowed values.
+     */
     public void setOrigin(Object origin) {
         this.origin = origin;
     }
 
+    /**
+     * @return The entity this action acts upon.
+     */
     public Object getIntent() {
         return intent;
     }
 
+    /**
+     * Sets the entity that this action acts upon.
+     *
+     * @param intent The intent entity. Refer to the javadoc of the Intent field for the allowed values.
+     */
     public void setIntent(Object intent) {
         this.intent = intent;
     }
 
+    /**
+     * @return The value of this action.
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     * Sets the value of this action.
+     *
+     * @param value The required value. Refer to the javadoc of the Value field for what this controls for various CardActionTypes.
+     */
     public void setValue(int value) {
         this.value = value;
     }
 
+    /**
+     * @return The value per house, where an action depends on the houses owned.
+     */
     public int getAmountPerHouse() {
         return amountPerHouse;
     }
 
+    /**
+     * Sets the value per house.
+     *
+     * @param amountPerHouse The required value per house.
+     */
     public void setAmountPerHouse(int amountPerHouse) {
         this.amountPerHouse = amountPerHouse;
     }
 
+    /**
+     * @return The value per hotel, where an action depends on the hotels owned.
+     */
     public int getAmountPerHotel() {
         return amountPerHotel;
     }
 
+    /**
+     * Sets the value per hotel.
+     *
+     * @param amountPerHotel The required value per hotel.
+     */
     public void setAmountPerHotel(int amountPerHotel) {
         this.amountPerHotel = amountPerHotel;
     }
 
+    /**
+     * @return collectSalaryAtGo - refer to field's javadoc
+     */
     public boolean isCollectSalaryAtGo() {
         return collectSalaryAtGo;
     }
 
+    /**
+     * Sets collectSalaryAtGo - refer to field's javadoc
+     *
+     * @param collectSalaryAtGo The value that collectSalaryAtGo should be set to
+     */
     public void setCollectSalaryAtGo(boolean collectSalaryAtGo) {
         this.collectSalaryAtGo = collectSalaryAtGo;
     }
 
+    /**
+     * @return The card this action is a member of
+     */
     public Card getCard() {
         return card;
     }
 
+    /**
+     * Set the card that this action will be a member of
+     *
+     * @param card The card to be set
+     */
     public void setCard(Card card) {
         this.card = card;
     }
 
+    /**
+     * @return The description of this action
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Set the description of this action
+     *
+     * @param description The new description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Execute this action against the provided player
+     *
+     * @param player The player the action will be executed against
+     * @throws MalformedCardActionException
+     */
     public void performAction(Player player) throws MalformedCardActionException {
         switch (cardActionType) {
             case Draw:
