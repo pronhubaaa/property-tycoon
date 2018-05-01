@@ -416,10 +416,9 @@ public class GameEngine {
 
     /**
      * addPlayer
-     * <p>
      * This method is used by the constructor to add a player to the engine. It will populate the players attribute array.
      */
-    private void addPlayer(Player player) {
+    public void addPlayer(Player player) {
         this.players.add(player);
 
     }

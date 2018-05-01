@@ -20,9 +20,9 @@ private int position;
 The position on the board of this specific tile.
 
 ## Public Methods
-### Tile
+### addTile
 ```java
-
+public void addTile(String name, int position)
 ```
 *Parameters*: The name and position of the tile
 *Returns*: Void
