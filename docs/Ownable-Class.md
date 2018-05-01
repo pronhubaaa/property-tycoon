@@ -1,4 +1,4 @@
-mortgage---
+---
 id: Ownable-Class
 title: Ownable class
 sidebar_label: Ownable
