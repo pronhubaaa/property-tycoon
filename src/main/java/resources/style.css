@@ -188,7 +188,7 @@
 }
 
 .card-text {
-    -fx-font-size: 40px;
+    -fx-font-size: 70px;
     -fx-font-family: 'Raleway';
 }
 
@@ -225,4 +225,14 @@
     -fx-font-family: 'Raleway';
     -fx-text-fill: white;
     -fx-font-size: 18px;
+}
+
+.property-title {
+    -fx-font-family: 'Raleway';
+    -fx-font-size: 20px;
+    -fx-text-fill: '#ffffff';
+}
+
+.raleway {
+    -fx-font-family: 'Raleway';
 }
