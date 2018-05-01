@@ -112,8 +112,9 @@ public class NewGameScreen extends Scene {
             HBox piecesList = new HBox();
             piecesList.setAlignment(Pos.CENTER_LEFT);
             ScrollPane scroll = new ScrollPane();
-            for (int i = 0; i < 8; i++) {
-                Image img = new Image("resources/icon.png");
+            for (int i = 0; i < 6; i++) {
+                String imgLocation = "resources/player-piece" + (i + 1) + ".png";
+                Image img = new Image(imgLocation);
                 HBox outline = new HBox();
                 outline.setId("unclicked");
                 if (rectLeft.getChildren().size() > 7) {
