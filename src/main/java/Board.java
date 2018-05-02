@@ -65,55 +65,38 @@ public class Board {
                             this.tiles.add(freeParking);
                             break;
                         case Utility:
+                            Group utilityGroup = groups.containsKey(groupType) ? groups.get(groupType) : new Group();
+                            Utility utility = new Utility(tileName, tilePosition, utilityGroup) {{
+                                setPrice(tile.getIntValue(BoardJsonField.Cost.toString()));
+                            }};
+                            if (!groups.containsKey(groupType)) {
+                                addNewGroup(utilityGroup, groupType, utility);
+                            }
+                            this.tiles.add(utility);
                         case Station:
-                            Group facilityGroup;
-                            if (groups.containsKey(groupType)) {
-                                facilityGroup = groups.get(groupType);
-                            } else {
-                                facilityGroup = new Group();
-                            }
-                            Ownable facility;
-                            if (type == TileType.Utility) {
-                                facility = new Utility(tileName, tilePosition, facilityGroup);
-                            } else { // (TileType.Station)
-                                facility = new Station(tileName, tilePosition, facilityGroup);
-                            }
-                            int cost = tile.getIntValue(BoardJsonField.Cost.toString());
-                            facility.setPrice(cost);
-
+                            Group stationGroup = groups.containsKey(groupType) ? groups.get(groupType) : new Group();
+                            Station station = new Station(tileName, tilePosition, stationGroup) {{
+                                setPrice(tile.getIntValue(BoardJsonField.Cost.toString()));
+                                setRent(parseJsonRents(tile.getJSONArray(BoardJsonField.Rent.toString())));
+                            }};
                             if (!groups.containsKey(groupType)) {
-                                facilityGroup.add(facility);
-                                groups.put(groupType, facilityGroup);
+                                addNewGroup(stationGroup, groupType, station);
                             }
-                            this.tiles.add(facility);
+                            this.tiles.add(station);
                             break;
-
                         case Property:
-                            Group propertyGroup;
-                            if (groups.containsKey(groupType)) {
-                                propertyGroup = groups.get(groupType);
-                            } else {
-                                propertyGroup = new Group();
-                            }
-                            Property property = new Property(tileName, tilePosition, propertyGroup);
+                            Group propertyGroup = groups.containsKey(groupType) ? groups.get(groupType) : new Group();
+                            Property property = new Property(tileName, tilePosition, propertyGroup) {{
+                                setPrice(tile.getIntValue(BoardJsonField.Cost.toString()));
+                                setRent(parseJsonRents(tile.getJSONArray(BoardJsonField.Rent.toString())));
+                                setCostOfHouse(tile.getIntValue(BoardJsonField.HouseCost.toString()));
+                            }};
                             propertyGroup.setColour(Colour.valueOf(groupType));
-
-                            JSONArray rents = tile.getJSONArray(BoardJsonField.Rent.toString());
-                            ArrayList<Integer> rent = new ArrayList<>();
-                            for (int i = 0; i < rents.size(); i++) {
-                                rent.add(rents.getIntValue(i));
-                            }
-                            property.setRent(rent);
-                            property.setCostOfHouse(tile.getIntValue(BoardJsonField.HouseCost.toString()));
-                            property.setPrice(tile.getIntValue(BoardJsonField.Cost.toString()));
-
                             if (!groups.containsKey(groupType)) {
-                                propertyGroup.add(property);
-                                this.groups.put(groupType, propertyGroup);
+                                addNewGroup(propertyGroup, groupType, property);
                             }
                             this.tiles.add(property);
                             break;
-
                         case Jail:
                             Jail jail = new Jail(tileName, tilePosition, tileValue);
                             this.tiles.add(jail);
