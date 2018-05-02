@@ -138,14 +138,20 @@ public class Board {
                             throw new BoardTileException("Tile type is invalid");
 
                     }
-
                 }
             }
-
-
         }
+    }
 
+    private static ArrayList<Integer> parseJsonRents(JSONArray jsonRents) {
+        ArrayList<Integer> parsedRents = new ArrayList<>();
+        jsonRents.iterator().forEachRemaining(s -> parsedRents.add((int) s));
+        return parsedRents;
+    }
 
+    private void addNewGroup(Group group, String groupType, Ownable ownable) {
+        group.add(ownable);
+        groups.put(groupType, group);
     }
 
     /**
