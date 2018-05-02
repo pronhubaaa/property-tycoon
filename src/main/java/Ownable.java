@@ -48,6 +48,7 @@ public abstract class Ownable extends Tile {
     public Ownable(String name, int position, Group group) {
         super(name, position);
         this.group = group;
+        this.owner = null;
     }
 
     public boolean isOwned() {

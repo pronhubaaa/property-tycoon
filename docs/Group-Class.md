@@ -8,7 +8,7 @@ The group class contains all methods and functions required by the different gro
 
 ## Private Attributes
 
-### groups
+### group
 ```java
 private ArrayList<Ownable> group;
 ```
@@ -83,5 +83,25 @@ public void setColour(Colour colour)
 *Returns*: Void
 
 This method is used to set the colour of the group.
+
+
+### isGroupAllOwned
+```java
+public boolean isGroupAllOwned(Player player)
+```
+*Parameters*: The player who may own all properties in this group
+*Returns*: Boolean true if player owns all in this group
+
+This method is used to check if a player owns all in this group
+
+### getAmountOwned
+```java
+public int getAmountOwned(Player player)
+```
+*Parameters*: The player who may own properties in this group
+*Returns*: How many properties the player owns
+
+This method is used to see how many properties a player owns in this group
+
 
 ---

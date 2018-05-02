@@ -14,39 +14,47 @@ This enumeration is for selecting the type of tile being created, this allows di
 ## Types
 ### Go
 ```java
-Go,
+Go
 ```
+
 ### Free parking
 ```java
-FreeParking,
+FreeParking
 ```
+
 ### Utility
 ```java
-Utility,
+Utility
 ```
+
 ### Station
 ```java
-Station,
+Station
 ```
+
 ### Property
 ```java
-Property,
+Property
 ```
+
 ### Jail
 ```java
-Jail,
+Jail
 ```
+
 ### Go To Jail
 ```java
-GoToJail,
+GoToJail
 ```
+
 ### Tax
 ```java
-Tax,
+Tax
 ```
+
 ### Card
 ```java
-Card;
+Card
 ```
 
 ---
