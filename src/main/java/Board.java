@@ -73,6 +73,7 @@ public class Board {
                                 addNewGroup(utilityGroup, groupType, utility);
                             }
                             this.tiles.add(utility);
+                            break;
                         case Station:
                             Group stationGroup = groups.containsKey(groupType) ? groups.get(groupType) : new Group();
                             Station station = new Station(tileName, tilePosition, stationGroup) {{
@@ -128,7 +129,7 @@ public class Board {
 
     private static ArrayList<Integer> parseJsonRents(JSONArray jsonRents) {
         ArrayList<Integer> parsedRents = new ArrayList<>();
-        jsonRents.iterator().forEachRemaining(s -> parsedRents.add((int) s));
+        jsonRents.iterator().forEachRemaining(s -> parsedRents.add(Integer.parseInt(s.toString())));
         return parsedRents;
     }
 
