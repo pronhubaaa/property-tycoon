@@ -341,6 +341,41 @@ public class GameBoard {
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
                 priceTag.setRotate(90);
+                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent t){
+                        VBox grey = new VBox();
+                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                        grey.setMinWidth(_centerStack.widthProperty().intValue());
+                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                        grey.setMinHeight(_centerStack.heightProperty().intValue());
+                        grey.setStyle("-fx-background-color: '#222222';");
+                        grey.setOpacity(0.5);
+                        HBox closeWindow = new HBox();
+                        closeWindow.setMaxWidth(_centerStack.getWidth());
+                        closeWindow.setMinWidth(_centerStack.getWidth());
+                        Label close = new Label("X");
+                        close.getStyleClass().add("raleway");
+                        close.setStyle("-fx-font-size: 50px");
+                        close.setAlignment(Pos.TOP_RIGHT);
+                        close.setPadding(new Insets(20, 20, 0, 0));
+                        closeWindow.setAlignment(Pos.TOP_RIGHT);
+                        closeWindow.getChildren().add(close);
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        VBox card = getCardStyle(o);
+                        _centerStack.getChildren().add(card);
+                        closeWindow.toFront();
+                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle (MouseEvent tp) {
+                                _centerStack.getChildren().remove(grey);
+                                _centerStack.getChildren().remove(closeWindow);
+                                _centerStack.getChildren().remove(card);
+                            }
+                        });
+                    }
+                });
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
                 leftColumnTiles.add(v);
@@ -491,6 +526,41 @@ public class GameBoard {
                 Label priceTag = new Label("£" + o.getPrice());
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
+                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent t){
+                        VBox grey = new VBox();
+                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                        grey.setMinWidth(_centerStack.widthProperty().intValue());
+                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                        grey.setMinHeight(_centerStack.heightProperty().intValue());
+                        grey.setStyle("-fx-background-color: '#222222';");
+                        grey.setOpacity(0.5);
+                        HBox closeWindow = new HBox();
+                        closeWindow.setMaxWidth(_centerStack.getWidth());
+                        closeWindow.setMinWidth(_centerStack.getWidth());
+                        Label close = new Label("X");
+                        close.getStyleClass().add("raleway");
+                        close.setStyle("-fx-font-size: 50px");
+                        close.setAlignment(Pos.TOP_RIGHT);
+                        close.setPadding(new Insets(20, 20, 0, 0));
+                        closeWindow.setAlignment(Pos.TOP_RIGHT);
+                        closeWindow.getChildren().add(close);
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        VBox card = getCardStyle(o);
+                        _centerStack.getChildren().add(card);
+                        closeWindow.toFront();
+                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle (MouseEvent tp) {
+                                _centerStack.getChildren().remove(grey);
+                                _centerStack.getChildren().remove(closeWindow);
+                                _centerStack.getChildren().remove(card);
+                            }
+                        });
+                    }
+                });
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
                 bottomRowTiles.add(v);
@@ -649,6 +719,41 @@ public class GameBoard {
                 Label priceTag = new Label("£" + o.getPrice());
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
+                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent t){
+                        VBox grey = new VBox();
+                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                        grey.setMinWidth(_centerStack.widthProperty().intValue());
+                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                        grey.setMinHeight(_centerStack.heightProperty().intValue());
+                        grey.setStyle("-fx-background-color: '#222222';");
+                        grey.setOpacity(0.5);
+                        HBox closeWindow = new HBox();
+                        closeWindow.setMaxWidth(_centerStack.getWidth());
+                        closeWindow.setMinWidth(_centerStack.getWidth());
+                        Label close = new Label("X");
+                        close.getStyleClass().add("raleway");
+                        close.setStyle("-fx-font-size: 50px");
+                        close.setAlignment(Pos.TOP_RIGHT);
+                        close.setPadding(new Insets(20, 20, 0, 0));
+                        closeWindow.setAlignment(Pos.TOP_RIGHT);
+                        closeWindow.getChildren().add(close);
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        VBox card = getCardStyle(o);
+                        _centerStack.getChildren().add(card);
+                        closeWindow.toFront();
+                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle (MouseEvent tp) {
+                                _centerStack.getChildren().remove(grey);
+                                _centerStack.getChildren().remove(closeWindow);
+                                _centerStack.getChildren().remove(card);
+                            }
+                        });
+                    }
+                });
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
                 topRowTiles.add(v);
@@ -809,6 +914,8 @@ public class GameBoard {
         card.setMaxHeight(500);
         card.setMinHeight(500);
         card.setStyle("-fx-background-color: '#ffffff';");
+        BorderPane layout = new BorderPane();
+        card.getChildren().add(layout);
         if (t instanceof Property) {
             Property p = (Property) t;
             HBox colour = new HBox();
@@ -836,7 +943,7 @@ public class GameBoard {
             card.getChildren().add(colour);
             card.getChildren().add(price);
             card.getChildren().add(cost);
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < p.getRent().size(); i++) {
                 HBox row = new HBox();
                 Label rentLeft = new Label(i + " houses");
                 rentLeft.getStyleClass().add("raleway");
@@ -850,12 +957,62 @@ public class GameBoard {
                 rent.getChildren().add(row);
             }
             card.getChildren().add(rent);
-            if (p.isOwned()) {
+            if (!p.isOwned()) {
                 HBox owner = new HBox();
                 owner.setAlignment(Pos.BOTTOM_CENTER);
-                owner.setMaxHeight(75);
-                owner.setMinHeight(75);
+                owner.setMaxHeight(50);
+                owner.setMinHeight(50);
                 owner.setStyle("-fx-background-color:'" + p.getGroup().getColour().getValue() + "';");
+                card.getChildren().add(owner);
+            }
+        }
+        if (t instanceof Station) {
+            Station p = (Station) t;
+            HBox colour = new HBox();
+            colour.setMaxHeight(70);
+            colour.setMinHeight(70);
+            colour.setStyle("-fx-background-color: '" + p.getGroup().getColour().getValue() + "';");
+            Label l = new Label(t.getName());
+            l.getStyleClass().add("property-title");
+            colour.getChildren().add(l);
+            colour.setAlignment(Pos.CENTER);
+            Label price = new Label("Price");
+            price.setPadding(new Insets(25, 0, 0, 50));
+            price.getStyleClass().add("raleway");
+            price.setStyle("-fx-font-size: 15px;");
+            Label cost = new Label("£" + p.getPrice());
+            cost.setPadding(new Insets(0,0,0,50));
+            cost.getStyleClass().add("raleway");
+            cost.setStyle("-fx-font-size: 30px");
+            VBox rent = new VBox();
+            rent.setSpacing(20);
+            Label rentLabel = new Label("Rent");
+            rentLabel.getStyleClass().add("raleway");
+            rent.getChildren().add(rentLabel);
+            rent.setAlignment(Pos.CENTER);
+            card.getChildren().add(colour);
+            card.getChildren().add(price);
+            card.getChildren().add(cost);
+            for (int i = 0; i < p.getRent().size(); i++) {
+                HBox row = new HBox();
+                Label rentLeft = new Label(i + " houses");
+                rentLeft.getStyleClass().add("raleway");
+                row.getChildren().add(rentLeft);
+                row.setSpacing(150);
+                row.setAlignment(Pos.CENTER);
+                Label rentRight = new Label("£" + p.getRent().get(i));
+                rentRight.getStyleClass().add("raleway");
+                row.setPadding(new Insets(20, 0, 0, 0));
+                row.getChildren().add(rentRight);
+                rent.getChildren().add(row);
+            }
+            card.getChildren().add(rent);
+            if (!p.isOwned()) {
+                HBox owner = new HBox();
+                owner.setAlignment(Pos.BOTTOM_CENTER);
+                owner.setMaxHeight(50);
+                owner.setMinHeight(50);
+                owner.setStyle("-fx-background-color:'#222222';");
                 card.getChildren().add(owner);
             }
         }
