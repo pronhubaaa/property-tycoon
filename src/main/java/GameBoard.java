@@ -1154,16 +1154,48 @@ public class GameBoard {
                         player.setFitWidth(20);
                         player.setFitHeight(20);
                         playerRow.getChildren().add(player);
-                        ((HBox)((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).getChildren().add(playerRow);
+                        ((HBox) ((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).getChildren().add(playerRow);
                     }
                 }
             }
         }
     }
 
+    //show a message on stage - delete message with destroyMessage()
     public void showMessage(String message) {
         _currentMsg.setText(message);
         _centerStack.getChildren().add(_currentMsg);
+    }
+
+    public void destroyMessage() {
+        _currentMsg.setText("");
+        _centerStack.getChildren().remove(_currentMsg);
+    }
+
+    public void landed(Tile t) {
+        switch (TileType.valueOf(t.getClass().getSimpleName())) {
+            case Property:
+            case Station:
+            case Utility:
+                Ownable o = (Ownable) t;
+                if (o.isOwned()) {
+                    //charge rent
+                } else {
+                    //display buy ptions
+                }
+                break;
+            case Card:
+                CardTile c = (CardTile) t;
+                //display card text
+                //display accept button
+                break;
+            case Go:
+                //display message
+                break;
+            case GoToJail:
+                //display message
+                //move player to jail
+        }
     }
 
     public Button rollButton() {
@@ -1226,7 +1258,7 @@ public class GameBoard {
 
     //Move the player in GE before calling this function
     public void putPlayerOnTile(Player p) {
-        HBox bottomRow = (HBox)_boardPane.getBottom();
+        HBox bottomRow = (HBox) _boardPane.getBottom();
         HBox topRow = (HBox) _boardPane.getTop();
         VBox leftCol = (VBox) _boardPane.getLeft();
         VBox rightCol = (VBox) _boardPane.getRight();
