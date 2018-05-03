@@ -24,6 +24,7 @@ public class GameBoard {
     private HBox _boardContainer;
     private Button _detailsButton;
     private StackPane _centerStack;
+    private Label _currentMsg = new Label("");
 
     public GameBoard(GameEngine gameEngine) {
         this._gameEngine = gameEngine;
@@ -54,6 +55,8 @@ public class GameBoard {
 
     private void _createBoardLayout() {
 
+        this._currentMsg.getStyleClass().add("raleway");
+        this._currentMsg.setStyle("-fx-font-size: 25px");
         this._detailsButton = new Button();
         this._detailsButton.setText("Property details");
         this._detailsButton.setId("property-details");
@@ -191,14 +194,12 @@ public class GameBoard {
                 });
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
-                HBox owner = new HBox();
-                //TODO getPiece() should return a string location of the 'small' player piece
-                //Image smallPiece = new Image(o.getOwner().getPiece().getValue());
-                //ImageView smallView = new ImageView(smallPiece);
-                //smallView.setFitWidth(25);
-                //smallView.setFitHeight(25);
-                //owner.getChildren().add(smallView);
-                //v.getChildren().add(owner);
+                VBox currentPlayers = new VBox();
+                currentPlayers.setSpacing(5);
+                v.getChildren().add(currentPlayers);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                v.getChildren().add(owner);
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof TaxTile) {
                 TaxTile t = (TaxTile) rightColumn.get(i);
@@ -1148,16 +1149,21 @@ public class GameBoard {
                     if (((Label) colour.getChildren().get(j)).getText() == o.getName()) {
                         ((HBox) ((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
                         HBox playerRow = new HBox();
-                        //Image piece = new Image(p.getPiece().getLocation());
-                        //ImageView player = new ImageView(piece);
-                        //player.setFitWidth(20);
-                        //player.setFitHeight(20);
-                        //playerRow.getChildren().add(player);
-                        //((HBox)((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).getChildren().add(playerRow);
+                        Image piece = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                        ImageView player = new ImageView(piece);
+                        player.setFitWidth(20);
+                        player.setFitHeight(20);
+                        playerRow.getChildren().add(player);
+                        ((HBox)((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).getChildren().add(playerRow);
                     }
                 }
             }
         }
+    }
+
+    public void showMessage(String message) {
+        _currentMsg.setText(message);
+        _centerStack.getChildren().add(_currentMsg);
     }
 
     public Button rollButton() {
@@ -1216,5 +1222,81 @@ public class GameBoard {
             style = o.getGroup().getColour().getValue();
         }
         return style;
+    }
+
+    //Move the player in GE before calling this function
+    public void putPlayerOnTile(Player p) {
+        HBox bottomRow = (HBox)_boardPane.getBottom();
+        HBox topRow = (HBox) _boardPane.getTop();
+        VBox leftCol = (VBox) _boardPane.getLeft();
+        VBox rightCol = (VBox) _boardPane.getRight();
+        for (int i = 0; i < bottomRow.getChildren().size(); i++) {
+            VBox v = (VBox) bottomRow.getChildren().get(i); //get next tile box
+            HBox colour = (HBox) v.getChildren().get(0); //get the colour
+            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
+            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                ImageView igv = new ImageView(img);
+                if (((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().size() == 0) { //check the amount of children in the owner box
+                    ((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv); //if it's 0, add our new owner
+                } else if (((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0) instanceof ImageView) { //if someone is already there
+                    ImageView playerPiece = (ImageView) ((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0); //check if the person already there
+                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
+                        ((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().remove(0); //if they are, remove their old position
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < topRow.getChildren().size(); i++) {
+            VBox v = (VBox) topRow.getChildren().get(i); //get next tile box
+            HBox colour = (HBox) v.getChildren().get(0); //get the colour
+            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
+            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                ImageView igv = new ImageView(img);
+                if (((HBox) v.getChildren().get(1)).getChildren().size() == 0) { //check the amount of children in the owner box
+                    ((HBox) v.getChildren().get(1)).getChildren().add(igv); //if it's 0, add our new owner
+                } else if (((HBox) v.getChildren().get(1)).getChildren().get(0) instanceof ImageView) { //if someone is already there
+                    ImageView playerPiece = (ImageView) ((HBox) v.getChildren().get(1)).getChildren().get(0); //check if the person already there
+                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
+                        ((HBox) v.getChildren().get(1)).getChildren().remove(0); //if they are, remove their old position
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < rightCol.getChildren().size(); i++) {
+            HBox v = (HBox) rightCol.getChildren().get(i); //get next tile box
+            VBox colour = (VBox) v.getChildren().get(0); //get the colour
+            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
+            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                ImageView igv = new ImageView(img);
+                if (((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().size() == 0) { //check the amount of children in the owner box
+                    ((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv); //if it's 0, add our new owner
+                } else if (((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0) instanceof ImageView) { //if someone is already there
+                    ImageView playerPiece = (ImageView) ((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0); //check if the person already there
+                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
+                        ((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().remove(0); //if they are, remove their old position
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < leftCol.getChildren().size(); i++) {
+            HBox v = (HBox) leftCol.getChildren().get(i); //get next tile box
+            VBox colour = (VBox) v.getChildren().get(0); //get the colour
+            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
+            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                ImageView igv = new ImageView(img);
+                if (((VBox) v.getChildren().get(1)).getChildren().size() == 0) { //check the amount of children in the owner box
+                    ((VBox) v.getChildren().get(1)).getChildren().add(igv); //if it's 0, add our new owner
+                } else if (((VBox) v.getChildren().get(1)).getChildren().get(0) instanceof ImageView) { //if someone is already there
+                    ImageView playerPiece = (ImageView) ((VBox) v.getChildren().get(1)).getChildren().get(0); //check if the person already there
+                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
+                        ((VBox) v.getChildren().get(1)).getChildren().remove(0); //if they are, remove their old position
+                    }
+                }
+            }
+        }
     }
 }
