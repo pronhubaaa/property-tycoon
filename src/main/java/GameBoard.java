@@ -163,23 +163,42 @@ public class GameBoard {
                         close.setPadding(new Insets(20, 20, 0, 0));
                         closeWindow.setAlignment(Pos.TOP_RIGHT);
                         closeWindow.getChildren().add(close);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
                         VBox card = getCardStyle(o);
                         _centerStack.getChildren().add(card);
-                        closeWindow.toFront();
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        grey.toFront();
+                        card.toFront();
                         close.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent tp) {
-                                _centerStack.getChildren().remove(grey);
-                                _centerStack.getChildren().remove(closeWindow);
-                                _centerStack.getChildren().remove(card);
+                                cleanStack();
+                            }
+                        });
+                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
+                            }
+                        });
+                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
                             }
                         });
                     }
                 });
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
+                HBox owner = new HBox();
+                //TODO getPiece() should return a string location of the 'small' player piece
+                //Image smallPiece = new Image(o.getOwner().getPiece().getValue());
+                //ImageView smallView = new ImageView(smallPiece);
+                //smallView.setFitWidth(25);
+                //smallView.setFitHeight(25);
+                //owner.getChildren().add(smallView);
+                //v.getChildren().add(owner);
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof TaxTile) {
                 TaxTile t = (TaxTile) rightColumn.get(i);
@@ -361,17 +380,28 @@ public class GameBoard {
                         close.setPadding(new Insets(20, 20, 0, 0));
                         closeWindow.setAlignment(Pos.TOP_RIGHT);
                         closeWindow.getChildren().add(close);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
                         VBox card = getCardStyle(o);
                         _centerStack.getChildren().add(card);
-                        closeWindow.toFront();
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        grey.toFront();
+                        card.toFront();
                         close.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent tp) {
-                                _centerStack.getChildren().remove(grey);
-                                _centerStack.getChildren().remove(closeWindow);
-                                _centerStack.getChildren().remove(card);
+                                cleanStack();
+                            }
+                        });
+                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
+                            }
+                        });
+                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
                             }
                         });
                     }
@@ -546,18 +576,28 @@ public class GameBoard {
                         close.setPadding(new Insets(20, 20, 0, 0));
                         closeWindow.setAlignment(Pos.TOP_RIGHT);
                         closeWindow.getChildren().add(close);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
-                        System.out.println(_centerStack.getChildren().indexOf(closeWindow));
                         VBox card = getCardStyle(o);
                         _centerStack.getChildren().add(card);
-                        closeWindow.toFront();
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        grey.toFront();
+                        card.toFront();
                         close.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent tp) {
-                                _centerStack.getChildren().remove(grey);
-                                _centerStack.getChildren().remove(closeWindow);
-                                _centerStack.getChildren().remove(card);
+                                cleanStack();
+                            }
+                        });
+                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
+                            }
+                        });
+                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
                             }
                         });
                     }
@@ -741,17 +781,28 @@ public class GameBoard {
                         close.setPadding(new Insets(20, 20, 0, 0));
                         closeWindow.setAlignment(Pos.TOP_RIGHT);
                         closeWindow.getChildren().add(close);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
                         VBox card = getCardStyle(o);
                         _centerStack.getChildren().add(card);
-                        closeWindow.toFront();
+                        _centerStack.getChildren().add(grey);
+                        _centerStack.getChildren().add(closeWindow);
+                        grey.toFront();
+                        card.toFront();
                         close.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent tp) {
-                                _centerStack.getChildren().remove(grey);
-                                _centerStack.getChildren().remove(closeWindow);
-                                _centerStack.getChildren().remove(card);
+                                cleanStack();
+                            }
+                        });
+                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
+                            }
+                        });
+                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            @Override
+                            public void handle(MouseEvent tp) {
+                                cleanStack();
                             }
                         });
                     }
@@ -911,13 +962,14 @@ public class GameBoard {
     }
 
     public VBox getCardStyle(Tile t) {
+        if (_centerStack.getChildren().size() > 2) {
+            cleanStack();
+        }
         VBox card = new VBox();
         card.setMaxWidth(400);
         card.setMinWidth(400);
         card.setMaxHeight(500);
         card.setMinHeight(500);
-        //add a message check here later
-        _centerStack.getChildren().remove(2, _centerStack.getChildren().size());
         card.setStyle("-fx-background-color: '#ffffff';");
         BorderPane layout = new BorderPane();
         card.getChildren().add(layout);
@@ -1051,7 +1103,7 @@ public class GameBoard {
             card.getChildren().add(price);
             card.getChildren().add(cost);
             HBox row = new HBox();
-            Label rentLeft = new Label( "Some Utilities owned");
+            Label rentLeft = new Label("Some Utilities owned");
             rentLeft.getStyleClass().add("raleway");
             row.getChildren().add(rentLeft);
             row.setSpacing(150);
@@ -1062,7 +1114,7 @@ public class GameBoard {
             row.getChildren().add(rentRight);
             rent.getChildren().add(row);
             HBox row2 = new HBox();
-            Label rentLeft2 = new Label( "All Utilities owned");
+            Label rentLeft2 = new Label("All Utilities owned");
             rentLeft2.getStyleClass().add("raleway");
             row2.getChildren().add(rentLeft2);
             row2.setSpacing(150);
@@ -1085,7 +1137,7 @@ public class GameBoard {
     }
 
 
-    //Function to change colour of tile when it is purchased
+    //TODO integrate function to change colour of tile when it is purchased
     public void purchase(Ownable o, Player p) {
         HBox bottomRow = (HBox) _boardPane.getBottom();
         for (int i = 0; i < bottomRow.getChildren().size(); i++) {
@@ -1094,7 +1146,7 @@ public class GameBoard {
             for (int j = 0; j < colour.getChildren().size(); j++) {
                 if (colour.getChildren().get(j) instanceof Label) {
                     if (((Label) colour.getChildren().get(j)).getText() == o.getName()) {
-                        ((HBox)((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
+                        ((HBox) ((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
                         HBox playerRow = new HBox();
                         //Image piece = new Image(p.getPiece().getLocation());
                         //ImageView player = new ImageView(piece);
@@ -1115,6 +1167,7 @@ public class GameBoard {
             HBox diceRow = new HBox();
             diceRow.setSpacing(25);
             HBox dice1 = new HBox();
+            //TODO code that rolls dice and returns an integer
             Label number = new Label(/*code that gets dice integer*/);
             number.getStyleClass().add("raleway");
             number.setStyle("-fx-font-size: 15px");
@@ -1126,6 +1179,7 @@ public class GameBoard {
             dice1.getChildren().add(number);
             dice1.setAlignment(Pos.CENTER);
             HBox dice2 = new HBox();
+            //TODO code that rolls dice and returns an integer
             Label number2 = new Label(/*code that gets dice integer*/);
             number2.getStyleClass().add("raleway");
             number2.setStyle("-fx-font-size: 15px");
