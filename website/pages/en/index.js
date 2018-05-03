@@ -80,7 +80,7 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle />
           <PromoSection>
-            <Button href="https://github.com/pete183/property-tycoon/raw/develop/out/artifacts/property_tycoon_jar/property-tycoon.jar">Try It Out</Button>
+            <Button href="https://github.com/pete183/property-tycoon/raw/develop/out/artifacts/property_tycoon_jar/property-tycoon.jar" target=”_blank”>Try It Out</Button>
           </PromoSection>
         </div>
       </SplashContainer>
