@@ -101,16 +101,22 @@ const Features = props => (
   <Block layout="fourColumn">
     {[
       {
-        content: 'Make and load in your own custom maps',
+        content: 'Wireframe Prototype',
         image: imgUrl('icon.png'),
         imageAlign: 'top',
-        title: 'Load in custom maps',
+        title: '<a href="https://projects.invisionapp.com/share/JGG5FVZ5SR6#/screens/282793567" target=”_blank”>Main Menu</a>',
       },
       {
-        content: 'Pause and game previous games',
+        content: 'Wireframe Prototype',
         image: imgUrl('icon.png'),
         imageAlign: 'top',
-        title: 'Save games',
+        title: '<a href="https://projects.invisionapp.com/share/FUG5G9RV8RM#/screens" target=”_blank”>Board Game</a>',
+      },
+      {
+        content: 'Wireframe Prototype',
+        image: imgUrl('icon.png'),
+        imageAlign: 'top',
+        title: '<a href="https://projects.invisionapp.com/share/4JG5G9YUB3W#/screens" target=”_blank”>Results Screen</a>',
       },
     ]}
   </Block>
