@@ -86,12 +86,12 @@ public class GameBoard {
         ArrayList<HBox> leftColumnTiles = new ArrayList<>();
         ArrayList<HBox> rightColumnTiles = new ArrayList<>();
 
-        for (int i = 0; i < rightColumn.size(); i++) {
-            if (i == 0) {
+        for (Tile tile : rightColumn) {
+            if (rightColumn.indexOf(tile) == 0) {
                 topRow.add(rightColumn.get(0));
             } else {
                 HBox v = new HBox();
-                switch (TileType.valueOf(rightColumn.get(i).getClass().getSimpleName())) {
+                switch (TileType.valueOf(tile.getClass().getSimpleName())) {
                     case Go:
                         v.getStyleClass().add("tile");
                         v.setAlignment(Pos.CENTER);
@@ -114,7 +114,7 @@ public class GameBoard {
                     case Utility:
                     case Station:
                     case Property:
-                        Ownable o = (Ownable) rightColumn.get(i);
+                        Ownable o = (Ownable) tile;
                         v.getStyleClass().add("tile");
                         v.setMinWidth(121);
                         v.setMaxWidth(121);
@@ -122,7 +122,7 @@ public class GameBoard {
                         v.setMaxHeight(93);
                         VBox colour = new VBox();
                         colour.setStyle("-fx-background-color: '" + getStyle(o) + "';");
-                        Label l = new Label(rightColumn.get(i).getName());
+                        Label l = new Label(tile.getName());
                         l.getStyleClass().add("tile-text");
                         l.setTextFill(Color.web("#ffffff"));
                         l.setMinHeight(30);
@@ -186,7 +186,7 @@ public class GameBoard {
                         rightColumnTiles.add(v);
                         break;
                     case Tax:
-                        TaxTile t = (TaxTile) rightColumn.get(i);
+                        TaxTile t = (TaxTile) tile;
                         v.setAlignment(Pos.CENTER);
                         v.getStyleClass().add("tile");
                         v.setMinWidth(121);
@@ -207,7 +207,7 @@ public class GameBoard {
                         rightColumnTiles.add(v);
                         break;
                     case Card:
-                        CardTile c = (CardTile) rightColumn.get(i);
+                        CardTile c = (CardTile) tile;
                         v.getStyleClass().add("tile");
                         v.setAlignment(Pos.CENTER);
                         v.setMinWidth(121);
@@ -289,10 +289,10 @@ public class GameBoard {
             }
         }
 
-        for (int i = 0; i < leftColumn.size(); i++) {
-            if (i == leftColumn.size() - 1) {
-                bottomRow.add(0, leftColumn.get(i));
-            } else if (leftColumn.get(i) instanceof Go) {
+        for (Tile tile : leftColumn) {
+            if (leftColumn.indexOf(tile) == leftColumn.size() - 1) {
+                bottomRow.add(0, tile);
+            } else if (tile instanceof Go) {
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -311,8 +311,8 @@ public class GameBoard {
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof Ownable) {
-                Ownable o = (Ownable) leftColumn.get(i);
+            } else if (tile instanceof Ownable) {
+                Ownable o = (Ownable) tile;
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
@@ -321,7 +321,7 @@ public class GameBoard {
                 v.setMaxHeight(93);
                 VBox colour = new VBox();
                 colour.setStyle("-fx-background-color: '" + getStyle(o) + "';");
-                Label l = new Label(leftColumn.get(i).getName());
+                Label l = new Label(tile.getName());
                 l.getStyleClass().add("tile-text");
                 l.setTextFill(Color.web("#ffffff"));
                 l.setMinHeight(30);
@@ -375,8 +375,8 @@ public class GameBoard {
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof TaxTile) {
-                TaxTile t = (TaxTile) leftColumn.get(i);
+            } else if (tile instanceof TaxTile) {
+                TaxTile t = (TaxTile) tile;
                 HBox v = new HBox();
                 v.setAlignment(Pos.CENTER);
                 v.getStyleClass().add("tile");
@@ -395,8 +395,8 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof CardTile) {
-                CardTile c = (CardTile) leftColumn.get(i);
+            } else if (tile instanceof CardTile) {
+                CardTile c = (CardTile) tile;
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -409,7 +409,7 @@ public class GameBoard {
                 l.getStyleClass().add("card-text");
                 v.getChildren().add(l);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof Jail) {
+            } else if (tile instanceof Jail) {
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setStyle("-fx-background-color: '#fbb676'");
@@ -455,7 +455,7 @@ public class GameBoard {
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof GoToJail) {
+            } else if (tile instanceof GoToJail) {
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
@@ -467,7 +467,7 @@ public class GameBoard {
                 goToJail.setStyle("-fx-font-size: 10px; -fx-font-family: 'Raleway'; -fx-font-color: white");
                 v.getChildren().add(goToJail);
                 leftColumnTiles.add(v);
-            } else if (leftColumn.get(i) instanceof FreeParking) {
+            } else if (tile instanceof FreeParking) {
                 HBox v = new HBox();
                 v.setMaxWidth(121);
                 v.setMinWidth(121);
@@ -479,8 +479,8 @@ public class GameBoard {
             }
         }
 
-        for (Tile aBottomRow : bottomRow) {
-            if (aBottomRow instanceof Go) {
+        for (Tile tile : bottomRow) {
+            if (tile instanceof Go) {
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -499,8 +499,8 @@ public class GameBoard {
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
                 bottomRowTiles.add(v);
-            } else if (aBottomRow instanceof Ownable) {
-                Ownable o = (Ownable) aBottomRow;
+            } else if (tile instanceof Ownable) {
+                Ownable o = (Ownable) tile;
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(93);
@@ -508,7 +508,7 @@ public class GameBoard {
                 HBox colour = new HBox();
                 colour.setStyle("-fx-background-color: '" + getStyle(o) + "';");
                 colour.setAlignment(Pos.CENTER);
-                Label l = new Label(aBottomRow.getName());
+                Label l = new Label(tile.getName());
                 l.getStyleClass().add("tile-text");
                 l.setTextFill(Color.web("#ffffff"));
                 l.setWrapText(true);
@@ -553,8 +553,8 @@ public class GameBoard {
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
                 bottomRowTiles.add(v);
-            } else if (aBottomRow instanceof TaxTile) {
-                TaxTile t = (TaxTile) aBottomRow;
+            } else if (tile instanceof TaxTile) {
+                TaxTile t = (TaxTile) tile;
                 VBox v = new VBox();
                 v.setAlignment(Pos.CENTER);
                 v.getStyleClass().add("tile");
@@ -571,8 +571,8 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 bottomRowTiles.add(v);
-            } else if (aBottomRow instanceof CardTile) {
-                CardTile c = (CardTile) aBottomRow;
+            } else if (tile instanceof CardTile) {
+                CardTile c = (CardTile) tile;
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -582,7 +582,7 @@ public class GameBoard {
                 l.getStyleClass().add("card-text");
                 v.getChildren().add(l);
                 bottomRowTiles.add(v);
-            } else if (aBottomRow instanceof Jail) {
+            } else if (tile instanceof Jail) {
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setStyle("-fx-background-color: '#fbb676'");
@@ -628,7 +628,7 @@ public class GameBoard {
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
                 bottomRowTiles.add(v);
-            } else if (aBottomRow instanceof GoToJail) {
+            } else if (tile instanceof GoToJail) {
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
@@ -647,7 +647,7 @@ public class GameBoard {
                 v.getChildren().add(goToJail);
                 v.getChildren().add(policeHat);
                 bottomRowTiles.add(v);
-            } else if (aBottomRow instanceof FreeParking) {
+            } else if (tile instanceof FreeParking) {
                 VBox v = new VBox();
                 v.setStyle("-fx-background-color: '#c7e7ff'");
                 v.setMaxWidth(121);
@@ -668,8 +668,8 @@ public class GameBoard {
             }
         }
 
-        for (Tile topRowTile : topRow) {
-            if (topRowTile instanceof Go) {
+        for (Tile tile : topRow) {
+            if (tile instanceof Go) {
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -686,8 +686,8 @@ public class GameBoard {
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
                 topRowTiles.add(v);
-            } else if (topRowTile instanceof Ownable) {
-                Ownable o = (Ownable) topRowTile;
+            } else if (tile instanceof Ownable) {
+                Ownable o = (Ownable) tile;
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(93);
@@ -695,7 +695,7 @@ public class GameBoard {
                 HBox colour = new HBox();
                 colour.setStyle("-fx-background-color: '" + getStyle(o) + "';");
                 colour.setAlignment(Pos.CENTER);
-                Label l = new Label(topRowTile.getName());
+                Label l = new Label(tile.getName());
                 l.getStyleClass().add("tile-text");
                 l.setTextFill(Color.web("#ffffff"));
                 l.setWrapText(true);
@@ -740,8 +740,8 @@ public class GameBoard {
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
                 topRowTiles.add(v);
-            } else if (topRowTile instanceof TaxTile) {
-                TaxTile t = (TaxTile) topRowTile;
+            } else if (tile instanceof TaxTile) {
+                TaxTile t = (TaxTile) tile;
                 VBox v = new VBox();
                 v.setAlignment(Pos.CENTER);
                 v.getStyleClass().add("tile");
@@ -758,8 +758,8 @@ public class GameBoard {
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
                 topRowTiles.add(v);
-            } else if (topRowTile instanceof CardTile) {
-                CardTile c = (CardTile) topRowTile;
+            } else if (tile instanceof CardTile) {
+                CardTile c = (CardTile) tile;
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -769,7 +769,7 @@ public class GameBoard {
                 l.getStyleClass().add("card-text");
                 v.getChildren().add(l);
                 topRowTiles.add(v);
-            } else if (topRowTile instanceof Jail) {
+            } else if (tile instanceof Jail) {
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setStyle("-fx-background-color: '#fbb676'");
@@ -815,7 +815,7 @@ public class GameBoard {
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
                 topRowTiles.add(v);
-            } else if (topRowTile instanceof GoToJail) {
+            } else if (tile instanceof GoToJail) {
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
@@ -834,7 +834,7 @@ public class GameBoard {
                 v.getChildren().add(goToJail);
                 v.getChildren().add(policeHat);
                 topRowTiles.add(v);
-            } else if (topRowTile instanceof FreeParking) {
+            } else if (tile instanceof FreeParking) {
                 VBox v = new VBox();
                 v.setStyle("-fx-background-color: '#c7e7ff'");
                 v.setMaxWidth(121);
