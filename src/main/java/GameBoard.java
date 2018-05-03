@@ -66,10 +66,10 @@ public class GameBoard {
 
         ArrayList<Tile> tiles = this._gameEngine.getBoard().getTiles();
 
-        ArrayList<Tile> bottomRow = new ArrayList<Tile>();
-        ArrayList<Tile> topRow = new ArrayList<Tile>();
-        ArrayList<Tile> leftColumn = new ArrayList<Tile>();
-        ArrayList<Tile> rightColumn = new ArrayList<Tile>();
+        ArrayList<Tile> bottomRow = new ArrayList<>();
+        ArrayList<Tile> topRow = new ArrayList<>();
+        ArrayList<Tile> leftColumn = new ArrayList<>();
+        ArrayList<Tile> rightColumn = new ArrayList<>();
 
         for (int i = 0; i < tiles.size(); i++) {
             if (i < 10) {
@@ -83,225 +83,229 @@ public class GameBoard {
             }
         }
 
-        ArrayList<VBox> bottomRowTiles = new ArrayList<VBox>();
-        ArrayList<VBox> topRowTiles = new ArrayList<VBox>();
-        ArrayList<HBox> leftColumnTiles = new ArrayList<HBox>();
-        ArrayList<HBox> rightColumnTiles = new ArrayList<HBox>();
+        ArrayList<VBox> bottomRowTiles = new ArrayList<>();
+        ArrayList<VBox> topRowTiles = new ArrayList<>();
+        ArrayList<HBox> leftColumnTiles = new ArrayList<>();
+        ArrayList<HBox> rightColumnTiles = new ArrayList<>();
 
         for (int i = 0; i < rightColumn.size(); i++) {
             if (i == 0) {
                 topRow.add(rightColumn.get(0));
-            } else if (rightColumn.get(i) instanceof Go) {
+            } else {
                 HBox v = new HBox();
-                v.getStyleClass().add("tile");
-                v.setAlignment(Pos.CENTER);
-                v.setMinWidth(121);
-                v.setMaxWidth(121);
-                v.setMinHeight(93);
-                v.setMaxHeight(93);
-                v.setStyle("-fx-background-color: '#ff3355';");
-                v.setSpacing(2);
-                Image goImg = new Image("resources/go.png");
-                ImageView goImgHolder = new ImageView(goImg);
-                goImgHolder.setFitHeight(60);
-                goImgHolder.setFitWidth(60);
-                Label go = new Label("Go");
-                go.getStyleClass().add("go-text");
-                v.getChildren().add(go);
-                v.getChildren().add(goImgHolder);
-                rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof Ownable) {
-                Ownable o = (Ownable) rightColumn.get(i);
-                HBox v = new HBox();
-                v.getStyleClass().add("tile");
-                v.setMinWidth(121);
-                v.setMaxWidth(121);
-                v.setMinHeight(93);
-                v.setMaxHeight(93);
-                VBox colour = new VBox();
-                colour.setStyle("-fx-background-color: '" + getStyle(o) + "';");
-                Label l = new Label(rightColumn.get(i).getName());
-                l.getStyleClass().add("tile-text");
-                l.setTextFill(Color.web("#ffffff"));
-                l.setMinHeight(30);
-                l.setMaxHeight(30);
-                l.setMinWidth(93);
-                l.setMaxWidth(93);
-                l.setAlignment(Pos.CENTER);
-                colour.setAlignment(Pos.CENTER);
-                colour.getChildren().add(l);
-                l.setRotate(-90);
-                colour.setMaxWidth(30);
-                colour.setMinWidth(30);
-                colour.setMinHeight(93);
-                colour.setMaxHeight(93);
-                VBox price = new VBox();
-                price.setAlignment(Pos.CENTER);
-                price.setMaxWidth(91);
-                price.setMinWidth(91);
-                Label priceTag = new Label("£" + o.getPrice());
-                price.getChildren().add(priceTag);
-                priceTag.getStyleClass().add("tax-tile-text");
-                priceTag.setRotate(-90);
-                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent t) {
-                        VBox grey = new VBox();
-                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
-                        grey.setMinWidth(_centerStack.widthProperty().intValue());
-                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
-                        grey.setMinHeight(_centerStack.heightProperty().intValue());
-                        grey.setStyle("-fx-background-color: '#222222';");
-                        grey.setOpacity(0.5);
-                        HBox closeWindow = new HBox();
-                        closeWindow.setMaxWidth(_centerStack.getWidth());
-                        closeWindow.setMinWidth(_centerStack.getWidth());
-                        Label close = new Label("X");
-                        close.getStyleClass().add("raleway");
-                        close.setStyle("-fx-font-size: 50px");
-                        close.setAlignment(Pos.TOP_RIGHT);
-                        close.setPadding(new Insets(20, 20, 0, 0));
-                        closeWindow.setAlignment(Pos.TOP_RIGHT);
-                        closeWindow.getChildren().add(close);
-                        VBox card = getCardStyle(o);
-                        _centerStack.getChildren().add(card);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
-                        grey.toFront();
-                        card.toFront();
-                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                switch (TileType.valueOf(rightColumn.get(i).getClass().getSimpleName())) {
+                    case Go:
+                        v.getStyleClass().add("tile");
+                        v.setAlignment(Pos.CENTER);
+                        v.setMinWidth(121);
+                        v.setMaxWidth(121);
+                        v.setMinHeight(93);
+                        v.setMaxHeight(93);
+                        v.setStyle("-fx-background-color: '#ff3355';");
+                        v.setSpacing(2);
+                        Image goImg = new Image("resources/go.png");
+                        ImageView goImgHolder = new ImageView(goImg);
+                        goImgHolder.setFitHeight(60);
+                        goImgHolder.setFitWidth(60);
+                        Label go = new Label("Go");
+                        go.getStyleClass().add("go-text");
+                        v.getChildren().add(go);
+                        v.getChildren().add(goImgHolder);
+                        rightColumnTiles.add(v);
+                        break;
+                    case Utility:
+                    case Station:
+                    case Property:
+                        Ownable o = (Ownable) rightColumn.get(i);
+                        v.getStyleClass().add("tile");
+                        v.setMinWidth(121);
+                        v.setMaxWidth(121);
+                        v.setMinHeight(93);
+                        v.setMaxHeight(93);
+                        VBox colour = new VBox();
+                        colour.setStyle("-fx-background-color: '" + getStyle(o) + "';");
+                        Label l = new Label(rightColumn.get(i).getName());
+                        l.getStyleClass().add("tile-text");
+                        l.setTextFill(Color.web("#ffffff"));
+                        l.setMinHeight(30);
+                        l.setMaxHeight(30);
+                        l.setMinWidth(93);
+                        l.setMaxWidth(93);
+                        l.setAlignment(Pos.CENTER);
+                        colour.setAlignment(Pos.CENTER);
+                        colour.getChildren().add(l);
+                        l.setRotate(-90);
+                        colour.setMaxWidth(30);
+                        colour.setMinWidth(30);
+                        colour.setMinHeight(93);
+                        colour.setMaxHeight(93);
+                        VBox price = new VBox();
+                        price.setAlignment(Pos.CENTER);
+                        price.setMaxWidth(91);
+                        price.setMinWidth(91);
+                        Label priceTag = new Label("£" + o.getPrice());
+                        price.getChildren().add(priceTag);
+                        priceTag.getStyleClass().add("tax-tile-text");
+                        priceTag.setRotate(-90);
+                        v.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
+                            public void handle(MouseEvent t) {
+                                VBox grey = new VBox();
+                                grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                                grey.setMinWidth(_centerStack.widthProperty().intValue());
+                                grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                                grey.setMinHeight(_centerStack.heightProperty().intValue());
+                                grey.setStyle("-fx-background-color: '#222222';");
+                                grey.setOpacity(0.5);
+                                HBox closeWindow = new HBox();
+                                closeWindow.setMaxWidth(_centerStack.getWidth());
+                                closeWindow.setMinWidth(_centerStack.getWidth());
+                                Label close = new Label("X");
+                                close.getStyleClass().add("raleway");
+                                close.setStyle("-fx-font-size: 50px");
+                                close.setAlignment(Pos.TOP_RIGHT);
+                                close.setPadding(new Insets(20, 20, 0, 0));
+                                closeWindow.setAlignment(Pos.TOP_RIGHT);
+                                closeWindow.getChildren().add(close);
+                                VBox card = getCardStyle(o);
+                                _centerStack.getChildren().add(card);
+                                _centerStack.getChildren().add(grey);
+                                _centerStack.getChildren().add(closeWindow);
+                                grey.toFront();
+                                card.toFront();
+                                close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent tp) {
+                                        cleanStack();
+                                    }
+                                });
+                                grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent tp) {
+                                        cleanStack();
+                                    }
+                                });
+                                card.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                                    @Override
+                                    public void handle(MouseEvent tp) {
+                                        cleanStack();
+                                    }
+                                });
                             }
                         });
-                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                    }
-                });
-                v.getChildren().add(colour);
-                v.getChildren().add(price);
-                HBox owner = new HBox();
-                //TODO getPiece() should return a string location of the 'small' player piece
-                //Image smallPiece = new Image(o.getOwner().getPiece().getValue());
-                //ImageView smallView = new ImageView(smallPiece);
-                //smallView.setFitWidth(25);
-                //smallView.setFitHeight(25);
-                //owner.getChildren().add(smallView);
-                //v.getChildren().add(owner);
-                rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof TaxTile) {
-                TaxTile t = (TaxTile) rightColumn.get(i);
-                HBox v = new HBox();
-                v.setAlignment(Pos.CENTER);
-                v.getStyleClass().add("tile");
-                v.setMinWidth(121);
-                v.setMaxWidth(121);
-                v.setMinHeight(93);
-                v.setMaxHeight(93);
-                Image taxImg = new Image("resources/tax.png");
-                ImageView iv = new ImageView(taxImg);
-                iv.setFitWidth(50);
-                iv.setFitHeight(50);
-                v.setSpacing(5);
-                Label l = new Label("£" + t.getAmount());
-                l.getStyleClass().add("tax-tile-text");
-                l.setRotate(-90);
-                v.setStyle("-fx-background-color: '#b8b8b8';");
-                v.getChildren().add(iv);
-                v.getChildren().add(l);
-                rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof CardTile) {
-                CardTile c = (CardTile) rightColumn.get(i);
-                HBox v = new HBox();
-                v.getStyleClass().add("tile");
-                v.setAlignment(Pos.CENTER);
-                v.setMinWidth(121);
-                v.setMaxWidth(121);
-                v.setMinHeight(93);
-                v.setMaxHeight(93);
-                Label l = new Label("?");
-                l.setRotate(-90);
-                l.getStyleClass().add("card-text");
-                v.getChildren().add(l);
-                rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof Jail) {
-                HBox v = new HBox();
-                v.getStyleClass().add("tile");
-                v.setStyle("-fx-background-color: '#fbb676'");
-                v.setMinWidth(121);
-                v.setMaxWidth(121);
-                v.setMinHeight(121);
-                v.setMaxHeight(121);
-                HBox topColumn = new HBox();
-                Label justVisiting1 = new Label("Just visiting");
-                justVisiting1.getStyleClass().add("jail-text-rotated");
-                justVisiting1.setMinWidth(Label.USE_PREF_SIZE);
-                justVisiting1.setMaxWidth(Label.USE_PREF_SIZE);
-                justVisiting1.setMinHeight(Label.USE_PREF_SIZE);
-                justVisiting1.setMaxHeight(Label.USE_PREF_SIZE);
-                justVisiting1.setAlignment(Pos.CENTER_LEFT);
-                justVisiting1.setPadding(new Insets(0, 0, 0, -5));
-                topColumn.setAlignment(Pos.CENTER_LEFT);
-                topColumn.getChildren().add(justVisiting1);
-                topColumn.setMaxHeight(80);
-                topColumn.setMinHeight(80);
-                VBox jailBox = new VBox();
-                jailBox.setMaxWidth(80);
-                jailBox.setMaxHeight(80);
-                jailBox.setMinWidth(70);
-                jailBox.setMaxWidth(70);
-                jailBox.setAlignment(Pos.CENTER);
-                jailBox.setStyle("-fx-background-color: '#fbdb76'");
-                Label inJail = new Label("In Jail");
-                inJail.getStyleClass().add("jail-text");
-                jailBox.getChildren().add(inJail);
-                Image jailPng = new Image("resources/jail.png");
-                ImageView jailView = new ImageView(jailPng);
-                jailView.setFitHeight(60);
-                jailView.setFitWidth(60);
-                jailBox.getChildren().add(jailView);
-                topColumn.getChildren().add(jailBox);
-                v.getChildren().add(topColumn);
-                Label justVisiting2 = new Label("Just visiting");
-                justVisiting2.getStyleClass().add("jail-text");
-                justVisiting2.setPadding(new Insets(12, 0, 0, 0));
-                HBox bottomColumn = new HBox();
-                bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
-                bottomColumn.getChildren().add(justVisiting2);
-                v.getChildren().add(bottomColumn);
-                rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof GoToJail) {
-                HBox v = new HBox();
-                v.getStyleClass().add("tile");
-                v.setMinWidth(121);
-                v.setMaxWidth(121);
-                v.setMinHeight(121);
-                v.setMaxHeight(121);
-                v.setStyle("-fx-background-color: '#a1d87e'");
-                Label goToJail = new Label("Go To Jail");
-                goToJail.setStyle("-fx-font-size: 10px; -fx-font-family: 'Raleway'; -fx-font-color: white");
-                v.getChildren().add(goToJail);
-                rightColumnTiles.add(v);
-            } else if (rightColumn.get(i) instanceof FreeParking) {
-                HBox v = new HBox();
-                v.setMaxWidth(121);
-                v.setMinWidth(121);
-                v.setMaxHeight(121);
-                v.setMinHeight(121);
-                Label l = new Label("Free parking");
-                v.getChildren().add(l);
-                rightColumnTiles.add(v);
+                        v.getChildren().add(colour);
+                        v.getChildren().add(price);
+                        HBox owner = new HBox();
+                        //TODO getPiece() should return a string location of the 'small' player piece
+                        //Image smallPiece = new Image(o.getOwner().getPiece().getValue());
+                        //ImageView smallView = new ImageView(smallPiece);
+                        //smallView.setFitWidth(25);
+                        //smallView.setFitHeight(25);
+                        //owner.getChildren().add(smallView);
+                        //v.getChildren().add(owner);
+                        rightColumnTiles.add(v);
+                        break;
+                    case Tax:
+                        TaxTile t = (TaxTile) rightColumn.get(i);
+                        v.setAlignment(Pos.CENTER);
+                        v.getStyleClass().add("tile");
+                        v.setMinWidth(121);
+                        v.setMaxWidth(121);
+                        v.setMinHeight(93);
+                        v.setMaxHeight(93);
+                        Image taxImg = new Image("resources/tax.png");
+                        ImageView iv = new ImageView(taxImg);
+                        iv.setFitWidth(50);
+                        iv.setFitHeight(50);
+                        v.setSpacing(5);
+                        Label taxTilePrice = new Label("£" + t.getAmount());
+                        taxTilePrice.getStyleClass().add("tax-tile-text");
+                        taxTilePrice.setRotate(-90);
+                        v.setStyle("-fx-background-color: '#b8b8b8';");
+                        v.getChildren().add(iv);
+                        v.getChildren().add(taxTilePrice);
+                        rightColumnTiles.add(v);
+                        break;
+                    case Card:
+                        CardTile c = (CardTile) rightColumn.get(i);
+                        v.getStyleClass().add("tile");
+                        v.setAlignment(Pos.CENTER);
+                        v.setMinWidth(121);
+                        v.setMaxWidth(121);
+                        v.setMinHeight(93);
+                        v.setMaxHeight(93);
+                        Label cardTileLabel = new Label("?");
+                        cardTileLabel.setRotate(-90);
+                        cardTileLabel.getStyleClass().add("card-text");
+                        v.getChildren().add(cardTileLabel);
+                        rightColumnTiles.add(v);
+                        break;
+                    case Jail:
+                        v.getStyleClass().add("tile");
+                        v.setStyle("-fx-background-color: '#fbb676'");
+                        v.setMinWidth(121);
+                        v.setMaxWidth(121);
+                        v.setMinHeight(121);
+                        v.setMaxHeight(121);
+                        HBox topColumn = new HBox();
+                        Label justVisiting1 = new Label("Just visiting");
+                        justVisiting1.getStyleClass().add("jail-text-rotated");
+                        justVisiting1.setMinWidth(Label.USE_PREF_SIZE);
+                        justVisiting1.setMaxWidth(Label.USE_PREF_SIZE);
+                        justVisiting1.setMinHeight(Label.USE_PREF_SIZE);
+                        justVisiting1.setMaxHeight(Label.USE_PREF_SIZE);
+                        justVisiting1.setAlignment(Pos.CENTER_LEFT);
+                        justVisiting1.setPadding(new Insets(0, 0, 0, -5));
+                        topColumn.setAlignment(Pos.CENTER_LEFT);
+                        topColumn.getChildren().add(justVisiting1);
+                        topColumn.setMaxHeight(80);
+                        topColumn.setMinHeight(80);
+                        VBox jailBox = new VBox();
+                        jailBox.setMaxWidth(80);
+                        jailBox.setMaxHeight(80);
+                        jailBox.setMinWidth(70);
+                        jailBox.setMaxWidth(70);
+                        jailBox.setAlignment(Pos.CENTER);
+                        jailBox.setStyle("-fx-background-color: '#fbdb76'");
+                        Label inJail = new Label("In Jail");
+                        inJail.getStyleClass().add("jail-text");
+                        jailBox.getChildren().add(inJail);
+                        Image jailPng = new Image("resources/jail.png");
+                        ImageView jailView = new ImageView(jailPng);
+                        jailView.setFitHeight(60);
+                        jailView.setFitWidth(60);
+                        jailBox.getChildren().add(jailView);
+                        topColumn.getChildren().add(jailBox);
+                        v.getChildren().add(topColumn);
+                        Label justVisiting2 = new Label("Just visiting");
+                        justVisiting2.getStyleClass().add("jail-text");
+                        justVisiting2.setPadding(new Insets(12, 0, 0, 0));
+                        HBox bottomColumn = new HBox();
+                        bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
+                        bottomColumn.getChildren().add(justVisiting2);
+                        v.getChildren().add(bottomColumn);
+                        rightColumnTiles.add(v);
+                        break;
+                    case GoToJail:
+                        v.getStyleClass().add("tile");
+                        v.setMinWidth(121);
+                        v.setMaxWidth(121);
+                        v.setMinHeight(121);
+                        v.setMaxHeight(121);
+                        v.setStyle("-fx-background-color: '#a1d87e'");
+                        Label goToJail = new Label("Go To Jail");
+                        goToJail.setStyle("-fx-font-size: 10px; -fx-font-family: 'Raleway'; -fx-font-color: white");
+                        v.getChildren().add(goToJail);
+                        rightColumnTiles.add(v);
+                    case FreeParking:
+                        v.setMaxWidth(121);
+                        v.setMinWidth(121);
+                        v.setMaxHeight(121);
+                        v.setMinHeight(121);
+                        Label freeParkingLabel = new Label("Free parking");
+                        v.getChildren().add(freeParkingLabel);
+                        rightColumnTiles.add(v);
+                }
             }
         }
 
