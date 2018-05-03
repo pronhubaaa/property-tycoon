@@ -5,7 +5,7 @@ build/
 .gradle/
 .icloud
 .idea
-
+!out/artifacts/property_tycoon_jar/property-tycoon.jar
 ### React ###
 
 website/node_modules
