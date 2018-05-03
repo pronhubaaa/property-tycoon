@@ -14,16 +14,18 @@ public class Game extends Application {
      */
     private GameEngine gameEngine;
 
-    private Stage _primaryStage;
+    //private Stage _primaryStage;
 
     @Override
     public void start(Stage primaryStage) {
-        this._primaryStage = primaryStage;
+        //this._primaryStage = primaryStage;
         GameEngine gameEngine = null;
-        UI ui = new UI(primaryStage, gameEngine);
+        UI ui = new UI(primaryStage, gameEngine, false);
+        ui.showScene(MainMenuScreens.getMainMenu(ui,gameEngine));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 

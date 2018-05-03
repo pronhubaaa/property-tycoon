@@ -4,7 +4,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
-import static org.junit.Assert.assertNotEquals;
+import java.util.concurrent.TimeoutException;
+
+import static org.junit.Assert.*;
+
 
 public class MainMenuScreensTest extends ApplicationTest {
     private Scene _mainMenuScene;
@@ -16,18 +19,21 @@ public class MainMenuScreensTest extends ApplicationTest {
     private Stage _primaryStage;
 
     @BeforeClass
-    public static void beforeClass() {
+    public static void beforeClass() throws TimeoutException {
         System.setProperty("testfx.robot", "glass");
-        System.setProperty("testfx.headless", "true");
+        System.setProperty("testfx.headless", "false");
         System.setProperty("prism.order", "sw");
         System.setProperty("prism.text", "t2k");
     }
 
     @Override
     public void start(Stage stage) {
+        this._primaryStage = stage;
+
         GameEngine gameEngine = null;
-        UI ui = new UI(stage, gameEngine);
         stage.setTitle("Property Tycoon");
+
+        UI ui = new UI(stage, gameEngine, true);
 
         this._mainMenuScene = MainMenuScreens.getMainMenu(ui, gameEngine);
         this._newGameScene = MainMenuScreens.getNewGame(ui, gameEngine);
@@ -36,9 +42,11 @@ public class MainMenuScreensTest extends ApplicationTest {
         this._settingsScene = MainMenuScreens.getSettings(ui);
 
         ui.showScene(this._mainMenuScene);
-        stage.show();
+    }
 
-        this._primaryStage = stage;
+    @Override
+    public void stop() {
+        this._primaryStage.setScene(null);
     }
 
     @Test

@@ -15,4 +15,12 @@ public class Utility extends Ownable {
             return diceValue * RENT_SOME_UTILITIES_OWNED_FACTOR;
         }
     }
+
+    public int getSomeOwned() {
+        return RENT_SOME_UTILITIES_OWNED_FACTOR;
+    }
+
+    public int getAllOwned() {
+        return RENT_ALL_UTILITIES_OWNED_FACTOR;
+    }
 }
