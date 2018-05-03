@@ -164,7 +164,7 @@ public class PlayerTest {
 
     @Test
     public void setPiece() {
-        PlayerPiece piece = PlayerPiece.Car;
+        PlayerPiece piece = PlayerPiece.Cat;
         this.player.setPiece(piece);
         assertEquals(piece, this.player.getPiece());
     }
