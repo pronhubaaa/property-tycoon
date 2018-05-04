@@ -17,6 +17,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Matcher;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -105,5 +106,15 @@ public class GameBoardTest extends ApplicationTest {
         detailsNode = lookup("#property-details").query();
         assertThat(detailsNode, is(nullValue()));
         FxAssert.verifyThat("#property-details", NodeMatchers.isNull());
+    }
+
+    @Test
+    public void canDisplayPlayerNames() {
+        Set<Node> playerPanelQuery = lookup(".player-panel").queryAll();
+        assertThat(playerPanelQuery.size(), is(3));
+
+        for(Node playerPanel: playerPanelQuery) {
+            assertThat(playerPanel, is(NodeMatchers.isVisible()));
+        }
     }
 }

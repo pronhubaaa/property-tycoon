@@ -327,6 +327,14 @@ public class GameEngine {
     }
 
     /**
+     * getPlayers
+     * @return A list of the players in the game.
+     */
+    public ArrayList<Player> getPlayers() {
+        return this.players;
+    }
+
+    /**
      * getNumberOfTurns
      *
      * @return Int representing the number of turns
