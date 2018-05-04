@@ -1172,29 +1172,134 @@ public class GameBoard {
         _centerStack.getChildren().remove(_currentMsg);
     }
 
-    public void landed(Tile t) {
+    //call this when a player lands on a tile
+     public void landed(Tile t, Player p, Dice d) {
         switch (TileType.valueOf(t.getClass().getSimpleName())) {
             case Property:
             case Station:
             case Utility:
                 Ownable o = (Ownable) t;
                 if (o.isOwned()) {
-                    //charge rent
+                    //TODO display message saying what rent was paid to who
+                    //use displayMessage and destroyMessage, put everything before the following lines of code
+                    Button ok = new Button("OK");
+                    ok.getStyleClass().add("main-menu-button");
+                    ok.setPadding(new Insets(200, 0, 0, 0));
+                    ok.setOnAction((ActionEvent e) -> {
+                        cleanStack();
+                    });
+                    _centerStack.getChildren().add(ok);
                 } else {
-                    //display buy ptions
+                    VBox container = new VBox();
+                    VBox grey = new VBox();
+                    grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                    grey.setMinWidth(_centerStack.widthProperty().intValue());
+                    grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                    grey.setMinHeight(_centerStack.heightProperty().intValue());
+                    grey.setStyle("-fx-background-color: '#222222';");
+                    grey.setOpacity(0.5);
+                    HBox closeWindow = new HBox();
+                    closeWindow.setMaxWidth(_centerStack.getWidth());
+                    closeWindow.setMinWidth(_centerStack.getWidth());
+                    Label close = new Label("X");
+                    close.getStyleClass().add("raleway");
+                    close.setStyle("-fx-font-size: 50px");
+                    close.setAlignment(Pos.TOP_RIGHT);
+                    close.setPadding(new Insets(20, 20, 0, 0));
+                    closeWindow.setAlignment(Pos.TOP_RIGHT);
+                    closeWindow.getChildren().add(close);
+                    VBox card = getCardStyle(t);
+                    _centerStack.getChildren().add(card);
+                    _centerStack.getChildren().add(grey);
+                    _centerStack.getChildren().add(closeWindow);
+                    grey.toFront();
+                    card.toFront();
+                    close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent tp) {
+                            cleanStack();
+                        }
+                    });
+                    container.getChildren().add(card);
+                    Button buy = new Button();
+                    buy.getStyleClass().add("main-menu-button");
+                    container.getChildren().add(buy);
+                    buy.setOnAction((ActionEvent e) -> {
+                        //TODO buy the property, give it to the player, deduct money
+                        cleanStack(); //end with this line
+                    });
+                    _centerStack.getChildren().add(container);
                 }
                 break;
             case Card:
                 CardTile c = (CardTile) t;
-                //display card text
-                //display accept button
+                VBox grey = new VBox();
+                grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                grey.setMinWidth(_centerStack.widthProperty().intValue());
+                grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                grey.setMinHeight(_centerStack.heightProperty().intValue());
+                grey.setStyle("-fx-background-color: '#222222';");
+                grey.setOpacity(0.5);
+                HBox closeWindow = new HBox();
+                closeWindow.setMaxWidth(_centerStack.getWidth());
+                closeWindow.setMinWidth(_centerStack.getWidth());
+                Label close = new Label("X");
+                close.getStyleClass().add("raleway");
+                close.setStyle("-fx-font-size: 50px");
+                close.setAlignment(Pos.TOP_RIGHT);
+                close.setPadding(new Insets(20, 20, 0, 0));
+                closeWindow.setAlignment(Pos.TOP_RIGHT);
+                closeWindow.getChildren().add(close);
+                VBox card = new VBox();
+                card.setMaxWidth(400);
+                card.setMinWidth(400);
+                card.setMaxHeight(500);
+                card.setMinHeight(500);
+                card.setStyle("-fx-background-color: '#ffffff';");
+                card.setSpacing(30);
+                Label title = new Label(c.getCardStack().getCardType().getValue());
+                title.getStyleClass().add("raleway");
+                title.setStyle("-fx-font-size: 20px");
+                card.getChildren().add(title);
+                Label question = new Label("?");
+                question.getStyleClass().add("raleway");
+                question.setStyle("-fx-font-size: 50px");
+                card.getChildren().add(question);
+                //TODO fill out label in next line
+                Label message = new Label(/*In here, get the message on the card tile*/);
+                message.getStyleClass().add("raleway");
+                message.setStyle("-fx-font-size: 15px");
+                message.setWrapText(true);
+                card.getChildren().add(message);
+                _centerStack.getChildren().add(card);
+                _centerStack.getChildren().add(grey);
+                _centerStack.getChildren().add(closeWindow);
+                grey.toFront();
+                card.toFront();
+                close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent tp) {
+                        cleanStack();
+                    }
+                });
+                grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent tp) {
+                        cleanStack();
+                    }
+                });
+                card.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent tp) {
+                        cleanStack();
+                    }
+                });
                 break;
             case Go:
-                //display message
+                displayMessage("Player " + p.getName() + " landed on go. Collect £200.", 20);
                 break;
             case GoToJail:
-                //display message
-                //move player to jail
+                displayMessage("Go to jail!", 20);
         }
     }
 
@@ -1206,7 +1311,7 @@ public class GameBoard {
             diceRow.setSpacing(25);
             HBox dice1 = new HBox();
             //TODO code that rolls dice and returns an integer
-            Label number = new Label(/*code that gets dice integer*/);
+            Label number = new Label(/*code that gets dice integer*/); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number.getStyleClass().add("raleway");
             number.setStyle("-fx-font-size: 15px");
             dice1.setMaxWidth(50);
@@ -1218,7 +1323,7 @@ public class GameBoard {
             dice1.setAlignment(Pos.CENTER);
             HBox dice2 = new HBox();
             //TODO code that rolls dice and returns an integer
-            Label number2 = new Label(/*code that gets dice integer*/);
+            Label number2 = new Label(/*code that gets dice integer*/); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number2.getStyleClass().add("raleway");
             number2.setStyle("-fx-font-size: 15px");
             dice2.setMaxWidth(50);
@@ -1234,13 +1339,22 @@ public class GameBoard {
         return btn;
     }
 
-    public HBox displayMessage(String s, int size) {
+    public VBox displayMessage(String s, int size) {
         Label message = new Label(s);
         message.getStyleClass().add("raleway");
         message.setStyle("-fx-font-size: " + size + "px;");
         HBox newMessage = new HBox();
         newMessage.getChildren().add(message);
-        return newMessage;
+        VBox container = new VBox();
+        container.setSpacing(10);
+        container.getChildren().add(newMessage);
+        Button ok = new Button("Ok");
+        ok.setOnAction((ActionEvent e) -> {
+           cleanStack();
+        });
+        ok.getStyleClass().add("main-menu-button");
+        container.getChildren().add(ok);
+        return container;
     }
 
     public void cleanStack() {
