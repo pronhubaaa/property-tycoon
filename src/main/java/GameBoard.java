@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
@@ -40,6 +41,7 @@ public class GameBoard {
         this._parentPane.setMinHeight(400);
         this._boardContainer.setStyle("-fx-background-color: white;");
 
+        this._createSideLayout();
         this._createBoardLayout();
 
         Scene returnPane = new Scene(_parentPane);
@@ -52,8 +54,23 @@ public class GameBoard {
         return returnPane;
     }
 
-    private void _createBoardLayout() {
+    private void _createSideLayout() {
+        System.out.println("Size: " + this._gameEngine.getPlayers().size());
+        for(Player player: this._gameEngine.getPlayers()) {
+            HBox playerPane = new HBox();
+            StackPane innerPlayerPane = new StackPane();
+            Text playerName = new Text(player.getName());
 
+            playerPane.getStyleClass().add("player-panel");
+            playerPane.setMinHeight(25);
+
+            innerPlayerPane.getChildren().add(playerName);
+            playerPane.getChildren().add(innerPlayerPane);
+            this._sidebarSplitPane.getChildren().add(playerPane);
+        }
+    }
+
+    private void _createBoardLayout() {
         this._detailsButton = new Button();
         this._detailsButton.setText("Property details");
         this._detailsButton.setId("property-details");
