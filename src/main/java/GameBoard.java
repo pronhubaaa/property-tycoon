@@ -50,11 +50,14 @@ public class GameBoard {
     }
 
     private void _createSideLayout() {
+        System.out.println("Size: " + this._gameEngine.getPlayers().size());
         for(Player player: this._gameEngine.getPlayers()) {
             HBox playerPane = new HBox();
             StackPane innerPlayerPane = new StackPane();
             Text playerName = new Text(player.getName());
-            playerName.getStyleClass().add("player-panel");
+
+            playerPane.getStyleClass().add("player-panel");
+            playerPane.setMinHeight(25);
 
             innerPlayerPane.getChildren().add(playerName);
             playerPane.getChildren().add(innerPlayerPane);

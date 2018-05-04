@@ -194,3 +194,8 @@
     -fx-font-size: 25px;
     -fx-font-family: 'Raleway';
 }
+
+.player-panel {
+    -fx-background-color: '#86bf8e';
+    -fx-border-color: '#f2f2f2';
+}
