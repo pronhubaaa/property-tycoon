@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
+import javax.rmi.CORBA.Util;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -25,12 +26,14 @@ public class GameBoard {
     private Button _detailsButton;
     private StackPane _centerStack;
     private Label _currentMsg = new Label("");
+    private Dice _dice;
 
     public GameBoard(GameEngine gameEngine) {
         this._gameEngine = gameEngine;
     }
 
     public Scene getLayout() {
+        this._dice = new Dice();
         this._parentPane = new StackPane();
         this._boardContainer = new HBox();
         this._sidebarSplitPane = new VBox();
@@ -50,6 +53,7 @@ public class GameBoard {
         }
         String css = url.toExternalForm();
         returnPane.getStylesheets().add(css);
+        startGame();
         return returnPane;
     }
 
@@ -393,12 +397,7 @@ public class GameBoard {
                                 cleanStack();
                             }
                         });
-                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
+                        grey.setOnMouseClicked(tp -> cleanStack());
                         card.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             @Override
                             public void handle(MouseEvent tp) {
@@ -1172,16 +1171,18 @@ public class GameBoard {
     }
 
     //call this when a player lands on a tile
-     public void landed(Tile t, Player p, Dice d) {
+     public void landed(Tile t, Player p, int roll) {
         switch (TileType.valueOf(t.getClass().getSimpleName())) {
             case Property:
             case Station:
             case Utility:
                 Ownable o = (Ownable) t;
                 if (o.isOwned()) {
-                    //TODO display message saying what rent was paid to who
-                    //use displayMessage and destroyMessage, put everything before the following lines of code
 
+                    //use displayMessage, put everything before the following lines of code
+
+                    String message = p.getName() + " paid £" + o.calculateRent(p, roll) + " to "+ o.getOwner().getName();
+                    displayMessage(message, 20);
                     Button ok = new Button("OK");
                     ok.getStyleClass().add("main-menu-button");
                     ok.setPadding(new Insets(200, 0, 0, 0));
@@ -1303,15 +1304,15 @@ public class GameBoard {
         }
     }
 
-    public Button rollButton() {
+    public Button rollButton(int[] roll) {
         Button btn = new Button("Roll");
         btn.setId("main-menu-button");
         btn.setOnAction((ActionEvent e) -> {
             HBox diceRow = new HBox();
             diceRow.setSpacing(25);
             HBox dice1 = new HBox();
-            //TODO code that rolls dice and returns an integer
-            Label number = new Label(/*code that gets dice integer*/); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
+
+            Label number = new Label(String.valueOf(roll[0])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number.getStyleClass().add("raleway");
             number.setStyle("-fx-font-size: 15px");
             dice1.setMaxWidth(50);
@@ -1322,8 +1323,7 @@ public class GameBoard {
             dice1.getChildren().add(number);
             dice1.setAlignment(Pos.CENTER);
             HBox dice2 = new HBox();
-            //TODO code that rolls dice and returns an integer
-            Label number2 = new Label(/*code that gets dice integer*/); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
+            Label number2 = new Label(String.valueOf(roll[1])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number2.getStyleClass().add("raleway");
             number2.setStyle("-fx-font-size: 15px");
             dice2.setMaxWidth(50);
@@ -1445,4 +1445,37 @@ public class GameBoard {
             }
         }
     }
+
+    private void startGame(){
+
+        for(Player player: _gameEngine.getPlayers()){
+            putPlayerOnTile(player);
+        }
+
+        this._dice = new Dice();
+
+        Player player = _gameEngine.getCurrentPlayer();
+        int[] roll = _dice.roll();
+        _centerStack.getChildren().add(rollButton(roll));
+
+//        while(true){
+//
+//
+//            putPlayerOnTile(player);
+//
+//            int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + roll[0] + roll[1])%_gameEngine.getBoard().getTiles().size();
+//            Tile tile = _gameEngine.getBoard().getTiles().get(numberOfTile);
+//            _gameEngine.getCurrentPlayer().setPosition(tile);
+//
+//            landed(tile, player, roll[0]+roll[1]);
+//
+//            _gameEngine.nextTurn();
+//
+//
+//
+//        }
+    }
+
+
+
 }
