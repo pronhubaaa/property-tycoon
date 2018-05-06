@@ -1424,7 +1424,8 @@ public class GameBoard {
     public VBox rollButton(int[] rollNumber) {
 
         VBox roll = new VBox();
-
+        roll.setAlignment(Pos.CENTER);
+        roll.setSpacing(50);
         Button btn = new Button("Roll");
         btn.getStyleClass().add("main-menu-button");
         btn.setOnAction((ActionEvent e) -> {
@@ -1432,7 +1433,6 @@ public class GameBoard {
             HBox diceRow = new HBox();
             diceRow.setSpacing(25);
             HBox dice1 = new HBox();
-
             Label number = new Label(String.valueOf(rollNumber[0])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number.getStyleClass().add("raleway");
             number.setStyle("-fx-font-size: 15px");
@@ -1440,7 +1440,7 @@ public class GameBoard {
             dice1.setMinWidth(50);
             dice1.setMaxHeight(50);
             dice1.setMinHeight(50);
-            dice1.setStyle("-fx-background-color: white");
+            dice1.setStyle("-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
             dice1.getChildren().add(number);
             dice1.setAlignment(Pos.CENTER);
             HBox dice2 = new HBox();
@@ -1451,7 +1451,7 @@ public class GameBoard {
             dice2.setMinWidth(50);
             dice2.setMaxHeight(50);
             dice2.setMinHeight(50);
-            dice2.setStyle("-fx-background-color: white");
+            dice2.setStyle("-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);");
             dice2.getChildren().add(number2);
             dice2.setAlignment(Pos.CENTER);
             diceRow.getChildren().addAll(dice1, dice2);
@@ -1460,9 +1460,15 @@ public class GameBoard {
             close.setOnAction((ActionEvent em) -> {
                 cleanStack();
             });
-            roll.getChildren().addAll(btn, diceRow, close);
-            roll.setPadding(new Insets(200, 0, 0, 0));
+            diceRow.setAlignment(Pos.CENTER);
+            diceRow.setTranslateY(230);
+            close.setTranslateY(195);
+            roll.getChildren().addAll(diceRow, close);
+            _centerStack.getChildren().add(roll);
         });
+        btn.setTranslateY(110);
+        _centerStack.getChildren().add(btn);
+        btn.toFront();
         return roll;
     }
 
@@ -1555,7 +1561,7 @@ public class GameBoard {
 
         Player player = _gameEngine.getCurrentPlayer();
         int[] roll = _dice.roll();
-        _centerStack.getChildren().add(rollButton(roll));
+        rollButton(roll);
 
 //        while(true){
 //
