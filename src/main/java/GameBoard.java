@@ -183,24 +183,9 @@ public class GameBoard {
                     _centerStack.getChildren().add(closeWindow);
                     grey.toFront();
                     card.toFront();
-                    close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent tp) {
-                            cleanStack();
-                        }
-                    });
-                    grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent tp) {
-                            cleanStack();
-                        }
-                    });
-                    card.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent tp) {
-                            cleanStack();
-                        }
-                    });
+                    close.setOnMouseClicked(tp -> cleanStack());
+                    grey.setOnMouseClicked(tp -> cleanStack());
+                    card.setOnMouseClicked(tp -> cleanStack());
                 });
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
@@ -373,51 +358,33 @@ public class GameBoard {
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
                 priceTag.setRotate(90);
-                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent t) {
-                        VBox grey = new VBox();
-                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
-                        grey.setMinWidth(_centerStack.widthProperty().intValue());
-                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
-                        grey.setMinHeight(_centerStack.heightProperty().intValue());
-                        grey.setStyle("-fx-background-color: '#222222';");
-                        grey.setOpacity(0.5);
-                        HBox closeWindow = new HBox();
-                        closeWindow.setMaxWidth(_centerStack.getWidth());
-                        closeWindow.setMinWidth(_centerStack.getWidth());
-                        Label close = new Label("X");
-                        close.getStyleClass().add("raleway");
-                        close.setStyle("-fx-font-size: 50px");
-                        close.setAlignment(Pos.TOP_RIGHT);
-                        close.setPadding(new Insets(20, 20, 0, 0));
-                        closeWindow.setAlignment(Pos.TOP_RIGHT);
-                        closeWindow.getChildren().add(close);
-                        VBox card = getCardStyle(o);
-                        _centerStack.getChildren().add(card);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
-                        grey.toFront();
-                        card.toFront();
-                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                    }
+                v.setOnMouseClicked(t -> {
+                    VBox grey = new VBox();
+                    grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                    grey.setMinWidth(_centerStack.widthProperty().intValue());
+                    grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                    grey.setMinHeight(_centerStack.heightProperty().intValue());
+                    grey.setStyle("-fx-background-color: '#222222';");
+                    grey.setOpacity(0.5);
+                    HBox closeWindow = new HBox();
+                    closeWindow.setMaxWidth(_centerStack.getWidth());
+                    closeWindow.setMinWidth(_centerStack.getWidth());
+                    Label close = new Label("X");
+                    close.getStyleClass().add("raleway");
+                    close.setStyle("-fx-font-size: 50px");
+                    close.setAlignment(Pos.TOP_RIGHT);
+                    close.setPadding(new Insets(20, 20, 0, 0));
+                    closeWindow.setAlignment(Pos.TOP_RIGHT);
+                    closeWindow.getChildren().add(close);
+                    VBox card = getCardStyle(o);
+                    _centerStack.getChildren().add(card);
+                    _centerStack.getChildren().add(grey);
+                    _centerStack.getChildren().add(closeWindow);
+                    grey.toFront();
+                    card.toFront();
+                    close.setOnMouseClicked(tp -> cleanStack());
+                    grey.setOnMouseClicked(tp -> cleanStack());
+                    card.setOnMouseClicked(tp -> cleanStack());
                 });
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
@@ -569,51 +536,33 @@ public class GameBoard {
                 Label priceTag = new Label("£" + o.getPrice());
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
-                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent t) {
-                        VBox grey = new VBox();
-                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
-                        grey.setMinWidth(_centerStack.widthProperty().intValue());
-                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
-                        grey.setMinHeight(_centerStack.heightProperty().intValue());
-                        grey.setStyle("-fx-background-color: '#222222';");
-                        grey.setOpacity(0.5);
-                        HBox closeWindow = new HBox();
-                        closeWindow.setMaxWidth(_centerStack.getWidth());
-                        closeWindow.setMinWidth(_centerStack.getWidth());
-                        Label close = new Label("X");
-                        close.getStyleClass().add("raleway");
-                        close.setStyle("-fx-font-size: 50px");
-                        close.setAlignment(Pos.TOP_RIGHT);
-                        close.setPadding(new Insets(20, 20, 0, 0));
-                        closeWindow.setAlignment(Pos.TOP_RIGHT);
-                        closeWindow.getChildren().add(close);
-                        VBox card = getCardStyle(o);
-                        _centerStack.getChildren().add(card);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
-                        grey.toFront();
-                        card.toFront();
-                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                    }
+                v.setOnMouseClicked(t -> {
+                    VBox grey = new VBox();
+                    grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                    grey.setMinWidth(_centerStack.widthProperty().intValue());
+                    grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                    grey.setMinHeight(_centerStack.heightProperty().intValue());
+                    grey.setStyle("-fx-background-color: '#222222';");
+                    grey.setOpacity(0.5);
+                    HBox closeWindow = new HBox();
+                    closeWindow.setMaxWidth(_centerStack.getWidth());
+                    closeWindow.setMinWidth(_centerStack.getWidth());
+                    Label close = new Label("X");
+                    close.getStyleClass().add("raleway");
+                    close.setStyle("-fx-font-size: 50px");
+                    close.setAlignment(Pos.TOP_RIGHT);
+                    close.setPadding(new Insets(20, 20, 0, 0));
+                    closeWindow.setAlignment(Pos.TOP_RIGHT);
+                    closeWindow.getChildren().add(close);
+                    VBox card = getCardStyle(o);
+                    _centerStack.getChildren().add(card);
+                    _centerStack.getChildren().add(grey);
+                    _centerStack.getChildren().add(closeWindow);
+                    grey.toFront();
+                    card.toFront();
+                    close.setOnMouseClicked(tp -> cleanStack());
+                    grey.setOnMouseClicked(tp -> cleanStack());
+                    card.setOnMouseClicked(tp -> cleanStack());
                 });
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
@@ -774,51 +723,33 @@ public class GameBoard {
                 Label priceTag = new Label("£" + o.getPrice());
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
-                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent t) {
-                        VBox grey = new VBox();
-                        grey.setMaxWidth(_centerStack.widthProperty().intValue());
-                        grey.setMinWidth(_centerStack.widthProperty().intValue());
-                        grey.setMaxHeight(_centerStack.heightProperty().intValue());
-                        grey.setMinHeight(_centerStack.heightProperty().intValue());
-                        grey.setStyle("-fx-background-color: '#222222';");
-                        grey.setOpacity(0.5);
-                        HBox closeWindow = new HBox();
-                        closeWindow.setMaxWidth(_centerStack.getWidth());
-                        closeWindow.setMinWidth(_centerStack.getWidth());
-                        Label close = new Label("X");
-                        close.getStyleClass().add("raleway");
-                        close.setStyle("-fx-font-size: 50px");
-                        close.setAlignment(Pos.TOP_RIGHT);
-                        close.setPadding(new Insets(20, 20, 0, 0));
-                        closeWindow.setAlignment(Pos.TOP_RIGHT);
-                        closeWindow.getChildren().add(close);
-                        VBox card = getCardStyle(o);
-                        _centerStack.getChildren().add(card);
-                        _centerStack.getChildren().add(grey);
-                        _centerStack.getChildren().add(closeWindow);
-                        grey.toFront();
-                        card.toFront();
-                        close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                        card.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                            @Override
-                            public void handle(MouseEvent tp) {
-                                cleanStack();
-                            }
-                        });
-                    }
+                v.setOnMouseClicked(t -> {
+                    VBox grey = new VBox();
+                    grey.setMaxWidth(_centerStack.widthProperty().intValue());
+                    grey.setMinWidth(_centerStack.widthProperty().intValue());
+                    grey.setMaxHeight(_centerStack.heightProperty().intValue());
+                    grey.setMinHeight(_centerStack.heightProperty().intValue());
+                    grey.setStyle("-fx-background-color: '#222222';");
+                    grey.setOpacity(0.5);
+                    HBox closeWindow = new HBox();
+                    closeWindow.setMaxWidth(_centerStack.getWidth());
+                    closeWindow.setMinWidth(_centerStack.getWidth());
+                    Label close = new Label("X");
+                    close.getStyleClass().add("raleway");
+                    close.setStyle("-fx-font-size: 50px");
+                    close.setAlignment(Pos.TOP_RIGHT);
+                    close.setPadding(new Insets(20, 20, 0, 0));
+                    closeWindow.setAlignment(Pos.TOP_RIGHT);
+                    closeWindow.getChildren().add(close);
+                    VBox card = getCardStyle(o);
+                    _centerStack.getChildren().add(card);
+                    _centerStack.getChildren().add(grey);
+                    _centerStack.getChildren().add(closeWindow);
+                    grey.toFront();
+                    card.toFront();
+                    close.setOnMouseClicked(tp -> cleanStack());
+                    grey.setOnMouseClicked(tp -> cleanStack());
+                    card.setOnMouseClicked(tp -> cleanStack());
                 });
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
