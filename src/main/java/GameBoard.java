@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class GameBoard {
     private GameEngine _gameEngine;
-    private Tile _tiles[];
     private StackPane _parentPane;
     private VBox _sidebarSplitPane;
     private BorderPane _boardPane;
@@ -25,7 +24,10 @@ public class GameBoard {
     private Button _detailsButton;
     private StackPane _centerStack;
     private Label _currentMsg = new Label("");
+
     private Dice _dice;
+    private ArrayList<Tile> tiles;
+
 
     public GameBoard(GameEngine gameEngine) {
         this._gameEngine = gameEngine;
@@ -89,7 +91,7 @@ public class GameBoard {
         this._boardContainer.getChildren().addAll(this._boardPane, this._sidebarSplitPane);
         this._parentPane.getChildren().add(_boardContainer);
 
-        ArrayList<Tile> tiles = this._gameEngine.getBoard().getTiles();
+        tiles = this._gameEngine.getBoard().getTiles();
 
         ArrayList<Tile> bottomRow = new ArrayList<>();
         ArrayList<Tile> topRow = new ArrayList<>();
@@ -134,6 +136,12 @@ public class GameBoard {
                 go.getStyleClass().add("go-text");
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Ownable) {
                 Ownable o = (Ownable) rightColumn.get(i);
@@ -203,7 +211,10 @@ public class GameBoard {
                 v.getChildren().add(currentPlayers);
                 VBox owner = new VBox();
                 owner.setSpacing(5);
-                v.getChildren().add(owner);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof TaxTile) {
                 TaxTile t = (TaxTile) rightColumn.get(i);
@@ -225,6 +236,12 @@ public class GameBoard {
                 v.setStyle("-fx-background-color: '#b8b8b8';");
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof CardTile) {
                 CardTile c = (CardTile) rightColumn.get(i);
@@ -239,6 +256,12 @@ public class GameBoard {
                 l.setRotate(-90);
                 l.getStyleClass().add("card-text");
                 v.getChildren().add(l);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Jail) {
                 HBox v = new HBox();
@@ -285,6 +308,12 @@ public class GameBoard {
                 bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof GoToJail) {
                 HBox v = new HBox();
@@ -297,6 +326,11 @@ public class GameBoard {
                 Label goToJail = new Label("Go To Jail");
                 goToJail.setStyle("-fx-font-size: 10px; -fx-font-family: 'Raleway'; -fx-font-color: white");
                 v.getChildren().add(goToJail);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof FreeParking) {
                 HBox v = new HBox();
@@ -306,6 +340,12 @@ public class GameBoard {
                 v.setMinHeight(121);
                 Label l = new Label("Free parking");
                 v.getChildren().add(l);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             }
         }
@@ -329,8 +369,14 @@ public class GameBoard {
                 goImgHolder.setFitWidth(60);
                 Label go = new Label("Go");
                 go.getStyleClass().add("go-text");
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof Ownable) {
                 Ownable o = (Ownable) leftColumn.get(i);
@@ -393,8 +439,14 @@ public class GameBoard {
                     grey.setOnMouseClicked(tp -> cleanStack());
                     card.setOnMouseClicked(tp -> cleanStack());
                 });
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof TaxTile) {
                 TaxTile t = (TaxTile) leftColumn.get(i);
@@ -413,8 +465,14 @@ public class GameBoard {
                 Label l = new Label("£" + t.getAmount());
                 l.getStyleClass().add("tax-tile-text");
                 v.setStyle("-fx-background-color: '#b8b8b8';");
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof CardTile) {
                 CardTile c = (CardTile) leftColumn.get(i);
@@ -428,7 +486,13 @@ public class GameBoard {
                 Label l = new Label("?");
                 l.setRotate(90);
                 l.getStyleClass().add("card-text");
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(l);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof Jail) {
                 HBox v = new HBox();
@@ -467,6 +531,11 @@ public class GameBoard {
                 jailView.setFitWidth(60);
                 jailBox.getChildren().add(jailView);
                 topColumn.getChildren().add(jailBox);
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(topColumn);
                 Label justVisiting2 = new Label("Just visiting");
                 justVisiting2.getStyleClass().add("jail-text");
@@ -475,6 +544,7 @@ public class GameBoard {
                 bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof GoToJail) {
                 HBox v = new HBox();
@@ -486,7 +556,13 @@ public class GameBoard {
                 v.setStyle("-fx-background-color: '#a1d87e'");
                 Label goToJail = new Label("Go To Jail");
                 goToJail.setStyle("-fx-font-size: 10px; -fx-font-family: 'Raleway'; -fx-font-color: white");
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(goToJail);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof FreeParking) {
                 HBox v = new HBox();
@@ -495,7 +571,13 @@ public class GameBoard {
                 v.setMaxHeight(121);
                 v.setMinHeight(121);
                 Label l = new Label("Free parking");
+                VBox owner = new VBox();
+                owner.setSpacing(5);
+                VBox landed = new VBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(l);
+                v.setId(String.valueOf(i));
                 leftColumnTiles.add(v);
             }
         }
@@ -519,6 +601,12 @@ public class GameBoard {
                 go.getStyleClass().add("go-text");
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             } else if (aBottomRow instanceof Ownable) {
                 Ownable o = (Ownable) aBottomRow;
@@ -573,6 +661,12 @@ public class GameBoard {
                 });
                 v.getChildren().add(colour);
                 v.getChildren().add(price);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             } else if (aBottomRow instanceof TaxTile) {
                 TaxTile t = (TaxTile) aBottomRow;
@@ -591,6 +685,12 @@ public class GameBoard {
                 v.setStyle("-fx-background-color: '#b8b8b8';");
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             } else if (aBottomRow instanceof CardTile) {
                 CardTile c = (CardTile) aBottomRow;
@@ -602,6 +702,12 @@ public class GameBoard {
                 Label l = new Label("?");
                 l.getStyleClass().add("card-text");
                 v.getChildren().add(l);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             } else if (aBottomRow instanceof Jail) {
                 VBox v = new VBox();
@@ -648,6 +754,12 @@ public class GameBoard {
                 bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             } else if (aBottomRow instanceof GoToJail) {
                 VBox v = new VBox();
@@ -667,6 +779,12 @@ public class GameBoard {
                 v.setAlignment(Pos.CENTER);
                 v.getChildren().add(goToJail);
                 v.getChildren().add(policeHat);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             } else if (aBottomRow instanceof FreeParking) {
                 VBox v = new VBox();
@@ -685,6 +803,12 @@ public class GameBoard {
                 parkingView.setFitWidth(50);
                 v.getChildren().add(l);
                 v.getChildren().add(parkingView);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
+                v.setId(String.valueOf(bottomRow.indexOf(aBottomRow)));
                 bottomRowTiles.add(v);
             }
         }
@@ -704,8 +828,14 @@ public class GameBoard {
                 goImgHolder.setFitWidth(60);
                 Label go = new Label("Go");
                 go.getStyleClass().add("go-text");
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(go);
                 v.getChildren().add(goImgHolder);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             } else if (aTopRow instanceof Ownable) {
                 Ownable o = (Ownable) aTopRow;
@@ -758,8 +888,14 @@ public class GameBoard {
                     grey.setOnMouseClicked(tp -> cleanStack());
                     card.setOnMouseClicked(tp -> cleanStack());
                 });
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(price);
                 v.getChildren().add(colour);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             } else if (aTopRow instanceof TaxTile) {
                 TaxTile t = (TaxTile) aTopRow;
@@ -776,8 +912,14 @@ public class GameBoard {
                 Label l = new Label("£" + t.getAmount());
                 l.getStyleClass().add("tax-tile-text");
                 v.setStyle("-fx-background-color: '#b8b8b8';");
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             } else if (aTopRow instanceof CardTile) {
                 CardTile c = (CardTile) aTopRow;
@@ -788,7 +930,13 @@ public class GameBoard {
                 v.setMaxWidth(93);
                 Label l = new Label("?");
                 l.getStyleClass().add("card-text");
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(l);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             } else if (aTopRow instanceof Jail) {
                 VBox v = new VBox();
@@ -827,6 +975,11 @@ public class GameBoard {
                 jailView.setFitWidth(60);
                 jailBox.getChildren().add(jailView);
                 topColumn.getChildren().add(jailBox);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(topColumn);
                 Label justVisiting2 = new Label("Just visiting");
                 justVisiting2.getStyleClass().add("jail-text");
@@ -835,6 +988,7 @@ public class GameBoard {
                 bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
                 bottomColumn.getChildren().add(justVisiting2);
                 v.getChildren().add(bottomColumn);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             } else if (aTopRow instanceof GoToJail) {
                 VBox v = new VBox();
@@ -852,8 +1006,14 @@ public class GameBoard {
                 policeHat.setFitHeight(60);
                 policeHat.setFitWidth(60);
                 v.setAlignment(Pos.CENTER);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(goToJail);
                 v.getChildren().add(policeHat);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             } else if (aTopRow instanceof FreeParking) {
                 VBox v = new VBox();
@@ -870,8 +1030,14 @@ public class GameBoard {
                 ImageView parkingView = new ImageView(parking);
                 parkingView.setFitHeight(50);
                 parkingView.setFitWidth(50);
+                HBox owner = new HBox();
+                owner.setSpacing(5);
+                HBox landed = new HBox();
+                landed.setSpacing(5);
+                v.getChildren().addAll(owner, landed);
                 v.getChildren().add(l);
                 v.getChildren().add(parkingView);
+                v.setId(String.valueOf(topRow.indexOf(aTopRow)));
                 topRowTiles.add(v);
             }
         }
@@ -1255,15 +1421,19 @@ public class GameBoard {
         }
     }
 
-    public Button rollButton(int[] roll) {
+    public VBox rollButton(int[] rollNumber) {
+
+        VBox roll = new VBox();
+
         Button btn = new Button("Roll");
-        btn.setId("main-menu-button");
+        btn.getStyleClass().add("main-menu-button");
         btn.setOnAction((ActionEvent e) -> {
+
             HBox diceRow = new HBox();
             diceRow.setSpacing(25);
             HBox dice1 = new HBox();
 
-            Label number = new Label(String.valueOf(roll[0])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
+            Label number = new Label(String.valueOf(rollNumber[0])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number.getStyleClass().add("raleway");
             number.setStyle("-fx-font-size: 15px");
             dice1.setMaxWidth(50);
@@ -1274,7 +1444,7 @@ public class GameBoard {
             dice1.getChildren().add(number);
             dice1.setAlignment(Pos.CENTER);
             HBox dice2 = new HBox();
-            Label number2 = new Label(String.valueOf(roll[1])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
+            Label number2 = new Label(String.valueOf(rollNumber[1])); //text in here is displayed, for now we'll just use numbers 1-6, i will add actual dice later
             number2.getStyleClass().add("raleway");
             number2.setStyle("-fx-font-size: 15px");
             dice2.setMaxWidth(50);
@@ -1285,9 +1455,15 @@ public class GameBoard {
             dice2.getChildren().add(number2);
             dice2.setAlignment(Pos.CENTER);
             diceRow.getChildren().addAll(dice1, dice2);
-            _centerStack.getChildren().add(diceRow);
+            Button close = new Button("Ok");
+            close.getStyleClass().add("main-menu-button");
+            close.setOnAction((ActionEvent em) -> {
+                cleanStack();
+            });
+            roll.getChildren().addAll(btn, diceRow, close);
+            roll.setPadding(new Insets(200, 0, 0, 0));
         });
-        return btn;
+        return roll;
     }
 
     public VBox displayMessage(String s, int size) {
@@ -1329,70 +1505,42 @@ public class GameBoard {
         VBox rightCol = (VBox) _boardPane.getRight();
         for (int i = 0; i < bottomRow.getChildren().size(); i++) {
             VBox v = (VBox) bottomRow.getChildren().get(i); //get next tile box
-            HBox colour = (HBox) v.getChildren().get(0); //get the colour
-            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
-            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
                 Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
                 ImageView igv = new ImageView(img);
-                if (((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().size() == 0) { //check the amount of children in the owner box
-                    ((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv); //if it's 0, add our new owner
-                } else if (((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0) instanceof ImageView) { //if someone is already there
-                    ImageView playerPiece = (ImageView) ((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0); //check if the person already there
-                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
-                        ((HBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().remove(0); //if they are, remove their old position
-                    }
-                }
+                igv.setFitWidth(25);
+                igv.setFitHeight(25);
+                ((VBox) ((HBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(v.getChildren().size())).getChildren().add(igv);
             }
         }
         for (int i = 0; i < topRow.getChildren().size(); i++) {
             VBox v = (VBox) topRow.getChildren().get(i); //get next tile box
-            HBox colour = (HBox) v.getChildren().get(0); //get the colour
-            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
-            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
                 Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
                 ImageView igv = new ImageView(img);
-                if (((HBox) v.getChildren().get(1)).getChildren().size() == 0) { //check the amount of children in the owner box
-                    ((HBox) v.getChildren().get(1)).getChildren().add(igv); //if it's 0, add our new owner
-                } else if (((HBox) v.getChildren().get(1)).getChildren().get(0) instanceof ImageView) { //if someone is already there
-                    ImageView playerPiece = (ImageView) ((HBox) v.getChildren().get(1)).getChildren().get(0); //check if the person already there
-                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
-                        ((HBox) v.getChildren().get(1)).getChildren().remove(0); //if they are, remove their old position
-                    }
-                }
+                igv.setFitWidth(25);
+                igv.setFitHeight(25);
+                ((VBox) ((HBox) ((HBox) _boardPane.getTop()).getChildren().get(i)).getChildren().get(0)).getChildren().add(igv);
             }
         }
         for (int i = 0; i < rightCol.getChildren().size(); i++) {
             HBox v = (HBox) rightCol.getChildren().get(i); //get next tile box
-            VBox colour = (VBox) v.getChildren().get(0); //get the colour
-            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
-            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
                 Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
                 ImageView igv = new ImageView(img);
-                if (((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().size() == 0) { //check the amount of children in the owner box
-                    ((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv); //if it's 0, add our new owner
-                } else if (((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0) instanceof ImageView) { //if someone is already there
-                    ImageView playerPiece = (ImageView) ((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().get(0); //check if the person already there
-                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
-                        ((VBox) v.getChildren().get(v.getChildren().size() - 2)).getChildren().remove(0); //if they are, remove their old position
-                    }
-                }
+                igv.setFitWidth(25);
+                igv.setFitHeight(25);
+                ((HBox) ((VBox) ((VBox) _boardPane.getRight()).getChildren().get(i)).getChildren().get(v.getChildren().size())).getChildren().add(igv);
             }
         }
         for (int i = 0; i < leftCol.getChildren().size(); i++) {
             HBox v = (HBox) leftCol.getChildren().get(i); //get next tile box
-            VBox colour = (VBox) v.getChildren().get(0); //get the colour
-            Label l = (Label) colour.getChildren().get(0); //get the name of the tiles
-            if (l.getText() == p.getPosition().getName()) { //if the name of the searched tile is the same as the one the player has been moved to
+            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
                 Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
                 ImageView igv = new ImageView(img);
-                if (((VBox) v.getChildren().get(1)).getChildren().size() == 0) { //check the amount of children in the owner box
-                    ((VBox) v.getChildren().get(1)).getChildren().add(igv); //if it's 0, add our new owner
-                } else if (((VBox) v.getChildren().get(1)).getChildren().get(0) instanceof ImageView) { //if someone is already there
-                    ImageView playerPiece = (ImageView) ((VBox) v.getChildren().get(1)).getChildren().get(0); //check if the person already there
-                    if (Integer.parseInt(playerPiece.getId()) == p.getPiece().getValue()) { //is the current player
-                        ((VBox) v.getChildren().get(1)).getChildren().remove(0); //if they are, remove their old position
-                    }
-                }
+                igv.setFitWidth(25);
+                igv.setFitHeight(25);
+                ((HBox) ((VBox) ((VBox) _boardPane.getLeft()).getChildren().get(i)).getChildren().get(0)).getChildren().add(igv);
             }
         }
     }
