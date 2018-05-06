@@ -1,6 +1,6 @@
 .DS_Store
 build/
-out/
+
 build/
 .gradle/
 .icloud
@@ -52,7 +52,8 @@ cmake-build-debug/
 ## Plugin-specific files:
 
 # IntelliJ
-/out/
+/out/production/
+/out/test/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -85,3 +86,5 @@ fabric.properties
 
 
 \.idea/codeStyles/
+
+*.ted
