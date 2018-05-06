@@ -1421,7 +1421,18 @@ public class GameBoard {
         }
     }
 
-    public VBox rollButton(int[] rollNumber) {
+
+    public void moveCurrentPlayer(int[] rollNumber){
+        int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + rollNumber[0] + rollNumber[1])%_gameEngine.getBoard().getTiles().size();
+        Tile tile = _gameEngine.getBoard().getTiles().get(numberOfTile);
+        _gameEngine.getCurrentPlayer().setPosition(tile);
+
+        landed(tile, this._gameEngine.getCurrentPlayer(), rollNumber[0]+rollNumber[1]);
+
+    }
+
+
+    public void rollButton(Dice dice) {
 
         VBox roll = new VBox();
         roll.setAlignment(Pos.CENTER);
@@ -1429,6 +1440,10 @@ public class GameBoard {
         Button btn = new Button("Roll");
         btn.getStyleClass().add("main-menu-button");
         btn.setOnAction((ActionEvent e) -> {
+            int[] rollNumber = dice.roll();
+
+
+
 
             HBox diceRow = new HBox();
             diceRow.setSpacing(25);
@@ -1459,6 +1474,7 @@ public class GameBoard {
             close.getStyleClass().add("main-menu-button");
             close.setOnAction((ActionEvent em) -> {
                 cleanStack();
+                moveCurrentPlayer(rollNumber);
             });
             diceRow.setAlignment(Pos.CENTER);
             diceRow.setTranslateY(230);
@@ -1469,7 +1485,6 @@ public class GameBoard {
         btn.setTranslateY(110);
         _centerStack.getChildren().add(btn);
         btn.toFront();
-        return roll;
     }
 
     public VBox displayMessage(String s, int size) {
@@ -1558,10 +1573,7 @@ public class GameBoard {
         }
 
         this._dice = new Dice();
-
-        Player player = _gameEngine.getCurrentPlayer();
-        int[] roll = _dice.roll();
-        rollButton(roll);
+        rollButton(this._dice);
 
 //        while(true){
 //
