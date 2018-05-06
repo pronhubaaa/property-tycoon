@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSONObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -9,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -61,21 +61,49 @@ public class GameBoard {
 
     private void _createSideLayout() {
         System.out.println("Size: " + this._gameEngine.getPlayers().size());
-        for(Player player: this._gameEngine.getPlayers()) {
-            HBox playerPane = new HBox();
-            StackPane innerPlayerPane = new StackPane();
-            Text playerName = new Text(player.getName());
 
-            playerPane.getStyleClass().add("player-panel");
-            playerPane.setMinHeight(25);
+        ArrayList<Player> players = new ArrayList<Player>() {{
+            try {
+                Player player1 = new Human(100, "Elliot", new Board(new JSONObject()));
+                player1.setPiece(PlayerPiece.Cat);
+                add(player1);
+                Player player2 = new Player(200, "Guy Mac", new Board(new JSONObject()));
+                player2.setPiece(PlayerPiece.Spoon);
+                add(player2);
+//
+//            this._currentMsg.getStyleClass().add("raleway");
+//            this._currentMsg.setStyle("-fx-font-size: 25px");
+//
+//            innerPlayerPane.getChildren().add(playerName);
+//            playerPane.getChildren().add(innerPlayerPane);
+//            this._sidebarSplitPane.getChildren().add(playerPane);
 
+            } catch (BoardTileException e) {
+                e.printStackTrace();
+            }
+        }};
+//        players = this._gameEngine.getPlayers();
 
-            this._currentMsg.getStyleClass().add("raleway");
-            this._currentMsg.setStyle("-fx-font-size: 25px");
+        for(Player player: players) {
+            System.out.println("the name is " + player.getName());
+            if (!player.getName().equals("")) {
+                HBox playerPane = new HBox() {{
+                    System.out.println("resources/player-piece" + player.getPiece().getValue() + ".png");
+                    setAlignment(Pos.CENTER);
+                    getChildren().addAll(
+                            new ImageView(new Image("resources/player-piece" + player.getPiece().getValue() + ".png")) {{
+                                setFitHeight(100);
+                                setPreserveRatio(true);
+                            }},
+                            new Label("£" + player.getBalance()));
+                }};
+                
+                playerPane.getStyleClass().add("player-panel");
+                playerPane.setMinHeight(25);
 
-            innerPlayerPane.getChildren().add(playerName);
-            playerPane.getChildren().add(innerPlayerPane);
-            this._sidebarSplitPane.getChildren().add(playerPane);
+                this._sidebarSplitPane.getChildren().add(playerPane);
+            }
+
         }
     }
 
@@ -1441,9 +1469,6 @@ public class GameBoard {
         btn.getStyleClass().add("main-menu-button");
         btn.setOnAction((ActionEvent e) -> {
             int[] rollNumber = dice.roll();
-
-
-
 
             HBox diceRow = new HBox();
             diceRow.setSpacing(25);
