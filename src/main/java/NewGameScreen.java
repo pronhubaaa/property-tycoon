@@ -126,36 +126,33 @@ public class NewGameScreen extends Scene {
                 outline.getChildren().add(v);
                 v.setFitHeight(50);
                 v.setFitWidth(50);
-                v.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent t) {
-                        int prevSelected = 0;
-                        int count = 0;
-                        for (Node hb : piecesList.getChildren()) {
-                            if (hb.getId().equals("piece-selected")) {
-                                hb.setId("unclicked");
-                                prevSelected = count;
-                            }
-                            count++;
+                v.setOnMouseClicked(t -> {
+                    int prevSelected = 0;
+                    int count = 0;
+                    for (Node hb : piecesList.getChildren()) {
+                        if (hb.getId().equals("piece-selected")) {
+                            hb.setId("unclicked");
+                            prevSelected = count;
                         }
-                        for (int ix = 0; ix < rectLeft.getChildren().size(); ix++) {
-                            if (rectLeft.getChildren().get(ix) instanceof HBox) {
-                                HBox h = (HBox) rectLeft.getChildren().get(ix);
-                                for (int j = 0; j < h.getChildren().size(); j++) {
-                                    if (h.getChildren().get(j) instanceof ScrollPane) {
-                                        ScrollPane sp = (ScrollPane) h.getChildren().get(j);
-                                        HBox images = (HBox) sp.getContent();
-                                        int pieceTaken = piecesList.getChildren().indexOf(outline);
-                                        images.getChildren().get(pieceTaken).setId("piece-taken");
-                                        images.getChildren().get(pieceTaken).setDisable(true);
-                                        images.getChildren().get(prevSelected).setId("unclicked");
-                                        images.getChildren().get(prevSelected).setDisable(false);
-                                    }
+                        count++;
+                    }
+                    for (int ix = 0; ix < rectLeft.getChildren().size(); ix++) {
+                        if (rectLeft.getChildren().get(ix) instanceof HBox) {
+                            HBox h = (HBox) rectLeft.getChildren().get(ix);
+                            for (int j = 0; j < h.getChildren().size(); j++) {
+                                if (h.getChildren().get(j) instanceof ScrollPane) {
+                                    ScrollPane sp = (ScrollPane) h.getChildren().get(j);
+                                    HBox images = (HBox) sp.getContent();
+                                    int pieceTaken = piecesList.getChildren().indexOf(outline);
+                                    images.getChildren().get(pieceTaken).setId("piece-taken");
+                                    images.getChildren().get(pieceTaken).setDisable(true);
+                                    images.getChildren().get(prevSelected).setId("unclicked");
+                                    images.getChildren().get(prevSelected).setDisable(false);
                                 }
                             }
                         }
-                        outline.setId("piece-selected");
                     }
+                    outline.setId("piece-selected");
                 });
                 piecesList.getChildren().add(outline);
             }
@@ -487,46 +484,36 @@ public class NewGameScreen extends Scene {
         TextField timeLimit = new TextField();
         timeLimit.setMinWidth(100);
         timeLimit.setMaxWidth(100);
-        timeLimit.lengthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if (newValue.intValue() > oldValue.intValue()) {
-                    char ch = timeLimit.getText().charAt(oldValue.intValue());
-                    // Check if the new character is the number or other's
-                    if (!(ch >= '0' && ch <= '9')) {
-                        // if it's not number then just setText to previous one
-                        timeLimit.setText(timeLimit.getText().substring(0, timeLimit.getText().length() - 1));
-                    }
+        timeLimit.lengthProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.intValue() > oldValue.intValue()) {
+                char ch = timeLimit.getText().charAt(oldValue.intValue());
+                // Check if the new character is the number or other's
+                if (!(ch >= '0' && ch <= '9')) {
+                    // if it's not number then just setText to previous one
+                    timeLimit.setText(timeLimit.getText().substring(0, timeLimit.getText().length() - 1));
                 }
             }
-
         });
         Label timeLimitMins = new Label("mins");
         timeLimitMins.setId("game-type-text");
 
-        fullGame.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-                if (fullGameType) {
-                    //do nothing
-                } else {
-                    fullGameType = true;
-                    fullGame.setId("game-type-selected");
-                    abridgedGame.setId("game-type");
-                }
+        fullGame.setOnMouseClicked(t -> {
+            if (fullGameType) {
+                //do nothing
+            } else {
+                fullGameType = true;
+                fullGame.setId("game-type-selected");
+                abridgedGame.setId("game-type");
             }
         });
 
-        abridgedGame.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent t) {
-                if (fullGameType) {
-                    abridgedGame.setId("game-type-selected");
-                    fullGame.setId("game-type");
-                    fullGameType = !fullGameType;
-                } else {
-                    //do nothing
-                }
+        abridgedGame.setOnMouseClicked(t -> {
+            if (fullGameType) {
+                abridgedGame.setId("game-type-selected");
+                fullGame.setId("game-type");
+                fullGameType = !fullGameType;
+            } else {
+                //do nothing
             }
         });
 
