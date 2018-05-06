@@ -1138,7 +1138,6 @@ public class GameBoard {
     }
 
 
-    //TODO integrate function to change colour of tile when it is purchased
     public void purchase(Ownable o, Player p) {
         HBox bottomRow = (HBox) _boardPane.getBottom();
         for (int i = 0; i < bottomRow.getChildren().size(); i++) {
@@ -1149,7 +1148,7 @@ public class GameBoard {
                     if (((Label) colour.getChildren().get(j)).getText() == o.getName()) {
                         ((HBox) ((VBox) bottomRow.getChildren().get(i)).getChildren().get(1)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
                         HBox playerRow = new HBox();
-                        Image piece = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                        Image piece = new Image("resources/player-piece" + p.getPiece().toString() + "-small.png");
                         ImageView player = new ImageView(piece);
                         player.setFitWidth(20);
                         player.setFitHeight(20);
@@ -1182,6 +1181,7 @@ public class GameBoard {
                 if (o.isOwned()) {
                     //TODO display message saying what rent was paid to who
                     //use displayMessage and destroyMessage, put everything before the following lines of code
+
                     Button ok = new Button("OK");
                     ok.getStyleClass().add("main-menu-button");
                     ok.setPadding(new Insets(200, 0, 0, 0));
@@ -1225,7 +1225,7 @@ public class GameBoard {
                     buy.getStyleClass().add("main-menu-button");
                     container.getChildren().add(buy);
                     buy.setOnAction((ActionEvent e) -> {
-                        //TODO buy the property, give it to the player, deduct money
+                        p.buyTile(t);
                         cleanStack(); //end with this line
                     });
                     _centerStack.getChildren().add(container);
