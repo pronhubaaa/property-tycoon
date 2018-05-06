@@ -8,23 +8,17 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
-import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 
 import java.io.*;
 import java.net.URL;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -121,9 +115,9 @@ public class NewGameScreen extends Scene {
                     HBox firstPlayerPieces = (HBox) rectLeft.getChildren().get(4);
                     ScrollPane piecesBox = (ScrollPane) firstPlayerPieces.getChildren().get(1);
                     HBox spContent = (HBox) piecesBox.getContent();
-                    if (spContent.getChildren().get(i).getId() == "unclicked") {
+                    if (spContent.getChildren().get(i).getId().equals("unclicked")) {
                         outline.setId("unclicked");
-                    } else if (spContent.getChildren().get(i).getId() == "piece-taken" | spContent.getChildren().get(i).getId() == "piece-selected") {
+                    } else if (spContent.getChildren().get(i).getId().equals("piece-taken") | spContent.getChildren().get(i).getId().equals("piece-selected")) {
                         outline.setId("piece-taken");
                         outline.setDisable(true);
                     }
@@ -138,8 +132,7 @@ public class NewGameScreen extends Scene {
                         int prevSelected = 0;
                         int count = 0;
                         for (Node hb : piecesList.getChildren()) {
-                            if (hb.getId() == "piece-selected") {
-                                hb = (HBox) hb;
+                            if (hb.getId().equals("piece-selected")) {
                                 hb.setId("unclicked");
                                 prevSelected = count;
                             }
@@ -204,9 +197,7 @@ public class NewGameScreen extends Scene {
         newGameScreen.getChildren().add(imageView1);
         Button rtnToMenu = new Button("Return to main menu");
         rtnToMenu.setId("menu-text");
-        rtnToMenu.setOnAction((ActionEvent e) -> {
-            ui.showScene(MainMenuScreens.getMainMenu(ui, gameEngine));
-        });
+        rtnToMenu.setOnAction((ActionEvent e) -> ui.showScene(MainMenuScreens.getMainMenu(ui, gameEngine)));
         newGameScreen.getChildren().add(rtnToMenu);
         HBox secondLayer = new HBox();
         secondLayer.setSpacing(200);
@@ -388,9 +379,7 @@ public class NewGameScreen extends Scene {
             stack.getChildren().add(menuOverlay);
             menuOverlay.toFront();
 
-            cancelImport.setOnAction((ActionEvent em) -> {
-                stack.getChildren().remove(menuOverlay);
-            });
+            cancelImport.setOnAction((ActionEvent em) -> stack.getChildren().remove(menuOverlay));
 
 
             search.setOnAction((ActionEvent im) -> {
@@ -546,9 +535,9 @@ public class NewGameScreen extends Scene {
         abridgedGame.getChildren().add(timeLimitRow);
 
         startGame.setOnAction((ActionEvent e) -> {
-            String errorMsg = "";
+            StringBuilder errorMsg = new StringBuilder();
             //check players
-            playersList = new ArrayList<Player>();
+            playersList = new ArrayList<>();
             for (int child = 0; child < rectLeft.getChildren().size(); child++) {
                 Node n = rectLeft.getChildren().get(child);
                 HBox h = (HBox) n;
@@ -559,32 +548,28 @@ public class NewGameScreen extends Scene {
                     if (m instanceof TextField) {
                         TextField nameEntry = (TextField) m;
                         if (nameEntry.getText() == null | nameEntry.getText().trim().isEmpty()) {
-                            errorMsg += "Player names cannot be blank. \n";
+                            errorMsg.append("Player names cannot be blank. \n");
                         } else {
                             playerName = ((TextField) m).getText();
                         }
                     }
                     if (m instanceof Slider) {
-                        if (((Slider) m).getValue() > 0.5) {
-                            human = false;
-                        } else {
-                            human = true;
-                        }
+                        human = !(((Slider) m).getValue() > 0.5);
                     }
                     if (m instanceof ScrollPane) {
                         ScrollPane sp = (ScrollPane) m;
                         HBox pieces = (HBox) sp.getContent();
                         for (int j = 0; j < pieces.getChildren().size(); j++) {
-                            if (pieces.getChildren().get(j).getId() == "piece-selected") {
+                            if (pieces.getChildren().get(j).getId().equals("piece-selected")) {
                                 pieceNo = j;
                             }
                         }
                         if (pieceNo == -1) {
-                            errorMsg += "You must select a player piece. \n";
+                            errorMsg.append("You must select a player piece. \n");
                         }
                     }
                 }
-                if (errorMsg == "") {
+                if (errorMsg.toString().equals("")) {
                     try {
                         if (human) {
                             Board tempBoard = new Board(new JSONObject());
@@ -606,20 +591,20 @@ public class NewGameScreen extends Scene {
                 try {
                     minutes = Integer.parseInt(t.getText());
                 } catch (NumberFormatException nfe) {
-                    errorMsg += "Please enter a time for an abridged game\n";
+                    errorMsg.append("Please enter a time for an abridged game\n");
                 }
             }
             try {
                 String n = dropdown.getValue().toString();
             } catch (Exception nothingSelected) {
-                errorMsg += "Please select a board type.\n";
+                errorMsg.append("Please select a board type.\n");
             }
-            if (errorMsg != "") {
-                VBox error = displayError(errorMsg, stack);
+            if (!errorMsg.toString().equals("")) {
+                VBox error = displayError(errorMsg.toString(), stack);
                 stack.getChildren().add(error);
             } else {
                 String n = dropdown.getValue().toString();
-                ArrayList<String> boards = new ArrayList<String>();
+                ArrayList<String> boards = new ArrayList<>();
                 try {
                     FileReader fr = new FileReader("saved-boards.ted");
                     BufferedReader br = new BufferedReader(fr);
@@ -663,8 +648,8 @@ public class NewGameScreen extends Scene {
         mainGrid.add(rectLeftHolder, 0, 0);
         mainGrid.add(rectRight, 1, 0);
         mainGrid.add(rectRightBot, 1, 0);
-        mainGrid.setValignment(rectRight, VPos.TOP);
-        mainGrid.setValignment(rectRightBot, VPos.BOTTOM);
+        GridPane.setValignment(rectRight, VPos.TOP);
+        GridPane.setValignment(rectRightBot, VPos.BOTTOM);
         mainGrid.setGridLinesVisible(false);
         mainGrid.setAlignment(Pos.CENTER);
 
@@ -723,9 +708,7 @@ public class NewGameScreen extends Scene {
         error.getChildren().add(message);
         Button accept = new Button("Accept");
         accept.setId("add-player-button");
-        accept.setOnAction((ActionEvent e) -> {
-            stack.getChildren().remove(error);
-        });
+        accept.setOnAction((ActionEvent e) -> stack.getChildren().remove(error));
         error.getChildren().add(accept);
         return error;
     }
@@ -764,13 +747,11 @@ public class NewGameScreen extends Scene {
     public TextField getTimer() {
         VBox timerBox = (VBox) rectRightBot.getChildren().get(2);
         HBox timerRow = (HBox) timerBox.getChildren().get(2);
-        TextField tf = (TextField) timerRow.getChildren().get(1);
-        return tf;
+        return (TextField) timerRow.getChildren().get(1);
     }
 
     public Slider getTrading() {
         HBox firstRow = (HBox) rectRightBot.getChildren().get(0);
-        Slider s = (Slider) firstRow.getChildren().get(2);
-        return s;
+        return (Slider) firstRow.getChildren().get(2);
     }
 }
