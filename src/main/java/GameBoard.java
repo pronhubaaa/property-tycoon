@@ -77,7 +77,7 @@ public class GameBoard {
             }
         }};
 
-        for(Player player: players) {
+        for (Player player : players) {
             System.out.println("the name is " + player.getName());
             if (!player.getName().equals("")) {
                 HBox playerPane = new HBox() {{
@@ -90,7 +90,7 @@ public class GameBoard {
                             }},
                             new Label("£" + player.getBalance()));
                 }};
-                
+
                 playerPane.getStyleClass().add("player-panel");
                 playerPane.setMinHeight(25);
 
@@ -1313,7 +1313,7 @@ public class GameBoard {
     }
 
     //call this when a player lands on a tile
-     public void landed(Tile t, Player p, int roll) {
+    public void landed(Tile t, Player p, int roll) {
         TileType type = TileType.Property;
         if (t instanceof Property) {
             type = TileType.Property;
@@ -1328,6 +1328,12 @@ public class GameBoard {
         } else if (t instanceof GoToJail) {
             type = TileType.GoToJail;
         }
+        Button ok = new Button("OK");
+        ok.getStyleClass().add("main-menu-button");
+        ok.setPadding(new Insets(200, 0, 0, 0));
+        ok.setOnAction((ActionEvent e) -> {
+            cleanStack();
+        });
         switch (type) {
             case Property:
             case Station:
@@ -1338,14 +1344,8 @@ public class GameBoard {
 
                     //use displayMessage, put everything before the following lines of code
 
-                    String message = p.getName() + " paid £" + o.calculateRent(p, roll) + " to "+ o.getOwner().getName();
+                    String message = p.getName() + " paid £" + o.calculateRent(p, roll) + " to " + o.getOwner().getName();
                     displayMessage(message, 20);
-                    Button ok = new Button("OK");
-                    ok.getStyleClass().add("main-menu-button");
-                    ok.setPadding(new Insets(200, 0, 0, 0));
-                    ok.setOnAction((ActionEvent e) -> {
-                        cleanStack();
-                    });
                     _centerStack.getChildren().add(ok);
                 } else {
                     _storedStack = _centerStack;
@@ -1387,11 +1387,11 @@ public class GameBoard {
                         p.buyTile(t);
                         cleanStack(); //end with this line
                     });
-                    Button ok = new Button("Auction");
-                    ok.getStyleClass().add("main-menu-button");
-                    ok.setPadding(new Insets(200, 0, 0, 0));
-                    _centerStack.getChildren().add(ok);
-                    ok.setOnAction((ActionEvent e) -> {
+                    Button auc = new Button("Auction");
+                    auc.getStyleClass().add("main-menu-button");
+                    auc.setPadding(new Insets(200, 0, 0, 0));
+                    container.getChildren().add(ok);
+                    auc.setOnAction((ActionEvent e) -> {
                         //DO AUCTION 
                     });
                     _centerStack.getChildren().add(container);
@@ -1462,47 +1462,30 @@ public class GameBoard {
                         cleanStack();
                     }
                 });
-                Button ok = new Button("Ok");
-                ok.getStyleClass().add("main-menu-button");
-                ok.setPadding(new Insets(200, 0, 0, 0));
                 _centerStack.getChildren().add(ok);
-                ok.setOnAction((ActionEvent e) -> {
-                    cleanStack();
-                });
                 break;
             case Go:
                 _storedStack = _centerStack;
                 displayMessage("Player " + p.getName() + " landed on go. Collect £200.", 20);
-                Button ok = new Button("Ok");
-                ok.getStyleClass().add("main-menu-button");
-                ok.setPadding(new Insets(200, 0, 0, 0));
                 _centerStack.getChildren().add(ok);
-                ok.setOnAction((ActionEvent e) -> {
-                   cleanStack();
-                });
                 break;
             case GoToJail:
                 _storedStack = _centerStack;
-                displayMessage("Go to jail!", 20);Button ok = new Button("Ok");
-                ok.getStyleClass().add("main-menu-button");
-                ok.setPadding(new Insets(200, 0, 0, 0));
+                displayMessage("Go to jail!", 20);
                 _centerStack.getChildren().add(ok);
-                ok.setOnAction((ActionEvent e) -> {
-                    cleanStack();
-                });
                 break;
         }
     }
 
 
-    public void moveCurrentPlayer(int[] rollNumber){
-        int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + rollNumber[0] + rollNumber[1]+1)%_gameEngine.getBoard().getTiles().size();
+    public void moveCurrentPlayer(int[] rollNumber) {
+        int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + rollNumber[0] + rollNumber[1] + 1) % _gameEngine.getBoard().getTiles().size();
 
         Tile tile = _gameEngine.getBoard().getTiles().get(numberOfTile);
         System.out.println("tile name: " + tile.getName() + " " + numberOfTile);
         _gameEngine.getCurrentPlayer().setPosition(tile);
 
-        landed(tile, this._gameEngine.getCurrentPlayer(), rollNumber[0]+rollNumber[1]);
+        landed(tile, this._gameEngine.getCurrentPlayer(), rollNumber[0] + rollNumber[1]);
 
     }
 
@@ -1570,7 +1553,7 @@ public class GameBoard {
         container.getChildren().add(newMessage);
         Button ok = new Button("Ok");
         ok.setOnAction((ActionEvent e) -> {
-           cleanStack();
+            cleanStack();
         });
         ok.getStyleClass().add("main-menu-button");
         container.getChildren().add(ok);
@@ -1640,9 +1623,9 @@ public class GameBoard {
         }
     }
 
-    private void startGame(){
+    private void startGame() {
 
-        for(Player player: _gameEngine.getPlayers()){
+        for (Player player : _gameEngine.getPlayers()) {
             player.setPosition(tiles.get(0));
             putPlayerOnTile(player);
         }
@@ -1667,7 +1650,6 @@ public class GameBoard {
 //
 //        }
     }
-
 
 
 }
