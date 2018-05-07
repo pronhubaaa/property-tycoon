@@ -1317,7 +1317,21 @@ public class GameBoard {
 
     //call this when a player lands on a tile
      public void landed(Tile t, Player p, int roll) {
-        switch (TileType.valueOf(t.getClass().getSimpleName())) {
+        TileType type = TileType.Property;
+        if (t instanceof Property) {
+            type = TileType.Property;
+        } else if (t instanceof Station) {
+            type = TileType.Station;
+        } else if (t instanceof Utility) {
+            type = TileType.Utility;
+        } else if (t instanceof CardTile) {
+            type = TileType.CardTile;
+        } else if (t instanceof Go) {
+            type = TileType.Go;
+        } else if (t instanceof GoToJail) {
+            type = TileType.GoToJail;
+        }
+        switch (type) {
             case Property:
             case Station:
             case Utility:
@@ -1377,7 +1391,7 @@ public class GameBoard {
                     _centerStack.getChildren().add(container);
                 }
                 break;
-            case Card:
+            case CardTile:
                 CardTile c = (CardTile) t;
                 VBox grey = new VBox();
                 grey.setMaxWidth(_centerStack.widthProperty().intValue());
@@ -1451,8 +1465,10 @@ public class GameBoard {
 
 
     public void moveCurrentPlayer(int[] rollNumber){
-        int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + rollNumber[0] + rollNumber[1])%_gameEngine.getBoard().getTiles().size();
+        int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + rollNumber[0] + rollNumber[1]+1)%_gameEngine.getBoard().getTiles().size();
+
         Tile tile = _gameEngine.getBoard().getTiles().get(numberOfTile);
+        System.out.println("tile name: " + tile.getName() + " " + numberOfTile);
         _gameEngine.getCurrentPlayer().setPosition(tile);
 
         landed(tile, this._gameEngine.getCurrentPlayer(), rollNumber[0]+rollNumber[1]);

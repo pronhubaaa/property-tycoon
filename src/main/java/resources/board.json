@@ -23,7 +23,7 @@
             ]
         },
         {
-            "type": "Card",
+            "type": "CardTile",
             "position": "3",
             "name": "Pot Luck",
             "card_type": "PotLuck"
@@ -79,7 +79,7 @@
             ]
         },
         {
-            "type": "Card",
+            "type": "CardTile",
             "position": "8",
             "name": "Opportunity Knocks",
             "card_type": "OpportunityKnocks"
@@ -205,7 +205,7 @@
             ]
         },
         {
-            "type": "Card",
+            "type": "CardTile",
             "position": "18",
             "name": "Pot Luck",
             "card_type": "PotLuck"
@@ -264,7 +264,7 @@
             ]
         },
         {
-            "type": "Card",
+            "type": "CardTile",
             "position": "23",
             "name": "Opportunity Knocks",
             "card_type": "OpportunityKnocks"
@@ -405,7 +405,7 @@
             ]
         },
         {
-            "type": "Card",
+            "type": "CardTile",
             "position": "34",
             "name": "Pot Luck",
             "card_type": "PotLuck"
@@ -439,7 +439,7 @@
             ]
         },
         {
-            "type": "Card",
+            "type": "CardTile",
             "position": "37",
             "name": "Opportunity Knocks",
             "card_type": "OpportunityKnocks"

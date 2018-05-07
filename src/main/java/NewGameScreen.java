@@ -657,7 +657,7 @@ public class NewGameScreen extends Scene {
                 }
                 // UI SHOW BOARD
             } catch (Exception e) {
-                //nothing
+                //do nothing
             }
         } else {
             GameType g = GameType.AbridgedGame;
@@ -673,7 +673,7 @@ public class NewGameScreen extends Scene {
                 }
                 // UI SHOW BOARD
             } catch (Exception e) {
-                //nothing
+                //do nothing
             }
         }
 
