@@ -65,35 +65,28 @@ public class GameBoard {
     private void _createSideLayout() {
         System.out.println("Size: " + this._gameEngine.getPlayers().size());
 
-        ArrayList<Player> players = new ArrayList<Player>() {{
-            try {
-                Player player1 = new Human(100, "Elliot", new Board(new JSONObject()));
-                player1.setPiece(PlayerPiece.Cat);
-                add(player1);
-                Player player2 = new Player(200, "Guy Mac", new Board(new JSONObject()));
-                player2.setPiece(PlayerPiece.Spoon);
-                add(player2);
-
-            } catch (BoardTileException e) {
-                e.printStackTrace();
-            }
-        }};
-
-        for (Player player : players) {
-            System.out.println("the name is " + player.getName());
+        for (Player player : this._gameEngine.getPlayers()) {
             if (!player.getName().equals("")) {
                 HBox playerPane = new HBox() {{
-                    System.out.println("resources/player-piece" + player.getPiece().getValue() + ".png");
                     setAlignment(Pos.CENTER);
                     getChildren().addAll(
                             new ImageView(new Image("resources/player-piece" + player.getPiece().getValue() + ".png")) {{
                                 setFitHeight(100);
                                 setPreserveRatio(true);
                             }},
-                            new Label("£" + player.getBalance()));
+                            new VBox() {{
+                                getChildren().addAll(
+                                    new Label(player.getName()),
+                                    new Label("£" + player.getBalance()) {{
+                                        getStyleClass().add("player-balance");
+                                    }});
+                                setAlignment(Pos.CENTER_RIGHT);
+                            }});
+
                 }};
 
                 playerPane.getStyleClass().add("player-panel");
+                playerPane.getStyleClass().add("raleway");
                 playerPane.setMinHeight(25);
 
                 this._sidebarSplitPane.getChildren().add(playerPane);
