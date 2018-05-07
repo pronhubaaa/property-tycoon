@@ -1422,11 +1422,16 @@ public class GameBoard {
         } else if (t instanceof GoToJail) {
             type = TileType.GoToJail;
         }
-        Button ok = new Button("OK");
+        Button ok = new Button("Next Turn");
         ok.getStyleClass().add("main-menu-button");
         ok.setPadding(new Insets(200, 0, 0, 0));
         ok.setOnAction((ActionEvent e) -> {
             cleanStack();
+
+            this._dice = new Dice();
+            _gameEngine.nextTurn();
+            rollButton(this._dice);
+
         });
         switch (type) {
             case Property:
@@ -1494,8 +1499,10 @@ public class GameBoard {
                     buy.getStyleClass().add("main-menu-button");
                     container.getChildren().add(buy);
                     buy.setOnAction((ActionEvent e) -> {
-                        p.buyTile(t);
-                        cleanStack(); //end with this line
+                        if(!p.buyTile(t)){
+                            displayMessage("You don't have enough money!", 20);
+                        }
+
                     });
                     Button auc = new Button("Auction");
                     auc.getStyleClass().add("main-menu-button");
@@ -1600,8 +1607,10 @@ public class GameBoard {
         Tile tile = _gameEngine.getBoard().getTiles().get(numberOfTile);
         System.out.println("tile name: " + tile.getName() + " " + numberOfTile);
         _gameEngine.getCurrentPlayer().setPosition(tile);
-
         landed(tile, this._gameEngine.getCurrentPlayer(), rollNumber[0] + rollNumber[1]);
+
+
+        //putPlayerOnTile(this._gameEngine.getCurrentPlayer());
 
     }
 
@@ -1643,7 +1652,8 @@ public class GameBoard {
             close.getStyleClass().add("main-menu-button");
             close.setOnAction((ActionEvent em) -> {
                 _centerStack.getChildren().removeAll(diceRow, close, btn, roll);
-                //moveCurrentPlayer(rollNumber);
+                moveCurrentPlayer(rollNumber);
+
             });
             diceRow.setAlignment(Pos.CENTER);
             diceRow.setTranslateY(230);
@@ -1773,6 +1783,8 @@ public class GameBoard {
 //s
 //
 //        }
+
+
     }
 
 
