@@ -240,4 +240,10 @@
 .player-panel {
     -fx-background-color: '#86bf8e';
     -fx-border-color: '#f2f2f2';
+    -fx-padding: 10px;
+}
+
+.player-balance {
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
 }
