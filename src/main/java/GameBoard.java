@@ -1567,6 +1567,8 @@ public class GameBoard {
         VBox rightCol = (VBox) _boardPane.getRight();
         for (int i = 0; i < bottomRow.getChildren().size(); i++) {
             VBox v = (VBox) bottomRow.getChildren().get(i); //get next tile box
+            System.out.println(v.getId());
+            System.out.println(tiles.indexOf(p.getPosition()));
             if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
                 Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
                 ImageView igv = new ImageView(img);
@@ -1610,6 +1612,7 @@ public class GameBoard {
     private void startGame(){
 
         for(Player player: _gameEngine.getPlayers()){
+            player.setPosition(tiles.get(0));
             putPlayerOnTile(player);
         }
 

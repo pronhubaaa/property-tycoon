@@ -554,21 +554,22 @@ public class NewGameScreen extends Scene {
                         if (pieceNo == -1) {
                             errorMsg.append("You must select a player piece. \n");
                         }
-                    }
-                }
-                if (errorMsg.toString().equals("")) {
-                    try {
-                        if (human) {
-                            Board tempBoard = new Board(new JSONObject());
-                            playersList.add(new Human(1500, playerName, tempBoard));
-                        } else {
-                            Board tempBoard = new Board(new JSONObject());
-                            playersList.add(new AI(1500, playerName, tempBoard));
+                        if (errorMsg.toString().equals("")) {
+                            try {
+                                if (human) {
+                                    Board tempBoard = new Board(new JSONObject());
+                                    playersList.add(new Human(1500, playerName, tempBoard));
+                                } else {
+                                    Board tempBoard = new Board(new JSONObject());
+                                    playersList.add(new AI(1500, playerName, tempBoard));
+                                }
+                            } catch (Exception exp) {
+                                //do nothing
+                            }
                         }
-                    } catch (Exception exp) {
-                        //do nothing
                     }
                 }
+
             }
             VBox v = (VBox) rectRightBot.getChildren().get(2);
             HBox h = (HBox) v.getChildren().get(2);
