@@ -1408,6 +1408,9 @@ public class GameBoard {
 
     //call this when a player lands on a tile
     public void landed(Tile t, Player p, int roll) {
+        for (Node n : _centerStack.getChildren()) {
+            _storedStack.add(n);
+        }
         TileType type = TileType.Property;
         if (t instanceof Property) {
             type = TileType.Property;
@@ -1434,20 +1437,14 @@ public class GameBoard {
             case Utility:
                 Ownable o = (Ownable) t;
                 if (o.isOwned()) {
-                    for (Node n : _centerStack.getChildren()) {
-                        _storedStack.add(n);
-                    }
-
                     //use displayMessage, put everything before the following lines of code
 
                     String message = p.getName() + " paid £" + o.calculateRent(p, roll) + " to " + o.getOwner().getName();
                     displayMessage(message, 20);
                     _centerStack.getChildren().add(ok);
                 } else {
-                    for (Node n : _centerStack.getChildren()) {
-                        _storedStack.add(n);
-                    }
                     VBox container = new VBox();
+                    container.setAlignment(Pos.CENTER);
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -1471,47 +1468,31 @@ public class GameBoard {
                     _centerStack.getChildren().add(closeWindow);
                     grey.toFront();
                     card.toFront();
-                    close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent tp) {
-                            _centerStack.getChildren().removeAll(closeWindow, close, grey, card);
-                        }
-                    });
-                    grey.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent tp) {
-                            _centerStack.getChildren().removeAll(closeWindow, close, grey, card);
-                        }
-                    });
-                    card.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent tp) {
-                            _centerStack.getChildren().removeAll(closeWindow, close, grey, card);
-                        }
-                    });
+                    HBox buttons = new HBox();
+                    buttons.setAlignment(Pos.CENTER);
+                    buttons.setPadding(new Insets(100, 0, 0, 0));
                     container.getChildren().add(card);
                     Button buy = new Button("Buy");
                     buy.getStyleClass().add("main-menu-button");
-                    container.getChildren().add(buy);
+                    container.getChildren().add(buttons);
                     buy.setOnAction((ActionEvent e) -> {
                         p.buyTile(t);
-                        cleanStack(); //end with this line
+                        cleanStack();
                     });
                     Button auc = new Button("Auction");
                     auc.getStyleClass().add("main-menu-button");
-                    auc.setPadding(new Insets(200, 0, 0, 0));
-                    container.getChildren().add(ok);
+                    container.getChildren().add(auc);
                     auc.setOnAction((ActionEvent e) -> {
                         //DO AUCTION
+                        cleanStack();
                     });
+                    buttons.setSpacing(20);
+                    buttons.getChildren().addAll(buy, auc);
                     _centerStack.getChildren().add(container);
                 }
                 break;
             case CardTile:
                 CardTile c = (CardTile) t;
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
                 VBox grey = new VBox();
                 grey.setAlignment(Pos.CENTER);
                 grey.setMaxWidth(_centerStack.widthProperty().intValue());
@@ -1577,16 +1558,10 @@ public class GameBoard {
                 _centerStack.getChildren().add(ok);
                 break;
             case Go:
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
                 displayMessage("Player " + p.getName() + " landed on go. Collect £200.", 20);
                 _centerStack.getChildren().add(ok);
                 break;
             case GoToJail:
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
                 displayMessage("Go to jail!", 20);
                 _centerStack.getChildren().add(ok);
                 break;
@@ -1643,7 +1618,7 @@ public class GameBoard {
             close.getStyleClass().add("main-menu-button");
             close.setOnAction((ActionEvent em) -> {
                 _centerStack.getChildren().removeAll(diceRow, close, btn, roll);
-                //moveCurrentPlayer(rollNumber);
+                moveCurrentPlayer(rollNumber);
             });
             diceRow.setAlignment(Pos.CENTER);
             diceRow.setTranslateY(230);
