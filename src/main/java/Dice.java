@@ -22,6 +22,9 @@ public class Dice {
         int[] values = new int[2];
         values[0] = rand.nextInt(6) + 1;
         values[1] = rand.nextInt(6) + 1;
+
+//        values[0] = 3;
+//        values[1] = 5;
         if (values[0] == values[1]) {
             this.doubleCount++;
         }

@@ -1396,6 +1396,13 @@ public class GameBoard {
         }
     }
 
+
+    public void nextTurn(){
+        this._dice = new Dice();
+        _gameEngine.nextTurn();
+        rollButton(this._dice);
+    }
+
     //show a message on stage - delete message with destroyMessage()
     public void showMessage(String message) {
         _currentMsg.setText(message);
@@ -1429,9 +1436,7 @@ public class GameBoard {
         ok.setPadding(new Insets(200, 0, 0, 0));
         ok.setOnAction((ActionEvent e) -> {
             cleanStack();
-            this._dice = new Dice();
-            _gameEngine.nextTurn();
-            rollButton(this._dice);
+            nextTurn();
         });
         for (Node n : _centerStack.getChildren()) {
             _storedStack.add(n);
@@ -1447,6 +1452,8 @@ public class GameBoard {
                     String message = p.getName() + " paid £" + o.calculateRent(p, roll) + " to " + o.getOwner().getName();
                     displayMessage(message, 20);
                     _centerStack.getChildren().add(ok);
+
+                    nextTurn();
                 } else {
                     VBox container = new VBox();
                     container.setAlignment(Pos.CENTER);
@@ -1481,12 +1488,12 @@ public class GameBoard {
                     buy.getStyleClass().add("main-menu-button");
                     container.getChildren().add(buttons);
                     buy.setOnAction((ActionEvent e) -> {
-                        p.buyTile(t);
                         cleanStack();
                         if(!p.buyTile(t)){
                             displayMessage("You don't have enough money!", 20);
                         }
                         purchase(o, p);
+                        nextTurn();
                     });
                     Button auc = new Button("Auction");
                     auc.getStyleClass().add("main-menu-button");
@@ -1494,6 +1501,7 @@ public class GameBoard {
                     auc.setOnAction((ActionEvent e) -> {
                         //DO AUCTION
                         cleanStack();
+                        nextTurn();
                     });
                     buttons.setSpacing(20);
                     buttons.getChildren().addAll(buy, auc);
