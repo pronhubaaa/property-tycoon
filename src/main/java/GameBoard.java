@@ -70,19 +70,11 @@ public class GameBoard {
                 Player player2 = new Player(200, "Guy Mac", new Board(new JSONObject()));
                 player2.setPiece(PlayerPiece.Spoon);
                 add(player2);
-//
-//            this._currentMsg.getStyleClass().add("raleway");
-//            this._currentMsg.setStyle("-fx-font-size: 25px");
-//
-//            innerPlayerPane.getChildren().add(playerName);
-//            playerPane.getChildren().add(innerPlayerPane);
-//            this._sidebarSplitPane.getChildren().add(playerPane);
 
             } catch (BoardTileException e) {
                 e.printStackTrace();
             }
         }};
-//        players = this._gameEngine.getPlayers();
 
         for(Player player: players) {
             System.out.println("the name is " + player.getName());
@@ -1574,7 +1566,7 @@ public class GameBoard {
                 ImageView igv = new ImageView(img);
                 igv.setFitWidth(25);
                 igv.setFitHeight(25);
-                ((VBox) ((HBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(v.getChildren().size())).getChildren().add(igv);
+                ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(v.getChildren().size() - 1)).getChildren().add(igv);
             }
         }
         for (int i = 0; i < topRow.getChildren().size(); i++) {
@@ -1584,7 +1576,7 @@ public class GameBoard {
                 ImageView igv = new ImageView(img);
                 igv.setFitWidth(25);
                 igv.setFitHeight(25);
-                ((VBox) ((HBox) ((HBox) _boardPane.getTop()).getChildren().get(i)).getChildren().get(0)).getChildren().add(igv);
+                ((HBox) ((VBox) ((HBox) _boardPane.getTop()).getChildren().get(i)).getChildren().get(0)).getChildren().add(igv);
             }
         }
         for (int i = 0; i < rightCol.getChildren().size(); i++) {
@@ -1594,7 +1586,7 @@ public class GameBoard {
                 ImageView igv = new ImageView(img);
                 igv.setFitWidth(25);
                 igv.setFitHeight(25);
-                ((HBox) ((VBox) ((VBox) _boardPane.getRight()).getChildren().get(i)).getChildren().get(v.getChildren().size())).getChildren().add(igv);
+                ((VBox) ((HBox) ((VBox) _boardPane.getRight()).getChildren().get(i)).getChildren().get(v.getChildren().size() - 1)).getChildren().add(igv);
             }
         }
         for (int i = 0; i < leftCol.getChildren().size(); i++) {
@@ -1604,7 +1596,7 @@ public class GameBoard {
                 ImageView igv = new ImageView(img);
                 igv.setFitWidth(25);
                 igv.setFitHeight(25);
-                ((HBox) ((VBox) ((VBox) _boardPane.getLeft()).getChildren().get(i)).getChildren().get(0)).getChildren().add(igv);
+                ((VBox) ((HBox) ((VBox) _boardPane.getLeft()).getChildren().get(i)).getChildren().get(0)).getChildren().add(igv);
             }
         }
     }

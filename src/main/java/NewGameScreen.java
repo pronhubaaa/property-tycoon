@@ -555,15 +555,18 @@ public class NewGameScreen extends Scene {
                             errorMsg.append("You must select a player piece. \n");
                         }
                         if (errorMsg.toString().equals("")) {
+                            Player player;
                             try {
                                 if (human) {
                                     Board tempBoard = new Board(new JSONObject());
-                                    playersList.add(new Human(1500, playerName, tempBoard));
+                                    player = new Human(1500, playerName, tempBoard);
                                 } else {
                                     Board tempBoard = new Board(new JSONObject());
-                                    playersList.add(new AI(1500, playerName, tempBoard));
+                                    player = new AI(1500, playerName, tempBoard);
                                 }
-                            } catch (Exception exp) {
+                                player.setPiece(PlayerPiece.fromInt(pieceNo));
+                                playersList.add(player);
+                            } catch (BoardTileException exp) {
                                 //do nothing
                             }
                         }
@@ -652,14 +655,10 @@ public class NewGameScreen extends Scene {
             GameType g = GameType.FullGame;
             try {
                 gameEngine = new GameEngine(json, playersList, g);
-                for (Player p : playersList) {
-                    gameEngine.addPlayer(p);
-                    p.setBoard(gameEngine.getBoard());
-                }
-                // UI SHOW BOARD
-            } catch (Exception e) {
-                //do nothing
+            } catch (BoardTileException e) {
+                e.printStackTrace();
             }
+
         } else {
             GameType g = GameType.AbridgedGame;
             VBox v = (VBox) rectRightBot.getChildren().get(2);
