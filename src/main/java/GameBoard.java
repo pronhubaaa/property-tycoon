@@ -23,6 +23,7 @@ public class GameBoard {
     private HBox _boardContainer;
     private Button _detailsButton;
     private StackPane _centerStack;
+    private StackPane _storedStack;
     private Label _currentMsg = new Label("");
 
     private Dice _dice;
@@ -197,6 +198,7 @@ public class GameBoard {
                 priceTag.getStyleClass().add("tax-tile-text");
                 priceTag.setRotate(-90);
                 v.setOnMouseClicked(t -> {
+                    _storedStack = _centerStack;
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -432,6 +434,7 @@ public class GameBoard {
                 priceTag.getStyleClass().add("tax-tile-text");
                 priceTag.setRotate(90);
                 v.setOnMouseClicked(t -> {
+                    _storedStack = _centerStack;
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -652,6 +655,7 @@ public class GameBoard {
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
                 v.setOnMouseClicked(t -> {
+                    _storedStack = _centerStack;
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -881,6 +885,7 @@ public class GameBoard {
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
                 v.setOnMouseClicked(t -> {
+                    _storedStack = _centerStack;
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -1329,6 +1334,7 @@ public class GameBoard {
             case Utility:
                 Ownable o = (Ownable) t;
                 if (o.isOwned()) {
+                    _storedStack = _centerStack;
 
                     //use displayMessage, put everything before the following lines of code
 
@@ -1342,6 +1348,7 @@ public class GameBoard {
                     });
                     _centerStack.getChildren().add(ok);
                 } else {
+                    _storedStack = _centerStack;
                     VBox container = new VBox();
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
@@ -1373,19 +1380,28 @@ public class GameBoard {
                         }
                     });
                     container.getChildren().add(card);
-                    Button buy = new Button();
+                    Button buy = new Button("Buy");
                     buy.getStyleClass().add("main-menu-button");
                     container.getChildren().add(buy);
                     buy.setOnAction((ActionEvent e) -> {
                         p.buyTile(t);
                         cleanStack(); //end with this line
                     });
+                    Button ok = new Button("Auction");
+                    ok.getStyleClass().add("main-menu-button");
+                    ok.setPadding(new Insets(200, 0, 0, 0));
+                    _centerStack.getChildren().add(ok);
+                    ok.setOnAction((ActionEvent e) -> {
+                        //DO AUCTION 
+                    });
                     _centerStack.getChildren().add(container);
                 }
                 break;
             case CardTile:
                 CardTile c = (CardTile) t;
+                _storedStack = _centerStack;
                 VBox grey = new VBox();
+                grey.setAlignment(Pos.CENTER);
                 grey.setMaxWidth(_centerStack.widthProperty().intValue());
                 grey.setMinWidth(_centerStack.widthProperty().intValue());
                 grey.setMaxHeight(_centerStack.heightProperty().intValue());
@@ -1446,12 +1462,35 @@ public class GameBoard {
                         cleanStack();
                     }
                 });
+                Button ok = new Button("Ok");
+                ok.getStyleClass().add("main-menu-button");
+                ok.setPadding(new Insets(200, 0, 0, 0));
+                _centerStack.getChildren().add(ok);
+                ok.setOnAction((ActionEvent e) -> {
+                    cleanStack();
+                });
                 break;
             case Go:
+                _storedStack = _centerStack;
                 displayMessage("Player " + p.getName() + " landed on go. Collect £200.", 20);
+                Button ok = new Button("Ok");
+                ok.getStyleClass().add("main-menu-button");
+                ok.setPadding(new Insets(200, 0, 0, 0));
+                _centerStack.getChildren().add(ok);
+                ok.setOnAction((ActionEvent e) -> {
+                   cleanStack();
+                });
                 break;
             case GoToJail:
-                displayMessage("Go to jail!", 20);
+                _storedStack = _centerStack;
+                displayMessage("Go to jail!", 20);Button ok = new Button("Ok");
+                ok.getStyleClass().add("main-menu-button");
+                ok.setPadding(new Insets(200, 0, 0, 0));
+                _centerStack.getChildren().add(ok);
+                ok.setOnAction((ActionEvent e) -> {
+                    cleanStack();
+                });
+                break;
         }
     }
 
@@ -1469,7 +1508,6 @@ public class GameBoard {
 
 
     public void rollButton(Dice dice) {
-
         VBox roll = new VBox();
         roll.setAlignment(Pos.CENTER);
         roll.setSpacing(50);
@@ -1521,6 +1559,7 @@ public class GameBoard {
     }
 
     public VBox displayMessage(String s, int size) {
+        _storedStack = _centerStack;
         Label message = new Label(s);
         message.getStyleClass().add("raleway");
         message.setStyle("-fx-font-size: " + size + "px;");
@@ -1539,7 +1578,7 @@ public class GameBoard {
     }
 
     public void cleanStack() {
-        _centerStack.getChildren().remove(1, _centerStack.getChildren().size());
+        _centerStack = _storedStack;
     }
 
     public String getStyle(Tile tile) {
