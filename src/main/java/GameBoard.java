@@ -234,8 +234,12 @@ public class GameBoard {
                 v.getChildren().add(currentPlayers);
                 VBox owner = new VBox();
                 owner.setSpacing(5);
+                owner.setMaxHeight(10);
+                owner.setMinHeight(10);
                 VBox landed = new VBox();
                 landed.setSpacing(5);
+                landed.setMaxHeight(10);
+                landed.setMinHeight(10);
                 v.getChildren().addAll(owner, landed);
                 v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
@@ -262,11 +266,11 @@ public class GameBoard {
                 v.setStyle("-fx-background-color: '#b8b8b8';");
                 v.getChildren().add(iv);
                 v.getChildren().add(l);
-                VBox owner = new VBox();
-                owner.setSpacing(5);
                 VBox landed = new VBox();
                 landed.setSpacing(5);
-                v.getChildren().addAll(owner, landed);
+                landed.setMaxHeight(10);
+                landed.setMinHeight(10);
+                v.getChildren().addAll(landed);
                 v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof CardTile) {
@@ -285,11 +289,11 @@ public class GameBoard {
                 l.setRotate(-90);
                 l.getStyleClass().add("card-text");
                 v.getChildren().add(l);
-                VBox owner = new VBox();
-                owner.setSpacing(5);
                 VBox landed = new VBox();
                 landed.setSpacing(5);
-                v.getChildren().addAll(owner, landed);
+                landed.setMaxHeight(10);
+                landed.setMinHeight(10);
+                v.getChildren().addAll(landed);
                 v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Jail) {
@@ -340,11 +344,11 @@ public class GameBoard {
 //                bottomColumn.setAlignment(Pos.BOTTOM_CENTER);
 //                bottomColumn.getChildren().add(justVisiting2);
 //                v.getChildren().add(bottomColumn);
-                VBox owner = new VBox();
-                owner.setSpacing(5);
                 VBox landed = new VBox();
                 landed.setSpacing(5);
-                v.getChildren().addAll(owner, landed);
+                landed.setMaxHeight(10);
+                landed.setMinHeight(10);
+                v.getChildren().addAll(landed);
                 v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof GoToJail) {
@@ -378,11 +382,11 @@ public class GameBoard {
                 v.setMinHeight(121);
                 Label l = new Label("Free parking");
                 v.getChildren().add(l);
-                VBox owner = new VBox();
-                owner.setSpacing(5);
                 VBox landed = new VBox();
                 landed.setSpacing(5);
-                v.getChildren().addAll(owner, landed);
+                landed.setMaxHeight(10);
+                landed.setMinHeight(10);
+                v.getChildren().addAll(landed);
                 v.setId(String.valueOf(i));
                 rightColumnTiles.add(v);
             }
@@ -1340,50 +1344,54 @@ public class GameBoard {
         VBox leftCol = (VBox) _boardPane.getLeft();
         VBox rightCol = (VBox) _boardPane.getRight();
         System.out.println("HI");
-        for (int i = 0; i < bottomRow.getChildren().size(); i++) {
-            VBox v = (VBox) bottomRow.getChildren().get(i); //get next tile box
-            System.out.println("o: " + tiles.indexOf(o) + " + id: " + v.getId());
-            if (Integer.parseInt(v.getId()) == tiles.indexOf(o)) {
-                System.out.println("Thing bought");
-                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
-                ImageView igv = new ImageView(img);
-                igv.setFitWidth(10);
-                igv.setFitHeight(10);
-                ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
-                ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+        if (tiles.indexOf(o) < 12) {
+            for (int i = 0; i < bottomRow.getChildren().size(); i++) {
+                VBox v = (VBox) bottomRow.getChildren().get(i); //get next tile box
+                System.out.println("o: " + tiles.indexOf(o) + " + id: " + v.getId());
+                if (Integer.parseInt(v.getId()) == tiles.indexOf(o)) {
+                    System.out.println("Thing bought");
+                    Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                    ImageView igv = new ImageView(img);
+                    igv.setFitWidth(10);
+                    igv.setFitHeight(10);
+                    ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
+                    ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                }
             }
-        }
-        for (int i = 0; i < topRow.getChildren().size(); i++) {
-            VBox v = (VBox) topRow.getChildren().get(i); //get next tile box
-            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
-                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
-                ImageView igv = new ImageView(img);
-                igv.setFitWidth(25);
-                igv.setFitHeight(25);
-                ((HBox) ((VBox) ((HBox) _boardPane.getTop()).getChildren().get(i)).getChildren().get(1)).getChildren().add(igv);
-                ((VBox) ((VBox) ((HBox) _boardPane.getTop()).getChildren().get(i)).getChildren().get(0)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
+        } else if (tiles.indexOf(o) < 21) {
+            for (int i = 0; i < topRow.getChildren().size(); i++) {
+                VBox v = (VBox) topRow.getChildren().get(i); //get next tile box
+                if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
+                    Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                    ImageView igv = new ImageView(img);
+                    igv.setFitWidth(25);
+                    igv.setFitHeight(25);
+                    ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
+                    ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                }
             }
-        }
-        for (int i = 0; i < rightCol.getChildren().size(); i++) {
-            HBox v = (HBox) rightCol.getChildren().get(i); //get next tile box
-            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
-                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
-                ImageView igv = new ImageView(img);
-                igv.setFitWidth(25);
-                igv.setFitHeight(25);
-                ((VBox) ((HBox) ((VBox) _boardPane.getRight()).getChildren().get(i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
-                ((HBox) ((HBox) ((VBox) _boardPane.getRight()).getChildren().get(i)).getChildren().get(1)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
+        } else if (tiles.indexOf(o) < 32) {
+            for (int i = 0; i < rightCol.getChildren().size(); i++) {
+                HBox v = (HBox) rightCol.getChildren().get(i); //get next tile box
+                if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
+                    Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                    ImageView igv = new ImageView(img);
+                    igv.setFitWidth(25);
+                    igv.setFitHeight(25);
+                    ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
+                    ((HBox) ((VBox) _boardPane.getBottom()).getChildren().get(i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                }
             }
-        }
-        for (int i = 0; i < leftCol.getChildren().size(); i++) {
-            HBox v = (HBox) leftCol.getChildren().get(i); //get next tile box
-            if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
-                Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
-                ImageView igv = new ImageView(img);
-                igv.setFitWidth(25);
-                igv.setFitHeight(25);
-                ((VBox) ((HBox) ((VBox) _boardPane.getLeft()).getChildren().get(i)).getChildren().get(1)).getChildren().add(igv);
-                ((HBox) ((HBox) ((VBox) _boardPane.getLeft()).getChildren().get(i)).getChildren().get(0)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().toString()) + "';");
+        } else if (tiles.indexOf(o) < tiles.size()) {
+            for (int i = 0; i < leftCol.getChildren().size(); i++) {
+                HBox v = (HBox) leftCol.getChildren().get(i); //get next tile box
+                if (Integer.parseInt(v.getId()) == tiles.indexOf(p.getPosition())) {
+                    Image img = new Image("resources/player-piece" + p.getPiece().getValue() + "-small.png");
+                    ImageView igv = new ImageView(img);
+                    igv.setFitWidth(25);
+                    igv.setFitHeight(25);
+                    ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
+                    ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");}
             }
         }
     }
