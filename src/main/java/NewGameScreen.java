@@ -525,10 +525,10 @@ public class NewGameScreen extends Scene {
             StringBuilder errorMsg = new StringBuilder();
             //check players
             playersList = new ArrayList<>();
+            String playerName = "";
             for (int child = 0; child < rectLeft.getChildren().size(); child++) {
                 Node n = rectLeft.getChildren().get(child);
                 HBox h = (HBox) n;
-                String playerName = "";
                 boolean human = true;
                 int pieceNo = -1;
                 for (Node m : h.getChildren()) {
@@ -667,13 +667,11 @@ public class NewGameScreen extends Scene {
             int minutes = Integer.parseInt(t.getText());
             try {
                 gameEngine = new GameEngine(json, playersList, g, minutes);
-                for (Player p : playersList) {
-                    gameEngine.addPlayer(p);
-                    p.setBoard(gameEngine.getBoard());
-                }
-                // UI SHOW BOARD
-            } catch (Exception e) {
-                //do nothing
+            } catch (BoardTileException e) {
+                e.printStackTrace();
+            }
+            for (Player p : playersList) {
+                p.setBoard(gameEngine.getBoard());
             }
         }
 
