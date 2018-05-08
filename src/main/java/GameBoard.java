@@ -42,7 +42,7 @@ public class GameBoard {
         this._sidebarSplitPane = new VBox();
         this._boardPane = new BorderPane();
         this._centerStack = new StackPane();
-        this._storedStack = new ArrayList<Node>();
+        this._storedStack = new ArrayList<>();
 
         this._parentPane.setMinWidth(400);
         this._parentPane.setMinHeight(400);
@@ -144,9 +144,7 @@ public class GameBoard {
                 topRow.add(rightColumn.get(0));
             } else if (rightColumn.get(i) instanceof Go) {
                 HBox v = new HBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
                 v.setMinWidth(121);
@@ -172,9 +170,7 @@ public class GameBoard {
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Ownable) {
                 Ownable o = (Ownable) rightColumn.get(i);
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
@@ -253,9 +249,7 @@ public class GameBoard {
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof TaxTile) {
                 TaxTile t = (TaxTile) rightColumn.get(i);
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 HBox v = new HBox();
                 v.setAlignment(Pos.CENTER);
                 v.getStyleClass().add("tile");
@@ -283,9 +277,7 @@ public class GameBoard {
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof CardTile) {
                 CardTile c = (CardTile) rightColumn.get(i);
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -306,9 +298,7 @@ public class GameBoard {
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Jail) {
                 HBox v = new HBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.getStyleClass().add("tile");
                 v.setStyle("-fx-background-color: '#fbb676'");
                 v.setMinWidth(121);
@@ -361,9 +351,7 @@ public class GameBoard {
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof GoToJail) {
                 HBox v = new HBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
                 v.setMaxWidth(121);
@@ -381,9 +369,7 @@ public class GameBoard {
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof FreeParking) {
                 HBox v = new HBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.setMaxWidth(121);
                 v.setMinWidth(121);
                 v.setMaxHeight(121);
@@ -405,9 +391,7 @@ public class GameBoard {
                 bottomRow.add(0, leftColumn.get(i));
             } else if (leftColumn.get(i) instanceof Go) {
                 HBox v = new HBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
                 v.setMinWidth(121);
@@ -433,9 +417,7 @@ public class GameBoard {
                 leftColumnTiles.add(v);
             } else if (leftColumn.get(i) instanceof Ownable) {
                 Ownable o = (Ownable) leftColumn.get(i);
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 HBox v = new HBox();
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
@@ -468,9 +450,7 @@ public class GameBoard {
                 priceTag.getStyleClass().add("tax-tile-text");
                 priceTag.setRotate(90);
                 v.setOnMouseClicked(t -> {
-                    for (Node n : _centerStack.getChildren()) {
-                        _storedStack.add(n);
-                    }
+                    _storedStack.addAll(_centerStack.getChildren());
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -939,9 +919,7 @@ public class GameBoard {
                 price.getChildren().add(priceTag);
                 priceTag.getStyleClass().add("tax-tile-text");
                 v.setOnMouseClicked(t -> {
-                    for (Node n : _centerStack.getChildren()) {
-                        _storedStack.add(n);
-                    }
+                    _storedStack.addAll(_centerStack.getChildren());
                     VBox grey = new VBox();
                     grey.setMaxWidth(_centerStack.widthProperty().intValue());
                     grey.setMinWidth(_centerStack.widthProperty().intValue());
@@ -985,9 +963,7 @@ public class GameBoard {
                 topRowTiles.add(v);
             } else if (aTopRow instanceof TaxTile) {
                 TaxTile t = (TaxTile) aTopRow;
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 VBox v = new VBox();
                 v.setAlignment(Pos.CENTER);
                 v.getStyleClass().add("tile");
@@ -1012,9 +988,7 @@ public class GameBoard {
                 topRowTiles.add(v);
             } else if (aTopRow instanceof CardTile) {
                 CardTile c = (CardTile) aTopRow;
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 VBox v = new VBox();
                 v.getStyleClass().add("tile");
                 v.setAlignment(Pos.CENTER);
@@ -1032,9 +1006,7 @@ public class GameBoard {
                 topRowTiles.add(v);
             } else if (aTopRow instanceof Jail) {
                 VBox v = new VBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.getStyleClass().add("tile");
                 v.setStyle("-fx-background-color: '#fbb676'");
                 v.setMinWidth(121);
@@ -1080,9 +1052,7 @@ public class GameBoard {
                 topRowTiles.add(v);
             } else if (aTopRow instanceof GoToJail) {
                 VBox v = new VBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.getStyleClass().add("tile");
                 v.setMinWidth(121);
                 v.setMaxWidth(121);
@@ -1108,9 +1078,7 @@ public class GameBoard {
                 topRowTiles.add(v);
             } else if (aTopRow instanceof FreeParking) {
                 VBox v = new VBox();
-                for (Node n : _centerStack.getChildren()) {
-                    _storedStack.add(n);
-                }
+                _storedStack.addAll(_centerStack.getChildren());
                 v.setStyle("-fx-background-color: '#c7e7ff'");
                 v.setMaxWidth(121);
                 v.setMinWidth(121);
@@ -1173,9 +1141,7 @@ public class GameBoard {
     }
 
     public VBox getCardStyle(Tile t) {
-        for (Node n : _centerStack.getChildren()) {
-            _storedStack.add(n);
-        }
+        _storedStack.addAll(_centerStack.getChildren());
         VBox card = new VBox();
         card.setMaxWidth(400);
         card.setMinWidth(400);
@@ -1364,7 +1330,7 @@ public class GameBoard {
                     igv.setFitWidth(10);
                     igv.setFitHeight(10);
                     ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
-                    ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                    ((HBox) _boardPane.getBottom()).getChildren().get(10 - i).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
                 }
             }
         } else if (tiles.indexOf(o) < 21) {
@@ -1377,7 +1343,7 @@ public class GameBoard {
                     igv.setFitWidth(10);
                     igv.setFitHeight(10);
                     ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(2)).getChildren().add(igv);
-                    ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                    ((HBox) _boardPane.getBottom()).getChildren().get(i).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
                 }
             }
         } else if (tiles.indexOf(o) < 32) {
@@ -1390,7 +1356,7 @@ public class GameBoard {
                     igv.setFitWidth(10);
                     igv.setFitHeight(10);
                     ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(i)).getChildren().get(v.getChildren().size() - 2)).getChildren().add(igv);
-                    ((HBox) ((VBox) _boardPane.getBottom()).getChildren().get(i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                    ((VBox) _boardPane.getBottom()).getChildren().get(i).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
                 }
             }
         } else if (tiles.indexOf(o) < tiles.size()) {
@@ -1403,7 +1369,7 @@ public class GameBoard {
                     igv.setFitWidth(10);
                     igv.setFitHeight(10);
                     ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).getChildren().get(2)).getChildren().add(igv);
-                    ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");}
+                    ((HBox) _boardPane.getBottom()).getChildren().get(10 - i).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");}
             }
         }
     }
@@ -1451,9 +1417,7 @@ public class GameBoard {
             cleanStack();
             nextTurn();
         });
-        for (Node n : _centerStack.getChildren()) {
-            _storedStack.add(n);
-        }
+        _storedStack.addAll(_centerStack.getChildren());
         switch (type) {
             case Property:
             case Station:
@@ -1656,9 +1620,7 @@ public class GameBoard {
         container.setSpacing(10);
         container.getChildren().add(newMessage);
         Button ok = new Button("Ok");
-        ok.setOnAction((ActionEvent e) -> {
-            cleanStack();
-        });
+        ok.setOnAction((ActionEvent e) -> cleanStack());
         ok.getStyleClass().add("main-menu-button");
         container.getChildren().add(ok);
         return container;
