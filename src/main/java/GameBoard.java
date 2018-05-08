@@ -1,6 +1,4 @@
-import com.alibaba.fastjson.JSONObject;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -9,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
@@ -66,37 +63,36 @@ public class GameBoard {
     }
 
     private void _createSideLayout() {
+        rightSidebar = new BorderPane();
         playersPane = new VBox();
-        addPlayersToSidebar();
         rightSidebar.setTop(playersPane);
         this._sidebarSplitPane.getChildren().add(rightSidebar);
-        addPlayersToSidebar();
+        reorderPlayersSidebar();
     }
 
-    private void addPlayersToSidebar() {
+    private void reorderPlayersSidebar() {
         playersPane.getChildren().clear();
         for (Player player : this._gameEngine.getPlayers()) {
             if (player.equals(_gameEngine.getCurrentPlayer())) {
                 rightSidebar.setBottom(getPlayerMetaCard(player));
-            }
-            if (!player.getName().equals("")) {
+            } else if (!player.getName().equals("")) {
                 playersPane.getChildren().add(getPlayerMetaCard(player));
             }
         }
     }
 
     private static HBox getPlayerMetaCard(Player player) {
-        return new HBox() {{
+        return new HBox() {{ // container
             setAlignment(Pos.CENTER);
             getChildren().addAll(
-                    new ImageView(new Image("resources/player-piece" + player.getPiece().getValue() + ".png")) {{
+                    new ImageView(new Image("resources/player-piece" + player.getPiece().getValue() + ".png")) {{ //playerpiece
                         setFitHeight(100);
                         setPreserveRatio(true);
                     }},
-                    new VBox() {{
+                    new VBox() {{ // text on right-hand-side
                         getChildren().addAll(
-                                new Label(player.getName()),
-                                new Label("£" + player.getBalance()) {{
+                                new Label(player.getName()), // name label
+                                new Label("£" + player.getBalance()) {{ // balance label
                                     getStyleClass().add("player-balance");
                                 }});
                         setAlignment(Pos.CENTER_RIGHT);
@@ -1417,6 +1413,7 @@ public class GameBoard {
         this._dice = new Dice();
         _gameEngine.nextTurn();
         rollButton(this._dice);
+        reorderPlayersSidebar();
     }
 
     //show a message on stage - delete message with destroyMessage()
