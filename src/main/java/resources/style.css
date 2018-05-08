@@ -241,6 +241,8 @@
     -fx-background-color: '#86bf8e';
     -fx-border-color: '#f2f2f2';
     -fx-padding: 10px;
+    -fx-min-width: 300px;
+    -fx-max-width: 300px;
 }
 
 .player-balance {

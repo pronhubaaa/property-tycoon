@@ -26,6 +26,9 @@ public class GameBoard {
     private StackPane _centerStack;
     private ArrayList<Node> _storedStack;
     private Label _currentMsg = new Label("");
+    private BorderPane rightSidebar;
+    private VBox playersPane;
+
 
     private Dice _dice;
     private ArrayList<Tile> tiles;
@@ -63,36 +66,45 @@ public class GameBoard {
     }
 
     private void _createSideLayout() {
-        System.out.println("Size: " + this._gameEngine.getPlayers().size());
+        playersPane = new VBox();
+        addPlayersToSidebar();
+        rightSidebar.setTop(playersPane);
+        this._sidebarSplitPane.getChildren().add(rightSidebar);
+        addPlayersToSidebar();
+    }
 
+    private void addPlayersToSidebar() {
+        playersPane.getChildren().clear();
         for (Player player : this._gameEngine.getPlayers()) {
-            if (!player.getName().equals("")) {
-                HBox playerPane = new HBox() {{
-                    setAlignment(Pos.CENTER);
-                    getChildren().addAll(
-                            new ImageView(new Image("resources/player-piece" + player.getPiece().getValue() + ".png")) {{
-                                setFitHeight(100);
-                                setPreserveRatio(true);
-                            }},
-                            new VBox() {{
-                                getChildren().addAll(
-                                    new Label(player.getName()),
-                                    new Label("£" + player.getBalance()) {{
-                                        getStyleClass().add("player-balance");
-                                    }});
-                                setAlignment(Pos.CENTER_RIGHT);
-                            }});
-
-                }};
-
-                playerPane.getStyleClass().add("player-panel");
-                playerPane.getStyleClass().add("raleway");
-                playerPane.setMinHeight(25);
-
-                this._sidebarSplitPane.getChildren().add(playerPane);
+            if (player.equals(_gameEngine.getCurrentPlayer())) {
+                rightSidebar.setBottom(getPlayerMetaCard(player));
             }
-
+            if (!player.getName().equals("")) {
+                playersPane.getChildren().add(getPlayerMetaCard(player));
+            }
         }
+    }
+
+    private static HBox getPlayerMetaCard(Player player) {
+        return new HBox() {{
+            setAlignment(Pos.CENTER);
+            getChildren().addAll(
+                    new ImageView(new Image("resources/player-piece" + player.getPiece().getValue() + ".png")) {{
+                        setFitHeight(100);
+                        setPreserveRatio(true);
+                    }},
+                    new VBox() {{
+                        getChildren().addAll(
+                                new Label(player.getName()),
+                                new Label("£" + player.getBalance()) {{
+                                    getStyleClass().add("player-balance");
+                                }});
+                        setAlignment(Pos.CENTER_RIGHT);
+                    }});
+            getStyleClass().add("player-panel");
+            getStyleClass().add("raleway");
+            setMinHeight(25);
+        }};
     }
 
     private void _createBoardLayout() {
