@@ -31,6 +31,7 @@ public class CardActionTest {
     private CardAction cardAction;
     private Board board;
     private Player player;
+    private GameEngine gameEngine;
 
     @Before
     public void setUp() throws Exception {
@@ -43,6 +44,7 @@ public class CardActionTest {
         board = new Board(boardJson);
         TEST_ACTION_MEMBER_PLAYER = new Player(0, "", board);
         player = new Player(0, "", board);
+        gameEngine = new GameEngine(new JSONObject());
     }
 
     @After
@@ -133,7 +135,7 @@ public class CardActionTest {
         }};
         card.clear();
         card.addAll(actions);
-        card.get(0).performAction(player);
+        card.get(0).performAction(gameEngine, player);
         assertEquals(TEST_CARD_ACTION_DESC, player.getCards().get(0).get(0).getDescription());
 
         // ActionType.MOVE:
@@ -141,29 +143,29 @@ public class CardActionTest {
         CardAction action = new CardAction(CardActionType.Move, card, TEST_CARD_ACTION_DESC, null, tiles.get(1), 1);
         action.setCollectSalaryAtGo(true);
         // move to tile 1, collect salary
-        testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);
+        testOverGo(tiles, gameEngine, player, action, TEST_JSON_GO_SALARY);
         // move 2 tiles forward, collect salary
         action.setIntent(2);
-        testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);
+        testOverGo(tiles, gameEngine, player, action, TEST_JSON_GO_SALARY);
         // move 2 tiles forward, no salary
         action.setCollectSalaryAtGo(false);
-        testOverGo(tiles, player, action, 0);
+        testOverGo(tiles, gameEngine, player, action, 0);
         // move to tile 3, no salary
         action.setIntent(tiles.get(3));
-        testOverGo(tiles, player, action, 0);
+        testOverGo(tiles, gameEngine, player, action, 0);
         // move 2 tiles backward
         action.setIntent(-2);
         player.setPosition(tiles.get(1));
-        action.performAction(player);
+        action.performAction(gameEngine, player);
         assertEquals(tiles.size() - 1, player.getPosition().getPosition());
 
         // ActionType.TRANSACTION:
     }
 
-    private static void testOverGo(ArrayList<Tile> tiles, Player player, CardAction action, int goSalary) throws MalformedCardActionException {
+    private static void testOverGo(ArrayList<Tile> tiles, GameEngine gameEngine, Player player, CardAction action, int goSalary) throws MalformedCardActionException {
         player.setPosition(tiles.get(tiles.size() - 1));
         int preTestBalance = player.getBalance();
-        action.performAction(player);
+        action.performAction(gameEngine, player);
         if (action.getIntent() instanceof Tile) {
             //noinspection SuspiciousMethodCalls
             assertEquals(tiles.indexOf(action.getIntent()), tiles.indexOf(player.getPosition()));
