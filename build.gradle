@@ -16,7 +16,26 @@ repositories {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
+
+task copyResources(type: Copy) {
+    from "${projectDir}/src/main/java/resources"
+    into "${buildDir}/classes/java/main/resources"
+}
+processResources.dependsOn copyResources
+
+task copyResources2(type: Copy) {
+    from "${projectDir}/src/main/java/resources"
+    into "${projectDir}/out/production/classes/resources"
+}
+processResources.dependsOn copyResources2
+
+
+
 dependencies {
+    compile 'com.alibaba:fastjson:1.2.46'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.testfx', name: 'testfx-core', version: '4.0.12-alpha'
+    testCompile group: 'org.testfx', name: 'testfx-junit', version: '4.0.12-alpha'
+    testCompile group: 'org.testfx', name: 'openjfx-monocle', 'version': '8u76-b04'
 }
