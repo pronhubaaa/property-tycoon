@@ -8,6 +8,7 @@ public abstract class IncomeTile extends Tile {
 
     /**
      * IncomeTiles provide a set amount to a Player when their collect() method is called.
+     *
      * @param name
      * @param position
      * @param value

@@ -1,8 +1,13 @@
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Labeled;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
+
+import java.net.URL;
 
 public class MainMenuScreens {
     /**
@@ -11,40 +16,108 @@ public class MainMenuScreens {
      * @param ui The UI object.
      * @return A scene containing the main menu.
      */
-    public static Scene getMainMenu(UI ui) {
-        VBox mainMenuLayout = new VBox();
-        mainMenuLayout.setSpacing(8);
 
-        Button newGameButton = new Button();
-        newGameButton.setText("New game");
-        newGameButton.setId("new-game-button");
 
-        newGameButton.setOnAction((ActionEvent e) -> {
-            VBox testLayout = new VBox();
-            Text testText = new Text("Test");
-            testLayout.setId("test-layout");
-            testLayout.getChildren().add(testText);
-            ui.showScene(new Scene(testLayout));
-        });
+    public static Scene getMainMenu(UI ui, GameEngine gameEngine) {
+        URL url = MainMenuScreens.class.getResource("resources/style.css");
+        if (url == null) {
+            System.out.println("Resource not found");
+        }
+        String css = url.toExternalForm();
+        VBox mainMenuLayout = new VBox() {{
+            getStylesheets().add(css);
+            setSpacing(8);
+        }};
 
-        Button loadGameButton = new Button();
-        loadGameButton.setText("Load game");
+        Image logo = new Image("resources/main-logo.png"); //set image to be  logo
+        ImageView imageView = new ImageView(logo) {{ //add the image to an image view
+            setFitHeight(286);
+            setFitWidth(500); //formatting logo
+        }};
 
-        Button importBoardButton = new Button();
-        importBoardButton.setText("Import board");
+        mainMenuLayout.getChildren().add(imageView); //add image view to the scene
 
-        Button settingsButton = new Button();
-        settingsButton.setText("Settings");
+        mainMenuLayout.getChildren().addAll(getMainMenuButton("New game", "new-game-button",
+                e -> ui.showScene(MainMenuScreens.getNewGame(ui, gameEngine))),
 
-        Button exitButton = new Button();
-        exitButton.setText("Exit");
+                getMainMenuButton("Load game", "load-game-button",
+                        e -> ui.showScene(MainMenuScreens.getLoadGame(ui))),
 
-        mainMenuLayout.getChildren().add(newGameButton);
-        mainMenuLayout.getChildren().add(loadGameButton);
-        mainMenuLayout.getChildren().add(importBoardButton);
-        mainMenuLayout.getChildren().add(settingsButton);
-        mainMenuLayout.getChildren().add(exitButton);
+                getMainMenuButton("Import board", "import-board-button",
+                        e -> ui.showScene(MainMenuScreens.getImportBoard(ui))),
 
+                getMainMenuButton("Settings", "settings-button",
+                        e -> ui.showScene(MainMenuScreens.getSettings(ui))),
+
+                getMainMenuButton("Exit", "exit-button",
+                        e -> ui.close()));
+
+        mainMenuLayout.setId("pane");
         return new Scene(mainMenuLayout);
+    }
+
+    private static Button getMainMenuButton(String buttonText, String buttonId, EventHandler<ActionEvent> actionEvent) {
+        return new Button() {{
+            setText(buttonText);
+            setId(buttonId);
+            getStyleClass().add("main-menu-button");
+            setSize(this, 678, 90);
+            setOnAction(actionEvent);
+        }};
+    }
+
+    /**
+     * Returns a scene containing new game setup screen.
+     *
+     * @param ui The UI object.
+     * @return A scene containing the new game setup screen.
+     */
+    public static Scene getNewGame(UI ui, GameEngine gameEngine) {
+        return new NewGameScreen(new VBox(), ui, gameEngine);
+    }
+
+    /**
+     * Returns a scene containing load game screen.
+     *
+     * @param ui The UI object.
+     * @return A scene containing the load game screen.
+     */
+    public static Scene getLoadGame(UI ui) {
+        return new LoadGameScreen(new VBox());
+    }
+
+    /**
+     * Returns a scene containing import board screen.
+     *
+     * @param ui The UI object.
+     * @return A scene containing the import board screen.
+     */
+    public static Scene getImportBoard(UI ui) {
+        return new ImportBoardScreen(new VBox());
+    }
+
+    /**
+     * Returns a scene containing settings screen.
+     *
+     * @param ui The UI object.
+     * @return A scene containing the settings screen.
+     */
+    public static Scene getSettings(UI ui) {
+        return new SettingsScreen(new VBox());
+    }
+
+    /**
+     * Sets a passed node's strictly limited width and height.
+     *
+     * @param node   The UI object.
+     * @param width  The determined width.
+     * @param height The determined height.
+     */
+
+    private static void setSize(Labeled node, int width, int height) {
+        node.setMaxWidth(width);
+        node.setMinWidth(width);
+        node.setMaxHeight(height);
+        node.setMinHeight(height);
     }
 }
