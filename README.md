@@ -5,8 +5,6 @@
 | Master 	| [![Build Status](https://travis-ci.com/pete183/property-tycoon.svg?token=oRweRVsx9yT4nbqVpKAW&branch=master)](https://travis-ci.com/pete183/property-tycoon) 	|
 | Develop 	| [![Build Status](https://travis-ci.com/pete183/property-tycoon.svg?token=oRweRVsx9yT4nbqVpKAW&branch=develop)](https://travis-ci.com/pete183/property-tycoon) 	|
 
-## Property Tycoon Application
-[Application Download Link](./out/artifacts/property_tycoon_jar/property-tycoon.jar)
 
 ## Property Tycoon Report
 [Report Download Link](./portfolio/Report.pdf)
