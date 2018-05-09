@@ -27,7 +27,7 @@ public class NewGameScreen extends Scene {
     private static boolean fullGameType = true;
     private static ArrayList<Player> playersList;
 
-    public static void addNewPlayer() {
+    private static void addNewPlayer() {
         playerCount++;
         playerCountExternal++;
         if (playerCount > Game.getMaxPlayers()) {
