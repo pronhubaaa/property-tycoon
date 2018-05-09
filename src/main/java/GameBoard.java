@@ -107,11 +107,6 @@ public class GameBoard {
     }
 
     private void _createBoardLayout() {
-
-        this._detailsButton = new Button();
-        this._detailsButton.setText("Property details");
-        this._detailsButton.setId("property-details");
-
         this._centerStack.setMaxHeight(880);
         this._centerStack.setStyle("-fx-background-color: '#c4e0c8';");
         this._boardPane.setCenter(this._centerStack);
@@ -169,7 +164,7 @@ public class GameBoard {
                 VBox landed = new VBox();
                 landed.setSpacing(5);
                 v.getChildren().addAll(owner, landed);
-                v.setId(String.valueOf(i));
+                v.setId("right-" + String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Ownable) {
                 Ownable o = (Ownable) rightColumn.get(i);
@@ -248,7 +243,7 @@ public class GameBoard {
                 landed.setMaxHeight(10);
                 landed.setMinHeight(10);
                 v.getChildren().addAll(owner, landed);
-                v.setId(String.valueOf(i));
+                v.setId("right-" + String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof TaxTile) {
                 TaxTile t = (TaxTile) rightColumn.get(i);
@@ -276,7 +271,7 @@ public class GameBoard {
                 landed.setMaxHeight(10);
                 landed.setMinHeight(10);
                 v.getChildren().addAll(landed);
-                v.setId(String.valueOf(i));
+                v.setId("right-" + String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof CardTile) {
                 CardTile c = (CardTile) rightColumn.get(i);
@@ -297,7 +292,7 @@ public class GameBoard {
                 landed.setMaxHeight(10);
                 landed.setMinHeight(10);
                 v.getChildren().addAll(landed);
-                v.setId(String.valueOf(i));
+                v.setId("right-" + String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof Jail) {
                 HBox v = new HBox();
@@ -350,7 +345,7 @@ public class GameBoard {
                 landed.setMaxHeight(10);
                 landed.setMinHeight(10);
                 v.getChildren().addAll(landed);
-                v.setId(String.valueOf(i));
+                v.setId("right-" + String.valueOf(i));
                 rightColumnTiles.add(v);
             } else if (rightColumn.get(i) instanceof GoToJail) {
                 HBox v = new HBox();
@@ -384,7 +379,7 @@ public class GameBoard {
                 landed.setMaxHeight(10);
                 landed.setMinHeight(10);
                 v.getChildren().addAll(landed);
-                v.setId(String.valueOf(i));
+                v.setId("right-" + String.valueOf(i));
                 rightColumnTiles.add(v);
             }
         }
@@ -1150,6 +1145,7 @@ public class GameBoard {
         card.setMinWidth(400);
         card.setMaxHeight(500);
         card.setMinHeight(500);
+        card.setId("property-details");
         card.setStyle("-fx-background-color: '#ffffff';");
         BorderPane layout = new BorderPane();
         card.getChildren().add(layout);

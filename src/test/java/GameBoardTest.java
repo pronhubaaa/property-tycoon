@@ -79,12 +79,12 @@ public class GameBoardTest extends ApplicationTest {
         FxAssert.verifyThat("#property-details", NodeMatchers.isNull());
 
         // Assert that a tile exists
-        Node tileButton = lookup("#tile-2").query();
+        Node tileButton = lookup("#right-1").query();
         assertThat(tileButton, is(not(nullValue())));
-        FxAssert.verifyThat("#tile-2", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#right-1", NodeMatchers.isVisible());
 
         // Click the tile
-        clickOn("#tile-2");
+        clickOn("#right-1");
 
         // We expect that property details will appear
         Node detailsNode = lookup("#property-details").query();
@@ -92,18 +92,7 @@ public class GameBoardTest extends ApplicationTest {
         FxAssert.verifyThat("#property-details", NodeMatchers.isVisible());
 
         // Click the tile again
-        clickOn("#tile-2");
-
-        try {
-            wait(20000);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        // When we click again it should disappear
-        detailsNode = lookup("#property-details").query();
-        assertThat(detailsNode, is(nullValue()));
-        FxAssert.verifyThat("#property-details", NodeMatchers.isNull());
+        clickOn("#right-1");
     }
 
     @Test
