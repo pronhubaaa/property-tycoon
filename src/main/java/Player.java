@@ -244,6 +244,7 @@ public class Player implements Payable {
 
     /**
      * Attempts to debit $amount from this player, and returns the result of the transaction.
+     *
      * @param amount The amount to be debited.
      * @return Whether the transaction was successful or not.
      */
@@ -326,7 +327,9 @@ public class Player implements Payable {
     }
 
 
-    public void setBoard(Board b) {this.board = b;}
+    public void setBoard(Board b) {
+        this.board = b;
+    }
 
     public ArrayList<Card> getCards() {
         return cards;

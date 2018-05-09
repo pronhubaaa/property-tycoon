@@ -1,6 +1,6 @@
 @font-face {
-       font-family: Raleway;
-       src: url('Raleway-Regular.ttf');
+    font-family: Raleway;
+    src: url('Raleway-Regular.ttf');
 }
 
 #pane {
@@ -39,7 +39,7 @@
     -fx-cursor: hand;
 }
 
-#menu-container{
+#menu-container {
     -fx-background: '#c4e0c8';
 }
 
@@ -63,7 +63,7 @@
     -fx-color: '#a2dcab';
 }
 
-#players-title{
+#players-title {
     -fx-font-family: 'Raleway';
 }
 
@@ -81,7 +81,7 @@
     -fx-font-size: 40px;
 }
 
-#players-text{
+#players-text {
     -fx-font-family: 'Raleway';
     -fx-font-size: 20px;
 }

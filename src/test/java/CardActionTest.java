@@ -16,15 +16,19 @@ public class CardActionTest {
     private static final CardActionType TEST_INITIAL_CARDACTIONTYPE = CardActionType.Transaction;
     private static final CardActionType TEST_SECOND_CARDACTIONTYPE = CardActionType.Draw;
     private static final Object TEST_ACTION_MEMBER_OBJECT = new Object();
-    private static final Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {};
+    private static final Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {
+    };
     private Player TEST_ACTION_MEMBER_PLAYER;
     private static final String TEST_CARD_ACTION_DESC = "test";
     private static final int TEST_JSON_GO_SALARY = 200;
 
     private static final ArrayList<Payable> TEST_ACTION_MEMBER_ARRAYLIST = new ArrayList<Payable>() {{
-        add(amount -> {});
-        add(amount -> {});
-        add(amount -> {});
+        add(amount -> {
+        });
+        add(amount -> {
+        });
+        add(amount -> {
+        });
     }};
 
     private Card card;

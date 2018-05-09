@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;

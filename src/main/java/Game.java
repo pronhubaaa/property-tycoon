@@ -45,12 +45,11 @@ public class Game extends Application {
         //this._primaryStage = primaryStage;
         this.gameEngine = null;
         this.ui = new UI(primaryStage, gameEngine, false);
-        this.ui.showScene(MainMenuScreens.getMainMenu(this.ui,gameEngine));
+        this.ui.showScene(MainMenuScreens.getMainMenu(this.ui, gameEngine));
 
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         launch(args);
     }
 

@@ -7,7 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -1369,13 +1372,14 @@ public class GameBoard {
                     igv.setFitWidth(10);
                     igv.setFitHeight(10);
                     ((HBox) ((VBox) ((HBox) _boardPane.getBottom()).getChildren().get(10 - i)).getChildren().get(2)).getChildren().add(igv);
-                    ((HBox) _boardPane.getBottom()).getChildren().get(10 - i).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");}
+                    ((HBox) _boardPane.getBottom()).getChildren().get(10 - i).setStyle("-fx-background-color: '" + OwnedColours.valueOf(o.getGroup().getColour().name()) + "';");
+                }
             }
         }
     }
 
 
-    public void nextTurn(){
+    public void nextTurn() {
         this._dice = new Dice();
         _gameEngine.nextTurn();
         rollButton(this._dice);
@@ -1465,7 +1469,7 @@ public class GameBoard {
                     container.getChildren().add(buttons);
                     buy.setOnAction((ActionEvent e) -> {
                         cleanStack();
-                        if(!p.buyTile(t)){
+                        if (!p.buyTile(t)) {
                             displayMessage("You don't have enough money!", 20);
                         }
                         purchase(o, p);
