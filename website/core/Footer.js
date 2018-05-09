@@ -35,7 +35,7 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
+            <a href={this.docUrl('GameEngine-Class.html', this.props.language)}>
               Guides
             </a>
           </div>
