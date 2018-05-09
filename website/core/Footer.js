@@ -42,7 +42,7 @@ class Footer extends React.Component {
           <div>
             <h5>Download</h5>
             <a
-              href="https://github.com/pete183/property-tycoon/raw/develop/out/artifacts/property_tycoon_jar/property-tycoon.jar"
+              href="https://github.com/pete183/property-tycoon/raw/master/out/artifacts/property_tycoon_jar/property-tycoon.jar"
               target="_blank"
               rel="noreferrer noopener">
               Application Download Link
