@@ -114,7 +114,7 @@ public class MainMenuScreens {
      * @param height The determined height.
      */
 
-    public static void setSize(Labeled node, int width, int height) {
+    private static void setSize(Labeled node, int width, int height) {
         node.setMaxWidth(width);
         node.setMinWidth(width);
         node.setMaxHeight(height);
