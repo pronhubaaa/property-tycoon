@@ -30,7 +30,7 @@ public class UI {
         this._isTest = isTest;
 
         this._primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        this._primaryStage.setFullScreen(true);
+        this._primaryStage.setFullScreen(true   );
         this._primaryStage.getIcons().add(new Image("resources/icon.png"));
         if(this._isTest) {
             this._primaryStage.show();
@@ -64,4 +64,5 @@ public class UI {
     }
 
     public Scene getScene() { return _primaryStage.getScene(); }
+
 }
