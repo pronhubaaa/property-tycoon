@@ -1404,7 +1404,7 @@ public class GameBoard {
         } else if (t instanceof Utility) {
             type = TileType.Utility;
         } else if (t instanceof CardTile) {
-            type = TileType.CardTile;
+            type = TileType.Card;
         } else if (t instanceof Go) {
             type = TileType.Go;
         } else if (t instanceof GoToJail) {
@@ -1484,7 +1484,7 @@ public class GameBoard {
                     _centerStack.getChildren().add(container);
                 }
                 break;
-            case CardTile:
+            case Card:
                 CardTile c = (CardTile) t;
                 VBox grey = new VBox();
                 grey.setAlignment(Pos.CENTER);

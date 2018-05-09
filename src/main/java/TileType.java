@@ -10,5 +10,5 @@ public enum TileType {
     Jail,
     GoToJail,
     Tax,
-    CardTile
+    Card
 }
