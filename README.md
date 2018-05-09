@@ -16,17 +16,17 @@
 
 High-Level
 
-- [Use Case Diagram](./portfolio/Modelling\ Diagrams/Final/High-Level/Use\ Case.pdf)
-- [Flow Charts](./portfolio/Modelling\ Diagrams/Final/High-Level/Flow\ Chart/)
-  - [Game](./portfolio/Modelling\ Diagrams/Final/High-Level/Flow\ Chart/Game.pdf)
-  - [Move](./portfolio/Modelling\ Diagrams/Final/High-Level/Flow\ Chart/Move.pdf)
-  - [Transaction](./portfolio/Modelling\ Diagrams/Final/High-Level/Flow\ Chart/Transaction.pdf)
-  - [Turn](./portfolio/Modelling\ Diagrams/Final/High-Level/Flow\ Chart/Turn.pdf)
-  - [Withdraw](./portfolio/Modelling\ Diagrams/Final/High-Level/Flow\ Chart/Withdraw.pdf)
+- [Use Case Diagram](./portfolio/Modelling-Diagrams/Final/High-Level/Use-Case.pdf)
+- [Flow Charts](./portfolio/Modelling-Diagrams/Final/High-Level/Flow-Chart/)
+  - [Game](./portfolio/Modelling-Diagrams/Final/High-Level/Flow-Chart/Game.pdf)
+  - [Move](./portfolio/Modelling-Diagrams/Final/High-Level/Flow-Chart/Move.pdf)
+  - [Transaction](./portfolio/Modelling-Diagrams/Final/High-Level/Flow-Chart/Transaction.pdf)
+  - [Turn](./portfolio/Modelling-Diagrams/Final/High-Level/Flow-Chart/Turn.pdf)
+  - [Withdraw](./portfolio/Modelling-Diagrams/Final/High-Level/Flow-Chart/Withdraw.pdf)
 
 Low-Level
-- [Class Diagram](./portfolio/Modelling\ Diagrams/Final/Low-Level/Class.pdf)
-- [Sequence Diagram](./portfolio/Modelling\ Diagrams/Final/Low-Level/Sequence.pdf)
+- [Class Diagram](./portfolio/Modelling-Diagrams/Final/Low-Level/Class.pdf)
+- [Sequence Diagram](./portfolio/Modelling-Diagrams/Final/Low-Level/Sequence.pdf)
 
 
 
