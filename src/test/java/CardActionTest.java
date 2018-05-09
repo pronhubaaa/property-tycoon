@@ -16,21 +16,26 @@ public class CardActionTest {
     private static final CardActionType TEST_INITIAL_CARDACTIONTYPE = CardActionType.Transaction;
     private static final CardActionType TEST_SECOND_CARDACTIONTYPE = CardActionType.Draw;
     private static final Object TEST_ACTION_MEMBER_OBJECT = new Object();
-    private static final Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {};
+    private static final Payable TEST_ACTION_MEMBER_PAYABLE = amount -> {
+    };
     private Player TEST_ACTION_MEMBER_PLAYER;
     private static final String TEST_CARD_ACTION_DESC = "test";
     private static final int TEST_JSON_GO_SALARY = 200;
 
     private static final ArrayList<Payable> TEST_ACTION_MEMBER_ARRAYLIST = new ArrayList<Payable>() {{
-        add(amount -> {});
-        add(amount -> {});
-        add(amount -> {});
+        add(amount -> {
+        });
+        add(amount -> {
+        });
+        add(amount -> {
+        });
     }};
 
     private Card card;
     private CardAction cardAction;
     private Board board;
     private Player player;
+    private GameEngine gameEngine;
 
     @Before
     public void setUp() throws Exception {
@@ -38,11 +43,17 @@ public class CardActionTest {
         cardAction = new CardAction(TEST_INITIAL_CARDACTIONTYPE, card, "", TEST_ACTION_MEMBER_PAYABLE, TEST_ACTION_MEMBER_PAYABLE, 0);
         URL url = getClass().getResource("./resources/board.json");
         File file = new File(url.getPath());
-        String myJson = new Scanner(file).useDelimiter("\\Z").next();
-        JSONObject boardJson = (JSONObject) JSONObject.parse(myJson);
+        String json = new Scanner(file).useDelimiter("\\Z").next();
+        JSONObject boardJson = (JSONObject) JSONObject.parse(json);
         board = new Board(boardJson);
         TEST_ACTION_MEMBER_PLAYER = new Player(0, "", board);
         player = new Player(0, "", board);
+
+        url = getClass().getResource("./resources/savedGame.json");
+        file = new File(url.getPath());
+        json = new Scanner(file).useDelimiter("\\Z").next();
+        JSONObject gameJson = (JSONObject) JSONObject.parse(json);
+        gameEngine = new GameEngine(gameJson);
     }
 
     @After
@@ -133,7 +144,7 @@ public class CardActionTest {
         }};
         card.clear();
         card.addAll(actions);
-        card.get(0).performAction(player);
+        card.get(0).performAction(gameEngine, player);
         assertEquals(TEST_CARD_ACTION_DESC, player.getCards().get(0).get(0).getDescription());
 
         // ActionType.MOVE:
@@ -141,29 +152,29 @@ public class CardActionTest {
         CardAction action = new CardAction(CardActionType.Move, card, TEST_CARD_ACTION_DESC, null, tiles.get(1), 1);
         action.setCollectSalaryAtGo(true);
         // move to tile 1, collect salary
-        testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);
+        testOverGo(tiles, gameEngine, player, action, TEST_JSON_GO_SALARY);
         // move 2 tiles forward, collect salary
         action.setIntent(2);
-        testOverGo(tiles, player, action, TEST_JSON_GO_SALARY);
+        testOverGo(tiles, gameEngine, player, action, TEST_JSON_GO_SALARY);
         // move 2 tiles forward, no salary
         action.setCollectSalaryAtGo(false);
-        testOverGo(tiles, player, action, 0);
+        testOverGo(tiles, gameEngine, player, action, 0);
         // move to tile 3, no salary
         action.setIntent(tiles.get(3));
-        testOverGo(tiles, player, action, 0);
+        testOverGo(tiles, gameEngine, player, action, 0);
         // move 2 tiles backward
         action.setIntent(-2);
         player.setPosition(tiles.get(1));
-        action.performAction(player);
+        action.performAction(gameEngine, player);
         assertEquals(tiles.size() - 1, player.getPosition().getPosition());
 
         // ActionType.TRANSACTION:
     }
 
-    private static void testOverGo(ArrayList<Tile> tiles, Player player, CardAction action, int goSalary) throws MalformedCardActionException {
+    private static void testOverGo(ArrayList<Tile> tiles, GameEngine gameEngine, Player player, CardAction action, int goSalary) throws MalformedCardActionException {
         player.setPosition(tiles.get(tiles.size() - 1));
         int preTestBalance = player.getBalance();
-        action.performAction(player);
+        action.performAction(gameEngine, player);
         if (action.getIntent() instanceof Tile) {
             //noinspection SuspiciousMethodCalls
             assertEquals(tiles.indexOf(action.getIntent()), tiles.indexOf(player.getPosition()));

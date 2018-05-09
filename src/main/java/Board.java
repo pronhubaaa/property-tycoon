@@ -34,7 +34,6 @@ public class Board {
         this.groups = new HashMap<>();
         this.tiles = new ArrayList<>();
 
-
         if (jsonObject.containsKey(BoardJsonField.Tiles.toString())) {
 
             JSONArray tiles = jsonObject.getJSONArray(BoardJsonField.Tiles.toString());

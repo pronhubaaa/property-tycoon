@@ -16,6 +16,7 @@ public class CardTile extends Tile {
 
     /**
      * Set the card stack that this tile is to be associated with.
+     *
      * @param cardStack The new card stack.
      */
     public void setCardStack(CardStack cardStack) {
