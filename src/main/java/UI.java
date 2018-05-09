@@ -32,7 +32,7 @@ public class UI {
         this._primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         this._primaryStage.setFullScreen(true);
         this._primaryStage.getIcons().add(new Image("resources/icon.png"));
-        if(this._isTest) {
+        if (this._isTest) {
             this._primaryStage.show();
         }
     }
@@ -47,7 +47,7 @@ public class UI {
 
         this._primaryStage.setScene(scene);
         this._primaryStage.show();
-        if(!this._isTest) {
+        if (!this._isTest) {
             this._primaryStage.setFullScreen(true);
         }
     }
@@ -63,5 +63,8 @@ public class UI {
         return _primaryStage;
     }
 
-    public Scene getScene() { return _primaryStage.getScene(); }
+    public Scene getScene() {
+        return _primaryStage.getScene();
+    }
+
 }

@@ -1,13 +1,12 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-import javafx.scene.image.Image;
+
 import java.net.URL;
 
 public class MainMenuScreens {
@@ -42,16 +41,16 @@ public class MainMenuScreens {
                 e -> ui.showScene(MainMenuScreens.getNewGame(ui, gameEngine))),
 
                 getMainMenuButton("Load game", "load-game-button",
-                e -> ui.showScene(MainMenuScreens.getLoadGame(ui))),
+                        e -> ui.showScene(MainMenuScreens.getLoadGame(ui))),
 
                 getMainMenuButton("Import board", "import-board-button",
-                e -> ui.showScene(MainMenuScreens.getImportBoard(ui))),
+                        e -> ui.showScene(MainMenuScreens.getImportBoard(ui))),
 
                 getMainMenuButton("Settings", "settings-button",
-                e -> ui.showScene(MainMenuScreens.getSettings(ui))),
+                        e -> ui.showScene(MainMenuScreens.getSettings(ui))),
 
                 getMainMenuButton("Exit", "exit-button",
-                e -> ui.close()));
+                        e -> ui.close()));
 
         mainMenuLayout.setId("pane");
         return new Scene(mainMenuLayout);
@@ -69,7 +68,8 @@ public class MainMenuScreens {
 
     /**
      * Returns a scene containing new game setup screen.
-     * @param ui    The UI object.
+     *
+     * @param ui The UI object.
      * @return A scene containing the new game setup screen.
      */
     public static Scene getNewGame(UI ui, GameEngine gameEngine) {
@@ -78,7 +78,8 @@ public class MainMenuScreens {
 
     /**
      * Returns a scene containing load game screen.
-     * @param ui    The UI object.
+     *
+     * @param ui The UI object.
      * @return A scene containing the load game screen.
      */
     public static Scene getLoadGame(UI ui) {
@@ -87,7 +88,8 @@ public class MainMenuScreens {
 
     /**
      * Returns a scene containing import board screen.
-     * @param ui    The UI object.
+     *
+     * @param ui The UI object.
      * @return A scene containing the import board screen.
      */
     public static Scene getImportBoard(UI ui) {
@@ -96,7 +98,8 @@ public class MainMenuScreens {
 
     /**
      * Returns a scene containing settings screen.
-     * @param ui    The UI object.
+     *
+     * @param ui The UI object.
      * @return A scene containing the settings screen.
      */
     public static Scene getSettings(UI ui) {
@@ -105,12 +108,13 @@ public class MainMenuScreens {
 
     /**
      * Sets a passed node's strictly limited width and height.
-     * @param node      The UI object.
-     * @param width     The determined width.
-     * @param height    The determined height.
+     *
+     * @param node   The UI object.
+     * @param width  The determined width.
+     * @param height The determined height.
      */
 
-    public static void setSize(Labeled node, int width, int height) {
+    private static void setSize(Labeled node, int width, int height) {
         node.setMaxWidth(width);
         node.setMinWidth(width);
         node.setMaxHeight(height);

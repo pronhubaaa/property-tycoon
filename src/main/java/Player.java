@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * The player class is responsible for storing a players assets and storing methods for how players can perform actions
@@ -243,6 +244,7 @@ public class Player implements Payable {
 
     /**
      * Attempts to debit $amount from this player, and returns the result of the transaction.
+     *
      * @param amount The amount to be debited.
      * @return Whether the transaction was successful or not.
      */
@@ -325,7 +327,9 @@ public class Player implements Payable {
     }
 
 
-    public void setBoard(Board b) {this.board = b;}
+    public void setBoard(Board b) {
+        this.board = b;
+    }
 
     public ArrayList<Card> getCards() {
         return cards;
@@ -339,4 +343,17 @@ public class Player implements Payable {
         cards.add(card);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return Objects.equals(name, player.name);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name);
+    }
 }

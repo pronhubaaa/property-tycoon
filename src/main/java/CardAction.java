@@ -219,7 +219,8 @@ public class CardAction {
      * @param player The player the action will be executed against
      * @throws MalformedCardActionException
      */
-    public void performAction(Player player) throws MalformedCardActionException {
+    public boolean performAction(GameEngine gameEngine, Player player) throws MalformedCardActionException {
+        boolean actionSuccess = true;
         switch (cardActionType) {
             case Draw:
                 try {
@@ -275,41 +276,48 @@ public class CardAction {
                     amount = getRelativeTransactionAmount(player, amountPerHouse, amountPerHotel);
                 }
                 if (origin instanceof Player) {
-                    // TODO @Issue #17
+                    Player originPlayer = (Player) origin;
+                    actionSuccess = originPlayer.attemptDebit(amount);
                 } else if (origin instanceof String) {
                     if (origin.equals("player")) {
-                        // TODO @Issue #17
+                        actionSuccess = gameEngine.getCurrentPlayer().attemptDebit(amount);
                     }
                 } else if (origin instanceof ArrayList<?>) {
                     ArrayList<?> list = (ArrayList) origin;
                     if (list.get(0) instanceof Player) {
-                        // TODO @Issue 17
+                        for (Object payerPlayerObject : list) {
+                            Player payerPlayer = (Player) payerPlayerObject;
+                            actionSuccess = payerPlayer.attemptDebit(amount);
+                        }
                     } else {
                         throw new MalformedCardActionException("The list of origins was of an invalid type");
                     }
                 }
-                if (intent instanceof Payable) {
-                    ((Payable) intent).addBalance(amount);
-                } else if (intent instanceof ArrayList<?>) {
-                    ArrayList<?> list = (ArrayList) intent;
-                    if (list.get(0) instanceof Payable) {
-                        //noinspection unchecked
-                        ArrayList<Payable> payees = (ArrayList<Payable>) list;
-                        for (Payable payee : payees) {
-                            payee.addBalance(amount);
+                if (actionSuccess) {
+                    if (intent instanceof Payable) {
+                        ((Payable) intent).addBalance(amount);
+                    } else if (intent instanceof ArrayList<?>) {
+                        ArrayList<?> list = (ArrayList) intent;
+                        if (list.get(0) instanceof Payable) {
+                            //noinspection unchecked
+                            ArrayList<Payable> payees = (ArrayList<Payable>) list;
+                            for (Payable payee : payees) {
+                                payee.addBalance(amount);
+                            }
+                        } else {
+                            throw new MalformedCardActionException("The list of intents was of an invalid type");
+                        }
+                    } else if (intent instanceof String) {
+                        if (intent.equals("player")) {
+                            player.addBalance(amount);
                         }
                     } else {
-                        throw new MalformedCardActionException("The list of intents was of an invalid type");
+                        throw new MalformedCardActionException("The transaction intent is not a valid payee");
                     }
-                } else if (intent instanceof String) {
-                    if (intent.equals("player")) {
-                        player.addBalance(amount);
-                    }
-                } else {
-                    throw new MalformedCardActionException("The transaction intent is not a valid payee");
                 }
                 break;
         }
+        return actionSuccess;
     }
 
     private static int getRelativeTransactionAmount(Player player, int amountPerHouse, int amountPerHotel) {

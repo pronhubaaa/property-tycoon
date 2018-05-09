@@ -292,11 +292,12 @@ public class GameEngine {
 
     /**
      * getBoard
-     * @return Board The game boad.
      *
+     * @return Board The game boad.
+     * <p>
      * This method returns a pointer to the game board.
      */
-    public Board getBoard(){
+    public Board getBoard() {
         return this.gameBoard;
     }
 
