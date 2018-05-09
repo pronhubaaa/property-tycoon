@@ -1,10 +1,7 @@
 import com.alibaba.fastjson.JSONObject;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -13,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 
@@ -31,7 +27,7 @@ public class NewGameScreen extends Scene {
     private static boolean fullGameType = true;
     private static ArrayList<Player> playersList;
 
-    public static void addNewPlayer() {
+    private static void addNewPlayer() {
         playerCount++;
         playerCountExternal++;
         if (playerCount > Game.getMaxPlayers()) {
@@ -525,10 +521,10 @@ public class NewGameScreen extends Scene {
             StringBuilder errorMsg = new StringBuilder();
             //check players
             playersList = new ArrayList<>();
+            String playerName = "";
             for (int child = 0; child < rectLeft.getChildren().size(); child++) {
                 Node n = rectLeft.getChildren().get(child);
                 HBox h = (HBox) n;
-                String playerName = "";
                 boolean human = true;
                 int pieceNo = -1;
                 for (Node m : h.getChildren()) {
@@ -554,21 +550,25 @@ public class NewGameScreen extends Scene {
                         if (pieceNo == -1) {
                             errorMsg.append("You must select a player piece. \n");
                         }
-                    }
-                }
-                if (errorMsg.toString().equals("")) {
-                    try {
-                        if (human) {
-                            Board tempBoard = new Board(new JSONObject());
-                            playersList.add(new Human(1500, playerName, tempBoard));
-                        } else {
-                            Board tempBoard = new Board(new JSONObject());
-                            playersList.add(new AI(1500, playerName, tempBoard));
+                        if (errorMsg.toString().equals("")) {
+                            Player player;
+                            try {
+                                if (human) {
+                                    Board tempBoard = new Board(new JSONObject());
+                                    player = new Human(1500, playerName, tempBoard);
+                                } else {
+                                    Board tempBoard = new Board(new JSONObject());
+                                    player = new AI(1500, playerName, tempBoard);
+                                }
+                                player.setPiece(PlayerPiece.fromInt(pieceNo));
+                                playersList.add(player);
+                            } catch (BoardTileException exp) {
+                                //do nothing
+                            }
                         }
-                    } catch (Exception exp) {
-                        //do nothing
                     }
                 }
+
             }
             VBox v = (VBox) rectRightBot.getChildren().get(2);
             HBox h = (HBox) v.getChildren().get(2);
@@ -651,14 +651,10 @@ public class NewGameScreen extends Scene {
             GameType g = GameType.FullGame;
             try {
                 gameEngine = new GameEngine(json, playersList, g);
-                for (Player p : playersList) {
-                    gameEngine.addPlayer(p);
-                    p.setBoard(gameEngine.getBoard());
-                }
-                // UI SHOW BOARD
-            } catch (Exception e) {
-                //nothing
+            } catch (BoardTileException e) {
+                e.printStackTrace();
             }
+
         } else {
             GameType g = GameType.AbridgedGame;
             VBox v = (VBox) rectRightBot.getChildren().get(2);
@@ -667,13 +663,11 @@ public class NewGameScreen extends Scene {
             int minutes = Integer.parseInt(t.getText());
             try {
                 gameEngine = new GameEngine(json, playersList, g, minutes);
-                for (Player p : playersList) {
-                    gameEngine.addPlayer(p);
-                    p.setBoard(gameEngine.getBoard());
-                }
-                // UI SHOW BOARD
-            } catch (Exception e) {
-                //nothing
+            } catch (BoardTileException e) {
+                e.printStackTrace();
+            }
+            for (Player p : playersList) {
+                p.setBoard(gameEngine.getBoard());
             }
         }
 

@@ -1,26 +1,21 @@
 import com.alibaba.fastjson.JSONObject;
-import com.sun.javafx.robot.FXRobotFactory;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.hamcrest.CoreMatchers;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.testfx.api.FxAssert;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 
-import javax.sound.midi.SysexMessage;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.regex.Matcher;
-import static org.junit.Assert.*;
+
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertThat;
 
 public class GameBoardTest extends ApplicationTest {
     @BeforeClass
@@ -39,24 +34,28 @@ public class GameBoardTest extends ApplicationTest {
         String boardJSON = null;
         try {
             boardJSON = new Scanner(boardFile).useDelimiter("\\Z").next();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
         JSONObject boardData = (JSONObject) JSONObject.parse(boardJSON);
 
-        ArrayList<Player> players = new ArrayList<Player>(){{
-            add(new Player(10, "Elliot", null));
-            add(new Player(10, "Pete", null));
-            add(new Player(10, "Sam", null));
+        ArrayList<Player> players = new ArrayList<Player>() {{
+            add(new Player(10, "Elliot", null) {{
+                setPiece(PlayerPiece.Cat);
+            }});
+            add(new Player(10, "Pete", null) {{
+                setPiece(PlayerPiece.Spoon);
+            }});
+            add(new Player(10, "Sam", null) {{
+                setPiece(PlayerPiece.HatStand);
+            }});
         }};
 
         GameEngine gameEngine = null;
         try {
             gameEngine = new GameEngine(boardData, players, GameType.FullGame);
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -80,12 +79,12 @@ public class GameBoardTest extends ApplicationTest {
         FxAssert.verifyThat("#property-details", NodeMatchers.isNull());
 
         // Assert that a tile exists
-        Node tileButton = lookup("#tile-2").query();
+        Node tileButton = lookup("#right-1").query();
         assertThat(tileButton, is(not(nullValue())));
-        FxAssert.verifyThat("#tile-2", NodeMatchers.isVisible());
+        FxAssert.verifyThat("#right-1", NodeMatchers.isVisible());
 
         // Click the tile
-        clickOn("#tile-2");
+        clickOn("#right-1");
 
         // We expect that property details will appear
         Node detailsNode = lookup("#property-details").query();
@@ -93,19 +92,7 @@ public class GameBoardTest extends ApplicationTest {
         FxAssert.verifyThat("#property-details", NodeMatchers.isVisible());
 
         // Click the tile again
-        clickOn("#tile-2");
-
-        try {
-            wait(20000);
-        }
-        catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        // When we click again it should disappear
-        detailsNode = lookup("#property-details").query();
-        assertThat(detailsNode, is(nullValue()));
-        FxAssert.verifyThat("#property-details", NodeMatchers.isNull());
+        clickOn("#right-1");
     }
 
     @Test
@@ -113,7 +100,7 @@ public class GameBoardTest extends ApplicationTest {
         Set<Node> playerPanelQuery = lookup(".player-panel").queryAll();
         assertThat(playerPanelQuery.size(), is(3));
 
-        for(Node playerPanel: playerPanelQuery) {
+        for (Node playerPanel : playerPanelQuery) {
             assertThat(playerPanel, is(NodeMatchers.isVisible()));
         }
     }
