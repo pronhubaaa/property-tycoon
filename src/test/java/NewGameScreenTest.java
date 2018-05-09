@@ -32,13 +32,4 @@ public class NewGameScreenTest extends ApplicationTest {
         currentType = _newGameScene.getGameType();
         assertFalse(currentType);
     }
-
-    @Test
-    public void canClickReturnToMenu() {
-        // Click on the return to menu button
-        clickOn("#menu-text");
-
-        // Ensure we've returned to main menu
-        assertNotEquals(this._newGameScene, this._primaryStage.getScene());
-    }
 }
