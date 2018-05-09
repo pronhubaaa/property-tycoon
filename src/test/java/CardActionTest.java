@@ -39,12 +39,17 @@ public class CardActionTest {
         cardAction = new CardAction(TEST_INITIAL_CARDACTIONTYPE, card, "", TEST_ACTION_MEMBER_PAYABLE, TEST_ACTION_MEMBER_PAYABLE, 0);
         URL url = getClass().getResource("./resources/board.json");
         File file = new File(url.getPath());
-        String myJson = new Scanner(file).useDelimiter("\\Z").next();
-        JSONObject boardJson = (JSONObject) JSONObject.parse(myJson);
+        String json = new Scanner(file).useDelimiter("\\Z").next();
+        JSONObject boardJson = (JSONObject) JSONObject.parse(json);
         board = new Board(boardJson);
         TEST_ACTION_MEMBER_PLAYER = new Player(0, "", board);
         player = new Player(0, "", board);
-        gameEngine = new GameEngine(new JSONObject());
+
+        url = getClass().getResource("./resources/savedGame.json");
+        file = new File(url.getPath());
+        json = new Scanner(file).useDelimiter("\\Z").next();
+        JSONObject gameJson = (JSONObject) JSONObject.parse(json);
+        gameEngine = new GameEngine(gameJson);
     }
 
     @After
