@@ -1713,24 +1713,6 @@ public class GameBoard {
         this._dice = new Dice();
         rollButton(this._dice);
 
-//        while(true){
-//
-//
-//            putPlayerOnTile(player);
-//
-//            int numberOfTile = (_gameEngine.getBoard().getTiles().indexOf(_gameEngine.getCurrentPlayer().getPosition()) + roll[0] + roll[1])%_gameEngine.getBoard().getTiles().size();
-//            Tile tile = _gameEngine.getBoard().getTiles().get(numberOfTile);
-//            _gameEngine.getCurrentPlayer().setPosition(tile);
-//
-//            landed(tile, player, roll[0]+roll[1]);
-//
-//            _gameEngine.nextTurn();
-//
-//s
-//
-//        }
-
-
     }
 
 

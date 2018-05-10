@@ -35,14 +35,14 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Docs</h5>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
+            <a href={this.docUrl('GameEngine-Class.html', this.props.language)}>
               Guides
             </a>
           </div>
           <div>
             <h5>Download</h5>
             <a
-              href="https://github.com/pete183/property-tycoon/raw/develop/out/artifacts/property_tycoon_jar/property-tycoon.jar"
+              href="https://github.com/pete183/property-tycoon/raw/master/out/artifacts/property_tycoon_jar/property-tycoon.jar"
               target="_blank"
               rel="noreferrer noopener">
               Application Download Link
