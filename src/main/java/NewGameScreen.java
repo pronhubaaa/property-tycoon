@@ -286,24 +286,7 @@ public class NewGameScreen extends Scene {
         board.setPadding(new Insets(20, 0, 0, 0));
         rectRight.getChildren().add(board);
 
-        ObservableList<String> options = FXCollections.observableArrayList("");
-
-        try {
-            FileReader fr = new FileReader("saved-boards.ted");
-            BufferedReader br = new BufferedReader(fr);
-            int lineNo = 1;
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (lineNo % 2 == 0) {
-                    options.add(line);
-                }
-                lineNo++;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        ComboBox dropdown = new ComboBox(options);
+        ComboBox dropdown = new ComboBox(getBoardOptions());
         dropdown.setMinWidth(400);
         dropdown.setMaxWidth(400);
         dropdown.setMinHeight(40);
@@ -411,6 +394,7 @@ public class NewGameScreen extends Scene {
                     }
                 }
                 stack.getChildren().remove(menuOverlay);
+                dropdown.setItems(getBoardOptions());
             });
         });
         rectRight.getChildren().add(importNewBoard);
@@ -644,6 +628,25 @@ public class NewGameScreen extends Scene {
         stack.getChildren().add(root);
         root.toBack();
         scene.getChildren().add(stack);
+    }
+
+    private static ObservableList<String> getBoardOptions() {
+        ObservableList<String> options = FXCollections.observableArrayList("");
+        try {
+            FileReader fr = new FileReader("saved-boards.ted");
+            BufferedReader br = new BufferedReader(fr);
+            int lineNo = 1;
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (lineNo % 2 == 0) {
+                    options.add(line);
+                }
+                lineNo++;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return options;
     }
 
     public GameEngine makeGame(GameEngine gameEngine, JSONObject json, UI ui) { //do this so we are not initialising gameengine in lambda function
